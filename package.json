@@ -19,5 +19,11 @@
     "health",
     "card-file"
   ],
-  "author": "Kacper Nadstoga Julia Glanc"
+  "author": "Kacper Nadstoga Julia Glanc",
+  "dependencies": {
+    "firebase": "^9.8.1",
+    "firebase-admin": "^10.2.0",
+    "firebase-functions": "^3.21.2"
+  },
+  "type": "module"
 }
