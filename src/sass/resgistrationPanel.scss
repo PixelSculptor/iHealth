@@ -1,0 +1,108 @@
+@use "variables" as var;
+
+.aside{
+  background-color: var.$blue-500;
+  color: var.$white;
+  -moz-border-radius-topright: 1.413rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &__navLogo{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    .logo__title{
+      font-weight: 700;
+      margin: .2rem 0;
+      //display: inline-block;
+
+      &, & > span{
+        font-size: var.$heading-1;
+      }
+      & > span{
+        //display: inline-block;
+        //vertical-align: middle;
+        position: relative;
+        top: .4rem;
+      }
+    }
+    .logo__subtitle{
+      font-size: var.$heading-2;
+      line-height: var.$line-height-high;
+      margin: .2rem 0;
+    }
+  }
+  &__features{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    .features__item{
+      height: 35%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      & > span{
+        display: block;
+        font-size: 2rem;
+        margin: .2rem 0;
+      }
+
+      .feature__title{
+        font-size: var.$heading-6;
+        line-height: var.$line-height-normal;
+
+      }
+      .feature__description{
+        margin-top: .2rem;
+        color: var.$gray-300;
+        font-size: var.$paragraph;
+        line-height: var.$line-height-small
+      }
+
+
+    }
+  }
+}
+
+.signInPanel{
+  background-color: var.$gray-100;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+
+
+  &__login{
+    justify-self: end;
+    width: 35%;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .login__question{
+      font-size: var.$heading-5;
+      font-weight: 700;
+      color: var.$blue-700;
+    }
+    .login__switchLogin{
+      display: inline-block;
+      min-width: 6.813rem;
+      min-height: 2.125rem;
+      background-color: var.$blue-100;
+      border-radius: 1.25rem;
+      border: 2px solid var.$blue-700;
+      font-weight: 600;
+      color: var.$blue-700;
+      font-size: var.$paragraph;
+      cursor: pointer;
+
+      //padding: 1rem;
+    }
+
+  }
+
+}
