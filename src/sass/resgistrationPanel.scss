@@ -110,4 +110,86 @@
 
   }
 
+  &__registration{
+    min-height: 70%;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    //flex-direction: column;
+    //justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid red;
+
+
+    .register__createBanner{
+      font-size: var.$heading-2;
+      font-weight: 700;
+      color: var.$blue-700;
+    }
+
+
+
+    .register__createWith{
+      display: inline-block;
+      height: 8%;
+      width: 100%;
+      border-radius: 1.25rem;
+      background-color: var.$blue-100;
+      border: none;
+      margin: .5rem 0;
+      font-size: var.$heading-6;
+      font-weight: 700;
+      color: var.$blue-700;
+    }
+
+    .register__other{
+      position: relative;
+      margin: 1rem 0;
+      color: var.$gray-700;
+      &::before{
+        display: inline-block;
+        content: "";
+        width: 11vw;
+        position: absolute;
+        top: 50%;
+        //left: -90%;
+        transform: translateX(-102%);
+        height: 1px;
+        background-color: var.$gray-500;
+      }
+      &::after{
+        display: inline-block;
+        content: "";
+        width: 11vw;
+        position: absolute;
+        top: 50%;
+        //left: -90%;
+        transform: translateX(2%);
+        height: 1px;
+        background-color: var.$gray-500;
+      }
+    }
+
+    .register__form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+
+      .inputWrapper{
+        width: 100%;
+        height: 25%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+
+  }
+
+
+
 }

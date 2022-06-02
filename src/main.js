@@ -36,9 +36,9 @@ document.querySelector('#app').innerHTML = `
     </section>
     
     <section class="signInPanel__registration register">
-        <h2 class="register__createBanner>Stwórz darmowe konto"</h2>
+        <h2 class="register__createBanner">Stwórz darmowe konto</h2>
         <button class="register__createWith">Zaloguj się przez Google</button>
-        <button class="register__createWith">Zaloguj się przez Facebook</button>
+        <button class="register__createWith">Zaloguj się przez Facebook <i class="fa-brands fa-facebook"></i></button>
         <span class="register__other">lub</span>
         
         <form class="register__form" action="">
