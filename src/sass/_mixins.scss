@@ -1,0 +1,23 @@
+@use "variables" as var;
+
+@mixin btnComponent{
+
+  display: inline-block;
+  width: 70%;
+  border-radius: 1.25rem;
+  background-color: var.$blue-100;
+  border: 3px solid transparent;
+  margin: .5rem 0;
+  padding: .8rem;
+  cursor: pointer;
+  font-size: var.$heading-6;
+  font-weight: 700;
+  color: var.$blue-700;
+  transition: border .1s ease-in;
+
+  &:hover {
+    //margin: -2px;
+    border: 3px solid  var.$blue-700;
+
+  }
+}

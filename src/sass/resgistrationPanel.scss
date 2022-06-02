@@ -1,5 +1,5 @@
 @use "variables" as var;
-
+@use "mixins" as mix;
 .aside{
   background-color: var.$blue-500;
   color: var.$white;
@@ -85,6 +85,7 @@
     justify-content: space-evenly;
     align-items: center;
 
+
     .login__question{
       font-size: var.$heading-5;
       font-weight: 700;
@@ -111,85 +112,119 @@
   }
 
   &__registration{
-    min-height: 70%;
+    height: 95%;
+    width: 60%;
     justify-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    //flex-direction: column;
-    //justify-content: space-evenly;
+    justify-content: space-evenly;
     align-items: center;
-    border: 2px solid red;
-
-
-    .register__createBanner{
-      font-size: var.$heading-2;
-      font-weight: 700;
-      color: var.$blue-700;
-    }
+    background: var.$white;
+    border-radius: 1.25rem;
 
 
 
-    .register__createWith{
-      display: inline-block;
-      height: 8%;
-      width: 100%;
-      border-radius: 1.25rem;
-      background-color: var.$blue-100;
-      border: none;
-      margin: .5rem 0;
-      font-size: var.$heading-6;
-      font-weight: 700;
-      color: var.$blue-700;
-    }
+    .register__api{
+      height: 60%;
+      width: 79%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
 
-    .register__other{
-      position: relative;
-      margin: 1rem 0;
-      color: var.$gray-700;
-      &::before{
-        display: inline-block;
-        content: "";
-        width: 11vw;
-        position: absolute;
-        top: 50%;
-        //left: -90%;
-        transform: translateX(-102%);
-        height: 1px;
-        background-color: var.$gray-500;
+      .register__createBanner{
+        font-size: var.$heading-2;
+        font-weight: 700;
+        color: var.$blue-700;
+        margin: 1rem 0;
       }
-      &::after{
-        display: inline-block;
-        content: "";
-        width: 11vw;
-        position: absolute;
-        top: 50%;
-        //left: -90%;
-        transform: translateX(2%);
-        height: 1px;
-        background-color: var.$gray-500;
+
+
+
+      .register__createWith{
+        @include mix.btnComponent;
+        //&:hover, {
+        //  //margin: -2px;
+        //  border: 5px solid  var.$blue-900;
+        //
+        //}
       }
+
+      .register__other{
+        position: relative;
+        display: inline-block;
+        margin: 1rem 0;
+        color: var.$gray-700;
+        &::before{
+          display: inline-block;
+          content: "";
+          width: 11vw;
+          position: absolute;
+          top: 50%;
+          //left: -90%;
+          transform: translateX(-102%);
+          height: 1px;
+          background-color: var.$gray-500;
+        }
+        &::after{
+          display: inline-block;
+          content: "";
+          width: 11vw;
+          position: absolute;
+          top: 50%;
+          //left: -90%;
+          transform: translateX(2%);
+          height: 1px;
+          background-color: var.$gray-500;
+        }
+      }
+
     }
 
     .register__form{
+      position: relative;
+      top: -5%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      width: 100%;
+      justify-content: space-between;
+      width: 90%;
       height: 100%;
 
+
       .inputWrapper{
-        width: 100%;
-        height: 25%;
+        width: 70%;
+        height: 30%;
+        color: var.$black;
+
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
+
+
+        .label{
+          color: var.$blue-700;
+          font-weight: 600;
+          margin: .5rem 0;
+        }
+        .inputData{
+          height: 40%;
+          padding: .5rem;
+          font-size: 1rem;
+          border: 2px solid var.$black;
+          border-radius: 0.625rem;
+
+          &:active{
+            border-color: var.$blue-700;
+          }
+        }
       }
+      .confirmRegistration{
+        @include mix.btnComponent;
+      }
+
     }
-
-
   }
-
-
 
 }

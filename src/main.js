@@ -36,22 +36,24 @@ document.querySelector('#app').innerHTML = `
     </section>
     
     <section class="signInPanel__registration register">
-        <h2 class="register__createBanner">Stwórz darmowe konto</h2>
-        <button class="register__createWith">Zaloguj się przez Google</button>
-        <button class="register__createWith">Zaloguj się przez Facebook <i class="fa-brands fa-facebook"></i></button>
-        <span class="register__other">lub</span>
+        <div class="register__api">
+                <h2 class="register__createBanner">Stwórz darmowe konto</h2>
+                <button class="register__createWith">Zaloguj się przez Google</button>
+                <button class="register__createWith">Zaloguj się przez Facebook <i class="fa-brands fa-facebook"></i> </button>
+                <span class="register__other">lub</span>
+</div>
+        
         
         <form class="register__form" action="">
             <div class="inputWrapper">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="jan_kowalski@o2.pl" required>
+                <label class="label" for="email">Email</label>
+                <input class="inputData" id="email" name="email" type="email" placeholder="jan_kowalski@o2.pl" required>
             </div>
-            
             <div class="inputWrapper">
-                <label for="password">Hasło</label>
-                <input id="password" name="password" type="password" required>
+                <label class="label" for="password">Hasło</label>
+                <input class="inputData" id="password" name="password" type="password" required>
             </div>
-            <input type="submit" value="Dołącz przez email">
+            <input class="confirmRegistration" type="submit" value="Dołącz przez email">
         </form>
     </section>
     
