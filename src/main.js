@@ -38,8 +38,8 @@ document.querySelector('#app').innerHTML = `
     <section class="signInPanel__registration register">
         <div class="register__api">
                 <h2 class="register__createBanner">Stwórz darmowe konto</h2>
-                <button class="register__createWith">Zaloguj się przez Google</button>
-                <button class="register__createWith">Zaloguj się przez Facebook <i class="fa-brands fa-facebook"></i> </button>
+                <button class="register__createWith">Zaloguj się przez Google <i class="fa fa-brands fa-google"></i></button>
+                <button class="register__createWith">Zaloguj się przez Facebook <i class="fa fa-brands fa-facebook"></i> </button>
                 <span class="register__other">lub</span>
 </div>
         

@@ -149,6 +149,10 @@
         //  border: 5px solid  var.$blue-900;
         //
         //}
+        & > i{
+          margin: 0 .2rem;
+          font-size: var.$heading-6;
+        }
       }
 
       .register__other{
