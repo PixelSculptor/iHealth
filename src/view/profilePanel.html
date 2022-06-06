@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://kit.fontawesome.com/c0509eb509.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./profilePanel.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
@@ -44,39 +45,55 @@ logout
     </header>
 
     <main class="mainPanel">
-        <h1>Cześć Jan</h1>
-        <h3>10 maja 2022</h3>
+        <section class="greeting">
+            <h2 class="greeting__welcome">Cześć Jan!</h2>
+            <h6 class="greeting__date">10 maja 2022</h6>
+        </section>
+
         <section class="features">
-            <div class="featureItem">
+            <div id="issues" class="featureItem">
                 <h2 class="featureItem__description">Twoje informacje</h2>
                 <ul class="dataList">
-                    <li class="dataList__item">[ikona] Grupa krwi <span class="moreInfo">AB Rh-</span></li>
-                    <li class="dataList__item">[ikona] Uczulenia <span class="moreInfo">Detergenty</span></li>
-                    <li class="dataList__item">[ikona] Cukrzyca <span class="moreInfo">typu b</span></li>
+                    <li class="dataList__item"> <div class="icon_wrapper blood-icon"><span class="material-symbols-outlined">
+bloodtype
+</span></div> Grupa krwi <span class="moreInfo">AB Rh-</span></li>
+                    <li class="dataList__item">
+                        <div class="icon_wrapper allergies"><i class="fa-solid fa-hand-dots"></i></div> Uczulenia <span class="moreInfo">Detergenty</span></li>
+                    <li class="dataList__item">
+                        <div class="icon_wrapper diabetics"><i class="fa-solid fa-apple-whole"></i></div> Cukrzyca <span class="moreInfo">Typu 2</span></li>
                 </ul>
             </div>
-            <div class="featureItem">
+            <div id="contactList" class="featureItem">
                 <h2 class="featureItem__description">Lista osób bliskich</h2>
-                <ul class="dataList">
-                    <li class="dataList__item contact"><img class="contact__avatar" src="" alt=""> <div class="contact__info">
+                <ul class="dataList contacts">
+                    <li class="dataList__item contact">
+                        <div class="avatarPhoto mum"></div>
+                        <div class="contact__info">
                         <h6 class="name">Maria Kowalska</h6>
                         <p class="phonenumber">+48 530 574 123</p>
-                    </div> <span class="contactType">Mama</span></li>
-                    <li class="dataList__item contact"><img class="contact__avatar" src="" alt=""> <div class="contact__info">
+                    </div> <span class="mum contactType">Mama</span></li>
+                    <li class="dataList__item contact">
+                        <div class="avatarPhoto dad"></div>
+                        <div class="contact__info">
                         <h6 class="name">Józef Kowalski</h6>
                         <p class="phonenumber">+48 530 174 323</p>
-                    </div> <span class="contactType">Tata</span></li>
-                    <li class="dataList__item contact"><img class="contact__avatar" src="" alt=""> <div class="contact__info">
-                        <h6 class="name">Halle Berry</h6>
-                        <p class="phonenumber">+48 728 424 136</p>
-                    </div> <span class="contactType">Partner/ka</span></li>
+                        </div>
+                        <span class="dad contactType">Tata</span></li>
+                    <li class="dataList__item contact ">
+                        <div class="avatarPhoto couple"></div>
+                        <div class="contact__info">
+                            <h6 class="name">Halle Berry</h6>
+                            <p class="phonenumber">+48 728 424 136</p>
+                        </div>
+                        <span class="couple contactType">Partner/ka</span>
+                    </li>
                 </ul>
             </div>
-            <div class="featureItem">
+            <div id="additional" class="featureItem">
                 <h2 class="featureItem__description">Informacje szczególne</h2>
                 <ul class="dataList">
                     <li class="dataList__item">Dawca organów <span class="moreInfo denied">Brak zgody</span></li>
-                    <li class="dataList__item">[ikona] Honorowy dawca krwi <span class="moreInfo accept">Tak</span></li>
+                    <li class="dataList__item"> Honorowy dawca krwi <span class="moreInfo accept">Tak</span></li>
 
                 </ul>
             </div>
@@ -92,7 +109,7 @@ logout
         <ul class="userInfoList">
             <li class="userInfoList__item">
                 <h6 class="labelInfo">Email</h6>
-                <p class="userInfo">Jan.kowalski@gmail.com</p>
+                <p class="userInfo">jan.kowalski@gmail.com</p>
             </li>
             <li class="userInfoList__item">
                 <h6 class="labelInfo">Telefon</h6>

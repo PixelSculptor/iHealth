@@ -7,18 +7,22 @@
     --blue-700: #0035AA;
     --blue-900: #002066;
 
-// Grayscale
+/*    status*/
+    --accept: #3BC65A;
+    --denied: #CB2B2B;
+
+/*Grayscale*/
     --gray-100: #EEE;
     --gray-300: #CCC;
     --gray-500: #999;
     --gray-700: #666;
     --gray-900: #333;
 
-// No colors
+ /*No colors */
     --black: #000;
     --white: #FFF;
 
-// Typography
+/* Typography*/
 
     --heading-1: 3.185rem;
     --heading-2: 1.853rem;
@@ -28,7 +32,7 @@
     --heading-6: 1.25rem;
     --paragraph: .8rem;
 
-//line-height
+/*line-height*/
     --line-height-high: 2rem;
     --line-height-normal: 1.6rem;
     --line-height-small: 1.2rem;
@@ -43,8 +47,8 @@ body{
     min-height: 100vh;
     max-width: 100%;
     display: grid;
-    grid-template-columns: 2fr 5fr 3fr;
-    background: var(--gray-100);
+    grid-template-columns: 2fr 6fr 1fr;
+    background: var(--white);
     font-family: var(--font);
     box-sizing: border-box;
 }
@@ -63,6 +67,10 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.menu__controls > i{
+    cursor: pointer;
 }
 
 .menu__listFeatrues{
@@ -149,3 +157,292 @@ body{
 .userLogged > h6{
     margin-left: .5rem;
 }
+
+.mainPanel{
+
+
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.greeting{
+    width: 100%;
+    height: 10%;
+    padding: 1rem;
+}
+.greeting__welcome{
+    font-size: 2rem;
+    margin: 0;
+    color: var(--blue-900);
+}
+
+.greeting__date{
+    margin: 0;
+    color: var(--gray-500);
+    font-weight: 500;
+    font-size: var(--heading-6);
+}
+
+
+i:before{
+    font-style: normal;
+    content: '\f461';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+
+
+.features{
+    height: 50%;
+    /*margin: 2%;*/
+    display: grid;
+    gap: 1rem;
+    /*grid-auto-flow: column;*/
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.featureItem{
+    width: 90%;
+}
+
+.additional{
+    grid-column: 1 / 2;
+}
+
+.featureItem{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid var(--gray-500);
+    border-radius: 10px;
+    background-color:#eee;
+}
+
+.featureItem__description{
+    color: var(--blue-700);
+}
+
+
+.dataList{
+
+    list-style-type: none;
+    display: flex;
+    width: 90%;
+    height: 100%;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+#issues{
+    grid-row: 1/2;
+}
+
+
+#contactList{
+    grid-row: 1/span 2;
+}
+.dataList__item{
+    background-color: var(--white);
+    margin: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+    border-radius: 10px;
+    border: 2px solid var(--gray-300);
+    color: var(--blue-700);
+    font-weight: 600;
+
+}
+
+#contactList > .dataList{
+    justify-content: flex-start;
+}
+
+.contacts > .dataList__item{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 .5rem;
+}
+
+.avatarPhoto{
+    width: 40px;
+    height: 40px;
+    background-color: #F3D2D2;
+    border-radius: 50%;
+}
+
+.contact__info{
+    height: 90%;
+    width: 50%;
+    font-size: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.contact__info > h6{
+    font-size: 1rem;
+    color: var(--blue-900);
+}
+.contact__info > p{
+    font-weight: 400;
+    color: var(--blue-700);
+}
+
+.contact__info > h6,
+.contact__info > p{
+    margin: 0;
+    padding: 0;
+}
+
+.moreInfo{
+    font-weight: 500;
+    margin: .5rem;
+}
+
+.icon_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: .5rem;
+}
+
+.allergies{
+    background-color: #C8FCCA;
+    color: var(--black);
+}
+
+.blood-icon{
+    background-color: #F3D2D2;
+}
+
+.blood-icon > span{
+    color: #C50000;
+    font-size: 2rem;
+}
+
+.diabetics{
+    background-color: #B6F2FF;
+    color: var(--black);
+}
+
+#additional > .dataList__item{
+    height: 10%;
+}
+
+
+#addtional{
+    grid-row: 2/3
+}
+
+.contactType{
+    display: inline-block;
+    width: 20%;
+    font-size: .5rem;
+    padding: .2rem;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.mum{
+    background-color: #F3D2D2;
+    color: #941E56;
+}
+
+.dad{
+    background-color: #B6F2FF;
+    color: #197488;
+}
+
+.couple {
+    background-color: #C8FCCA;
+    color: #055908;
+}
+
+#additional > .dataList > .dataList__item{
+    padding: .4rem;
+    justify-content: space-around;
+}
+
+.accept, .denied{
+    font-weight: 400;
+}
+
+.accept{
+    color: #3BC65A;
+
+}
+
+.denied{
+    color: var(--denied);
+}
+
+.avatar{
+    margin-top: .5rem;
+    width: 177px;
+    height: 177px;
+    background-image: url("../assets/avatar2.png");
+    background-size: cover;
+    background-position: top center;
+    background-color: var(--blue-500);
+    border-radius: 50%;
+    border: 5px solid var(--blue-300);
+}
+
+.profilePanel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--gray-100);
+    background-color: var(--blue-700);
+    -moz-border-radius-topleft: 10px;
+}
+
+.profilePanel > .userInfoList{
+    list-style-type: none;
+}
+
+.profileName{
+    font-weight: 500;
+}
+
+.userInfoList__item > h6, .userInfoList__item >p{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.userInfoList__item{
+    /*height: 50%;*/
+    margin: 1rem;
+}
+
+.labelInfo{
+    font-weight: 400;
+
+    color: var(--gray-300);
+    margin-bottom: .3rem;
+}
+
+.userInfo{
+    font-weight: 600;
+    color: var(--gray-100);
+}
+
