@@ -2,23 +2,17 @@
   "name": "ihealth",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "sass": "^1.52.1",
-    "vite": "^2.9.9"
+  "dependencies": {
+    "vue": "^3.2.37"
   },
-  "keywords": [
-    "webapp",
-    "js",
-    "RWD",
-    "health",
-    "health",
-    "card-file"
-  ],
-  "author": "Kacper Nadstoga Julia Glanc"
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "vite": "^3.0.7"
+  }
 }
-
