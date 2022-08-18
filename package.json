@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^9.9.2",
+    "saas": "^1.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
