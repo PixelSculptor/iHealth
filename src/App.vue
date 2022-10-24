@@ -27,6 +27,7 @@ import HelloWorld from './components/HelloWorld.vue';
                 alt="Vue logo"
             />
         </a>
+        <font-awesome-icon icon="fa-solid fa-user-secret" />
     </div>
     <HelloWorld msg="Vite + Vue" />
 </template>
