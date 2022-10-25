@@ -2,23 +2,40 @@
   "name": "ihealth",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "pinia": "^2.0.23",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "sass": "^1.52.1",
-    "vite": "^2.9.9"
+    "@vitejs/plugin-vue": "^3.0.3",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.6.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "sass": "^1.55.0",
+    "vite": "^3.0.7"
   },
-  "keywords": [
-    "webapp",
-    "js",
-    "RWD",
-    "health",
-    "health",
-    "card-file"
-  ],
-  "author": "Kacper Nadstoga Julia Glanc"
+  "lint-staged": {
+    "./src/**/*.{js,vue}": "eslint --fix",
+    "./src/**/*.{vue,js,scss,css,md}": "prettier --write"
+  }
 }
-
