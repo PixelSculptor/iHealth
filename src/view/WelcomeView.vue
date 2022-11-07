@@ -5,14 +5,14 @@
 </template>
 
 <script>
-export default {
-    name: 'WelcomeView',
-};
+    export default {
+        name: 'WelcomeView',
+    };
 </script>
 
 <style scoped lang="scss">
-.welcome {
-    font-weight: 800;
-    font-size: 10px;
-}
+    .welcome {
+        font-weight: 800;
+        font-size: 10px;
+    }
 </style>
