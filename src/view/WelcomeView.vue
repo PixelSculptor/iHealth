@@ -13,5 +13,6 @@ export default {
 <style scoped lang="scss">
 .welcome {
     font-weight: 800;
+    font-size: 10px;
 }
 </style>
