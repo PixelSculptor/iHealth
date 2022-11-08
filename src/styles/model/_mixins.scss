@@ -1,0 +1,84 @@
+@use 'variables' as *;
+@mixin text-header1($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading1;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h1;
+}
+@mixin text-header2($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading2;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h2;
+}
+@mixin text-header3($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading3;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h3;
+}
+@mixin text-header4($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading4;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h4;
+}
+@mixin text-header5($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading5;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h5;
+}
+@mixin text-header6($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading6;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+@mixin text-paragraph($weight: $font-weight-regular, $italic: false) {
+    font-size: $base-font-size;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-body;
+}
+@mixin text-header1($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading1;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h1;
+}
+
+@mixin flex-center($dir: row) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-position(
+    $dir: row,
+    $wrap: wrap,
+    $position-horizontal: flex-start,
+    $position-vertical: flex-start
+) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $position-horizontal;
+    align-items: $position-vertical;
+}
