@@ -5,9 +5,9 @@
 </template>
 
 <script>
-export default {
-    name: 'WelcomeView',
-};
+    export default {
+        name: 'WelcomeView',
+    };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

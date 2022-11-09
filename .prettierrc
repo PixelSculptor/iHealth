@@ -2,6 +2,10 @@
   "trailingComma": "es5",
   "tabWidth": 4,
   "semi": true,
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "vueIndentScriptAndStyle": true,
   "singleQuote": true,
   "singleAttributePerLine": true
 }
