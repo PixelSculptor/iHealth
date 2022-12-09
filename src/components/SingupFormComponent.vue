@@ -45,7 +45,8 @@
 
 <style scoped lang="scss">
     .signUpForm {
-        @include flex-position(column, wrap, space-between, center);
+        @include flex-position(column, wrap, flex-start, center);
+        gap: 15%;
         .formBlock {
             width: $button-width-wide;
             height: 6rem;

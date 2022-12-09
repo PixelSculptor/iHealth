@@ -98,10 +98,11 @@
             @include button-main--hover;
         }
 
-        &:active,
+        &:active {
+            @include button-main--active;
+        }
         &:focus,
         &:focus-visible {
-            @include button-main--active;
             @include focus;
         }
         &[aria-disabled='true'],
@@ -118,10 +119,11 @@
             @include button-soft--hover;
         }
 
-        &:active,
+        &:active {
+            @include button-soft--active;
+        }
         &:focus,
         &:focus-visible {
-            @include button-soft--active;
             @include focus;
         }
         &[aria-disabled='true'],

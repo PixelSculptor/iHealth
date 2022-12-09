@@ -101,6 +101,7 @@
     outline: dashed $blue-300;
     outline-offset: 0.3rem;
     outline-width: 0.15rem;
+    @include button-soft--active;
 }
 
 @mixin button--small {
