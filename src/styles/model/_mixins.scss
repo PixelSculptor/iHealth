@@ -92,7 +92,7 @@
     width: auto;
     padding: 0.5rem;
     display: inline-block;
-    @include text-button;
+    @include text-button($font-weight-medium);
     transition: $transition-basic;
     text-align: center;
 }

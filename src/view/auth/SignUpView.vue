@@ -2,10 +2,6 @@
     <div class="wrapper"></div>
 </template>
 
-<script>
-    export default {
-        name: 'SignUpView',
-    };
-</script>
+<script setup></script>
 
 <style scoped></style>
