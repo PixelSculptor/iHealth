@@ -92,7 +92,7 @@
     width: auto;
     padding: 0.5rem;
     display: inline-block;
-    @include text-button($font-weight-medium);
+    @include text-button($font-weight-semiBold);
     transition: $transition-basic;
     text-align: center;
 }
@@ -138,7 +138,7 @@
 }
 
 @mixin button-soft--hover {
-    background-color: $blue-300;
+    background-color: $blue-700;
     color: $gray-100;
 }
 
