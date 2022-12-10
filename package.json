@@ -40,6 +40,6 @@
   "lint-staged": {
     "./src/**/*.{js,vue}": "eslint --fix",
     "./src/**/*.{vue,js,scss,css,md}": "prettier --write",
-    ".src/**/*.scss": "stylelint --fix"
+    "./src/**/*.{vue, scss}": "stylelint --fix"
   }
 }
