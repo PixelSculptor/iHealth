@@ -5,9 +5,26 @@ import App from './App.vue';
 import { createPinia } from 'pinia';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import {
+    faUser,
+    faUserDoctor,
+    faHeartPulse,
+    faDatabase,
+    faFileMedical,
+    faFileWaveform,
+} from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
-library.add(faUserSecret);
+library.add(
+    faGoogle,
+    faFacebook,
+    faUser,
+    faUserDoctor,
+    faHeartPulse,
+    faDatabase,
+    faFileMedical,
+    faFileWaveform
+);
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
