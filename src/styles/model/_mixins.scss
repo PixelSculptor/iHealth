@@ -55,8 +55,8 @@
     }
     letter-spacing: $letter-spacing-body;
 }
-@mixin text-header1($weight: $font-weight-regular, $italic: false) {
-    font-size: $font-heading1;
+@mixin text-button($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-button;
     font-weight: $weight;
     @if $italic {
         font-style: italic;
@@ -81,4 +81,101 @@
     flex-direction: $dir;
     justify-content: $position-horizontal;
     align-items: $position-vertical;
+}
+
+// button mixins
+@mixin button-basic {
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: $border-radius--rounded;
+    width: auto;
+    padding: 0.5rem;
+    display: inline-block;
+    @include text-button($font-weight-semiBold);
+    transition: $transition-basic;
+    text-align: center;
+}
+
+@mixin focus {
+    outline: dashed $blue-300;
+    outline-offset: 0.3rem;
+    outline-width: 0.15rem;
+    @include button-soft--active;
+}
+
+@mixin button--small {
+    width: $button-width-regular;
+    padding: 0.75rem;
+}
+
+@mixin button--regular {
+    width: $button-width-regular;
+    padding: 1rem;
+    height: auto;
+}
+
+@mixin button--wide {
+    width: $button-width-wide;
+    height: 3.875rem;
+}
+
+@mixin button-main {
+    background-color: $blue-500;
+    color: $white;
+}
+
+@mixin button-main--active {
+    background-color: $blue-900;
+}
+
+@mixin button-main--hover {
+    background-color: $blue-700;
+}
+
+@mixin button-soft {
+    background-color: $blue-100;
+    color: $blue-700;
+}
+
+@mixin button-soft--hover {
+    background-color: $blue-700;
+    color: $gray-100;
+}
+
+@mixin button-soft--active {
+    background-color: $blue-300;
+    color: $blue-900;
+    border: solid $border-size $blue-900;
+}
+
+@mixin button-main--disabled {
+    background-color: $blue-100;
+}
+
+@mixin button-soft--disabled {
+    background-color: $gray-100;
+    color: $blue-100;
+    border: solid $border-size $blue-100;
+}
+
+// mixin for forms
+
+@mixin input {
+    width: 100%;
+    height: 10vh;
+    padding: 0.75rem 0.875rem 0.75rem 0.875rem;
+    border: $border-size--input solid $gray-900;
+    border-radius: $border-radius--normal;
+}
+
+@mixin input--active {
+    border-color: $blue-700;
+    outline-color: $blue-700;
+    outline-offset: -0.125rem;
+}
+
+@mixin label {
+    font-size: $font-heading6;
+    font-weight: $font-weight-semiBold;
 }

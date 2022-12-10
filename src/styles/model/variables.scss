@@ -20,14 +20,15 @@ $white: #fff;
 // Typography
 $main-font: 'Poppins', Helvetica, Arial, sans-serif;
 $font-heading1: 3.815rem;
-$font-heading2: 3.052rem;
-$font-heading3: 2.441rem;
-$font-heading4: 1.953rem;
+$font-heading2: 2.5rem;
+$font-heading3: 1.9rem;
+$font-heading4: 1.753rem;
 $font-heading5: 1.563rem;
-$font-heading6: 1.25rem;
-
+$font-heading6: 1.15rem;
+$font-button: 1.125rem;
 $base-font-size: 1rem;
 
+// letter-spacing
 $letter-spacing-h1: -1.5;
 $letter-spacing-h2: -0.5;
 $letter-spacing-h3: 0;
@@ -35,11 +36,26 @@ $letter-spacing-h4: 0.25;
 $letter-spacing-h5: 0;
 $letter-spacing-h6: 0.15;
 $letter-spacing-body: 0.5;
+$letter-spacing-button: 0.05rem;
+$letter-spacing-button--wide: 0.1rem;
 
-$font-weight-bold: 800;
+// font-weight
+$font-weight-bold: 700;
 $font-weight-semiBold: 600;
+$font-weight-medium: 500;
 $font-weight-regular: 400;
 $font-weight-light: 300;
 
-$border-radius: 0.5rem;
+$border-radius--normal: 0.5rem;
+$border-radius--rounded: 1.25rem;
 $border-size: 0.125rem;
+$border-size--input: 0.2rem;
+
+// button size
+
+$button-width-small: 8.25rem;
+$button-width-regular: 10.125rem;
+$button-width-wide: 22rem;
+
+// transition
+$transition-basic: all 0.2s ease-in-out;

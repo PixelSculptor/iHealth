@@ -6,3 +6,31 @@ body {
     font-weight: $font-weight-regular;
     background: $gray-100;
 }
+
+h1 {
+    @include text-header1;
+}
+
+h2 {
+    @include text-header2;
+}
+
+h3 {
+    @include text-header3;
+}
+
+h4 {
+    @include text-header4;
+}
+
+h5 {
+    @include text-header5;
+}
+
+h6 {
+    @include text-header6;
+}
+
+p {
+    @include text-paragraph;
+}
