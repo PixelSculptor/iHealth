@@ -4,8 +4,5 @@
     {
       "files": ["*.vue", "**/*.vue"]
     }
-  ],
-  "rules":{
-    "max-empty-lines": 0
-  }
+  ]
 }
