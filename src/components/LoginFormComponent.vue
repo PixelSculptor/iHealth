@@ -57,7 +57,6 @@
 <style scoped lang="scss">
     .loginForm {
         height: 70vh;
-
         margin: auto;
         @include flex-position(column, nowrap, center, center);
         gap: 5%;
