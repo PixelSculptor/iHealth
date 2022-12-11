@@ -1,7 +1,8 @@
 <template>
     <form
         action=""
-        class="signUpForm">
+        class="signUpForm"
+        @submit.prevent="handleSignUp">
         <div class="signupForm__formBlock formBlock">
             <label
                 for="email"
@@ -30,6 +31,11 @@
                 placeholder="Hasło"
                 v-model="password" />
         </div>
+        <div
+            v-show="error"
+            class="error">
+            {{ error }}
+        </div>
         <button-component
             soft
             wide
@@ -41,6 +47,26 @@
 
 <script setup>
     import ButtonComponent from './ButtonComponent.vue';
+    import useSignup from '../composables/useSignup.js';
+    import { ref } from 'vue';
+
+    const emit = defineEmits(['submitSignUp']);
+
+    const email = ref('');
+    const password = ref('');
+    const { error, signup } = useSignup();
+
+    const handleSignUp = async () => {
+        if (!email.value || !password.value || error.value) {
+            email.value = '';
+            password.value = '';
+            error.value = '';
+        }
+        await signup(email.value, password.value);
+        if (!error.value) {
+            emit('submitSignUp');
+        }
+    };
 </script>
 
 <style scoped lang="scss">

@@ -29,7 +29,7 @@
                 </button-component>
             </div>
             <span class="divider">lub</span>
-            <singup-form-component />
+            <singup-form-component @submitSignUp="handleSignUp" />
         </section>
     </div>
 </template>
@@ -38,6 +38,11 @@
     import SingupFormComponent from '../../components/SingupFormComponent.vue';
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
+    import router from '../../router/index.js';
+
+    const handleSignUp = () => {
+        router.push({ name: 'Welcome' });
+    };
 </script>
 
 <style scoped lang="scss">
