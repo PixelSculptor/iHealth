@@ -53,7 +53,7 @@
     .account-creation {
         height: 100vh;
         display: grid;
-        grid-template-rows: repeat(2, 1fr) 2fr 1fr 4fr;
+        grid-template-rows: repeat(2, 1fr) 2fr 1fr 5fr;
 
         &__header {
             @include text-header2($font-weight-semiBold);
