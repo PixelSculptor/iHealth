@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-    import SingupFormComponent from '../../components/SingupFormComponent.vue';
+    import SingupFormComponent from '../../components/auth/SingupFormComponent.vue';
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
     import router from '../../router/index.js';

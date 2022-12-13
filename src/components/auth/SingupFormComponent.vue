@@ -83,10 +83,10 @@
 </template>
 
 <script setup>
-    import ButtonComponent from './ButtonComponent.vue';
-    import ErrorInfo from './ErrorInfo.vue';
+    import ButtonComponent from '../ButtonComponent.vue';
+    import ErrorInfo from '../ErrorInfo.vue';
 
-    import useSignup from '../composables/useSignup.js';
+    import useSignup from '../../composables/useSignup.js';
     import { computed, ref } from 'vue';
 
     const emit = defineEmits(['submitSignUp']);

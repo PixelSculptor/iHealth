@@ -44,7 +44,7 @@
 
 <script setup>
     import { ref } from 'vue';
-    import ButtonComponent from './ButtonComponent.vue';
+    import ButtonComponent from '../ButtonComponent.vue';
     const email = ref('');
     const password = ref('');
     const handleLogin = () => {
