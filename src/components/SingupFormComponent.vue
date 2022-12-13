@@ -39,11 +39,15 @@
                 class="errorInfo">
                 <span
                     v-if="!passwordMatching && password && passwordCheck"
+                    role="presentation"
+                    aria-label="passwords not match"
                     class="passwordNotMatching"
                     >Hasła nie zgadzają się</span
                 >
                 <span
                     v-else-if="passwordMatching"
+                    role="presentation"
+                    aria-label="passwords match"
                     class="passwordMatching"
                     >Hasła zgadzają się</span
                 >
@@ -59,17 +63,15 @@
                 id="passwordCheck"
                 type="password"
                 required
-                aria-label="password input"
+                aria-label="password input matching"
                 minlength="8"
                 class="formBlock__input"
                 placeholder="Hasło"
                 v-model="passwordCheck" />
         </div>
-        <div
-            v-show="error"
-            class="error">
-            {{ error }}
-        </div>
+        <error-info
+            class="error"
+            :message="error" />
         <button-component
             soft
             wide
@@ -82,6 +84,8 @@
 
 <script setup>
     import ButtonComponent from './ButtonComponent.vue';
+    import ErrorInfo from './ErrorInfo.vue';
+
     import useSignup from '../composables/useSignup.js';
     import { computed, ref } from 'vue';
 
@@ -116,7 +120,7 @@
 <style scoped lang="scss">
     .signUpForm {
         @include flex-position(column, wrap, flex-start, center);
-        gap: 0.5rem;
+        gap: 5%;
         .formBlock {
             width: $button-width-wide;
             height: 6rem;
@@ -145,12 +149,8 @@
             }
         }
         .error {
-            margin: 0.5rem 0;
+            margin: 0.5rem auto;
             width: $button-width-wide;
-            display: inline-block;
-            color: $color-error;
-            text-align: center;
-            font-weight: $font-weight-semiBold;
         }
     }
 </style>
