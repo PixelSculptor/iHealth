@@ -42,6 +42,7 @@
             :disabled="disableLogin"
             >Zaloguj się</button-component
         >
+        <bouncing-balls-component :visible="isLoading" />
     </form>
 </template>
 
@@ -51,11 +52,13 @@
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
     import { useRouter } from 'vue-router';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
     const { signIn, error } = useLogin();
     const email = ref('');
     const password = ref('');
     const router = useRouter();
+    const isLoading = ref(false);
 
     const disableLogin = computed(() => {
         return !email.value || password.value.length < 8;
@@ -63,9 +66,10 @@
 
     const handleLogin = async () => {
         await signIn(email.value, password.value);
+        isLoading.value = true;
         if (!error.value) {
-            console.log('Logged in');
-            await router.push({ name: 'Welcome' });
+            console.log('Logged in', isLoading.value);
+            await router.push({ name: 'Home' });
         }
         email.value = '';
         password.value = '';

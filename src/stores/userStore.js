@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia/dist/pinia.js';
+import { defineStore } from 'pinia';
 
 const useUserStore = defineStore('user', {
     state: () => ({
