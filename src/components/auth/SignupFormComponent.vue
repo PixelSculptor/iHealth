@@ -112,6 +112,7 @@
             email.value = '';
             password.value = '';
             error.value = '';
+            passwordCheck.value = '';
             emit('submitSignUp');
         }
     };
