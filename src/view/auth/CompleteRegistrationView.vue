@@ -1,6 +1,6 @@
 <template>
     <section class="completeRegistration">
-        <h3>Skompletuj swój profil</h3>
+        <h2>Skompletuj swój profil</h2>
         <complete-registration-form />
     </section>
 </template>
@@ -12,6 +12,10 @@
 <style scoped lang="scss">
     .completeRegistration {
         height: 100vh;
+        h2 {
+            @include text-header2($font-weight-semiBold);
+            color: $blue-700;
+        }
         @include flex-position(column, nowrap, space-evenly, center);
     }
 </style>

@@ -1,10 +1,6 @@
 <template>
-    <form
-        action=""
-        class="completeProfileForm">
-        <div
-            id="firstName"
-            class="formBlock">
+    <form class="completeProfileForm">
+        <div class="formBlock">
             <label
                 for="name"
                 class="formBlock__label"
@@ -14,6 +10,8 @@
                 class="formBlock__input"
                 id="name"
                 type="text"
+                v-model="name"
+                placeholder="Jan"
                 required />
         </div>
 
@@ -27,6 +25,8 @@
                 class="formBlock__input"
                 id="surname"
                 type="text"
+                v-model="surname"
+                placeholder="Kowalski"
                 required />
         </div>
 
@@ -57,6 +57,8 @@
                 class="formBlock__input"
                 id="phoneNumber"
                 type="tel"
+                v-model="phoneNumber"
+                placeholder="+48 999 999 999"
                 required />
         </div>
 
@@ -70,6 +72,8 @@
                 class="formBlock__input"
                 id="dateOfBirth"
                 type="date"
+                :placeholder="dateOfBirth"
+                v-model="dateOfBirth"
                 required />
         </div>
 
@@ -83,6 +87,10 @@
                 class="formBlock__input"
                 id="personId"
                 type="text"
+                placeholder="11111111111"
+                maxlength="11"
+                minlength="11"
+                v-model="personId"
                 required />
         </div>
 
@@ -95,11 +103,13 @@
             <select
                 class="formBlock__input"
                 id="gender"
+                v-model="gender"
                 required>
                 <option value="">Wybierz płeć</option>
                 <option value="female">Kobieta</option>
                 <option value="male">Mężczyna</option>
                 <option value="other">Inna</option>
+                <span v-if="gender">{{ gender }}</span>
             </select>
         </div>
 
@@ -107,8 +117,11 @@
             <label
                 for="weight"
                 class="formBlock__label"
-                >Twoja waga [kg] {{ weight }}</label
+                >Twoja waga [kg]</label
             >
+            <div class="slider">
+                <span>{{ weight }}</span>
+            </div>
             <div class="field">
                 <div class="value left">0</div>
                 <input
@@ -127,8 +140,11 @@
             <label
                 for="height"
                 class="formBlock__label"
-                >Wzrost [cm] {{ weight }}</label
+                >Wzrost [cm]</label
             >
+            <div class="slider">
+                <span>{{ height }}</span>
+            </div>
             <div class="field">
                 <div class="value left">0</div>
                 <input
@@ -137,15 +153,47 @@
                     max="220"
                     step="1"
                     type="range"
-                    v-model="weight"
+                    v-model="height"
                     required />
                 <div class="value right">220</div>
             </div>
         </div>
+        <button-component
+            wide
+            main
+            :disabled="disableCompleteProfile"
+            class="completeProfileForm__submit"
+            >Zapisz profil</button-component
+        >
     </form>
 </template>
 
-<script setup></script>
+<script setup>
+    import { computed, ref } from 'vue';
+    import ButtonComponent from '../ButtonComponent.vue';
+
+    const name = ref(null);
+    const surname = ref(null);
+    const phoneNumber = ref(null);
+    const dateOfBirth = ref();
+    const personId = ref(null);
+    const gender = ref('');
+    const weight = ref(100);
+    const height = ref(110);
+
+    const disableCompleteProfile = computed(() => {
+        return !(
+            name.value &&
+            surname.value &&
+            phoneNumber.value &&
+            dateOfBirth.value &&
+            personId.value &&
+            gender.value &&
+            weight.value &&
+            height.value
+        );
+    });
+</script>
 
 <style scoped lang="scss">
     .completeProfileForm {
@@ -155,18 +203,21 @@
         grid-template-areas:
             'name surname avatar avatar'
             'phone birth person-id gender'
-            'height height weight weight';
+            'weight weight height height'
+            'submit submit submit submit';
         place-items: center;
-        min-height: 70%;
+        min-height: 80%;
         min-width: 50vw;
-        border: 2px solid red;
         padding: 5%;
         gap: 2rem;
+        background: $blue-100;
+        border: solid $border-size--input $blue-900;
+        border-radius: $border-radius--rounded;
+        @include shadow;
 
         .formBlock {
             width: 100%;
             height: auto;
-            border: 2px solid red;
             @include flex-position(column, wrap, space-around, flex-start);
             gap: 0.5rem;
             &__input {
@@ -187,11 +238,21 @@
             &__label {
                 @include label;
                 color: $blue-700;
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    content: '*';
+                    width: 1rem;
+                    height: 1rem;
+                    color: $color-error;
+                }
             }
             // custom inputs design
             .icon {
                 @include input;
                 background-color: $white;
+                cursor: pointer;
                 @include flex-position(row, nowrap, flex-start, center);
                 & > * {
                     width: 1.5rem;
@@ -203,15 +264,23 @@
             //  range field
             .field {
                 width: 100%;
-                background-color: $white;
+                color: $blue-700;
+                @include text-header6($font-weight-semiBold);
                 @include flex-position(row, wrap, center, center);
-                border: 2px solid green;
                 & > input[type='range'] {
                     margin-inline: 0.5rem;
                     border-radius: $border-radius--rounded;
-                    background-color: $blue-100;
+                    background-color: $white;
+                    border: solid $border-size--input $blue-700;
                     -webkit-appearance: none;
                     width: 100%;
+                    &::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        height: 1.25rem;
+                        width: 1.25rem;
+                        background-color: $blue-700;
+                        border-radius: 50%;
+                    }
                 }
             }
             &:nth-child(1) {
@@ -247,6 +316,45 @@
             &:nth-child(9) {
                 grid-area: height;
             }
+            //slider
+            &:nth-child(8),
+            &:nth-child(9) {
+                .slider {
+                    position: relative;
+                    @include flex-position(row, nowrap, center, center);
+                    left: 50%;
+                    top: -1.5rem;
+                    & > span {
+                        @include text-paragraph($font-weight-semiBold);
+                        position: absolute;
+                        display: inline-block;
+                        text-align: center;
+                        width: auto;
+                        height: 3rem;
+                        padding: 0.1rem;
+                        color: $blue-700;
+                        line-height: 50px;
+                        transform: translateX(-25%);
+                        z-index: 2;
+                        &:after {
+                            position: absolute;
+                            content: '';
+                            width: 3rem;
+                            height: 3rem;
+                            background: $white;
+                            transform: translateX(-70%) rotate(45deg);
+                            z-index: -1;
+                            border-top-left-radius: 50%;
+                            border-top-right-radius: 50%;
+                            border-bottom-left-radius: 50%;
+                            border: solid $border-size--input $blue-700;
+                        }
+                    }
+                }
+            }
+        }
+        &__submit {
+            grid-area: submit;
         }
     }
 </style>
