@@ -109,31 +109,38 @@
                 class="formBlock__label"
                 >Twoja waga [kg] {{ weight }}</label
             >
-            <div class="value left">0</div>
-            <input
-                id="weight"
-                min="0"
-                max="200"
-                step="1"
-                type="range"
-                v-model="weight"
-                required />
-            <div class="value right">200</div>
+            <div class="field">
+                <div class="value left">0</div>
+                <input
+                    id="weight"
+                    min="0"
+                    max="200"
+                    step="1"
+                    type="range"
+                    v-model="weight"
+                    required />
+                <div class="value right">200</div>
+            </div>
         </div>
 
         <div class="formBlock">
             <label
                 for="height"
                 class="formBlock__label"
-                >Wzrost [cm]</label
+                >Wzrost [cm] {{ weight }}</label
             >
-            <input
-                id="height"
-                min="0"
-                max="220"
-                step="1"
-                type="range"
-                required />
+            <div class="field">
+                <div class="value left">0</div>
+                <input
+                    id="height"
+                    min="0"
+                    max="220"
+                    step="1"
+                    type="range"
+                    v-model="weight"
+                    required />
+                <div class="value right">220</div>
+            </div>
         </div>
     </form>
 </template>
@@ -143,7 +150,12 @@
 <style scoped lang="scss">
     .completeProfileForm {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-flow: row;
+        grid-template-areas:
+            'name surname avatar avatar'
+            'phone birth person-id gender'
+            'height height weight weight';
         place-items: center;
         min-height: 70%;
         min-width: 50vw;
@@ -152,7 +164,7 @@
         gap: 2rem;
 
         .formBlock {
-            min-width: 20vw;
+            width: 100%;
             height: auto;
             border: 2px solid red;
             @include flex-position(column, wrap, space-around, flex-start);
@@ -176,6 +188,7 @@
                 @include label;
                 color: $blue-700;
             }
+            // custom inputs design
             .icon {
                 @include input;
                 background-color: $white;
@@ -185,6 +198,54 @@
                     height: 1.5rem;
                     color: $blue-700;
                 }
+            }
+
+            //  range field
+            .field {
+                width: 100%;
+                background-color: $white;
+                @include flex-position(row, wrap, center, center);
+                border: 2px solid green;
+                & > input[type='range'] {
+                    margin-inline: 0.5rem;
+                    border-radius: $border-radius--rounded;
+                    background-color: $blue-100;
+                    -webkit-appearance: none;
+                    width: 100%;
+                }
+            }
+            &:nth-child(1) {
+                grid-area: name;
+            }
+
+            &:nth-child(2) {
+                grid-area: surname;
+            }
+
+            &:nth-child(3) {
+                grid-area: avatar;
+            }
+
+            &:nth-child(4) {
+                grid-area: phone;
+            }
+
+            &:nth-child(5) {
+                grid-area: birth;
+            }
+
+            &:nth-child(6) {
+                grid-area: person-id;
+            }
+
+            &:nth-child(7) {
+                grid-area: gender;
+            }
+            &:nth-child(8) {
+                grid-area: weight;
+            }
+            &:nth-child(9) {
+                grid-area: height;
             }
         }
     }
