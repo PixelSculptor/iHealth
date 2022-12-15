@@ -13,6 +13,7 @@ import {
     faDatabase,
     faFileMedical,
     faFileWaveform,
+    faFileImport,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 library.add(
@@ -23,7 +24,8 @@ library.add(
     faHeartPulse,
     faDatabase,
     faFileMedical,
-    faFileWaveform
+    faFileWaveform,
+    faFileImport
 );
 
 createApp(App)

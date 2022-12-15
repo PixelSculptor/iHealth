@@ -12,5 +12,7 @@
 <style scoped lang="scss">
     .completeRegistration {
         height: 100vh;
+        border: 10px solid blue;
+        @include flex-position(column, nowrap, space-evenly, center);
     }
 </style>
