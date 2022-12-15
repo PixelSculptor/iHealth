@@ -33,22 +33,44 @@
                 placeholder="Hasło"
                 v-model="password" />
         </div>
-        <span class="infoLabel error"></span>
+        <error-info
+            class="infoLabel"
+            :message="error" />
         <button-component
             soft
             wide
+            :disabled="disableLogin"
             >Zaloguj się</button-component
         >
+        <bouncing-balls-component :visible="isLoading" />
     </form>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-    import ButtonComponent from './ButtonComponent.vue';
+    import ButtonComponent from '../ButtonComponent.vue';
+    import ErrorInfo from '../ErrorInfo.vue';
+    import useLogin from '../../composables/useLogin.js';
+    import { computed, ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+
+    const { signIn, error } = useLogin();
     const email = ref('');
     const password = ref('');
-    const handleLogin = () => {
-        console.log('Logged in');
+    const router = useRouter();
+    const isLoading = ref(false);
+
+    const disableLogin = computed(() => {
+        return !email.value || password.value.length < 8;
+    });
+
+    const handleLogin = async () => {
+        await signIn(email.value, password.value);
+        isLoading.value = true;
+        if (!error.value) {
+            console.log('Logged in', isLoading.value);
+            await router.push({ name: 'Home' });
+        }
         email.value = '';
         password.value = '';
     };
@@ -84,15 +106,6 @@
         }
     }
     .infoLabel {
-        @include text-paragraph;
-        display: inline-block;
         width: $button-width-wide;
-        text-align: right;
-    }
-    .error {
-        color: $color-error;
-    }
-    .sucess {
-        color: $color-success;
     }
 </style>

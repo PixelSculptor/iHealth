@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-    import LoginFormComponent from '../../components/LoginFormComponent.vue';
+    import LoginFormComponent from '../../components/auth/LoginFormComponent.vue';
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
 </script>

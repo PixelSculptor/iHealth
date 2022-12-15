@@ -29,15 +29,20 @@
                 </button-component>
             </div>
             <span class="divider">lub</span>
-            <singup-form-component />
+            <singup-form-component @submitSignUp="handleSignUp" />
         </section>
     </div>
 </template>
 
 <script setup>
-    import SingupFormComponent from '../../components/SingupFormComponent.vue';
+    import SingupFormComponent from '../../components/auth/SingupFormComponent.vue';
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
+    import router from '../../router/index.js';
+
+    const handleSignUp = () => {
+        router.push({ name: 'Welcome' });
+    };
 </script>
 
 <style scoped lang="scss">
@@ -48,7 +53,7 @@
     .account-creation {
         height: 100vh;
         display: grid;
-        grid-template-rows: repeat(2, 1fr) 2fr 1fr 4fr;
+        grid-template-rows: repeat(2, 1fr) 2fr 1fr 5fr;
 
         &__header {
             @include text-header2($font-weight-semiBold);
