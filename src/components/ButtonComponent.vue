@@ -2,20 +2,23 @@
     <router-link
         v-if="to && !disabled && !href"
         :to="{ name: to, params: params, hash }"
-        :class="itemClasses">
+        :class="itemClasses"
+        role="link">
         <slot />
     </router-link>
     <a
         v-else-if="href && !disabled"
         :href="href"
-        :class="itemClasses">
+        :class="itemClasses"
+        role="link">
         <slot />
     </a>
 
     <button
         v-else
         :aria-disabled="disabled"
-        :class="itemClasses">
+        :class="itemClasses"
+        role="button">
         <span class="child">
             <slot />
         </span>

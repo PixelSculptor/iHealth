@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import WelcomeView from '../view/WelcomeView.vue';
+import HomeView from '../view/HomeView.vue';
 import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
+import { authGuard } from './guards.js';
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'Welcome',
-            component: WelcomeView,
+            name: 'Home',
+            component: HomeView,
+            beforeEnter: authGuard,
         },
         {
             path: '/register',

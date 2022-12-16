@@ -4,10 +4,6 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: 'WelcomeView',
-    };
-</script>
+<script setup></script>
 
 <style scoped lang="scss"></style>
