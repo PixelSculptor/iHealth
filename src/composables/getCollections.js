@@ -12,9 +12,11 @@ const getCollection = (collection) => {
     collectionRef.onSnapshot(
         (snap) => {
             const results = [];
-            snap.docs.forEach((doc) => {
-                doc.data().createdAt &&
-                    results.push({ ...doc.data(), id: doc.id });
+            snap.docs.map((doc) => {
+                return (
+                    doc.data().createdAt &&
+                    results.push({ ...doc.data(), id: doc.id })
+                );
             });
             documents.value = results;
             error.value = null;
