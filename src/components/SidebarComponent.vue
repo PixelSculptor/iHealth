@@ -28,6 +28,7 @@
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
+                @click="handleLogout"
                 class="logoutBtn"
                 main
                 wide>
@@ -44,7 +45,10 @@
     import BrandHeaderComponent from './BrandHeaderComponent.vue';
     import { ref } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
+    import useLogout from '../composables/useLogout.js';
+    import { useRouter } from 'vue-router';
 
+    const { error, logout } = useLogout();
     const isExpanded = ref(false);
     const menuViews = ref([
         { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
@@ -65,9 +69,17 @@
             classIcon: 'fa-solid fa-calendar-check',
         },
     ]);
+    const router = useRouter();
 
     const toggleMenu = () => {
         isExpanded.value = !isExpanded.value;
+    };
+
+    const handleLogout = async () => {
+        await logout();
+        await router.push({ name: 'Login' });
+        console.log(`Wylogowano Cię!`);
+        if (error.value) console.log(error.value);
     };
 </script>
 
