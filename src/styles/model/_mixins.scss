@@ -85,6 +85,7 @@
 
 // button mixins
 @mixin button-basic {
+    text-decoration: none;
     border: none;
     box-sizing: border-box;
     cursor: pointer;

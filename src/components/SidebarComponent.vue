@@ -3,7 +3,7 @@
         class="menu"
         :class="{ isExpanded: isExpanded }">
         <brand-header-component :hide-brand="isExpanded" />
-        <div class="menu__toggle--wrap">
+        <section class="menu__toggle--wrap">
             <button
                 class="toggleMenu"
                 @click="toggleMenu">
@@ -14,15 +14,48 @@
                     v-else
                     icon="fa-solid fa-xmark" />
             </button>
-        </div>
+        </section>
+
+        <section class="menuLinks">
+            <button-component
+                v-for="view in menuViews"
+                :key="view"
+                :to="view.name"
+                menu
+                main
+                wide>
+                <font-awesome-icon :icon="view.classIcon" />
+                <span>{{ view.title }}</span>
+            </button-component>
+        </section>
     </aside>
 </template>
 
 <script setup>
     import BrandHeaderComponent from './BrandHeaderComponent.vue';
     import { ref } from 'vue';
+    import ButtonComponent from './ButtonComponent.vue';
 
     const isExpanded = ref(false);
+    const menuViews = ref([
+        { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
+        { name: 'Profile', title: 'Profil', classIcon: 'fa-solid fa-id-card' },
+        {
+            name: 'Prescriptions',
+            title: 'Recepty',
+            classIcon: 'fa-solid fa-capsules',
+        },
+        {
+            name: 'Referrals',
+            title: 'Skierowania',
+            classIcon: 'fa-solid fa-file-prescription',
+        },
+        {
+            name: 'Visits',
+            title: 'Wizyty',
+            classIcon: 'fa-solid fa-calendar-check',
+        },
+    ]);
 
     const toggleMenu = () => {
         isExpanded.value = !isExpanded.value;
@@ -69,9 +102,20 @@
                 &:deep(svg) {
                     height: 3rem;
                     &:hover {
-                        animation: rotation 0.3s 1;
+                        animation: rotation 0.4s 1;
                     }
                 }
+            }
+        }
+
+        .menuLinks {
+            height: 60vh;
+            @include flex-position(column, wrap, space-around, flex-end);
+            position: relative;
+            transform: translateX(38%);
+            span {
+                opacity: 0;
+                transition: 0.3s ease-out;
             }
         }
 
@@ -80,6 +124,13 @@
             @include flex-position(column, nowrap, flex-start, flex-start);
             .menu__toggle--wrap {
                 transform: translateY(-200%);
+            }
+
+            .menuLinks {
+                transform: translateX(0);
+                span {
+                    opacity: 1;
+                }
             }
         }
 
