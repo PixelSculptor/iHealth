@@ -160,30 +160,40 @@
                 <div class="value right">220</div>
             </div>
         </div>
-        <button-component
-            wide
-            main
-            :disabled="disableCompleteProfile"
-            class="completeProfileForm__submit"
-            >Zapisz profil</button-component
-        >
+        <div class="completeProfileForm__submit">
+            <button-component
+                wide
+                main
+                :disabled="disableCompleteProfile"
+                >Zapisz profil</button-component
+            >
+            <error-info :message="notValidPersonIdError" />
+        </div>
     </form>
 </template>
 
 <script setup>
-    import { computed, ref } from 'vue';
     import ButtonComponent from '../ButtonComponent.vue';
+    import ErrorInfo from '../ErrorInfo.vue';
+    import checkPesel from '../../composables/checkPesel.js';
+    import { computed, ref } from 'vue';
 
     const name = ref(null);
     const surname = ref(null);
     const phoneNumber = ref(null);
     const dateOfBirth = ref();
-    const personId = ref(null);
+    const personId = ref('');
     const gender = ref('');
     const weight = ref(100);
     const height = ref(110);
-
     const emit = defineEmits('completeProfile');
+
+    const notValidPersonIdError = computed(() => {
+        if (!checkPesel(personId.value) && personId.value.length >= 11) {
+            return 'Twój nr PESEL jest niepoprawny';
+        }
+        return '';
+    });
 
     const disableCompleteProfile = computed(() => {
         return !(
@@ -194,7 +204,8 @@
             personId.value &&
             gender.value &&
             weight.value &&
-            height.value
+            height.value &&
+            checkPesel(personId.value)
         );
     });
 
@@ -228,7 +239,7 @@
         min-height: 80%;
         min-width: 50vw;
         padding: 5%;
-        gap: 2rem;
+        gap: 3rem;
         background: $blue-100;
         border: solid $border-size--input $blue-900;
         border-radius: $border-radius--rounded;
@@ -374,6 +385,9 @@
         }
         &__submit {
             grid-area: submit;
+            &:deep(button) {
+                margin-bottom: 1rem;
+            }
         }
     }
 </style>
