@@ -74,6 +74,8 @@
                 class="formBlock__input"
                 id="dateOfBirth"
                 type="date"
+                :max="today"
+                pattern="\d{4}-\d{2}-\d{2}"
                 :placeholder="dateOfBirth"
                 v-model="dateOfBirth"
                 required />
@@ -187,6 +189,10 @@
     const weight = ref(100);
     const height = ref(110);
     const emit = defineEmits('completeProfile');
+    const date = new Date();
+    const today = computed(() => {
+        return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    });
 
     const notValidPersonIdError = computed(() => {
         if (!checkPesel(personId.value) && personId.value.length >= 11) {
