@@ -27,7 +27,16 @@
                 <font-awesome-icon :icon="view.classIcon" />
                 <span>{{ view.title }}</span>
             </button-component>
+            <button-component
+                class="logoutBtn"
+                main
+                wide>
+                <font-awesome-icon
+                    icon="fa-solid fa-arrow-right-from-bracket" />
+                <span class="text">Wyloguj się</span>
+            </button-component>
         </section>
+        <section class="otherLink"></section>
     </aside>
 </template>
 
@@ -109,13 +118,33 @@
         }
 
         .menuLinks {
-            height: 60vh;
+            height: 70vh;
             @include flex-position(column, wrap, space-around, flex-end);
             position: relative;
-            transform: translateX(38%);
+            transform: translateX(30%);
             span {
                 opacity: 0;
                 transition: 0.3s ease-out;
+            }
+            .logoutBtn {
+                @include flex-position(row, nowrap, flex-start, center);
+                @include text-header4($font-weight-semiBold);
+                width: 100%;
+                letter-spacing: 0.2rem;
+                padding: 2.5rem;
+                &:deep(svg) {
+                    width: 3rem;
+                    height: 3rem;
+                    margin-right: 0.5rem;
+                }
+                &:deep(.text) {
+                    opacity: 0;
+                    transition: 0.3s ease-out;
+                }
+                &:hover {
+                    background-color: $gray-100;
+                    color: $blue-700;
+                }
             }
         }
 
@@ -130,6 +159,11 @@
                 transform: translateX(0);
                 span {
                     opacity: 1;
+                }
+                .logoutBtn {
+                    &:deep(.text) {
+                        opacity: 1;
+                    }
                 }
             }
         }

@@ -96,6 +96,7 @@
         @include button--wide;
         :deep(.child) {
             letter-spacing: $letter-spacing-button--wide;
+            align-items: center;
         }
     }
 
