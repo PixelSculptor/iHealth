@@ -11,12 +11,8 @@ const getCollection = (collection) => {
 
     collectionRef.onSnapshot(
         (snap) => {
-            const results = [];
-            snap.docs.map((doc) => {
-                return (
-                    doc.data().createdAt &&
-                    results.push({ ...doc.data(), id: doc.id })
-                );
+            const results = snap.docs.map((doc) => {
+                return doc.data().createdAt && { ...doc.data(), id: doc.id };
             });
             documents.value = results;
             error.value = null;
@@ -24,7 +20,7 @@ const getCollection = (collection) => {
         (err) => {
             console.log(err.message);
             documents.value = null;
-            error.value = 'Could not fetch data, try again or search error';
+            error.value = 'could not fetch data';
         }
     );
 
