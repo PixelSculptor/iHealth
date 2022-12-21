@@ -1,5 +1,7 @@
 <template>
-    <form class="completeProfileForm">
+    <form
+        class="completeProfileForm"
+        @submit.prevent="completeProfile">
         <div class="formBlock">
             <label
                 for="name"
@@ -106,9 +108,9 @@
                 v-model="gender"
                 required>
                 <option value="">Wybierz płeć</option>
-                <option value="female">Kobieta</option>
-                <option value="male">Mężczyna</option>
-                <option value="other">Inna</option>
+                <option value="kobieta">Kobieta</option>
+                <option value="mężczyzna">Mężczyna</option>
+                <option value="inna">Inna</option>
                 <span v-if="gender">{{ gender }}</span>
             </select>
         </div>
@@ -181,6 +183,8 @@
     const weight = ref(100);
     const height = ref(110);
 
+    const emit = defineEmits('completeProfile');
+
     const disableCompleteProfile = computed(() => {
         return !(
             name.value &&
@@ -193,6 +197,21 @@
             height.value
         );
     });
+
+    const completeProfile = async () => {
+        console.log(
+            name.value,
+            surname.value,
+            phoneNumber.value,
+            dateOfBirth.value,
+            personId.value,
+            gender.value,
+            weight.value,
+            height.value
+        );
+        //  TODO: write sending to base personal data
+        emit('completeProfile');
+    };
 </script>
 
 <style scoped lang="scss">
