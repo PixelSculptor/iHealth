@@ -3,11 +3,22 @@
         <font-awesome-icon
             class="brand__icon"
             icon="fa-solid fa-heart-pulse" />
-        <h1 class="brand__name">iHealth</h1>
+        <h1
+            v-show="hideBrand"
+            class="brand__name">
+            iHealth
+        </h1>
     </div>
 </template>
 
-<script></script>
+<script setup>
+    defineProps({
+        hideBrand: {
+            type: Boolean,
+            default: true,
+        },
+    });
+</script>
 
 <style scoped lang="scss">
     .brand {

@@ -181,8 +181,8 @@
     font-weight: $font-weight-semiBold;
 }
 
-@mixin wrapper {
+@mixin wrapper($firstColumn: 2fr, $secondColumn: 3fr) {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: $firstColumn $secondColumn;
     height: 100vh;
 }
