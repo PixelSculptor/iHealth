@@ -13,6 +13,14 @@ import {
     faDatabase,
     faFileMedical,
     faFileWaveform,
+    faBars,
+    faXmark,
+    faGauge,
+    faIdCard,
+    faCapsules,
+    faFilePrescription,
+    faArrowRightFromBracket,
+    faCalendarCheck,
     faFileImport,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
@@ -25,7 +33,16 @@ library.add(
     faDatabase,
     faFileMedical,
     faFileWaveform,
-    faFileImport
+    faFileImport,
+    faFileWaveform,
+    faBars,
+    faXmark,
+    faGauge,
+    faIdCard,
+    faCapsules,
+    faFilePrescription,
+    faCalendarCheck,
+    faArrowRightFromBracket
 );
 
 createApp(App)

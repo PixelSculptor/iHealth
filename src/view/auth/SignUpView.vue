@@ -48,6 +48,7 @@
 <style scoped lang="scss">
     .wrapper {
         @include wrapper;
+        width: 100vw;
     }
 
     .account-creation {
