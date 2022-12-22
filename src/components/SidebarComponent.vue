@@ -1,14 +1,14 @@
 <template>
     <aside
         class="menu"
-        :class="{ isExpanded: isExpanded }">
-        <brand-header-component :hide-brand="isExpanded" />
+        :class="{ isExpanded: appStore.getExpandMenu }">
+        <brand-header-component :hide-brand="appStore.getExpandMenu" />
         <section class="menu__toggle--wrap">
             <button
                 class="toggleMenu"
                 @click="toggleMenu">
                 <font-awesome-icon
-                    v-if="!isExpanded"
+                    v-if="!appStore.getExpandMenu"
                     icon="fa-solid fa-bars" />
                 <font-awesome-icon
                     v-else
@@ -43,13 +43,14 @@
 
 <script setup>
     import BrandHeaderComponent from './BrandHeaderComponent.vue';
-    import { ref } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
+    import { ref } from 'vue';
     import useLogout from '../composables/useLogout.js';
     import { useRouter } from 'vue-router';
+    import { useAppStore } from '../stores/appStore.js';
 
+    const appStore = useAppStore();
     const { error, logout } = useLogout();
-    const isExpanded = ref(false);
     const menuViews = ref([
         { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
         { name: 'Profile', title: 'Profil', classIcon: 'fa-solid fa-id-card' },
@@ -72,7 +73,7 @@
     const router = useRouter();
 
     const toggleMenu = () => {
-        isExpanded.value = !isExpanded.value;
+        appStore.toggleExpandMenu();
     };
 
     const handleLogout = async () => {
@@ -161,7 +162,7 @@
         }
 
         &.isExpanded {
-            width: 40vmin;
+            width: 30rem;
             @include flex-position(column, nowrap, flex-start, flex-start);
             .toggleMenu {
                 justify-content: flex-end;

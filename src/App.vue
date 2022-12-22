@@ -13,13 +13,13 @@
 
 <script setup>
     import { RouterView, useRouter } from 'vue-router';
-    import { watch } from 'vue';
+    import { watchEffect } from 'vue';
     import getUser from './composables/getUser.js';
     import SidebarComponent from './components/SidebarComponent.vue';
 
     const { user } = getUser();
     const router = useRouter();
-    watch(user, () => {
+    watchEffect(user, () => {
         if (!user.value) router.push({ name: 'Login' });
     });
 </script>
