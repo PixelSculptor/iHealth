@@ -1,7 +1,13 @@
 <template>
     <div class="app">
         <sidebar-component v-if="user" />
-        <router-view />
+        <router-view v-slot="{ Component }">
+            <transition
+                name="fade"
+                mode="out-in">
+                <component :is="Component" />
+            </transition>
+        </router-view>
     </div>
 </template>
 
@@ -21,5 +27,15 @@
 <style scoped lang="scss">
     .app {
         @include wrapper(1fr, 10fr);
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
+    }
+
+    .fade-enter-active,
+    .fade-enter-leave {
+        transition: opacity 1s ease-out;
     }
 </style>

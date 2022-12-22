@@ -106,7 +106,7 @@
             transition: 0.3s ease-in-out;
 
             .toggleMenu {
-                @include flex-position(row, nowrap, flex-end, center);
+                @include flex-position(row, nowrap, center, center);
                 width: inherit;
                 height: inherit;
                 box-sizing: border-box;
@@ -161,8 +161,11 @@
         }
 
         &.isExpanded {
-            width: 35vw;
+            width: 40vmin;
             @include flex-position(column, nowrap, flex-start, flex-start);
+            .toggleMenu {
+                justify-content: flex-end;
+            }
             .menu__toggle--wrap {
                 transform: translateY(-200%);
             }
