@@ -25,6 +25,7 @@
 <style scoped lang="scss">
     .wrapper {
         @include wrapper;
+        width: 100vw;
         grid-template-columns: 3fr 4fr;
         .loginPanel {
             height: 100vh;

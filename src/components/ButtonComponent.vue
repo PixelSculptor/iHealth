@@ -41,6 +41,10 @@
             type: Boolean,
             default: false,
         },
+        menu: {
+            type: Boolean,
+            default: false,
+        },
         wide: {
             type: Boolean,
             default: false,
@@ -68,7 +72,7 @@
     });
 
     const itemClasses = computed(() => {
-        let classes = props.soft ? 'soft' : 'main';
+        let classes = props.soft ? 'soft' : props.menu ? 'menuLink' : 'main';
         classes += props.wide ? ' wide ' : '';
         classes += props.small ? ' small ' : '';
         return classes;
@@ -92,8 +96,10 @@
         @include button--wide;
         :deep(.child) {
             letter-spacing: $letter-spacing-button--wide;
+            @include flex-position(row, nowrap, center, center);
         }
     }
+
     .main {
         @include button-main;
 
@@ -133,6 +139,25 @@
         &:disabled {
             @include button-soft--disabled;
             cursor: not-allowed;
+        }
+    }
+    .menuLink {
+        @include flex-position(row, nowrap, flex-start, center);
+        @include text-header4($font-weight-semiBold);
+        color: $white;
+        letter-spacing: 0.2rem;
+        padding: 2.5rem;
+        gap: 1rem;
+        width: 100%;
+        transition: all 0.2s ease-out;
+        &:deep(svg) {
+            width: 3rem;
+            height: 3rem;
+        }
+        &:hover,
+        &.router-link-exact-active {
+            background-color: $gray-100;
+            color: $blue-700;
         }
     }
 </style>

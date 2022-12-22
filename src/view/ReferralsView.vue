@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <h1>Home view</h1>
-    </div>
+    <h1>Referrals view</h1>
 </template>
 
 <script setup></script>

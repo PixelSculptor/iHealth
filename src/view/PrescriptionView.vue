@@ -1,11 +1,8 @@
 <template>
-    <div>
-        <h1>Home view</h1>
-    </div>
+    <h1>Prescription View</h1>
 </template>
 
 <script setup></script>
-
 <style scoped lang="scss">
     * {
     }
