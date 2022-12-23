@@ -24,6 +24,7 @@ import {
     faFileImport,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
+import { projectAuth } from './firebase/config.js';
 library.add(
     faGoogle,
     faFacebook,
@@ -45,9 +46,17 @@ library.add(
     faArrowRightFromBracket
 );
 
-const app = createApp(App);
+let app;
 const pinia = createPinia();
-
+projectAuth.onAuthStateChanged(() => {
+    if (!app) {
+        app = createApp(App)
+            .component('font-awesome-icon', FontAwesomeIcon)
+            .use(pinia)
+            .use(router)
+            .mount('#app');
+    }
+});
 if (localStorage.getItem('state')) {
     pinia.state.value = JSON.parse(localStorage.getItem('state'));
 }
@@ -58,8 +67,3 @@ watch(
     },
     { deep: true }
 );
-
-app.component('font-awesome-icon', FontAwesomeIcon)
-    .use(pinia)
-    .use(router)
-    .mount('#app');

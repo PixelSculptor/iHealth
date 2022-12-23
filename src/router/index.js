@@ -4,7 +4,7 @@ import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
 import CompleteRegistrationView from '../view/auth/CompleteRegistrationView.vue';
 
-import { authGuard } from './guards.js';
+import { authGuard, logoutGuard } from './guards.js';
 import ProfileView from '../view/ProfileView.vue';
 import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
@@ -34,6 +34,7 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             component: LoginView,
+            beforeEnter: logoutGuard,
         },
         {
             path: '/profile',
