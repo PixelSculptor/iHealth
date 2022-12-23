@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, watch } from 'vue';
 import '../src/styles/model/reset.scss';
 import './style.scss';
 import App from './App.vue';
@@ -45,8 +45,21 @@ library.add(
     faArrowRightFromBracket
 );
 
-createApp(App)
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .use(createPinia())
+const app = createApp(App);
+const pinia = createPinia();
+
+if (localStorage.getItem('state')) {
+    pinia.state.value = JSON.parse(localStorage.getItem('state'));
+}
+watch(
+    pinia.state,
+    (state) => {
+        localStorage.setItem('state', JSON.stringify(state));
+    },
+    { deep: true }
+);
+
+app.component('font-awesome-icon', FontAwesomeIcon)
+    .use(pinia)
     .use(router)
     .mount('#app');
