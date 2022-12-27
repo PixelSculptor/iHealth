@@ -9,9 +9,12 @@
             <h3 class="blood__header">Morfologia</h3>
             <!--      TODO: make blood component    -->
             <ul
-                v-for="el in tab"
-                :key="el.id">
-                <h1>{{ el.name }}</h1>
+                class="listOfResults"
+                v-for="bloodResult in bloodResults"
+                :key="bloodResult.researchID">
+                <blood-result
+                    :blood-type="bloodResult.bloodType"
+                    :date="bloodResult.date" />
             </ul>
         </article>
         <article class="dasboard__bmiCalc">
@@ -34,11 +37,13 @@
 
 <script setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
-    const tab = [
-        { name: 'Kacper', age: 22, id: 1 },
-        { name: 'Magda', age: 22, id: 2 },
-        { name: 'Kacper', age: 22, id: 3 },
-        { name: 'Kacper', age: 22, id: 4 },
+    import BloodResult from '../components/BloodResult.vue';
+    const bloodResults = [
+        {
+            bloodType: 'AB-rh-',
+            date: '15-05-2022',
+            researchID: 12,
+        },
     ];
 </script>
 
@@ -66,18 +71,16 @@
         }
         &__bloodResults {
             grid-area: blood;
-
-            max-height: 30vh;
+            height: 100%;
             width: 100%;
             place-self: center;
-            overflow-y: scroll;
 
             .blood__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;
             }
-            ul {
-                height: 5rem;
+            .listOfResults {
+                overflow-y: scroll;
             }
         }
         &__vaccines {
