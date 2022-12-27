@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, watch } from 'vue';
 import '../src/styles/model/reset.scss';
 import './style.scss';
 import App from './App.vue';
@@ -21,8 +21,11 @@ import {
     faFilePrescription,
     faArrowRightFromBracket,
     faCalendarCheck,
+    faFileImport,
+    faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
+import { projectAuth } from './firebase/config.js';
 library.add(
     faGoogle,
     faFacebook,
@@ -32,6 +35,8 @@ library.add(
     faDatabase,
     faFileMedical,
     faFileWaveform,
+    faFileImport,
+    faFileWaveform,
     faBars,
     faXmark,
     faGauge,
@@ -39,11 +44,28 @@ library.add(
     faCapsules,
     faFilePrescription,
     faCalendarCheck,
-    faArrowRightFromBracket
+    faArrowRightFromBracket,
+    faPlus
 );
 
-createApp(App)
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .use(createPinia())
-    .use(router)
-    .mount('#app');
+let app;
+const pinia = createPinia();
+projectAuth.onAuthStateChanged(() => {
+    if (!app) {
+        app = createApp(App)
+            .component('font-awesome-icon', FontAwesomeIcon)
+            .use(pinia)
+            .use(router)
+            .mount('#app');
+    }
+});
+if (localStorage.getItem('state')) {
+    pinia.state.value = JSON.parse(localStorage.getItem('state'));
+}
+watch(
+    pinia.state,
+    (state) => {
+        localStorage.setItem('state', JSON.stringify(state));
+    },
+    { deep: true }
+);

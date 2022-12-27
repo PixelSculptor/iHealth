@@ -106,18 +106,19 @@
 }
 
 @mixin button--small {
-    width: $button-width-regular;
+    min-width: $button-width-regular;
     padding: 0.75rem;
 }
 
 @mixin button--regular {
-    width: $button-width-regular;
-    padding: 1rem;
+    min-width: $button-width-regular;
+    padding: 1.5rem;
     height: auto;
 }
 
 @mixin button--wide {
-    width: $button-width-wide;
+    min-width: $button-width-wide;
+    padding: 2em;
     height: 3.875rem;
 }
 

@@ -86,6 +86,9 @@
         @include button-basic;
         :deep(.child) {
             letter-spacing: $letter-spacing-button;
+            font-size: $font-heading6;
+            @include flex-position(row, nowrap, center, center);
+            gap: 0.5rem;
         }
         @include button--regular;
     }
