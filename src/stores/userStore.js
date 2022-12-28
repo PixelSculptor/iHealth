@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia';
+import getUser from '../composables/getUser.js';
 
 const useUserStore = defineStore('user', {
     state: () => ({
-        userEmail: '',
-        userName: '',
+        userId: getUser().user.value.uid || '',
     }),
     getters: {
-        getName: (state) => state.userName,
-        getEmail: (state) => state.userEmail,
+        getUserId: (state) => state.userId,
     },
     actions: {},
 });

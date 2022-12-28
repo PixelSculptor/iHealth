@@ -11,6 +11,7 @@
     const router = useRouter();
 
     const handleComplete = () => {
+        console.log('Ukonczono profil');
         router.push({ name: 'Home' });
     };
 </script>

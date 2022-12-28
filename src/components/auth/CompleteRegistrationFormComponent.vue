@@ -39,14 +39,16 @@
                 >Twój awatar</label
             >
             <div
-                class="formBlock__input icon"
+                class="icon"
                 tabindex="0">
                 <font-awesome-icon icon="fa-solid fa-file-import" />
             </div>
             <input
                 class="formBlock__input"
                 id="avatar"
+                @change="handleChange"
                 type="file" />
+            <error-info :message="avatarError" />
         </div>
 
         <div class="formBlock">
@@ -170,7 +172,11 @@
                 >Zapisz profil</button-component
             >
             <error-info :message="notValidPersonIdError" />
+            <error-info :message="error" />
         </div>
+        <bouncing-balls-component
+            class="loader"
+            :visible="isLoading" />
     </form>
 </template>
 
@@ -179,11 +185,21 @@
     import ErrorInfo from '../ErrorInfo.vue';
     import checkPesel from '../../composables/checkPesel.js';
     import { computed, ref } from 'vue';
+    import useCollection from '../../composables/useCollections.js';
+    import useStorage from '../../composables/getImage.js';
+    import useUserStore from '../../stores/userStore.js';
+    import { timestamp } from '../../firebase/config.js';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
+    const userStore = useUserStore();
+    const { error, addDoc, isLoading } = useCollection('userProfile');
+    const { filePath, url, uploadImage } = useStorage();
+    const avatarError = ref(null);
     const name = ref(null);
     const surname = ref(null);
     const phoneNumber = ref(null);
-    const dateOfBirth = ref();
+    const dateOfBirth = ref(null);
+    const avatar = ref(null);
     const personId = ref('');
     const gender = ref('');
     const weight = ref(100);
@@ -205,6 +221,7 @@
         return !(
             name.value &&
             surname.value &&
+            avatar.value &&
             phoneNumber.value &&
             dateOfBirth.value &&
             personId.value &&
@@ -215,19 +232,60 @@
         );
     });
 
+    const ALLOWED_TYPES = [
+        'image/png',
+        'image/jpeg',
+        'image/jpg',
+        'image/webp',
+    ];
+
+    const handleChange = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile && ALLOWED_TYPES.includes(selectedFile.type)) {
+            avatar.value = selectedFile;
+            avatarError.value = null;
+        } else {
+            avatar.value = null;
+            avatarError.value =
+                'Please select an image file (jpeg, jpg, png or webp).';
+        }
+    };
+
     const completeProfile = async () => {
-        console.log(
-            name.value,
-            surname.value,
-            phoneNumber.value,
-            dateOfBirth.value,
-            personId.value,
-            gender.value,
-            weight.value,
-            height.value
-        );
-        //  TODO: write sending to base personal data
-        emit('completeProfile');
+        try {
+            await uploadImage(avatar.value);
+            console.log(`image uploaded`, url.value);
+            await addDoc({
+                name: name.value,
+                surname: surname.value,
+                phoneNumber: phoneNumber.value,
+                dateOfBirth: dateOfBirth.value,
+                personId: personId.value,
+                userId: userStore.getUserId,
+                gender: gender.value,
+                weight: weight.value,
+                height: height.value,
+                avatarUrl: url.value,
+                avatarPath: filePath.value,
+                createdAt: timestamp(),
+            });
+
+            if (error.value) {
+                throw new Error();
+            }
+            emit('completeProfile');
+        } catch {
+            console.log(error.value);
+        } finally {
+            name.value = null;
+            surname.value = null;
+            phoneNumber.value = null;
+            dateOfBirth.value = null;
+            personId.value = '';
+            gender.value = '';
+            weight.value = 100;
+            height.value = 110;
+        }
     };
 </script>
 
@@ -240,7 +298,8 @@
             'name surname avatar avatar'
             'phone birth person-id gender'
             'weight weight height height'
-            'submit submit submit submit';
+            'submit submit submit submit'
+            'loader loader loader loader';
         place-items: center;
         min-height: 80%;
         min-width: 50vw;
@@ -268,7 +327,17 @@
                 }
                 &[type='file'] {
                     background-color: $white;
-                    display: none;
+
+                    &::-webkit-file-upload-button {
+                        cursor: pointer;
+                        border: none;
+                        padding: 0.5rem;
+                        width: 35%;
+                        text-align: left;
+                        border-radius: $border-radius--normal;
+                        @include button-soft;
+                        @include text-button($font-weight-semiBold);
+                    }
                 }
             }
             &__label {
@@ -284,15 +353,16 @@
                     color: $color-error;
                 }
             }
-            // custom inputs design
             .icon {
-                @include input;
-                background-color: $white;
                 cursor: pointer;
                 @include flex-position(row, nowrap, flex-start, center);
-                & > * {
-                    width: 1.5rem;
-                    height: 1.5rem;
+                position: relative;
+                &:deep(svg) {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                    position: absolute;
+                    top: 2rem;
+                    left: 8.8rem;
                     color: $blue-700;
                 }
             }
@@ -394,6 +464,10 @@
             &:deep(button) {
                 margin-bottom: 1rem;
             }
+        }
+        .loader {
+            place-self: center;
+            grid-area: loader;
         }
     }
 </style>
