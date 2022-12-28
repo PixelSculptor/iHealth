@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { authGuard } from './guards.js';
 import HomeView from '../view/HomeView.vue';
 import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
+import CompleteRegistrationView from '../view/auth/CompleteRegistrationView.vue';
+
+import { authGuard, logoutGuard } from './guards.js';
 import ProfileView from '../view/ProfileView.vue';
 import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
@@ -32,6 +34,7 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             component: LoginView,
+            beforeEnter: logoutGuard,
         },
         {
             path: '/profile',
@@ -52,6 +55,12 @@ const router = createRouter({
             path: '/visit',
             name: 'Visits',
             component: VisitsView,
+        },
+        {
+            path: '/create',
+            name: 'CompleteProfile',
+            component: CompleteRegistrationView,
+            beforeEnter: authGuard,
         },
     ],
 });
