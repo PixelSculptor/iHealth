@@ -29,19 +29,19 @@
                 </button-component>
             </div>
             <span class="divider">lub</span>
-            <singup-form-component @submitSignUp="handleSignUp" />
+            <signup-form-component @submitSignUp="handleSignUp" />
         </section>
     </div>
 </template>
 
 <script setup>
-    import SingupFormComponent from '../../components/auth/SingupFormComponent.vue';
+    import SignupFormComponent from '../../components/auth/SignupFormComponent.vue';
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
     import router from '../../router/index.js';
 
     const handleSignUp = () => {
-        router.push({ name: 'Welcome' });
+        router.push({ name: 'CompleteProfile' });
     };
 </script>
 

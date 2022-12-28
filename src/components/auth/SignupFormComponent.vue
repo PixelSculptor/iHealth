@@ -79,6 +79,7 @@
             class="signupForm__submit"
             >Dołącz przez Email</button-component
         >
+        <bouncing-balls-component :visible="isLoading" />
     </form>
 </template>
 
@@ -88,13 +89,13 @@
 
     import useSignup from '../../composables/useSignup.js';
     import { computed, ref } from 'vue';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
     const emit = defineEmits(['submitSignUp']);
-
     const email = ref('');
     const password = ref('');
     const passwordCheck = ref('');
-    const { error, signup } = useSignup();
+    const { error, signup, isLoading } = useSignup();
     const passwordMatching = computed(() => {
         return password.value === passwordCheck.value;
     });
@@ -108,10 +109,12 @@
 
     const handleSignUp = async () => {
         await signup(email.value, password.value);
+        isLoading.value = true;
         if (!error.value) {
             email.value = '';
             password.value = '';
             error.value = '';
+            passwordCheck.value = '';
             emit('submitSignUp');
         }
     };

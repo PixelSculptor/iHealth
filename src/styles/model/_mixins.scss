@@ -152,7 +152,8 @@
 }
 
 @mixin button-main--disabled {
-    background-color: $blue-100;
+    background-color: lighten($blue-300, 20);
+    color: lighten($blue-500, 30);
 }
 
 @mixin button-soft--disabled {
@@ -187,4 +188,7 @@
     display: grid;
     grid-template-columns: $firstColumn $secondColumn;
     height: 100vh;
+}
+@mixin shadow {
+    box-shadow: 0.3rem 0.3rem 0.5rem $gray-300;
 }
