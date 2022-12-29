@@ -49,6 +49,7 @@
 <script setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
+
     const bloodResults = [
         {
             bloodType: 'AB rh-',
