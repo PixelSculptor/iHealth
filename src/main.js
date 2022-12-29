@@ -24,6 +24,7 @@ import {
     faFileImport,
     faPlus,
     faDroplet,
+    faSyringe,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 import { projectAuth } from './firebase/config.js';
@@ -47,7 +48,8 @@ library.add(
     faCalendarCheck,
     faArrowRightFromBracket,
     faPlus,
-    faDroplet
+    faDroplet,
+    faSyringe
 );
 
 let app;

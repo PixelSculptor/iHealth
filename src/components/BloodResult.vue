@@ -40,10 +40,10 @@
 
 <style scoped lang="scss">
     .bloodResult {
-        margin: 1rem;
+        margin: 1rem 0rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.16);
         border-radius: $border-radius--normal;
-        width: 50%;
+        width: 90%;
         display: grid;
         gap: 5%;
         padding: 1rem;

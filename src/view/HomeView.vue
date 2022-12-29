@@ -1,20 +1,31 @@
 <template>
     <section class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
-        <button-component class="dashboard__make_visit">
-            Umów wizytę
-            <font-awesome-icon icon="fa-solid fa-plus" />
-        </button-component>
+        <div class="dashboard__actions">
+            <button-component class="dashboard__make_visit">
+                Umów wizytę
+                <font-awesome-icon icon="fa-solid fa-plus" />
+            </button-component>
+            <button-component class="dashboard__make_visit">
+                Dodaj badanie
+                <font-awesome-icon icon="fa-solid fa-droplet" />
+            </button-component>
+            <button-component class="dashboard__make_visit">
+                Dodaj certyfikat / szczepienie
+                <font-awesome-icon icon="fa-solid fa-syringe" />
+            </button-component>
+        </div>
+
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
-            <!--      TODO: make blood component    -->
-            <ul
-                class="listOfResults"
-                v-for="bloodResult in bloodResults"
-                :key="bloodResult.researchID">
-                <blood-result
-                    :blood-type="bloodResult.bloodType"
-                    :date="bloodResult.date" />
+            <ul class="listOfResults">
+                <li
+                    v-for="bloodResult in bloodResults"
+                    :key="bloodResult.researchID">
+                    <blood-result
+                        :blood-type="bloodResult.bloodType"
+                        :date="bloodResult.date" />
+                </li>
             </ul>
         </article>
         <article class="dasboard__bmiCalc">
@@ -40,9 +51,34 @@
     import BloodResult from '../components/BloodResult.vue';
     const bloodResults = [
         {
-            bloodType: 'AB-rh-',
+            bloodType: 'AB rh-',
             date: '15-05-2022',
             researchID: 12,
+        },
+        {
+            bloodType: 'AB rh-',
+            date: '15-05-2022',
+            researchID: 13,
+        },
+        {
+            bloodType: 'AB rh-',
+            date: '15-05-2022',
+            researchID: 14,
+        },
+        {
+            bloodType: 'AB rh-',
+            date: '15-05-2022',
+            researchID: 15,
+        },
+        {
+            bloodType: 'AB rh-',
+            date: '15-05-2022',
+            researchID: 16,
+        },
+        {
+            bloodType: 'AB rh-',
+            date: '15-05-2022',
+            researchID: 17,
         },
     ];
 </script>
@@ -52,8 +88,8 @@
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard bmi bmi'
-            'visit bmi bmi'
+            'dashboard dashboard bmi'
+            'actions actions bmi'
             'blood blood calendar'
             'blood blood calendar'
             'vaccines vaccines vaccines'
@@ -65,22 +101,28 @@
             color: $blue-900;
             place-self: flex-start stretch;
         }
-        &__make_visit {
-            grid-area: visit;
+        &__actions {
+            grid-area: actions;
             place-self: flex-start;
+            width: 90%;
+            @include flex-position(row, nowrap, space-around, center);
         }
         &__bloodResults {
             grid-area: blood;
-            height: 100%;
+            height: 90%;
             width: 100%;
-            place-self: center;
+            place-self: flex-start;
 
             .blood__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;
             }
             .listOfResults {
+                width: 100%;
                 overflow-y: scroll;
+                height: 33vh;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         &__vaccines {
