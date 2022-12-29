@@ -41,7 +41,7 @@
 <style scoped lang="scss">
     .bloodResult {
         margin: 1rem;
-        border: $border-size solid $gray-300;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.16);
         border-radius: $border-radius--normal;
         width: 50%;
         display: grid;
@@ -82,7 +82,7 @@
         }
         &__dateOfResult > h6,
         &__typeOfBlood > h6 {
-            @include text-header6($font-weight-regular);
+            @include text-header6(500);
             color: $gray-500;
         }
         &__dateOfResult > p,

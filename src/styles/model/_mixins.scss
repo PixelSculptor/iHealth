@@ -112,13 +112,13 @@
 
 @mixin button--regular {
     min-width: $button-width-regular;
-    padding: 1.5rem;
+    padding: 1rem;
     height: auto;
 }
 
 @mixin button--wide {
     min-width: $button-width-wide;
-    padding: 2em;
+    padding: 0.5em;
     height: 3.875rem;
 }
 
