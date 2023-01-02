@@ -53,7 +53,7 @@
             return 'Niedowaga';
         } else if (
             computeBmiValue.value > 18.5 &&
-            computeBmiValue.value < 24.99
+            computeBmiValue.value <= 24.99
         ) {
             return 'Waga prawidłowa';
         } else if (computeBmiValue.value > 25) {

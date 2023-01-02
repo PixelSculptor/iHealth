@@ -106,7 +106,7 @@
         &__actions {
             grid-area: actions;
             place-self: flex-start;
-            width: 90%;
+            width: 100%;
             gap: 1rem;
             @include flex-position(row, nowrap, space-around, center);
         }
