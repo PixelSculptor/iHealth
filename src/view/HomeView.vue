@@ -28,8 +28,8 @@
                 </li>
             </ul>
         </article>
-        <article class="dasboard__bmiCalc">
-            <h3>Kalkulator BMI</h3>
+        <article class="dashboard__bmiCalc">
+            <bmi-calculator-component />
         </article>
         <article class="dashboard__vaccines">
             <h3>Certyfikaty i szczepienia</h3>
@@ -49,6 +49,7 @@
 <script setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
+    import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
 
     const bloodResults = [
         {
@@ -89,8 +90,8 @@
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard dashboard bmi'
-            'actions actions bmi'
+            'dashboard bmi bmi'
+            'actions bmi bmi'
             'blood blood calendar'
             'blood blood calendar'
             'vaccines vaccines vaccines'
@@ -106,6 +107,7 @@
             grid-area: actions;
             place-self: flex-start;
             width: 90%;
+            gap: 1rem;
             @include flex-position(row, nowrap, space-around, center);
         }
         &__bloodResults {
@@ -132,6 +134,8 @@
         }
         &__bmiCalc {
             grid-area: bmi;
+            height: 100%;
+            width: 100%;
         }
         &__calendar {
             grid-area: calendar;

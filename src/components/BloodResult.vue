@@ -35,6 +35,10 @@
             type: Number,
             default: null,
         },
+        linkDocument: {
+            type: String,
+            default: null,
+        },
     });
 </script>
 
