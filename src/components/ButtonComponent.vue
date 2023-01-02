@@ -113,7 +113,6 @@
         &:active {
             @include button-main--active;
         }
-        &:focus,
         &:focus-visible {
             @include focus;
         }

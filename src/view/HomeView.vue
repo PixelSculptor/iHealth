@@ -2,15 +2,32 @@
     <section class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
-            <button-component class="dashboard__make_visit">
+            <button-component
+                @click="openModal = true"
+                class="dashboard__make_visit">
                 Umów wizytę
                 <font-awesome-icon icon="fa-solid fa-plus" />
             </button-component>
-            <button-component class="dashboard__make_visit">
+            <teleport to="body">
+                <transition name="modal">
+                    <div
+                        class="modal"
+                        v-if="openModal">
+                        <modal-component
+                            ref="modal"
+                            @close="openModal = false" />
+                    </div>
+                </transition>
+            </teleport>
+            <button-component
+                @click="openModal = true"
+                class="dashboard__make_visit">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
-            <button-component class="dashboard__make_visit">
+            <button-component
+                @click="openModal = true"
+                class="dashboard__make_visit">
                 Dodaj certyfikat / szczepienie
                 <font-awesome-icon icon="fa-solid fa-syringe" />
             </button-component>
@@ -50,6 +67,13 @@
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
+    import { ref } from 'vue';
+    import ModalComponent from '../components/ModalComponent.vue';
+    import { onClickOutside } from '@vueuse/core';
+
+    const openModal = ref(false);
+    const modal = ref(null);
+    onClickOutside(modal, () => (openModal.value = false));
 
     const bloodResults = [
         {
@@ -87,6 +111,7 @@
 
 <style scoped lang="scss">
     .dashboard {
+        position: relative;
         display: grid;
         place-items: center;
         grid-template-areas:
@@ -141,5 +166,26 @@
             grid-area: calendar;
             place-self: center;
         }
+    }
+</style>
+<style lang="scss">
+    .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 100%;
+        height: 100%;
+        @include flex-position(column, nowrap, center, center);
+    }
+    .modal-enter-active,
+    .modal-leave-active {
+        transition: all 0.25s ease-out;
+    }
+
+    .modal-enter-from,
+    .modal-leave-to {
+        opacity: 0;
+        transform: scale(1.1);
     }
 </style>
