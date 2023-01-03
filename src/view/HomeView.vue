@@ -61,11 +61,13 @@
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
-    import { ref } from 'vue';
-    import ModalComponent from '../components/ModalComponent.vue';
-    import { onClickOutside } from '@vueuse/core';
     import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
+    import ModalComponent from '../components/ModalComponent.vue';
 
+    import { ref } from 'vue';
+    import { onClickOutside } from '@vueuse/core';
+
+    // const userStore = useUserStore();
     const openModal = ref(false);
     const modal = ref(null);
     onClickOutside(modal, () => (openModal.value = false));
