@@ -114,10 +114,10 @@
         grid-template-areas:
             'dashboard dashboard bmi'
             'actions actions bmi'
-            'blood blood calendar'
-            'blood blood calendar'
-            'vaccines vaccines vaccines'
-            'vaccines vaccines vaccines';
+            'vaccines calendar calendar'
+            'vaccines calendar calendar'
+            'blood blood blood'
+            'blood blood blood';
         margin-inline: 2rem;
         &__header {
             grid-area: dashboard;
@@ -129,8 +129,8 @@
             grid-area: actions;
             place-self: flex-start;
             width: 100%;
-            gap: 1rem;
-            @include flex-position(row, nowrap, space-around, center);
+            gap: 2rem;
+            @include flex-position(row, nowrap, flex-start, center);
         }
         &__bloodResults {
             grid-area: blood;
@@ -153,6 +153,8 @@
         &__vaccines {
             grid-area: vaccines;
             place-self: flex-start;
+            width: 100%;
+            height: 100%;
         }
         &__bmiCalc {
             grid-area: bmi;

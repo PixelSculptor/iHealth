@@ -1,7 +1,8 @@
 <template>
     <div class="certificatesContainer">
         <h3 class="certificatesContainer__header">
-            Certyfikaty i testy <span class="numOfCerts">(liczba)</span>
+            Certyfikaty i testy
+            <span class="numOfCerts">{{ certsList.length }}</span>
         </h3>
         <ul class="certificatesContainer__list">
             <certs-component
@@ -29,7 +30,30 @@
 </script>
 
 <style lang="scss" scoped>
-    * {
-        margin: 0;
+    .certificatesContainer {
+        border: 2px solid green;
+        width: 100%;
+        height: 100%;
+        @include flex-position(column, nowrap, flex-start, flex-start);
+        gap: 1rem;
+        &__header {
+            @include text-header3($font-weight-semiBold);
+            color: $blue-900;
+            @include flex-position(row, nowrap, flex-start, center);
+            gap: 1rem;
+            .numOfCerts {
+                display: inline-block;
+                width: 2.5rem;
+                height: 2.5rem;
+                @include text-header4();
+                text-align: center;
+                background-color: $white;
+                border: $border-size solid $gray-300;
+                border-radius: 50%;
+            }
+        }
+        &__list {
+            overflow-y: scroll;
+        }
     }
 </style>
