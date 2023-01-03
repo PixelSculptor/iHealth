@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { projectFirestore } from '../firebase/config';
 
-const getCollection = (collection) => {
+const getCollections = (collection) => {
     const documents = ref(null);
     const error = ref(null);
 
@@ -15,6 +15,7 @@ const getCollection = (collection) => {
                 return doc.data().createdAt && { ...doc.data(), id: doc.id };
             });
             documents.value = results;
+            console.log(documents.value);
             error.value = null;
         },
         (err) => {
@@ -27,4 +28,4 @@ const getCollection = (collection) => {
     return { documents, error };
 };
 
-export default getCollection;
+export default getCollections;

@@ -51,13 +51,13 @@
     import ErrorInfo from '../ErrorInfo.vue';
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
-    import { useRouter } from 'vue-router';
+    import router from '../../router/index.js';
+
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
     const { signIn, error, isLoading } = useLogin();
     const email = ref('');
     const password = ref('');
-    const router = useRouter();
 
     const disableLogin = computed(() => {
         return !email.value || password.value.length < 8;
@@ -66,7 +66,7 @@
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
-            console.log('Logged in', error.value);
+            console.log('Logged in', email.value);
             await router.push({ name: 'Home' });
         }
         email.value = '';

@@ -1,33 +1,26 @@
 import { ref } from 'vue';
-import { projectFirestore, projectAuth } from '../firebase/config';
+import { projectFirestore } from '../firebase/config';
 
-const getDocument = (collection, uid) => {
+const getDocument = (collection, id) => {
     const document = ref(null);
     const error = ref(null);
 
-    const documentRef = projectFirestore.collection(collection).user(uid);
+    const documentRef = projectFirestore.collection(collection).doc(id);
 
-    projectAuth.onAuthStateChanged((user) => {
-        if (user) {
-            documentRef.onSnapshot(
-                (doc) => {
-                    if (doc.data()) {
-                        document.value = { ...doc.data(), uid: user.uid };
-                        error.value = null;
-                    } else {
-                        error.value = 'that document not exist';
-                    }
-                },
-                (err) => {
-                    console.log(err.message);
-                    error.value = 'could not fetch documents ';
-                }
-            );
-            console.log(user.uid);
-        } else {
-            error.value = 'user is not logged in';
+    documentRef.onSnapshot(
+        (doc) => {
+            if (doc.data()) {
+                document.value = { ...doc.data(), id: doc.id };
+                error.value = null;
+            } else {
+                error.value = 'that document not exist';
+            }
+        },
+        (err) => {
+            console.log(err.message);
+            error.value = 'could not fetch documents ';
         }
-    });
+    );
 
     return { document, error };
 };
