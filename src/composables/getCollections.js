@@ -4,7 +4,6 @@ import { projectFirestore } from '../firebase/config';
 const getCollection = (collection) => {
     const documents = ref(null);
     const error = ref(null);
-
     const collectionRef = projectFirestore
         .collection(collection)
         .orderBy('createdAt');

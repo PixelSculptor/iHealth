@@ -15,7 +15,9 @@
                         class="modal">
                         <modal-component
                             ref="modal"
-                            @close="openModal = false" />
+                            @close="openModal = false">
+                            <choose-visit-component />
+                        </modal-component>
                     </div>
                 </transition>
             </teleport>
@@ -66,6 +68,7 @@
 
     import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
+    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue'; // const userStore = useUserStore();
 
     // const userStore = useUserStore();
     const openModal = ref(false);
