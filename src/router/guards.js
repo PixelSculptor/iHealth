@@ -1,6 +1,7 @@
 import { projectAuth } from '../firebase/config.js';
 import getUser from '../composables/getUser.js';
 import useLogout from '../composables/useLogout.js';
+import useUserStore from '../stores/userStore.js';
 
 export const authGuard = (to, from, next) => {
     const currentUser = projectAuth.currentUser;
@@ -15,4 +16,10 @@ export const logoutGuard = async (to, from, next) => {
         await logout();
         next();
     }
+};
+
+export const fetchUserData = (to, from, next) => {
+    const userStore = useUserStore();
+    userStore.fetchUserData();
+    if (!userStore.getUserInfo.isLoading) next();
 };

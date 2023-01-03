@@ -4,12 +4,13 @@ import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
 import CompleteRegistrationView from '../view/auth/CompleteRegistrationView.vue';
 
-import { authGuard, logoutGuard } from './guards.js';
+import { authGuard, fetchUserData, logoutGuard } from './guards.js';
 import ProfileView from '../view/ProfileView.vue';
 import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
 import VisitsView from '../view/VisitsView.vue';
 import App from '../App.vue';
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -17,13 +18,13 @@ const router = createRouter({
             path: '/',
             name: 'App',
             component: App,
-            beforeEnter: authGuard,
+            beforeEnter: logoutGuard,
         },
         {
             path: '/dashboard',
             name: 'Home',
             component: HomeView,
-            beforeEnter: authGuard,
+            beforeEnter: [authGuard, fetchUserData],
         },
         {
             path: '/register',
@@ -64,5 +65,4 @@ const router = createRouter({
         },
     ],
 });
-
 export default router;
