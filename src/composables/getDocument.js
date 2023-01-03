@@ -13,7 +13,7 @@ const getDocument = (collection, id) => {
                 document.value = { ...doc.data(), id: doc.id };
                 error.value = null;
             } else {
-                error.value = 'that document not exist';
+                error.value = 'that document does not exist';
             }
         },
         (err) => {
