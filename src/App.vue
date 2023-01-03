@@ -1,23 +1,14 @@
 <template>
-    <suspense>
-        <template #default>
-            <div class="app">
-                <sidebar-component v-if="user" />
-                <router-view v-slot="{ Component }">
-                    <transition
-                        name="fade"
-                        mode="out-in">
-                        <component :is="Component" />
-                    </transition>
-                </router-view>
-            </div>
-        </template>
-        <template #fallback>
-            <div class="loader">
-                <bouncing-balls-component />
-            </div>
-        </template>
-    </suspense>
+    <div class="app">
+        <sidebar-component v-if="user" />
+        <router-view v-slot="{ Component }">
+            <transition
+                mode="out-in"
+                name="fade">
+                <component :is="Component" />
+            </transition>
+        </router-view>
+    </div>
 </template>
 
 <script setup>
@@ -27,7 +18,6 @@
     import useLogout from './composables/useLogout.js';
 
     import SidebarComponent from './components/SidebarComponent.vue';
-    import BouncingBallsComponent from './components/BouncingBallsComponent.vue';
 
     const { logout } = useLogout();
     const { user } = getUser();
@@ -40,7 +30,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .app {
         @include wrapper(1fr, 10fr);
     }

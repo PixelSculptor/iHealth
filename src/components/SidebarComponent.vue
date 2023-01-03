@@ -141,7 +141,6 @@
             }
             .logoutBtn {
                 @include flex-position(row, nowrap, flex-start, center);
-                @include text-header4($font-weight-semiBold);
                 width: 100%;
                 letter-spacing: 0.2rem;
                 padding: 2.5rem;
@@ -152,6 +151,7 @@
                 }
                 &:deep(.text) {
                     opacity: 0;
+                    @include text-header4($font-weight-semiBold);
                     transition: 0.3s ease-out;
                 }
                 &:hover {

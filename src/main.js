@@ -5,26 +5,32 @@ import App from './App.vue';
 import { createPinia } from 'pinia';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import {
+    faArrowRightFromBracket,
+    faBars,
+    faCalendarCheck,
+    faCapsules,
+    faDatabase,
+    faDroplet,
+    faFileImport,
+    faFileMedical,
+    faFilePrescription,
+    faFileWaveform,
+    faGauge,
+    faHeartPulse,
+    faIdCard,
+    faNotesMedical,
+    faPlus,
+    faSyringe,
     faUser,
     faUserDoctor,
-    faHeartPulse,
-    faDatabase,
-    faFileMedical,
-    faFileWaveform,
-    faBars,
+    faVirusCovid,
     faXmark,
-    faGauge,
-    faIdCard,
-    faCapsules,
-    faFilePrescription,
-    faArrowRightFromBracket,
-    faCalendarCheck,
-    faFileImport,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 import { projectAuth } from './firebase/config.js';
+
 library.add(
     faGoogle,
     faFacebook,
@@ -43,7 +49,12 @@ library.add(
     faCapsules,
     faFilePrescription,
     faCalendarCheck,
-    faArrowRightFromBracket
+    faArrowRightFromBracket,
+    faPlus,
+    faDroplet,
+    faSyringe,
+    faVirusCovid,
+    faNotesMedical
 );
 
 let app;
