@@ -10,6 +10,7 @@ import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
 import VisitsView from '../view/VisitsView.vue';
 import App from '../App.vue';
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -17,7 +18,7 @@ const router = createRouter({
             path: '/',
             name: 'App',
             component: App,
-            beforeEnter: authGuard,
+            beforeEnter: logoutGuard,
         },
         {
             path: '/dashboard',

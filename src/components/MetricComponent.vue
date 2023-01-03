@@ -4,11 +4,11 @@
     </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .metricValue {
         border: $border-size solid $gray-100;
         border-radius: $border-radius--normal;
-        width: 10vw;
+        width: 100%;
         padding: 0.5rem;
         @include flex-position(column, nowrap, space-around, center);
         &:deep(input[type='number']) {

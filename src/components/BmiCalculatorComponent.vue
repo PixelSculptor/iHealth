@@ -5,19 +5,19 @@
             <metric-component id="weightInput">
                 <input
                     id="weight"
-                    type="number"
                     v-model="weight"
+                    max="200"
                     min="0"
-                    max="200" />
+                    type="number" />
                 <label for="weight">kg</label>
             </metric-component>
             <metric-component id="heightInput">
                 <input
                     id="height"
-                    type="number"
                     v-model="height"
+                    max="220"
                     min="0"
-                    max="220" />
+                    type="number" />
                 <label for="height">cm</label>
             </metric-component>
             <article class="bmi-calculator__indicator">
@@ -27,8 +27,8 @@
                         class="statusCheck"></span>
                 </div>
                 <div
-                    class="bmi-calculator__indicator-status"
-                    :class="classBmi">
+                    :class="classBmi"
+                    class="bmi-calculator__indicator-status">
                     {{ bmiStatus }} ({{ computeBmiValue }})
                 </div>
             </article>
@@ -80,7 +80,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .bmi-calculator {
         height: 100%;
         @include flex-position(column, nowrap, space-around, center);
@@ -110,7 +110,7 @@
         }
         &__indicator {
             grid-area: indicator;
-            width: 90%;
+            width: 100%;
             height: 100%;
             @include flex-position(column, nowrap, space-around, center);
             gap: 0.2rem;
@@ -119,7 +119,7 @@
             border: $border-size solid $blue-100;
             border-radius: $border-radius--rounded;
             background-color: $blue-100;
-            width: 90%;
+            width: 100%;
             height: 50%;
             display: grid;
             .statusCheck {

@@ -3,16 +3,16 @@
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
             <button-component
-                @click="openModal = true"
-                class="dashboard__make_visit">
+                class="dashboard__make_visit"
+                @click="openModal = true">
                 Umów wizytę
                 <font-awesome-icon icon="fa-solid fa-plus" />
             </button-component>
             <teleport to="body">
                 <transition name="modal">
                     <div
-                        class="modal"
-                        v-if="openModal">
+                        v-if="openModal"
+                        class="modal">
                         <modal-component
                             ref="modal"
                             @close="openModal = false" />
@@ -20,14 +20,14 @@
                 </transition>
             </teleport>
             <button-component
-                @click="openModal = true"
-                class="dashboard__make_visit">
+                class="dashboard__make_visit"
+                @click="openModal = true">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
             <button-component
-                @click="openModal = true"
-                class="dashboard__make_visit">
+                class="dashboard__make_visit"
+                @click="openModal = true">
                 Dodaj certyfikat / szczepienie
                 <font-awesome-icon icon="fa-solid fa-syringe" />
             </button-component>
@@ -49,13 +49,7 @@
             <bmi-calculator-component />
         </article>
         <article class="dashboard__vaccines">
-            <h3>Certyfikaty i szczepienia</h3>
-            <div class="">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Accusamus architecto consequuntur excepturi non nostrum.
-                Aspernatur culpa delectus ducimus eaque eos excepturi, illo
-                incidunt magnam nam nisi quaerat suscipit temporibus, veritatis?
-            </div>
+            <certificates-vaccines-component />
         </article>
         <article class="dashboard__calendar">
             <h3>Kalendarz</h3>
@@ -70,6 +64,7 @@
     import { ref } from 'vue';
     import ModalComponent from '../components/ModalComponent.vue';
     import { onClickOutside } from '@vueuse/core';
+    import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
 
     const openModal = ref(false);
     const modal = ref(null);
@@ -109,14 +104,14 @@
     ];
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .dashboard {
         position: relative;
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard bmi bmi'
-            'actions bmi bmi'
+            'dashboard dashboard bmi'
+            'actions actions bmi'
             'blood blood calendar'
             'blood blood calendar'
             'vaccines vaccines vaccines'
