@@ -83,12 +83,14 @@
 <style lang="scss" scoped>
     .bmi-calculator {
         height: 100%;
-        @include flex-position(column, nowrap, space-around, center);
+        @include flex-position(column, nowrap, center, center);
+        gap: 2rem;
         &__header {
             color: $blue-900;
+            @include text-header3($font-weight-semiBold);
         }
         &__panel {
-            width: 70%;
+            width: 80%;
             height: 60%;
             background-color: $white;
             border: $border-size solid $gray-300;
@@ -99,6 +101,7 @@
                 'weight - height'
                 'indicator indicator indicator';
             place-items: center;
+            gap: 1rem;
         }
 
         #weightInput {

@@ -26,14 +26,33 @@
             typeOfDoc: 'vacc',
             id: 1,
         },
+
+        {
+            name: 'Szczepienie przeciwko COVID-19',
+            documentLink: 'https://google.com',
+            typeOfDoc: 'vacc',
+            id: 2,
+        },
+
+        {
+            name: 'Szczepienie przeciwko COVID-19',
+            documentLink: 'https://google.com',
+            typeOfDoc: 'medicForm',
+            id: 3,
+        },
+        {
+            name: 'Szczepienie przeciwko COVID-19',
+            documentLink: 'https://google.com',
+            typeOfDoc: 'vacc',
+            id: 29,
+        },
     ]);
 </script>
 
 <style lang="scss" scoped>
     .certificatesContainer {
-        border: 2px solid green;
         width: 100%;
-        height: 100%;
+        height: 20vh;
         @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 1rem;
         &__header {
@@ -43,8 +62,9 @@
             gap: 1rem;
             .numOfCerts {
                 display: inline-block;
-                width: 2.5rem;
                 height: 2.5rem;
+                width: 2.5rem;
+                @include flex-position(column, nowrap, center, center);
                 @include text-header4();
                 text-align: center;
                 background-color: $white;
@@ -53,7 +73,11 @@
             }
         }
         &__list {
+            height: 70%;
+            padding-top: 10%;
             overflow-y: scroll;
+            @include flex-position(column, nowrap, space-around, flex-start);
+            gap: 1rem;
         }
     }
 </style>

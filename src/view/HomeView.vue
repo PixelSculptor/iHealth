@@ -112,8 +112,8 @@
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard dashboard bmi'
-            'actions actions bmi'
+            'dashboard bmi bmi'
+            'actions bmi bmi'
             'vaccines calendar calendar'
             'vaccines calendar calendar'
             'blood blood blood'
@@ -123,7 +123,7 @@
             grid-area: dashboard;
             @include text-header1($font-weight-semiBold);
             color: $blue-900;
-            place-self: flex-start stretch;
+            place-self: center flex-start;
         }
         &__actions {
             grid-area: actions;
@@ -153,13 +153,14 @@
         &__vaccines {
             grid-area: vaccines;
             place-self: flex-start;
-            width: 100%;
+            width: auto;
             height: 100%;
         }
         &__bmiCalc {
             grid-area: bmi;
             height: 100%;
             width: 100%;
+            place-self: center;
         }
         &__calendar {
             grid-area: calendar;
