@@ -1,7 +1,7 @@
 <template>
     <aside
-        class="menu"
-        :class="{ isExpanded: appStore.getExpandMenu }">
+        :class="{ isExpanded: appStore.getExpandMenu }"
+        class="menu">
         <brand-header-component :hide-brand="appStore.getExpandMenu" />
         <section class="menu__toggle--wrap">
             <button
@@ -21,17 +21,17 @@
                 v-for="view in menuViews"
                 :key="view"
                 :to="view.name"
-                menu
                 main
+                menu
                 wide>
                 <font-awesome-icon :icon="view.classIcon" />
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
-                @click="handleLogout"
                 class="logoutBtn"
                 main
-                wide>
+                wide
+                @click="handleLogout">
                 <font-awesome-icon
                     icon="fa-solid fa-arrow-right-from-bracket" />
                 <span class="text">Wyloguj się</span>
@@ -48,8 +48,10 @@
     import useLogout from '../composables/useLogout.js';
     import { useRouter } from 'vue-router';
     import { useAppStore } from '../stores/appStore.js';
+    import useUserStore from '../stores/userStore.js';
 
     const appStore = useAppStore();
+    const userStore = useUserStore();
     const { error, logout } = useLogout();
     const menuViews = ref([
         { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
@@ -80,11 +82,14 @@
         await logout();
         await router.push({ name: 'Login' });
         console.log(`Wylogowano Cię!`);
+        sessionStorage.clear();
+        userStore.$reset();
+        appStore.$reset();
         if (error.value) console.log(error.value);
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .menu {
         @include flex-position(column, nowrap, flex-start, center);
         border-radius: 0 $border-radius--normal $border-radius--normal 0;
