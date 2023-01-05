@@ -68,12 +68,12 @@
 
     import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
-    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue'; // const userStore = useUserStore();
+    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue';
 
-    // const userStore = useUserStore();
     const openModal = ref(false);
     const modal = ref(null);
     onClickOutside(modal, () => (openModal.value = false));
+    // const userStore = useUserStore();
 
     const bloodResults = [
         {
@@ -107,6 +107,8 @@
             researchID: 17,
         },
     ];
+
+    // const {documents} = getUserData('userProfile', userStore.getUserId);
 </script>
 
 <style lang="scss" scoped>

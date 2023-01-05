@@ -70,12 +70,13 @@
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
-            console.log('Logged in', error.value);
+            console.log('Logged in', email.value);
             userStore.setUid(user.value.uid);
             await router.push({ name: 'Home' });
         }
         email.value = '';
         password.value = '';
+        isLoading.value = false;
     };
 </script>
 

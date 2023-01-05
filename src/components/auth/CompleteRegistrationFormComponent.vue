@@ -4,38 +4,38 @@
         @submit.prevent="completeProfile">
         <div class="formBlock">
             <label
-                for="name"
                 class="formBlock__label"
+                for="name"
                 >Imię</label
             >
             <input
-                class="formBlock__input"
                 id="name"
-                type="text"
                 v-model="name"
+                class="formBlock__input"
                 placeholder="Jan"
-                required />
+                required
+                type="text" />
         </div>
 
         <div class="formBlock">
             <label
-                for="surname"
                 class="formBlock__label"
+                for="surname"
                 >Nazwisko</label
             >
             <input
-                class="formBlock__input"
                 id="surname"
-                type="text"
                 v-model="surname"
+                class="formBlock__input"
                 placeholder="Kowalski"
-                required />
+                required
+                type="text" />
         </div>
 
         <div class="formBlock avatar">
             <label
-                for="avatar"
                 class="formBlock__label"
+                for="avatar"
                 >Twój awatar</label
             >
             <div
@@ -44,72 +44,72 @@
                 <font-awesome-icon icon="fa-solid fa-file-import" />
             </div>
             <input
-                class="formBlock__input"
                 id="avatar"
-                @change="handleChange"
-                type="file" />
+                class="formBlock__input"
+                type="file"
+                @change="handleChange" />
             <error-info :message="avatarError" />
         </div>
 
         <div class="formBlock">
             <label
-                for="phoneNumber"
                 class="formBlock__label"
+                for="phoneNumber"
                 >Numer telefonu</label
             >
             <input
-                class="formBlock__input"
                 id="phoneNumber"
-                type="tel"
                 v-model="phoneNumber"
+                class="formBlock__input"
                 placeholder="+48 999 999 999"
-                required />
+                required
+                type="tel" />
         </div>
 
         <div class="formBlock">
             <label
-                for="dateOfBirth"
                 class="formBlock__label"
+                for="dateOfBirth"
                 >Data urodzenia</label
             >
             <input
-                class="formBlock__input"
                 id="dateOfBirth"
-                type="date"
-                :max="today"
-                pattern="\d{4}-\d{2}-\d{2}"
-                :placeholder="dateOfBirth"
                 v-model="dateOfBirth"
-                required />
+                :max="today"
+                :placeholder="dateOfBirth"
+                class="formBlock__input"
+                pattern="\d{4}-\d{2}-\d{2}"
+                required
+                type="date" />
         </div>
 
         <div class="formBlock">
             <label
-                for="personId"
                 class="formBlock__label"
+                for="personId"
                 >PESEL</label
             >
             <input
-                class="formBlock__input"
                 id="personId"
-                type="text"
-                placeholder="11111111111"
+                v-model="personId"
+                class="formBlock__input"
                 maxlength="11"
                 minlength="11"
-                v-model="personId"
-                required />
+                placeholder="11111111111"
+                required
+                type="text" />
         </div>
 
         <div class="formBlock">
             <label
-                for="gender"
                 class="formBlock__label"
+                for="gender"
                 >Płeć</label
             >
             <select
-                class="formBlock__input"
                 id="gender"
                 v-model="gender"
+                class="formBlock__input"
                 required>
                 <option value="">Wybierz płeć</option>
                 <option value="kobieta">Kobieta</option>
@@ -121,8 +121,8 @@
 
         <div class="formBlock">
             <label
-                for="weight"
                 class="formBlock__label"
+                for="weight"
                 >Twoja waga [kg]</label
             >
             <div class="slider">
@@ -132,20 +132,20 @@
                 <div class="value left">0</div>
                 <input
                     id="weight"
-                    min="0"
-                    max="200"
-                    step="1"
-                    type="range"
                     v-model="weight"
-                    required />
+                    max="200"
+                    min="0"
+                    required
+                    step="1"
+                    type="range" />
                 <div class="value right">200</div>
             </div>
         </div>
 
         <div class="formBlock">
             <label
-                for="height"
                 class="formBlock__label"
+                for="height"
                 >Wzrost [cm]</label
             >
             <div class="slider">
@@ -155,28 +155,28 @@
                 <div class="value left">0</div>
                 <input
                     id="height"
-                    min="0"
-                    max="220"
-                    step="1"
-                    type="range"
                     v-model="height"
-                    required />
+                    max="220"
+                    min="0"
+                    required
+                    step="1"
+                    type="range" />
                 <div class="value right">220</div>
             </div>
         </div>
         <div class="completeProfileForm__submit">
             <button-component
-                wide
-                main
                 :disabled="disableCompleteProfile"
+                main
+                wide
                 >Zapisz profil</button-component
             >
             <error-info :message="notValidPersonIdError" />
             <error-info :message="error" />
         </div>
         <bouncing-balls-component
-            class="loader"
-            :visible="isLoading" />
+            :visible="isLoading"
+            class="loader" />
     </form>
 </template>
 
@@ -250,7 +250,6 @@
                 'Please select an image file (jpeg, jpg, png or webp).';
         }
     };
-
     const completeProfile = async () => {
         try {
             await uploadImage(avatar.value);
@@ -289,7 +288,7 @@
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .completeProfileForm {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
