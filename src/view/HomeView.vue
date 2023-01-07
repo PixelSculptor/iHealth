@@ -1,111 +1,25 @@
 <template>
-    <section class="dashboard">
-        <h2 class="dashboard__header">Dashboard</h2>
-        <div class="dashboard__actions">
-            <button-component
-                class="dashboard__make_visit"
-                @click="openModal = true">
-                Umów wizytę
-                <font-awesome-icon icon="fa-solid fa-plus" />
-            </button-component>
-            <teleport to="body">
-                <transition name="modal">
-                    <div
-                        v-if="openModal"
-                        class="modal">
-                        <modal-component
-                            ref="modal"
-                            @close="openModal = false" />
-                    </div>
-                </transition>
-            </teleport>
-            <button-component
-                class="dashboard__make_visit"
-                @click="openModal = true">
-                Dodaj badanie
-                <font-awesome-icon icon="fa-solid fa-droplet" />
-            </button-component>
-            <button-component
-                class="dashboard__make_visit"
-                @click="openModal = true">
-                Dodaj certyfikat / szczepienie
-                <font-awesome-icon icon="fa-solid fa-syringe" />
-            </button-component>
+    <div
+        v-for="users in documents"
+        :key="users.id">
+        <div>
+            <img :src="users.avatarUrl" />
         </div>
-
-        <article class="dashboard__bloodResults">
-            <h3 class="blood__header">Morfologia</h3>
-            <ul class="listOfResults">
-                <li
-                    v-for="bloodResult in bloodResults"
-                    :key="bloodResult.researchID">
-                    <blood-result
-                        :blood-type="bloodResult.bloodType"
-                        :date="bloodResult.date" />
-                </li>
-            </ul>
-        </article>
-        <article class="dashboard__bmiCalc">
-            <bmi-calculator-component />
-        </article>
-        <article class="dashboard__vaccines">
-            <certificates-vaccines-component />
-        </article>
-        <article class="dashboard__calendar">
-            <h3>Kalendarz</h3>
-        </article>
-    </section>
+        <h3>{{ users.title }}</h3>
+        <p>created by {{ users.name }}</p>
+        <p>{{ users.userId }}</p>
+    </div>
 </template>
 
-<script setup>
-    import ButtonComponent from '../components/ButtonComponent.vue';
-    import BloodResult from '../components/BloodResult.vue';
-    import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
-    import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
-    import ModalComponent from '../components/ModalComponent.vue';
-
-    import { ref } from 'vue';
-    import { onClickOutside } from '@vueuse/core';
-
-    // const userStore = useUserStore();
-    const openModal = ref(false);
-    const modal = ref(null);
-    onClickOutside(modal, () => (openModal.value = false));
-
-    const bloodResults = [
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 12,
+<script>
+    import getCollections from '../composables/getCollections.js';
+    export default {
+        setup() {
+            const { error, documents } = getCollections('userProfile');
+            return { error, documents };
         },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 13,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 14,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 15,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 16,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 17,
-        },
-    ];
+    };
 </script>
-
 <style lang="scss" scoped>
     .dashboard {
         position: relative;

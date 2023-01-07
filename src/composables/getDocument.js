@@ -1,14 +1,16 @@
-import { ref } from 'vue';
+import { watchEffect, ref } from 'vue';
 import { projectFirestore } from '../firebase/config';
 
 const getDocument = (collection, id) => {
     const document = ref(null);
     const error = ref(null);
 
+    // register the firestore collection reference
     const documentRef = projectFirestore.collection(collection).doc(id);
 
-    documentRef.onSnapshot(
+    const unsub = documentRef.onSnapshot(
         (doc) => {
+            // need to make sure the doc exists & has data
             if (doc.data()) {
                 document.value = { ...doc.data(), id: doc.id };
                 error.value = null;
@@ -18,11 +20,14 @@ const getDocument = (collection, id) => {
         },
         (err) => {
             console.log(err.message);
-            error.value = 'could not fetch documents ';
+            error.value = 'problem fetching the document';
         }
     );
 
-    return { document, error };
-};
+    watchEffect((onInvalidate) => {
+        onInvalidate(() => unsub());
+    });
 
+    return { error, document };
+};
 export default getDocument;
