@@ -10,14 +10,14 @@ const getCollections = (collection) => {
         .collection(collection)
         .where('userId', '==', user.uid);
 
-    console.log(collectionRef);
-
     collectionRef.onSnapshot(
         (snap) => {
             documents.value = snap.docs.map((doc) => {
+                console.log('userId: ', doc.data(), 'id: ', doc.id);
                 return { ...doc.data(), id: doc.id };
             });
             console.log(documents);
+
             error.value = null;
         },
         (err) => {
@@ -26,7 +26,7 @@ const getCollections = (collection) => {
             documents.value = null;
         }
     );
-
+    console.log('dokumenty:', documents);
     return { documents, error };
 };
 

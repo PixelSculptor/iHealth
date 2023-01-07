@@ -1,33 +1,34 @@
-import { watchEffect, ref } from 'vue';
-import { projectFirestore } from '../firebase/config';
+import { ref } from 'vue';
+import { projectFirestore, projectAuth } from '../firebase/config';
 
-const getDocument = (collection, id) => {
+const getDocument = (collection) => {
+    const user = projectAuth.currentUser;
     const document = ref(null);
     const error = ref(null);
 
-    // register the firestore collection reference
-    const documentRef = projectFirestore.collection(collection).doc(id);
+    const collectionRef = projectFirestore
+        .collection(collection)
+        .where('userId', '==', user.uid)
+        .limit(1);
 
-    const unsub = documentRef.onSnapshot(
-        (doc) => {
-            // need to make sure the doc exists & has data
-            if (doc.data()) {
-                document.value = { ...doc.data(), id: doc.id };
-                error.value = null;
-            } else {
-                error.value = 'that document does not exist';
-            }
+    collectionRef.onSnapshot(
+        (snap) => {
+            document.value = snap.docs.map((doc) => {
+                console.log('userId: ', doc.data(), 'id: ', doc.id);
+                return { ...doc.data(), id: doc.id };
+            });
+            console.log(document);
+
+            error.value = null;
         },
         (err) => {
+            error.value = 'could not fetch data';
             console.log(err.message);
-            error.value = 'problem fetching the document';
+            document.value = null;
         }
     );
-
-    watchEffect((onInvalidate) => {
-        onInvalidate(() => unsub());
-    });
-
-    return { error, document };
+    console.log('dokumenty:', document);
+    return { document, error };
 };
+
 export default getDocument;

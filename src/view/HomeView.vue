@@ -1,22 +1,27 @@
 <template>
     <div
-        v-for="users in documents"
+        v-for="users in document"
         :key="users.id">
         <div>
             <img :src="users.avatarUrl" />
         </div>
         <h3>{{ users.title }}</h3>
         <p>created by {{ users.name }}</p>
+        <p>surname {{ users.surname }}</p>
         <p>{{ users.userId }}</p>
+        <p>documentId: {{ users.id }}</p>
     </div>
 </template>
 
 <script>
-    import getCollections from '../composables/getCollections.js';
+    // import getCollections from '../composables/getCollections.js';
+    import getDocument from '../composables/getDocument.js';
     export default {
         setup() {
-            const { error, documents } = getCollections('userProfile');
-            return { error, documents };
+            // const { error, documents } = getCollections('userProfile');
+            const { error, document } = getDocument('userProfile');
+
+            return { error, document };
         },
     };
 </script>
