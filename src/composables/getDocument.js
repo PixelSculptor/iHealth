@@ -6,18 +6,18 @@ const getDocument = (collection) => {
     const document = ref(null);
     const error = ref(null);
 
-    const collectionRef = projectFirestore
+    const documentRef = projectFirestore
         .collection(collection)
         .where('userId', '==', user.uid)
         .limit(1);
 
-    collectionRef.onSnapshot(
+    documentRef.onSnapshot(
         (snap) => {
             document.value = snap.docs.map((doc) => {
-                console.log('userId: ', doc.data(), 'id: ', doc.id);
+                console.log('DOCuserId: ', doc.data(), 'DOCid: ', doc.id);
                 return { ...doc.data(), id: doc.id };
             });
-            console.log(document);
+            console.log(document.value[0]);
 
             error.value = null;
         },
@@ -27,7 +27,6 @@ const getDocument = (collection) => {
             document.value = null;
         }
     );
-    console.log('dokumenty:', document);
     return { document, error };
 };
 
