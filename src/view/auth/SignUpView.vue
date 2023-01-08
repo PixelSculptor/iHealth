@@ -16,14 +16,16 @@
                 <button-component
                     class="logWithSocials__google"
                     soft
-                    wide>
+                    wide
+                    @click="googleSignIn">
                     Zaloguj się przez Google
                     <font-awesome-icon icon="fa-brands fa-google" />
                 </button-component>
                 <button-component
                     class="logWithSocials__facebook"
                     soft
-                    wide>
+                    wide
+                    @click="facebookSignIn">
                     Zaloguj się przez Facebook
                     <font-awesome-icon icon="fa-brands fa-facebook" />
                 </button-component>
@@ -39,9 +41,19 @@
     import WelcomeInfoComponent from '../../components/WelcomeInfoComponent.vue';
     import ButtonComponent from '../../components/ButtonComponent.vue';
     import router from '../../router/index.js';
+    import facebookSign from '../../composables/useFacebook.js';
+    import googleSign from '../../composables/useGoogle.js';
 
     const handleSignUp = () => {
         router.push({ name: 'CompleteProfile' });
+    };
+
+    const facebookSignIn = () => {
+        facebookSign();
+    };
+
+    const googleSignIn = () => {
+        googleSign();
     };
 </script>
 
