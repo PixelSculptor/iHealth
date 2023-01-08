@@ -17,7 +17,6 @@ const getDocument = (collection) => {
                 console.log(doc.data(), doc.id);
                 return { ...doc.data(), id: doc.id };
             });
-            console.log(document);
             error.value = null;
         },
         (err) => {

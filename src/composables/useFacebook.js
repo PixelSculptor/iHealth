@@ -7,19 +7,12 @@ const facebookSign = () => {
         .signInWithPopup(provider)
         .then((result) => {
             const credential = result.credential;
-            const user = result.user;
-            console.log('user: ', user);
-            const accessToken = credential.accessToken;
-            console.log(result.user, accessToken);
+            console.log('User credentials: ', credential);
             router.push('/create');
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            const email = error.email;
-            const credential = error.credential;
-            console.log('Error on facebook login');
-            console.log(errorCode, errorMessage, email, credential);
+            console.log('Error on facebook login: ', errorMessage);
         });
 };
 

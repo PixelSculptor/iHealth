@@ -1,13 +1,13 @@
-import medicines from '../jsons/leki.json';
+import medicines from '../jsons/medicines.json';
 
 const getMedicineArray = () => {
     medicines.map((element) => ({
-        Nazwa_leku: element.NazwaProduktuLeczniczego,
-        Moc_leku: element.Moc,
-        Postac: element.Postac_farmaceutyczna,
-        Substancja_czynna: element.Substancja_czynna,
-        Nazwa_wytworcy: element.Nazwa_wytwórcy,
-        Ulotka: element.Ulotka,
+        MedicineName: element.MedicinesName,
+        MedicinePower: element.Power,
+        Form: element.MedicineForm,
+        Substance: element.MedicineSubstance,
+        ManfacturerName: element.MedicineManufacturName,
+        Leaflet: element.MedicineManufacturName,
     }));
 };
 
