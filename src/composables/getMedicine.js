@@ -10,5 +10,4 @@ const getMedicineArray = () => {
         leaflet: element.medicineManufacturName,
     }));
 };
-
 export default getMedicineArray;
