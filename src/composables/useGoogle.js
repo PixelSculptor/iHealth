@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import router from '../router/index.js';
 
 const googleSign = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -8,7 +7,6 @@ const googleSign = () => {
         .signInWithPopup(provider)
         .then((result) => {
             console.log(result.user);
-            router.push('/create');
         })
         .catch((err) => {
             console.log(err.message);
