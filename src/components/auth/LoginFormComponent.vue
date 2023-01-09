@@ -1,9 +1,23 @@
 <template>
     <form
-        class="loginForm"
         action=""
+        class="loginForm"
         @submit.prevent="handleLogin">
         <h2 class="loginForm__header">Zaloguj się do konta</h2>
+        <button-component
+            class="logWithSocials__google"
+            soft
+            wide>
+            Zaloguj się przez Google
+            <font-awesome-icon icon="fa-brands fa-google" />
+        </button-component>
+        <button-component
+            class="logWithSocials__facebook"
+            soft
+            wide>
+            Zaloguj się przez Facebook
+            <font-awesome-icon icon="fa-brands fa-facebook" />
+        </button-component>
         <div class="formBlock">
             <label
                 class="formBlock__label"
@@ -11,12 +25,12 @@
                 >E-mail</label
             >
             <input
-                class="formBlock__input"
                 id="email"
-                type="email"
-                required
+                v-model="email"
+                class="formBlock__input"
                 placeholder="abc@gmail.com"
-                v-model="email" />
+                required
+                type="email" />
         </div>
         <div class="formBlock">
             <label
@@ -25,21 +39,21 @@
                 >Hasło</label
             >
             <input
-                class="formBlock__input"
                 id="password"
-                type="password"
+                v-model="password"
+                class="formBlock__input"
                 minlength="8"
-                required
                 placeholder="Hasło"
-                v-model="password" />
+                required
+                type="password" />
         </div>
         <error-info
-            class="infoLabel"
-            :message="error" />
+            :message="error"
+            class="infoLabel" />
         <button-component
+            :disabled="disableLogin"
             soft
             wide
-            :disabled="disableLogin"
             >Zaloguj się</button-component
         >
         <bouncing-balls-component :visible="isLoading" />
@@ -63,6 +77,8 @@
         return !email.value || password.value.length < 8;
     });
 
+    // TODO: handle log in with socials
+
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
@@ -74,7 +90,7 @@
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .loginForm {
         height: 90vh;
         margin: auto;

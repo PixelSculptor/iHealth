@@ -5,8 +5,8 @@
             <div class="loginLink">
                 <h5 class="loginLink__header">Masz już konto?</h5>
                 <button-component
-                    soft
                     small
+                    soft
                     to="Login">
                     Zaloguj się
                 </button-component>
@@ -18,7 +18,7 @@
                     soft
                     wide
                     @click="googleSignIn">
-                    Zaloguj się przez Google
+                    Dołącz się przez Google
                     <font-awesome-icon icon="fa-brands fa-google" />
                 </button-component>
                 <button-component
@@ -26,7 +26,7 @@
                     soft
                     wide
                     @click="facebookSignIn">
-                    Zaloguj się przez Facebook
+                    Dołącz przez Facebook
                     <font-awesome-icon icon="fa-brands fa-facebook" />
                 </button-component>
             </div>
@@ -57,7 +57,7 @@
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .wrapper {
         @include wrapper;
         width: 100vw;
