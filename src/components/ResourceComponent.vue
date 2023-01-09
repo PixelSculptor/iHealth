@@ -1,66 +1,84 @@
 <template>
     <div class="researchBox">
-        <h3 class="researchBox__header">Wybierz typ badania:</h3>
+        <h3 class="researchBox__header">Dodaj badanie:</h3>
         <form class="researchBox__form researchForm">
-            <select
-                id="researches"
-                v-model="researchType"
-                class="researchForm__typeOfResearch">
-                <option
-                    disabled
-                    value="">
-                    Wybierz jeden typ
-                </option>
-                <option
-                    v-for="research in typeOfResources"
-                    :key="research.id"
-                    :value="research.keyName">
-                    {{ research.typeName }}
-                </option>
-            </select>
-            <div
-                v-if="researchType === 'morphology'"
-                class="researchForm__bloodSection">
-                <label for="typeOfBlood">Grupa krwi:</label>
+            <div class="inputBox">
+                <label for="researches">Wybierz typ badania:</label>
                 <select
-                    id="typeOfBlood"
-                    v-model="bloodType"
-                    class="bloodSection__bloodType">
+                    id="researches"
+                    v-model="researchType"
+                    class="researchForm__typeOfResearch">
                     <option
                         disabled
                         value="">
                         Wybierz jeden typ
                     </option>
                     <option
-                        v-for="(bloodType, index) in typeOfBlood"
-                        :key="index"
-                        :value="bloodType"
-                        class="bloodOption">
-                        {{ bloodType }}
+                        v-for="research in typeOfResources"
+                        :key="research.id"
+                        :value="research.keyName">
+                        {{ research.typeName }}
                     </option>
                 </select>
-                <label for="antigen">Antygen R</label>
-                <input
-                    id="antigen"
-                    v-model="antigenFlag"
-                    class="bloodSection__antigenRflag"
-                    type="checkbox" />
-                <h3 v-show="bloodType">{{ bloodGroup }}</h3>
             </div>
-            <label for="dateOfResource"
-                >Wybierz dzień badania {{ dateFormat }}</label
-            >
-            <input
-                id="dateOfResource"
-                v-model="researchDate"
-                type="date" />
-            <label for="uploadTest">Dodaj wyniki:</label>
-            <input
-                id="uploadTest"
-                class=""
-                type="file"
-                @change="handleChange" />
-            <button-component>Zapisz badanie</button-component>
+
+            <div
+                v-if="researchType === 'morphology'"
+                class="researchForm__bloodSection">
+                <div class="inputBox">
+                    <label for="typeOfBlood">Grupa krwi:</label>
+                    <select
+                        id="typeOfBlood"
+                        v-model="bloodType"
+                        class="bloodSection__bloodType">
+                        <option
+                            disabled
+                            value="">
+                            Wybierz jeden typ
+                        </option>
+                        <option
+                            v-for="(bloodType, index) in typeOfBlood"
+                            :key="index"
+                            :value="bloodType"
+                            class="bloodOption">
+                            {{ bloodType }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="inputBox">
+                    <label for="antigen">Antygen R</label>
+                    <input
+                        id="antigen"
+                        v-model="antigenFlag"
+                        class="bloodSection__antigenRflag"
+                        type="checkbox" />
+                    <p v-show="bloodType">Twoja grupa krwi: {{ bloodGroup }}</p>
+                </div>
+            </div>
+            <div class="inputBox">
+                <label for="dateOfResource">Wybierz dzień badania:</label>
+                <input
+                    id="dateOfResource"
+                    v-model="researchDate"
+                    type="date" />
+            </div>
+            <div class="inputBox">
+                <label for="uploadTest">Dodaj wyniki:</label>
+                <div
+                    class="icon"
+                    tabindex="0">
+                    <font-awesome-icon icon="fa-solid fa-file-import" />
+                </div>
+                <input
+                    id="uploadTest"
+                    class=""
+                    type="file"
+                    @change="handleChange" />
+                <!--            <error-info :message="testFileError" />-->
+            </div>
+
+            <button-component wide>Zapisz badanie</button-component>
         </form>
     </div>
 </template>
@@ -88,6 +106,7 @@
             researchDate.value.split('-').reverse().join('-')
         );
     });
+    console.log(dateFormat.value);
 
     const handleChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -104,6 +123,68 @@
 
 <style lang="scss" scoped>
     .researchBox {
-        display: grid;
+        @include flex-position(column, nowrap, space-bewteen, flex-start);
+        height: 100%;
+        &__header {
+            @include text-header3($font-weight-semiBold);
+            color: $blue-900;
+        }
+        &__form {
+            height: 100%;
+            select,
+            input {
+                @include text-header6($font-weight-regular);
+            }
+            label {
+                @include label;
+                color: $blue-900;
+            }
+            button {
+                align-self: center;
+            }
+        }
+        .researchForm {
+            width: 100%;
+            @include flex-position(column, nowrap, center, flex-start);
+            gap: 1rem;
+            &__bloodSection {
+                @include flex-position(column, nowrap, flex-start, flex-start);
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .inputBox {
+                @include flex-position(row, nowrap, flex-start, center);
+                gap: 0.5rem;
+
+                input[type='file'] {
+                    background-color: $white;
+
+                    &::-webkit-file-upload-button {
+                        cursor: pointer;
+                        border: none;
+                        padding: 0.5rem;
+                        width: 45%;
+                        text-align: left;
+                        border-radius: $border-radius--normal;
+                        @include button-soft;
+                        @include text-button($font-weight-semiBold);
+                    }
+                }
+
+                .icon {
+                    cursor: pointer;
+                    position: relative;
+                    &:deep(svg) {
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        top: -0.6rem;
+                        left: 8rem;
+                        position: absolute;
+                        color: $blue-700;
+                    }
+                }
+            }
+        }
     }
 </style>

@@ -22,7 +22,7 @@
         min-height: 50%;
         min-width: 50vw;
         background-color: $white;
-        padding: 3rem;
+        padding: 2rem;
         border-radius: $border-radius--rounded;
         display: grid;
         grid-template-areas:
@@ -36,7 +36,7 @@
             grid-area: closebtn;
             place-self: flex-start flex-end;
             &:hover {
-                color: $blue-500;
+                color: $blue-700;
                 transform: scale(1.1);
             }
         }
