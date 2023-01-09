@@ -65,15 +65,17 @@
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
+    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue';
 
+    import useUserStore from '../stores/userStore.js';
+    import getUserData from '../composables/getUserData.js';
     import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
-    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue';
 
     const openModal = ref(false);
     const modal = ref(null);
     onClickOutside(modal, () => (openModal.value = false));
-    // const userStore = useUserStore();
+    const userStore = useUserStore();
 
     const bloodResults = [
         {
@@ -108,7 +110,8 @@
         },
     ];
     // const {documents} = getCollections('userProfile');
-    // const {documents} = getUserData('userProfile', userStore.getUserId);
+    const { documents } = getUserData('userProfile', userStore.getUserId);
+    console.log(documents.value);
 </script>
 
 <style lang="scss" scoped>
