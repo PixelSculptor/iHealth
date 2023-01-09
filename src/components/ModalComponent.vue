@@ -28,6 +28,7 @@
         grid-template-areas:
             '- - closebtn'
             'custom custom custom';
+        grid-template-rows: 1fr 90%;
         &:deep(svg) {
             cursor: pointer;
             height: 3rem;

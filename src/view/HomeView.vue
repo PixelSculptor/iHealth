@@ -2,31 +2,44 @@
     <section class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
-            <button-component
-                class="dashboard__make_visit"
-                @click="openModal = true">
-                Umów wizytę
-                <font-awesome-icon icon="fa-solid fa-plus" />
-            </button-component>
-            <teleport to="body">
-                <transition name="modal">
-                    <div
-                        v-if="openModal"
-                        class="modal">
-                        <modal-component
-                            ref="modal"
-                            @close="openModal = false">
-                            <choose-visit-component />
-                        </modal-component>
-                    </div>
-                </transition>
-            </teleport>
+            <!--            <button-component-->
+            <!--                class="dashboard__make_visit"-->
+            <!--                @click="openModal = true">-->
+            <!--                Umów wizytę-->
+            <!--                <font-awesome-icon icon="fa-solid fa-plus" />-->
+            <!--            </button-component>-->
+            <!--            <teleport to="body">-->
+            <!--                <transition name="modal">-->
+            <!--                    <div-->
+            <!--                        v-if="openModal"-->
+            <!--                        class="modal">-->
+            <!--                        <modal-component-->
+            <!--                            ref="modal"-->
+            <!--                            @close="openModal = false">-->
+            <!--                            <choose-visit-component />-->
+            <!--                        </modal-component>-->
+            <!--                    </div>-->
+            <!--                </transition>-->
+            <!--            </teleport>-->
             <button-component
                 class="dashboard__make_visit"
                 @click="openModal = true">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
+            <teleport to="body">
+                <transition name="modal">
+                    <div
+                        v-if="true"
+                        class="modal">
+                        <modal-component
+                            ref="modal"
+                            @close="openModal = false">
+                            <resource-component />
+                        </modal-component>
+                    </div>
+                </transition>
+            </teleport>
             <button-component
                 class="dashboard__make_visit"
                 @click="openModal = true">
@@ -65,9 +78,9 @@
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
-    import ChooseVisitComponent from '../components/ChooseVisitComponent.vue';
     import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
+    import ResourceComponent from '../components/ResourceComponent.vue';
 
     const openModal = ref(false);
     const modal = ref(null);
@@ -132,7 +145,7 @@
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            @include flex-position(row, nowrap, flex-start, center);
+            @include flex-position(row, nowrap, space-evenly, center);
         }
         &__bloodResults {
             grid-area: blood;

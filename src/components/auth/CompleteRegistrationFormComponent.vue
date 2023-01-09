@@ -183,13 +183,15 @@
 <script setup>
     import ButtonComponent from '../ButtonComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+
     import checkPesel from '../../composables/checkPesel.js';
     import { computed, ref } from 'vue';
     import useCollection from '../../composables/useCollections.js';
     import useStorage from '../../composables/getImage.js';
     import useUserStore from '../../stores/userStore.js';
     import { timestamp } from '../../firebase/config.js';
-    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+    import ALLOWED_TYPES from '../../utils/allowedTypes.js';
 
     const userStore = useUserStore();
     const { error, addDoc, isLoading } = useCollection('userProfile');
@@ -231,13 +233,6 @@
             checkPesel(personId.value)
         );
     });
-
-    const ALLOWED_TYPES = [
-        'image/png',
-        'image/jpeg',
-        'image/jpg',
-        'image/webp',
-    ];
 
     const handleChange = (event) => {
         const selectedFile = event.target.files[0];
