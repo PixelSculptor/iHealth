@@ -30,7 +30,7 @@
             <teleport to="body">
                 <transition name="modal">
                     <div
-                        v-if="true"
+                        v-if="openModal"
                         class="modal">
                         <modal-component
                             ref="modal"

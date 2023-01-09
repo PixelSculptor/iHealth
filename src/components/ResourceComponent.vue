@@ -1,5 +1,7 @@
 <template>
-    <div class="researchBox">
+    <div
+        class="researchBox"
+        @submit.prevent="addTest">
         <h3 class="researchBox__header">Dodaj badanie:</h3>
         <form class="researchBox__form researchForm">
             <div class="inputBox">
@@ -75,27 +77,49 @@
                     class=""
                     type="file"
                     @change="handleChange" />
-                <!--            <error-info :message="testFileError" />-->
+                <error-info :message="testFileError" />
             </div>
-
-            <button-component wide>Zapisz badanie</button-component>
+            <div class="actionsAndInfo">
+                <button-component
+                    :disabled="disableAddTest"
+                    wide
+                    >Zapisz badanie</button-component
+                >
+                <bouncing-balls-component :visible="isLoading" />
+                <error-info :message="error" />
+            </div>
         </form>
     </div>
 </template>
 
 <script setup>
+    import ButtonComponent from './ButtonComponent.vue';
+    import BouncingBallsComponent from './BouncingBallsComponent.vue';
+    import ErrorInfo from './ErrorInfo.vue';
+
     import { typeOfBlood, typeOfResources } from '../utils/typeOfResources.js';
     import { computed, ref } from 'vue';
     import ALLOWED_TYPES from '../utils/allowedTypes.js';
-    import ButtonComponent from './ButtonComponent.vue';
+    import useStorage from '../composables/getImage.js';
+    import useUserStore from '../stores/userStore.js';
+    import { timestamp } from '../firebase/config.js';
+    import useCollection from '../composables/useCollections.js';
 
-    // const {filePath, url, uploadImage} = useStorage()
+    const { isLoading, addDoc, error } = useCollection('research');
+    const { url, uploadImage } = useStorage();
+
     const antigenFlag = ref(false);
     const researchType = ref(null);
     const bloodType = ref(null);
     const testFile = ref(null);
     const testFileError = ref(null);
     const researchDate = ref(null);
+
+    const userStore = useUserStore();
+
+    const disableAddTest = computed(
+        () => !(researchType.value && dateFormat.value && testFile.value)
+    );
 
     const bloodGroup = computed(() =>
         antigenFlag.value ? bloodType.value + '+' : bloodType.value + '-'
@@ -106,7 +130,6 @@
             researchDate.value.split('-').reverse().join('-')
         );
     });
-    console.log(dateFormat.value);
 
     const handleChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -119,11 +142,35 @@
                 'Please select an image file (jpeg, jpg, png, webp or pdf).';
         }
     };
+    const addTest = async () => {
+        try {
+            await uploadImage(testFile.value);
+            console.log(`image uploaded`, url.value);
+            await addDoc({
+                userId: userStore.getUserId,
+                date: dateFormat.value,
+                bloodType: bloodGroup.value,
+                testUrl: url.value,
+                createdAt: timestamp(),
+            });
+            if (error.value) throw new Error();
+            console.log(`all good`);
+        } catch (err) {
+            console.log(error.value);
+        } finally {
+            antigenFlag.value = false;
+            researchType.value = null;
+            bloodType.value = null;
+            testFile.value = null;
+            testFileError.value = null;
+            researchDate.value = null;
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
     .researchBox {
-        @include flex-position(column, nowrap, space-bewteen, flex-start);
+        @include flex-position(column, nowrap, space-between, flex-start);
         height: 100%;
         &__header {
             @include text-header3($font-weight-semiBold);
@@ -139,13 +186,13 @@
                 @include label;
                 color: $blue-900;
             }
-            button {
+            .actionsAndInfo {
                 align-self: center;
             }
         }
         .researchForm {
             width: 100%;
-            @include flex-position(column, nowrap, center, flex-start);
+            @include flex-position(column, nowrap, space-evenly, flex-start);
             gap: 1rem;
             &__bloodSection {
                 @include flex-position(column, nowrap, flex-start, flex-start);
