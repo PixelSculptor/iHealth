@@ -18,8 +18,8 @@ export const logoutGuard = async (to, from, next) => {
     }
 };
 
-export const fetchUserData = (to, from, next) => {
+export const fetchUserData = async (to, from, next) => {
     const userStore = useUserStore();
-    userStore.fetchUserData();
+    if (!userStore.getUserInfo.data) await userStore.fetchUserData();
     if (!userStore.getUserInfo.isLoading) next();
 };

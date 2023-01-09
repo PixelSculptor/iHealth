@@ -39,10 +39,12 @@
 <script setup>
     import MetricComponent from './MetricComponent.vue';
     import { computed, ref, watch } from 'vue';
+    import useUserStore from '../stores/userStore.js';
 
+    const userStore = useUserStore();
     //    TODO: pass data from user store
-    const weight = ref(65);
-    const height = ref(174);
+    const weight = ref(userStore.getUserInfo.data[0].weight);
+    const height = ref(userStore.getUserInfo.data[0].height);
 
     const computeBmiValue = computed(() => {
         return (weight.value / Math.pow(height.value / 100, 2)).toFixed(2);

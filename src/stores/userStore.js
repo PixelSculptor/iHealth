@@ -14,9 +14,9 @@ const useUserStore = defineStore('user', {
         getUserInfo: (state) => state.userData,
     },
     actions: {
-        fetchUserData() {
+        async fetchUserData() {
             const { documents } = getUserData('userProfile', this.userId);
-            this.userData.data = documents;
+            this.userData.data = await documents;
         },
         setUid(uid) {
             this.userId = uid;
