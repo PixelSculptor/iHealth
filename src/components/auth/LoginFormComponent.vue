@@ -7,14 +7,16 @@
         <button-component
             class="logWithSocials__google"
             soft
-            wide>
+            wide
+            @click="googleLogIn">
             Zaloguj się przez Google
             <font-awesome-icon icon="fa-brands fa-google" />
         </button-component>
         <button-component
             class="logWithSocials__facebook"
             soft
-            wide>
+            wide
+            @click="facebookLogIn">
             Zaloguj się przez Facebook
             <font-awesome-icon icon="fa-brands fa-facebook" />
         </button-component>
@@ -66,6 +68,8 @@
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
     import router from '../../router/index.js';
+    import facebookLogInSite from '../../composables/logInFacebook.js';
+    import googleLogInSite from '../../composables/logInGoogle.js';
 
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
@@ -77,7 +81,13 @@
         return !email.value || password.value.length < 8;
     });
 
-    // TODO: handle log in with socials
+    const facebookLogIn = () => {
+        facebookLogInSite();
+    };
+
+    const googleLogIn = () => {
+        googleLogInSite();
+    };
 
     const handleLogin = async () => {
         await signIn(email.value, password.value);

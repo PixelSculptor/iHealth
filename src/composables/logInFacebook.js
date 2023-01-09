@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import router from '../router/index.js';
-const facebookSign = () => {
+const facebookLogInSite = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase
         .auth()
@@ -8,7 +8,7 @@ const facebookSign = () => {
         .then((result) => {
             const credential = result.credential;
             console.log('User credentials: ', credential);
-            router.push({ name: 'CompleteProfile' });
+            router.push({ name: 'Home' });
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -16,4 +16,4 @@ const facebookSign = () => {
         });
 };
 
-export default facebookSign;
+export default facebookLogInSite;
