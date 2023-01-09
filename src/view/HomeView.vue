@@ -107,7 +107,7 @@
             researchID: 17,
         },
     ];
-
+    // const {documents} = getCollections('userProfile');
     // const {documents} = getUserData('userProfile', userStore.getUserId);
 </script>
 
