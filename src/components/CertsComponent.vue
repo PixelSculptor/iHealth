@@ -2,14 +2,20 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <button-component small> Pobierz </button-component>
+        <button-component
+            small
+            id="documentPath"
+            @click="handleChange">
+            Pobierz
+        </button-component>
     </li>
 </template>
 
 <script setup>
     import { computed } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
-
+    import getCollections from '../composables/getCollections.js';
+    const { error } = getCollections('certifications');
     const props = defineProps({
         name: {
             type: String,
@@ -19,12 +25,12 @@
             type: String,
             default: '',
         },
-        typeOfDoc: {
+        documentPath: {
             type: String,
             default: '',
         },
         id: {
-            type: Number,
+            type: String,
             default: null,
         },
     });
@@ -34,6 +40,12 @@
             (props.typeOfDoc === 'vacc' ? 'fa-virus-covid' : 'fa-notes-medical')
         );
     });
+    const handleChange = async () => {
+        await window.open(props.documentLink, '_blank').focus();
+        if (error.value) {
+            throw new Error();
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
