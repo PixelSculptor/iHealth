@@ -21,17 +21,17 @@
                 v-for="view in menuViews"
                 :key="view"
                 :to="view.name"
-                main
                 menu
+                main
                 wide>
                 <font-awesome-icon :icon="view.classIcon" />
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
+                @click="handleLogout"
                 class="logoutBtn"
                 main
-                wide
-                @click="handleLogout">
+                wide>
                 <font-awesome-icon
                     icon="fa-solid fa-arrow-right-from-bracket" />
                 <span class="text">Wyloguj się</span>
@@ -44,15 +44,17 @@
 <script setup>
     import BrandHeaderComponent from './BrandHeaderComponent.vue';
     import ButtonComponent from './ButtonComponent.vue';
+
     import { ref } from 'vue';
     import useLogout from '../composables/useLogout.js';
     import { useRouter } from 'vue-router';
     import { useAppStore } from '../stores/appStore.js';
     import useUserStore from '../stores/userStore.js';
 
-    const appStore = useAppStore();
     const userStore = useUserStore();
+    const appStore = useAppStore();
     const { error, logout } = useLogout();
+
     const menuViews = ref([
         { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
         { name: 'Profile', title: 'Profil', classIcon: 'fa-solid fa-id-card' },
@@ -80,11 +82,8 @@
 
     const handleLogout = async () => {
         await logout();
-        await router.push({ name: 'Login' });
-        console.log(`Wylogowano Cię!`);
-        sessionStorage.clear();
-        userStore.$reset();
-        appStore.$reset();
+        userStore.setUserId('');
+        await router.push('/login');
         if (error.value) console.log(error.value);
     };
 </script>

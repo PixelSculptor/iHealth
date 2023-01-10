@@ -1,5 +1,7 @@
 <template>
-    <section class="dashboard">
+    <section
+        v-if="getUserInfo.data"
+        class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
             <!--            <button-component-->
@@ -72,20 +74,29 @@
     </section>
 </template>
 
-<script setup>
+<script async setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
-    import { ref } from 'vue';
+
+    import useUserStore from '../stores/userStore.js';
+    import { onMounted, ref } from 'vue';
+    import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
     import ResourceComponent from '../components/ResourceComponent.vue';
 
+    const userStore = useUserStore();
+    const { getUserInfo } = storeToRefs(userStore);
     const openModal = ref(false);
     const modal = ref(null);
+
     onClickOutside(modal, () => (openModal.value = false));
-    // const userStore = useUserStore();
+
+    onMounted(async () => {
+        await userStore.fetchUserData();
+    });
 
     const bloodResults = [
         {
@@ -145,7 +156,7 @@
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            @include flex-position(row, nowrap, space-evenly, center);
+            @include flex-position(row, nowrap, flex-start, center);
         }
         &__bloodResults {
             grid-area: blood;

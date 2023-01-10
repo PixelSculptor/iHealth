@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia';
-import getUserData from '../composables/getUserData.js';
+import getCollection from '../composables/getCollections.js';
 
 const useUserStore = defineStore('user', {
     state: () => ({
         userId: '',
         userData: {
-            isLoading: false,
             data: null,
         },
     }),
@@ -14,11 +13,11 @@ const useUserStore = defineStore('user', {
         getUserInfo: (state) => state.userData,
     },
     actions: {
-        async fetchUserData() {
-            const { documents } = getUserData('userProfile', this.userId);
-            this.userData.data = await documents;
+        fetchUserData() {
+            const { documents } = getCollection('userProfile');
+            this.userData.data = documents;
         },
-        setUid(uid) {
+        setUserId(uid) {
             this.userId = uid;
         },
     },

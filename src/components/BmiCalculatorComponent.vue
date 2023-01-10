@@ -42,7 +42,7 @@
     import useUserStore from '../stores/userStore.js';
 
     const userStore = useUserStore();
-    //    TODO: pass data from user store
+
     const weight = ref(userStore.getUserInfo.data[0].weight);
     const height = ref(userStore.getUserInfo.data[0].height);
 

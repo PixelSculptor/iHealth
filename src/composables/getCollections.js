@@ -13,7 +13,6 @@ const getCollections = (collection) => {
     collectionRef.onSnapshot(
         (snap) => {
             documents.value = snap.docs.map((doc) => {
-                console.log(doc.data(), doc.id);
                 return { ...doc.data(), id: doc.id };
             });
             error.value = null;
