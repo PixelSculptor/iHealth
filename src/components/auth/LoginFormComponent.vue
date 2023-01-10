@@ -65,14 +65,18 @@
 <script setup>
     import ButtonComponent from '../ButtonComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
     import router from '../../router/index.js';
     import facebookLogInSite from '../../composables/logInFacebook.js';
     import googleLogInSite from '../../composables/logInGoogle.js';
+    import useUserStore from '../../stores/userStore.js';
+    import getUser from '../../composables/getUser.js';
 
-    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
+    const userStore = useUserStore();
     const { signIn, error, isLoading } = useLogin();
     const email = ref('');
     const password = ref('');
@@ -92,7 +96,9 @@
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
+            const { user } = getUser();
             console.log('Logged in', email.value);
+            userStore.setUserId(user.value.uid);
             await router.push({ name: 'Home' });
         }
         email.value = '';

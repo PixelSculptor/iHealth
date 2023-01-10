@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { projectFirestore, projectAuth } from '../firebase/config';
+import { projectAuth, projectFirestore } from '../firebase/config';
 
 const getCollections = (collection) => {
     const documents = ref(null);
@@ -13,10 +13,8 @@ const getCollections = (collection) => {
     collectionRef.onSnapshot(
         (snap) => {
             documents.value = snap.docs.map((doc) => {
-                console.log(doc.data(), doc.id);
                 return { ...doc.data(), id: doc.id };
             });
-            console.log(documents);
             error.value = null;
         },
         (err) => {
