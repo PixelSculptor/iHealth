@@ -1,5 +1,7 @@
 <template>
-    <section class="dashboard">
+    <section
+        v-if="getUserInfo.data"
+        class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
             <button-component
@@ -57,20 +59,28 @@
     </section>
 </template>
 
-<script setup>
+<script async setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
     import BloodResult from '../components/BloodResult.vue';
     import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
 
-    import { ref } from 'vue';
+    import useUserStore from '../stores/userStore.js';
+    import { onMounted, ref } from 'vue';
+    import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
 
-    // const userStore = useUserStore();
+    const userStore = useUserStore();
+    const { getUserInfo } = storeToRefs(userStore);
     const openModal = ref(false);
     const modal = ref(null);
+
     onClickOutside(modal, () => (openModal.value = false));
+
+    onMounted(async () => {
+        await userStore.fetchUserData();
+    });
 
     const bloodResults = [
         {
