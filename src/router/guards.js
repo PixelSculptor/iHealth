@@ -16,6 +16,7 @@ export const logoutGuard = (to, from, next) => {
     next();
 };
 
+// TODO: fix this routeguard
 export const flushData = (to, from, next) => {
     if (sessionStorage.getItem('state')) sessionStorage.removeItem('state');
     const userStore = useUserStore();

@@ -4,7 +4,7 @@ import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
 import CompleteRegistrationView from '../view/auth/CompleteRegistrationView.vue';
 
-import { authGuard, fetchUserData, flushData, logoutGuard } from './guards.js';
+import { authGuard, logoutGuard } from './guards.js';
 import ProfileView from '../view/ProfileView.vue';
 import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
@@ -24,7 +24,7 @@ const router = createRouter({
             path: '/dashboard',
             name: 'Home',
             component: HomeView,
-            beforeEnter: [authGuard, fetchUserData],
+            beforeEnter: [authGuard],
         },
         {
             path: '/register',
@@ -35,7 +35,7 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             component: LoginView,
-            beforeEnter: [logoutGuard, flushData],
+            beforeEnter: [logoutGuard],
         },
         {
             path: '/profile',

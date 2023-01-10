@@ -5,7 +5,6 @@ const useUserStore = defineStore('user', {
     state: () => ({
         userId: '',
         userData: {
-            isLoading: false,
             data: null,
         },
     }),

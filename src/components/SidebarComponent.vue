@@ -48,7 +48,9 @@
     import useLogout from '../composables/useLogout.js';
     import { useRouter } from 'vue-router';
     import { useAppStore } from '../stores/appStore.js';
+    import useUserStore from '../stores/userStore.js';
 
+    const userStore = useUserStore();
     const appStore = useAppStore();
     const { error, logout } = useLogout();
     const menuViews = ref([
@@ -78,8 +80,8 @@
 
     const handleLogout = async () => {
         await logout();
-        // userStore.setUserId('');
-        await router.push({ name: 'Login' });
+        userStore.setUserId('');
+        await router.push('/login');
         console.log(`Wylogowano Cię!`);
         if (error.value) console.log(error.value);
     };
