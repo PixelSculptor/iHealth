@@ -1,7 +1,7 @@
 <template>
     <form
-        class="loginForm"
         action=""
+        class="loginForm"
         @submit.prevent="handleLogin">
         <h2 class="loginForm__header">Zaloguj się do konta</h2>
         <div class="formBlock">
@@ -11,12 +11,12 @@
                 >E-mail</label
             >
             <input
-                class="formBlock__input"
                 id="email"
-                type="email"
-                required
+                v-model="email"
+                class="formBlock__input"
                 placeholder="abc@gmail.com"
-                v-model="email" />
+                required
+                type="email" />
         </div>
         <div class="formBlock">
             <label
@@ -25,21 +25,21 @@
                 >Hasło</label
             >
             <input
-                class="formBlock__input"
                 id="password"
-                type="password"
+                v-model="password"
+                class="formBlock__input"
                 minlength="8"
-                required
                 placeholder="Hasło"
-                v-model="password" />
+                required
+                type="password" />
         </div>
         <error-info
-            class="infoLabel"
-            :message="error" />
+            :message="error"
+            class="infoLabel" />
         <button-component
+            :disabled="disableLogin"
             soft
             wide
-            :disabled="disableLogin"
             >Zaloguj się</button-component
         >
         <bouncing-balls-component :visible="isLoading" />
@@ -49,12 +49,15 @@
 <script setup>
     import ButtonComponent from '../ButtonComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
     import router from '../../router/index.js';
+    import useUserStore from '../../stores/userStore.js';
+    import getUser from '../../composables/getUser.js';
 
-    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
-
+    const userStore = useUserStore();
     const { signIn, error, isLoading } = useLogin();
     const email = ref('');
     const password = ref('');
@@ -66,7 +69,9 @@
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
+            const { user } = getUser();
             console.log('Logged in', email.value);
+            userStore.setUserId(user.value.uid);
             await router.push({ name: 'Home' });
         }
         email.value = '';
@@ -74,7 +79,7 @@
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .loginForm {
         height: 90vh;
         margin: auto;

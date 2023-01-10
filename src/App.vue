@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <sidebar-component v-if="user" />
+        <sidebar-component v-if="user?.uid" />
         <router-view v-slot="{ Component }">
             <transition
                 mode="out-in"
@@ -12,12 +12,12 @@
 </template>
 
 <script setup>
+    import SidebarComponent from './components/SidebarComponent.vue';
     import { RouterView, useRouter } from 'vue-router';
     import { watch } from 'vue';
-    import getUser from './composables/getUser.js';
     import useLogout from './composables/useLogout.js';
 
-    import SidebarComponent from './components/SidebarComponent.vue';
+    import getUser from './composables/getUser.js';
 
     const { logout } = useLogout();
     const { user } = getUser();

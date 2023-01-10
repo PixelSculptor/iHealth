@@ -1,21 +1,26 @@
 import { projectAuth } from '../firebase/config.js';
-import getUser from '../composables/getUser.js';
-import useLogout from '../composables/useLogout.js';
 import useUserStore from '../stores/userStore.js';
 
 export const authGuard = (to, from, next) => {
     const currentUser = projectAuth.currentUser;
     if (!currentUser) next({ name: 'Login' });
-    else next();
+    next();
 };
 
-export const logoutGuard = async (to, from, next) => {
-    const user = getUser();
-    const { logout } = useLogout();
+export const logoutGuard = (to, from, next) => {
+    const user = projectAuth.currentUser;
+    console.log(user);
     if (user) {
-        await logout();
-        next();
+        next('/dashboard');
     }
+    next();
+};
+
+export const flushData = (to, from, next) => {
+    if (sessionStorage.getItem('state')) sessionStorage.removeItem('state');
+    const userStore = useUserStore();
+    userStore.$reset();
+    next();
 };
 
 export const fetchUserData = (to, from, next) => {
