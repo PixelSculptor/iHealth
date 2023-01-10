@@ -9,7 +9,6 @@ export const authGuard = (to, from, next) => {
 
 export const logoutGuard = (to, from, next) => {
     const user = projectAuth.currentUser;
-    console.log(user);
     if (user) {
         next('/dashboard');
     }

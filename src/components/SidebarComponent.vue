@@ -44,6 +44,7 @@
 <script setup>
     import BrandHeaderComponent from './BrandHeaderComponent.vue';
     import ButtonComponent from './ButtonComponent.vue';
+
     import { ref } from 'vue';
     import useLogout from '../composables/useLogout.js';
     import { useRouter } from 'vue-router';
@@ -53,6 +54,7 @@
     const userStore = useUserStore();
     const appStore = useAppStore();
     const { error, logout } = useLogout();
+
     const menuViews = ref([
         { name: 'Home', title: 'Dashboard', classIcon: 'fa-solid fa-gauge' },
         { name: 'Profile', title: 'Profil', classIcon: 'fa-solid fa-id-card' },
@@ -82,7 +84,6 @@
         await logout();
         userStore.setUserId('');
         await router.push('/login');
-        console.log(`Wylogowano Cię!`);
         if (error.value) console.log(error.value);
     };
 </script>
