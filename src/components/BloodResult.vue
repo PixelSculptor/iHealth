@@ -12,8 +12,9 @@
             <p>{{ date }}</p>
         </div>
         <button-component
+            class="bloodResult__moreInfo"
             small
-            class="bloodResult__moreInfo">
+            @click="seeDetails">
             Szczegóły
         </button-component>
     </section>
@@ -21,8 +22,9 @@
 
 <script setup>
     import ButtonComponent from './ButtonComponent.vue';
+    import { openNewWindow } from '../utils/openNewWindow.js';
 
-    defineProps({
+    const props = defineProps({
         bloodType: {
             type: String,
             default: null,
@@ -40,9 +42,12 @@
             default: null,
         },
     });
+    const seeDetails = () => {
+        openNewWindow(props.linkDocument);
+    };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .bloodResult {
         margin: 1rem 0rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.16);

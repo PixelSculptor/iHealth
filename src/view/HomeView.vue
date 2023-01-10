@@ -53,12 +53,20 @@
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
             <ul class="listOfResults">
+                <!--                <li-->
+                <!--                    v-for="bloodResult in bloodResults"-->
+                <!--                    :key="bloodResult.researchID">-->
+                <!--                    <blood-result-->
+                <!--                        :blood-type="bloodResult.bloodType"-->
+                <!--                        :date="bloodResult.date" />-->
+                <!--                </li>-->
                 <li
                     v-for="bloodResult in bloodResults"
-                    :key="bloodResult.researchID">
+                    :key="bloodResult.id">
                     <blood-result
                         :blood-type="bloodResult.bloodType"
-                        :date="bloodResult.date" />
+                        :date="bloodResult.date"
+                        :link-document="bloodResult.testUrl" />
                 </li>
             </ul>
         </article>
@@ -82,7 +90,7 @@
     import ModalComponent from '../components/ModalComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
-    import { onMounted, ref } from 'vue';
+    import { computed, onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
     import ResourceComponent from '../components/ResourceComponent.vue';
@@ -96,40 +104,16 @@
 
     onMounted(async () => {
         await userStore.fetchUserData();
+        await userStore.fetchPatientTests();
     });
 
-    const bloodResults = [
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 12,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 13,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 14,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 15,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 16,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 17,
-        },
-    ];
+    const { getPatientTests } = storeToRefs(userStore);
+
+    const bloodResults = computed(() => {
+        return getPatientTests.value?.filter((test) => {
+            return test.testType === 'morphology';
+        });
+    });
 </script>
 
 <style lang="scss" scoped>
