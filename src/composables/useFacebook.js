@@ -6,13 +6,12 @@ const facebookSign = () => {
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-            const credential = result.credential;
-            console.log('User credentials: ', credential);
+            console.log(result.user);
             router.push({ name: 'CompleteProfile' });
         })
-        .catch((error) => {
-            const errorMessage = error.message;
-            console.log('Error on facebook login: ', errorMessage);
+        .catch((err) => {
+            console.log(err.message);
+            err.value = err.message;
         });
 };
 
