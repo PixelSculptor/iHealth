@@ -87,6 +87,13 @@
                 >
                 <bouncing-balls-component :visible="isLoading" />
                 <error-info :message="error" />
+                <span
+                    v-show="successFlag"
+                    aria-label="passwords match"
+                    class="dataSend"
+                    role="presentation"
+                    >Badanie zostało przesłane pomyślnie</span
+                >
             </div>
         </form>
     </div>
@@ -114,6 +121,7 @@
     const testFile = ref(null);
     const testFileError = ref(null);
     const researchDate = ref(null);
+    const successFlag = ref(false);
 
     const userStore = useUserStore();
 
@@ -124,6 +132,7 @@
     const bloodGroup = computed(() =>
         antigenFlag.value ? bloodType.value + '+' : bloodType.value + '-'
     );
+
     const dateFormat = computed(() => {
         return (
             researchDate.value &&
@@ -142,6 +151,7 @@
                 'Please select an image file (jpeg, jpg, png, webp or pdf).';
         }
     };
+
     const addTest = async () => {
         try {
             await uploadImage(testFile.value);
@@ -151,10 +161,12 @@
                 date: dateFormat.value,
                 bloodType: bloodGroup.value,
                 testUrl: url.value,
+                testType: researchType.value,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
-            console.log(`all good`);
+            isLoading.value = false;
+            successFlag.value = true;
         } catch (err) {
             console.log(error.value);
         } finally {
@@ -187,6 +199,8 @@
                 color: $blue-900;
             }
             .actionsAndInfo {
+                @include flex-position(column, nowrap, center, center);
+                gap: 1rem;
                 align-self: center;
             }
         }
@@ -232,6 +246,10 @@
                     }
                 }
             }
+        }
+
+        .dataSend {
+            color: $color-success;
         }
     }
 </style>

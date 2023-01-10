@@ -3,6 +3,7 @@
         <font-awesome-icon
             icon="fa-solid fa-xmark"
             role="button"
+            tabindex="0"
             @click="closeModal" />
         <div class="box__customContent">
             <slot />
@@ -38,6 +39,12 @@
             &:hover {
                 color: $blue-700;
                 transform: scale(1.1);
+            }
+            &:focus-visible {
+                border-radius: 50%;
+                outline: dashed $blue-300;
+                outline-offset: 0.3rem;
+                outline-width: 0.15rem;
             }
         }
         &__customContent {
