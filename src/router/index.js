@@ -18,7 +18,7 @@ const router = createRouter({
             path: '/',
             name: 'App',
             component: App,
-            beforeEnter: logoutGuard,
+            beforeEnter: authGuard,
         },
         {
             path: '/dashboard',

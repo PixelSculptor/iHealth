@@ -4,6 +4,22 @@
         class="loginForm"
         @submit.prevent="handleLogin">
         <h2 class="loginForm__header">Zaloguj się do konta</h2>
+        <button-component
+            class="logWithSocials__google"
+            soft
+            wide
+            @click="googleLogIn">
+            Zaloguj się przez Google
+            <font-awesome-icon icon="fa-brands fa-google" />
+        </button-component>
+        <button-component
+            class="logWithSocials__facebook"
+            soft
+            wide
+            @click="facebookLogIn">
+            Zaloguj się przez Facebook
+            <font-awesome-icon icon="fa-brands fa-facebook" />
+        </button-component>
         <div class="formBlock">
             <label
                 class="formBlock__label"
@@ -54,8 +70,11 @@
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
     import router from '../../router/index.js';
+    import facebookLogInSite from '../../composables/logInFacebook.js';
+    import googleLogInSite from '../../composables/logInGoogle.js';
     import useUserStore from '../../stores/userStore.js';
     import getUser from '../../composables/getUser.js';
+
 
     const userStore = useUserStore();
     const { signIn, error, isLoading } = useLogin();
@@ -65,6 +84,14 @@
     const disableLogin = computed(() => {
         return !email.value || password.value.length < 8;
     });
+
+    const facebookLogIn = () => {
+        facebookLogInSite();
+    };
+
+    const googleLogIn = () => {
+        googleLogInSite();
+    };
 
     const handleLogin = async () => {
         await signIn(email.value, password.value);

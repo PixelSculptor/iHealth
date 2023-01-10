@@ -1,15 +1,15 @@
 <template>
     <router-link
         v-if="to && !disabled && !href"
-        :to="{ name: to, params: params, hash }"
         :class="itemClasses"
+        :to="{ name: to, params: params, hash }"
         role="link">
         <slot />
     </router-link>
     <a
         v-else-if="href && !disabled"
-        :href="href"
         :class="itemClasses"
+        :href="href"
         role="link">
         <slot />
     </a>
@@ -79,7 +79,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     button,
     a,
     router-link {
@@ -89,6 +89,9 @@
             font-size: $font-heading6;
             @include flex-position(row, nowrap, center, center);
             gap: 0.5rem;
+        }
+        :deep(svg) {
+            height: 1.5rem;
         }
         @include button--regular;
     }

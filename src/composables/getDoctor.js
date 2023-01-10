@@ -1,4 +1,4 @@
-import doctors from '../jsons/doctors.json';
+import doctors from '../apiData/doctors.json';
 
 const getDoctorsArray = () => {
     doctors.map((element) => ({
