@@ -1,16 +1,18 @@
 import firebase from 'firebase/app';
-
+import router from '../router/index.js';
 const facebookSign = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-            console.log(result.user);
+            const credential = result.credential;
+            console.log('User credentials: ', credential);
+            router.push('/create');
         })
-        .catch((err) => {
-            console.log(err.message);
-            err.value = err.message;
+        .catch((error) => {
+            const errorMessage = error.message;
+            console.log('Error on facebook login: ', errorMessage);
         });
 };
 

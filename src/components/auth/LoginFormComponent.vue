@@ -1,7 +1,7 @@
 <template>
     <form
-        action=""
         class="loginForm"
+        action=""
         @submit.prevent="handleLogin">
         <h2 class="loginForm__header">Zaloguj się do konta</h2>
         <div class="formBlock">
@@ -11,12 +11,12 @@
                 >E-mail</label
             >
             <input
-                id="email"
-                v-model="email"
                 class="formBlock__input"
-                placeholder="abc@gmail.com"
+                id="email"
+                type="email"
                 required
-                type="email" />
+                placeholder="abc@gmail.com"
+                v-model="email" />
         </div>
         <div class="formBlock">
             <label
@@ -25,21 +25,21 @@
                 >Hasło</label
             >
             <input
-                id="password"
-                v-model="password"
                 class="formBlock__input"
+                id="password"
+                type="password"
                 minlength="8"
-                placeholder="Hasło"
                 required
-                type="password" />
+                placeholder="Hasło"
+                v-model="password" />
         </div>
         <error-info
-            :message="error"
-            class="infoLabel" />
+            class="infoLabel"
+            :message="error" />
         <button-component
-            :disabled="disableLogin"
             soft
             wide
+            :disabled="disableLogin"
             >Zaloguj się</button-component
         >
         <bouncing-balls-component :visible="isLoading" />
@@ -53,15 +53,11 @@
     import { computed, ref } from 'vue';
     import { useRouter } from 'vue-router';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
-    import getUser from '../../composables/getUser.js';
-    import useUserStore from '../../stores/userStore.js';
 
     const { signIn, error, isLoading } = useLogin();
     const email = ref('');
     const password = ref('');
-    const { user } = getUser();
     const router = useRouter();
-    const userStore = useUserStore();
 
     const disableLogin = computed(() => {
         return !email.value || password.value.length < 8;
@@ -70,17 +66,15 @@
     const handleLogin = async () => {
         await signIn(email.value, password.value);
         if (!error.value) {
-            console.log('Logged in', email.value);
-            userStore.setUid(user.value.uid);
+            console.log('Logged in', error.value);
             await router.push({ name: 'Home' });
         }
         email.value = '';
         password.value = '';
-        isLoading.value = false;
     };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
     .loginForm {
         height: 90vh;
         margin: auto;

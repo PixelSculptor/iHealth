@@ -1,29 +1,31 @@
 import { ref } from 'vue';
-import { projectFirestore } from '../firebase/config';
+import { projectAuth, projectFirestore } from '../firebase/config';
 
-const getCollection = (collection) => {
+const getCollections = (collection) => {
     const documents = ref(null);
     const error = ref(null);
+    const user = projectAuth.currentUser;
+
     const collectionRef = projectFirestore
         .collection(collection)
-        .orderBy('createdAt');
+        .where('userId', '==', user.uid);
 
     collectionRef.onSnapshot(
         (snap) => {
-            const results = snap.docs.map((doc) => {
-                return doc.data().createdAt && { ...doc.data(), id: doc.id };
+            documents.value = snap.docs.map((doc) => {
+                console.log(doc.data(), doc.id);
+                return { ...doc.data(), id: doc.id };
             });
-            documents.value = results;
             error.value = null;
         },
         (err) => {
+            error.value = 'could not fetch data';
             console.log(err.message);
             documents.value = null;
-            error.value = 'could not fetch data';
         }
     );
 
     return { documents, error };
 };
 
-export default getCollection;
+export default getCollections;
