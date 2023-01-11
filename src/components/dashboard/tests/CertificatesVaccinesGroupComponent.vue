@@ -8,10 +8,10 @@
             <certs-component
                 v-for="cert in certsList"
                 :key="cert.id"
-                :document-link="cert.documentLink"
-                :name="cert.name"
                 :date="cert.date"
-                :type-of-doc="cert.typeOfDoc" />
+                :document-link="cert.documentUrl"
+                :name="cert.documentTitle"
+                :type-of-doc="cert.testType" />
         </ul>
     </div>
 </template>
@@ -19,14 +19,10 @@
 <script setup>
     import CertsComponent from './CertsComponent.vue';
     import { storeToRefs } from 'pinia';
-    import useUserStore from '../stores/userStore.js';
-    import { onMounted, computed } from 'vue';
+    import useUserStore from '../../../stores/userStore.js';
+    import { computed } from 'vue';
 
     const userStore = useUserStore();
-
-    onMounted(async () => {
-        await userStore.fetchPatientCerts();
-    });
 
     const { getPatientCerts } = storeToRefs(userStore);
 
@@ -60,7 +56,8 @@
         }
         &__list {
             height: 100%;
-            padding-top: 14%;
+            width: 100%;
+            padding-top: 15%;
             margin-top: 2rem;
             overflow-y: scroll;
             @include flex-position(column, nowrap, space-around, flex-start);

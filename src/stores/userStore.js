@@ -29,7 +29,7 @@ const useUserStore = defineStore('user', {
             this.userId = uid;
         },
         async fetchPatientCerts() {
-            const { documents } = getCollection('certifications');
+            const { documents } = getCollection('certificates');
             this.patientCerts.data = documents;
         },
         async fetchPatientTests() {

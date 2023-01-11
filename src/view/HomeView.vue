@@ -123,6 +123,7 @@
     onMounted(async () => {
         await userStore.fetchUserData();
         await userStore.fetchPatientTests();
+        await userStore.fetchPatientCerts();
     });
 
     const { getPatientTests } = storeToRefs(userStore);
@@ -182,7 +183,7 @@
         &__vaccines {
             grid-area: vaccines;
             place-self: flex-start;
-            width: auto;
+            width: 100%;
             height: 100%;
         }
         &__bmiCalc {

@@ -135,6 +135,7 @@
                 date: dateFormat.value,
                 documentUrl: url.value,
                 testType: documentType.value,
+                documentTitle: documentTitle.value,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
