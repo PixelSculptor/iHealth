@@ -184,7 +184,6 @@
             place-self: flex-start;
             width: auto;
             height: 100%;
-            padding: 2rem;
         }
         &__bmiCalc {
             grid-area: bmi;
