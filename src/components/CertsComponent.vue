@@ -5,7 +5,7 @@
         <button-component
             small
             id="documentPath"
-            @click="handleChange">
+            @click="seeMore">
             Pobierz
         </button-component>
     </li>
@@ -14,8 +14,7 @@
 <script setup>
     import { computed } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
-    import getCollections from '../composables/getCollections.js';
-    const { error } = getCollections('certifications');
+    import { openNewWindow } from '../utilis/openNewWindow.js';
     const props = defineProps({
         name: {
             type: String,
@@ -33,6 +32,10 @@
             type: String,
             default: null,
         },
+        typeOfDoc: {
+            type: String,
+            default: 'medicForm',
+        },
     });
     const classOfIcon = computed(() => {
         return (
@@ -40,11 +43,8 @@
             (props.typeOfDoc === 'vacc' ? 'fa-virus-covid' : 'fa-notes-medical')
         );
     });
-    const handleChange = async () => {
-        await window.open(props.documentLink, '_blank').focus();
-        if (error.value) {
-            throw new Error();
-        }
+    const seeMore = () => {
+        openNewWindow(props.documentLink);
     };
 </script>
 
