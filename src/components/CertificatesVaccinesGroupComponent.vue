@@ -2,7 +2,7 @@
     <div class="certificatesContainer">
         <h3 class="certificatesContainer__header">
             Certyfikaty i testy
-            <span class="numOfCerts">{{ certsList.length }}</span>
+            <span class="numOfCerts">{{ certsList?.length }}</span>
         </h3>
         <ul class="certificatesContainer__list">
             <certs-component
@@ -10,6 +10,7 @@
                 :key="cert.id"
                 :document-link="cert.documentLink"
                 :name="cert.name"
+                :date="cert.date"
                 :type-of-doc="cert.typeOfDoc" />
         </ul>
     </div>
@@ -17,36 +18,21 @@
 
 <script setup>
     import CertsComponent from './CertsComponent.vue';
-    import { ref } from 'vue';
+    import { storeToRefs } from 'pinia';
+    import useUserStore from '../stores/userStore.js';
+    import { onMounted, computed } from 'vue';
 
-    const certsList = ref([
-        {
-            name: 'Szczepienie przeciwko COVID-19',
-            documentLink: 'https://google.com',
-            typeOfDoc: 'vacc',
-            id: 1,
-        },
+    const userStore = useUserStore();
 
-        {
-            name: 'Szczepienie przeciwko COVID-19',
-            documentLink: 'https://google.com',
-            typeOfDoc: 'vacc',
-            id: 2,
-        },
+    onMounted(async () => {
+        await userStore.fetchPatientCerts();
+    });
 
-        {
-            name: 'Szczepienie przeciwko COVID-19',
-            documentLink: 'https://google.com',
-            typeOfDoc: 'medicForm',
-            id: 3,
-        },
-        {
-            name: 'Szczepienie przeciwko COVID-19',
-            documentLink: 'https://google.com',
-            typeOfDoc: 'vacc',
-            id: 29,
-        },
-    ]);
+    const { getPatientCerts } = storeToRefs(userStore);
+
+    const certsList = computed(() => {
+        return getPatientCerts?.value;
+    });
 </script>
 
 <style lang="scss" scoped>

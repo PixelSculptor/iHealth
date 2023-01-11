@@ -2,14 +2,19 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <button-component small> Pobierz </button-component>
+        <button-component
+            small
+            id="documentPath"
+            @click="seeMore">
+            Pobierz
+        </button-component>
     </li>
 </template>
 
 <script setup>
     import { computed } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
-
+    import { openNewCard } from '../utils/openNewCard.js';
     const props = defineProps({
         name: {
             type: String,
@@ -19,13 +24,17 @@
             type: String,
             default: '',
         },
-        typeOfDoc: {
+        documentPath: {
             type: String,
             default: '',
         },
         id: {
-            type: Number,
+            type: String,
             default: null,
+        },
+        typeOfDoc: {
+            type: String,
+            default: 'medicForm',
         },
     });
     const classOfIcon = computed(() => {
@@ -34,6 +43,9 @@
             (props.typeOfDoc === 'vacc' ? 'fa-virus-covid' : 'fa-notes-medical')
         );
     });
+    const seeMore = () => {
+        openNewCard(props.documentLink);
+    };
 </script>
 
 <style lang="scss" scoped>
