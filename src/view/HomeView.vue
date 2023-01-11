@@ -56,7 +56,7 @@
                         <modal-component
                             ref="modalVacc"
                             @close="openModalVaccination = false">
-                            <!--                  <resource-component />-->
+                            <vaccination-component />
                         </modal-component>
                     </div>
                 </transition>
@@ -83,6 +83,7 @@
             <certificates-vaccines-component />
         </article>
         <article class="dashboard__calendar">
+            <!--          TODO: add date and clock-->
             <h3>Kalendarz</h3>
         </article>
     </section>
@@ -100,6 +101,7 @@
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
     import ResourceComponent from '../components/ResourceComponent.vue';
+    import VaccinationComponent from '../components/VaccinationComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);

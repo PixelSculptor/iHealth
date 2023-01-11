@@ -73,8 +73,9 @@
             }
         }
         &__list {
-            height: 70%;
-            padding-top: 10%;
+            height: 100%;
+            padding-top: 14%;
+            margin-top: 2rem;
             overflow-y: scroll;
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
