@@ -21,8 +21,8 @@
 </template>
 
 <script setup>
-    import ButtonComponent from './ButtonComponent.vue';
-    import { openNewWindow } from '../utils/openNewWindow.js';
+    import ButtonComponent from '../../ButtonComponent.vue';
+    import { openNewWindow } from '../../../utils/openNewWindow.js';
 
     const props = defineProps({
         bloodType: {

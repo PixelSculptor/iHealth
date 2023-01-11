@@ -2,13 +2,13 @@
     <div
         class="researchBox"
         @submit.prevent="addTest">
-        <h3 class="researchBox__header">Dodaj badanie:</h3>
+        <h3 class="researchBox__header">Dodaj dokument:</h3>
         <form class="researchBox__form researchForm">
             <div class="inputBox">
                 <label for="researches">Wybierz typ badania:</label>
                 <select
                     id="researches"
-                    v-model="researchType"
+                    v-model="documentType"
                     class="researchForm__typeOfResearch">
                     <option
                         disabled
@@ -16,53 +16,27 @@
                         Wybierz jeden typ
                     </option>
                     <option
-                        v-for="research in typeOfResources"
-                        :key="research.id"
-                        :value="research.keyName">
-                        {{ research.typeName }}
+                        v-for="document in typeOfDocuments"
+                        :key="document.id"
+                        :value="document.type">
+                        {{ document.name }}
                     </option>
                 </select>
             </div>
-
-            <div
-                v-if="researchType === 'morphology'"
-                class="researchForm__bloodSection">
-                <div class="inputBox">
-                    <label for="typeOfBlood">Grupa krwi:</label>
-                    <select
-                        id="typeOfBlood"
-                        v-model="bloodType"
-                        class="bloodSection__bloodType">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz jeden typ
-                        </option>
-                        <option
-                            v-for="(bloodType, index) in typeOfBlood"
-                            :key="index"
-                            :value="bloodType"
-                            class="bloodOption">
-                            {{ bloodType }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="inputBox">
-                    <label for="antigen">Antygen R</label>
-                    <input
-                        id="antigen"
-                        v-model="antigenFlag"
-                        class="bloodSection__antigenRflag"
-                        type="checkbox" />
-                    <p v-show="bloodType">Twoja grupa krwi: {{ bloodGroup }}</p>
-                </div>
+            <div class="inputBox">
+                <label for="title">Podaj tytuł</label>
+                <input
+                    id="title"
+                    v-model="documentTitle"
+                    type="text" />
             </div>
             <div class="inputBox">
-                <label for="dateOfResource">Wybierz dzień badania:</label>
+                <label for="dateOfResource"
+                    >Podaj dzień wystawienia dokumentu:</label
+                >
                 <input
                     id="dateOfResource"
-                    v-model="researchDate"
+                    v-model="documentDate"
                     type="date" />
             </div>
             <div class="inputBox">
@@ -77,7 +51,7 @@
                     class=""
                     type="file"
                     @change="handleChange" />
-                <error-info :message="testFileError" />
+                <error-info :message="documentFileError" />
             </div>
             <div class="actionsAndInfo">
                 <button-component
@@ -92,7 +66,7 @@
                     aria-label="passwords match"
                     class="dataSend"
                     role="presentation"
-                    >Badanie zostało przesłane pomyślnie</span
+                    >Dokument został przesłany pomyślnie</span
                 >
             </div>
         </form>
@@ -100,67 +74,67 @@
 </template>
 
 <script setup>
-    import ButtonComponent from './ButtonComponent.vue';
-    import BouncingBallsComponent from './BouncingBallsComponent.vue';
-    import ErrorInfo from './ErrorInfo.vue';
+    import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
+    import ErrorInfo from '../../ErrorInfo.vue';
+    import ButtonComponent from '../../ButtonComponent.vue';
 
-    import { typeOfBlood, typeOfResources } from '../utils/typeOfResources.js';
     import { computed, ref } from 'vue';
-    import ALLOWED_TYPES from '../utils/allowedTypes.js';
-    import useStorage from '../composables/getImage.js';
-    import useUserStore from '../stores/userStore.js';
-    import { timestamp } from '../firebase/config.js';
-    import useCollection from '../composables/useCollections.js';
+    import { typeOfDocuments } from '../../../utils/typeOfDocuments.js';
+    import useCollection from '../../../composables/useCollections.js';
+    import useStorage from '../../../composables/getImage.js';
+    import ALLOWED_TYPES from '../../../utils/allowedTypes.js';
+    import { timestamp } from '../../../firebase/config.js';
+    import useUserStore from '../../../stores/userStore.js';
 
-    const { isLoading, addDoc, error } = useCollection('research');
+    const successFlag = ref(false);
+    const { isLoading, addDoc, error } = useCollection('certificates');
     const { url, uploadImage } = useStorage();
 
-    const antigenFlag = ref(false);
-    const researchType = ref(null);
-    const bloodType = ref(null);
-    const testFile = ref(null);
-    const testFileError = ref(null);
-    const researchDate = ref(null);
-    const successFlag = ref(false);
+    const documentType = ref(null);
+    const documentFile = ref(null);
+    const documentFileError = ref(null);
+    const documentDate = ref(null);
+    const documentTitle = ref('');
 
     const userStore = useUserStore();
 
     const disableAddTest = computed(
-        () => !(researchType.value && dateFormat.value && testFile.value)
-    );
-
-    const bloodGroup = computed(() =>
-        antigenFlag.value ? bloodType.value + '+' : bloodType.value + '-'
+        () =>
+            !(
+                documentType.value &&
+                dateFormat.value &&
+                documentFile.value &&
+                documentTitle.value
+            )
     );
 
     const dateFormat = computed(
         () =>
-            researchDate.value &&
-            researchDate.value.split('-').reverse().join('-')
+            documentDate.value &&
+            documentDate.value.split('-').reverse().join('-')
     );
 
     const handleChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile && ALLOWED_TYPES.includes(selectedFile.type)) {
-            testFile.value = selectedFile;
-            testFileError.value = null;
+            documentFile.value = selectedFile;
+            documentFileError.value = null;
         } else {
-            testFile.value = null;
-            testFileError.value =
+            documentFile.value = null;
+            documentFileError.value =
                 'Please select an image file (jpeg, jpg, png, webp or pdf).';
         }
     };
 
     const addTest = async () => {
         try {
-            await uploadImage(testFile.value);
+            await uploadImage(documentFile.value);
             console.log(`image uploaded`, url.value);
             await addDoc({
                 userId: userStore.getUserId,
                 date: dateFormat.value,
-                bloodType: bloodGroup.value,
-                testUrl: url.value,
-                testType: researchType.value,
+                documentUrl: url.value,
+                testType: documentType.value,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
@@ -169,12 +143,11 @@
         } catch (err) {
             console.log(error.value);
         } finally {
-            antigenFlag.value = false;
-            researchType.value = null;
-            bloodType.value = null;
-            testFile.value = null;
-            testFileError.value = null;
-            researchDate.value = null;
+            documentType.value = null;
+            documentFile.value = null;
+            documentFileError.value = null;
+            documentDate.value = null;
+            documentTitle.value = '';
         }
     };
 </script>

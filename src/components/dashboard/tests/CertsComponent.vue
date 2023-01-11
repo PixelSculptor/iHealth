@@ -8,7 +8,7 @@
 
 <script setup>
     import { computed } from 'vue';
-    import ButtonComponent from './ButtonComponent.vue';
+    import ButtonComponent from '../../ButtonComponent.vue';
 
     const props = defineProps({
         name: {

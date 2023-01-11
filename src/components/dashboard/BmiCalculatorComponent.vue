@@ -39,7 +39,7 @@
 <script setup>
     import MetricComponent from './MetricComponent.vue';
     import { computed, ref, watch } from 'vue';
-    import useUserStore from '../stores/userStore.js';
+    import useUserStore from '../../stores/userStore.js';
 
     const userStore = useUserStore();
 

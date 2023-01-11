@@ -23,12 +23,14 @@
             <!--                    </div>-->
             <!--                </transition>-->
             <!--            </teleport>-->
+
             <button-component
                 class="dashboard__make_visit"
                 @click="openModalResearch = true">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
+
             <teleport to="body">
                 <transition name="modal">
                     <div
@@ -42,12 +44,14 @@
                     </div>
                 </transition>
             </teleport>
+
             <button-component
                 class="dashboard__make_visit"
                 @click="openModalVaccination = true">
                 Dodaj certyfikat / szczepienie
                 <font-awesome-icon icon="fa-solid fa-syringe" />
             </button-component>
+
             <teleport to="body">
                 <transition name="modal">
                     <div
@@ -76,32 +80,35 @@
                 </li>
             </ul>
         </article>
+
         <article class="dashboard__bmiCalc">
             <bmi-calculator-component />
         </article>
+
         <article class="dashboard__vaccines">
             <certificates-vaccines-component />
         </article>
+
         <article class="dashboard__calendar">
-            <!--          TODO: add date and clock-->
-            <h3>Kalendarz</h3>
+            <clock-component />
         </article>
     </section>
 </template>
 
 <script async setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
-    import BloodResult from '../components/BloodResult.vue';
-    import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
-    import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
-    import ModalComponent from '../components/ModalComponent.vue';
+    import BloodResult from '../components/dashboard/tests/BloodResult.vue';
+    import BmiCalculatorComponent from '../components/dashboard/BmiCalculatorComponent.vue';
+    import CertificatesVaccinesComponent from '../components/dashboard/tests/CertificatesVaccinesGroupComponent.vue';
+    import ModalComponent from '../components/dashboard/ModalComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
     import { computed, onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
-    import ResourceComponent from '../components/ResourceComponent.vue';
-    import VaccinationComponent from '../components/VaccinationComponent.vue';
+    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
+    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
+    import ClockComponent from '../components/dashboard/ClockComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
@@ -133,13 +140,14 @@
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard bmi bmi'
-            'actions bmi bmi'
-            'vaccines calendar calendar'
-            'vaccines calendar calendar'
+            'dashboard calendar calendar'
+            'actions calendar calendar'
+            'vaccines bmi bmi'
+            'vaccines bmi bmi'
             'blood blood blood'
             'blood blood blood';
         margin-inline: 2rem;
+        gap: 5%;
         &__header {
             grid-area: dashboard;
             @include text-header1($font-weight-semiBold);
@@ -176,6 +184,7 @@
             place-self: flex-start;
             width: auto;
             height: 100%;
+            padding: 2rem;
         }
         &__bmiCalc {
             grid-area: bmi;
@@ -189,6 +198,7 @@
         }
     }
 </style>
+
 <style lang="scss">
     .modal {
         position: absolute;
