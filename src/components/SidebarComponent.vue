@@ -21,17 +21,17 @@
                 v-for="view in menuViews"
                 :key="view"
                 :to="view.name"
-                main
                 menu
+                main
                 wide>
                 <font-awesome-icon :icon="view.classIcon" />
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
+                @click="handleLogout"
                 class="logoutBtn"
                 main
-                wide
-                @click="handleLogout">
+                wide>
                 <font-awesome-icon
                     icon="fa-solid fa-arrow-right-from-bracket" />
                 <span class="text">Wyloguj się</span>
