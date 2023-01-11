@@ -14,7 +14,7 @@
 <script setup>
     import { computed } from 'vue';
     import ButtonComponent from './ButtonComponent.vue';
-    import { openNewWindow } from '../utilis/openNewWindow.js';
+    import { openNewCard } from '../utils/openNewCard.js';
     const props = defineProps({
         name: {
             type: String,
@@ -44,7 +44,7 @@
         );
     });
     const seeMore = () => {
-        openNewWindow(props.documentLink);
+        openNewCard(props.documentLink);
     };
 </script>
 
