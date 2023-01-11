@@ -6,18 +6,18 @@
         <div class="dashboard__actions">
             <!--            <button-component-->
             <!--                class="dashboard__make_visit"-->
-            <!--                @click="openModal = true">-->
+            <!--                @click="openModalResearch = true">-->
             <!--                Umów wizytę-->
             <!--                <font-awesome-icon icon="fa-solid fa-plus" />-->
             <!--            </button-component>-->
             <!--            <teleport to="body">-->
             <!--                <transition name="modal">-->
             <!--                    <div-->
-            <!--                        v-if="openModal"-->
+            <!--                        v-if="openModalResearch"-->
             <!--                        class="modal">-->
             <!--                        <modal-component-->
             <!--                            ref="modal"-->
-            <!--                            @close="openModal = false">-->
+            <!--                            @close="openModalResearch = false">-->
             <!--                            <choose-visit-component />-->
             <!--                        </modal-component>-->
             <!--                    </div>-->
@@ -25,18 +25,18 @@
             <!--            </teleport>-->
             <button-component
                 class="dashboard__make_visit"
-                @click="openModal = true">
+                @click="openModalResearch = true">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
             <teleport to="body">
                 <transition name="modal">
                     <div
-                        v-if="openModal"
+                        v-if="openModalResearch"
                         class="modal">
                         <modal-component
-                            ref="modal"
-                            @close="openModal = false">
+                            ref="modalResearch"
+                            @close="openModalResearch = false">
                             <resource-component />
                         </modal-component>
                     </div>
@@ -44,22 +44,28 @@
             </teleport>
             <button-component
                 class="dashboard__make_visit"
-                @click="openModal = true">
+                @click="openModalVaccination = true">
                 Dodaj certyfikat / szczepienie
                 <font-awesome-icon icon="fa-solid fa-syringe" />
             </button-component>
+            <teleport to="body">
+                <transition name="modal">
+                    <div
+                        v-if="openModalVaccination"
+                        class="modal">
+                        <modal-component
+                            ref="modalVacc"
+                            @close="openModalVaccination = false">
+                            <!--                  <resource-component />-->
+                        </modal-component>
+                    </div>
+                </transition>
+            </teleport>
         </div>
 
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
             <ul class="listOfResults">
-                <!--                <li-->
-                <!--                    v-for="bloodResult in bloodResults"-->
-                <!--                    :key="bloodResult.researchID">-->
-                <!--                    <blood-result-->
-                <!--                        :blood-type="bloodResult.bloodType"-->
-                <!--                        :date="bloodResult.date" />-->
-                <!--                </li>-->
                 <li
                     v-for="bloodResult in bloodResults"
                     :key="bloodResult.id">
@@ -97,10 +103,13 @@
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
-    const openModal = ref(false);
-    const modal = ref(null);
+    const openModalResearch = ref(false);
+    const openModalVaccination = ref(false);
+    const modalResearch = ref(null);
+    const modalVacc = ref(null);
 
-    onClickOutside(modal, () => (openModal.value = false));
+    onClickOutside(modalResearch, () => (openModalResearch.value = false));
+    onClickOutside(modalVacc, () => (openModalVaccination.value = false));
 
     onMounted(async () => {
         await userStore.fetchUserData();
