@@ -1,7 +1,7 @@
 <template>
     <section class="profileView">
         <div class="profileView__header">
-            <h3>Cześć Jan!</h3>
+            <h3>Cześć {{ name }}!</h3>
             <date-component />
         </div>
 
@@ -18,8 +18,12 @@
     import DateComponent from '../components/DateComponent.vue';
     import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
     import useUserStore from '../stores/userStore.js';
+    import { storeToRefs } from 'pinia';
+    import { ref } from 'vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
+    const { getUserInfo } = storeToRefs(userStore);
+    const name = ref(getUserInfo.value.data[0].name);
 </script>
 
 <style lang="scss" scoped>
