@@ -4,116 +4,145 @@
         class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
+            <!--            <button-component-->
+            <!--                class="dashboard__make_visit"-->
+            <!--                @click="openModalResearch = true">-->
+            <!--                Umów wizytę-->
+            <!--                <font-awesome-icon icon="fa-solid fa-plus" />-->
+            <!--            </button-component>-->
+            <!--            <teleport to="body">-->
+            <!--                <transition name="modal">-->
+            <!--                    <div-->
+            <!--                        v-if="openModalResearch"-->
+            <!--                        class="modal">-->
+            <!--                        <modal-component-->
+            <!--                            ref="modal"-->
+            <!--                            @close="openModalResearch = false">-->
+            <!--                            <choose-visit-component />-->
+            <!--                        </modal-component>-->
+            <!--                    </div>-->
+            <!--                </transition>-->
+            <!--            </teleport>-->
+
             <button-component
                 class="dashboard__make_visit"
-                @click="openModal = true">
-                Umów wizytę
-                <font-awesome-icon icon="fa-solid fa-plus" />
-            </button-component>
-            <teleport to="body">
-                <transition name="modal">
-                    <div
-                        v-if="openModal"
-                        class="modal">
-                        <modal-component
-                            ref="modal"
-                            @close="openModal = false" />
-                    </div>
-                </transition>
-            </teleport>
-            <button-component
-                class="dashboard__make_visit"
-                @click="openModal = true">
+                @click="openModalResearch = true">
                 Dodaj badanie
                 <font-awesome-icon icon="fa-solid fa-droplet" />
             </button-component>
+
+            <teleport to="body">
+                <transition name="modal">
+                    <div
+                        v-if="openModalResearch"
+                        class="modal">
+                        <modal-component
+                            ref="modalResearch"
+                            @close="openModalResearch = false">
+                            <resource-component />
+                        </modal-component>
+                    </div>
+                </transition>
+            </teleport>
+
             <button-component
                 class="dashboard__make_visit"
-                @click="openModal = true">
+                @click="openModalVaccination = true">
                 Dodaj certyfikat / szczepienie
                 <font-awesome-icon icon="fa-solid fa-syringe" />
             </button-component>
+
+            <teleport to="body">
+                <transition name="modal">
+                    <div
+                        v-if="openModalVaccination"
+                        class="modal">
+                        <modal-component
+                            ref="modalVacc"
+                            @close="openModalVaccination = false">
+                            <vaccination-component />
+                        </modal-component>
+                    </div>
+                </transition>
+            </teleport>
         </div>
 
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
-            <ul class="listOfResults">
+            <ul
+                v-if="bloodResults?.length"
+                class="listOfResults">
                 <li
                     v-for="bloodResult in bloodResults"
-                    :key="bloodResult.researchID">
+                    :key="bloodResult.id">
                     <blood-result
                         :blood-type="bloodResult.bloodType"
-                        :date="bloodResult.date" />
+                        :date="bloodResult.date"
+                        :link-document="bloodResult.testUrl" />
                 </li>
             </ul>
+            <div
+                v-else
+                class="fallback">
+                <fallback-info-component :information="bloodInfo" />
+            </div>
         </article>
+
         <article class="dashboard__bmiCalc">
             <bmi-calculator-component />
         </article>
+
         <article class="dashboard__vaccines">
             <certificates-vaccines-component />
         </article>
+
         <article class="dashboard__calendar">
-            <h3>Kalendarz</h3>
+            <clock-component />
         </article>
     </section>
 </template>
 
 <script async setup>
     import ButtonComponent from '../components/ButtonComponent.vue';
-    import BloodResult from '../components/BloodResult.vue';
-    import BmiCalculatorComponent from '../components/BmiCalculatorComponent.vue';
-    import CertificatesVaccinesComponent from '../components/CertificatesVaccinesGroupComponent.vue';
-    import ModalComponent from '../components/ModalComponent.vue';
+    import BloodResult from '../components/dashboard/tests/BloodResult.vue';
+    import BmiCalculatorComponent from '../components/dashboard/BmiCalculatorComponent.vue';
+    import CertificatesVaccinesComponent from '../components/dashboard/tests/CertificatesVaccinesGroupComponent.vue';
+    import ModalComponent from '../components/dashboard/ModalComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
-    import { onMounted, ref } from 'vue';
+    import { computed, onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
+    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
+    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
+    import ClockComponent from '../components/dashboard/ClockComponent.vue';
+    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
-    const openModal = ref(false);
-    const modal = ref(null);
+    const openModalResearch = ref(false);
+    const openModalVaccination = ref(false);
+    const modalResearch = ref(null);
+    const modalVacc = ref(null);
 
-    onClickOutside(modal, () => (openModal.value = false));
+    const bloodInfo = ref('Nie masz jeszcze żadnych dodanych badań');
+
+    onClickOutside(modalResearch, () => (openModalResearch.value = false));
+    onClickOutside(modalVacc, () => (openModalVaccination.value = false));
 
     onMounted(async () => {
         await userStore.fetchUserData();
+        await userStore.fetchPatientTests();
+        await userStore.fetchPatientCerts();
     });
 
-    const bloodResults = [
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 12,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 13,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 14,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 15,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 16,
-        },
-        {
-            bloodType: 'AB rh-',
-            date: '15-05-2022',
-            researchID: 17,
-        },
-    ];
+    const { getPatientTests } = storeToRefs(userStore);
+
+    const bloodResults = computed(() => {
+        return getPatientTests.value?.filter((test) => {
+            return test.testType === 'morphology';
+        });
+    });
 </script>
 
 <style lang="scss" scoped>
@@ -122,13 +151,14 @@
         display: grid;
         place-items: center;
         grid-template-areas:
-            'dashboard bmi bmi'
-            'actions bmi bmi'
-            'vaccines calendar calendar'
-            'vaccines calendar calendar'
+            'dashboard calendar calendar'
+            'actions calendar calendar'
+            'vaccines bmi bmi'
+            'vaccines bmi bmi'
             'blood blood blood'
             'blood blood blood';
         margin-inline: 2rem;
+        gap: 5%;
         &__header {
             grid-area: dashboard;
             @include text-header1($font-weight-semiBold);
@@ -140,7 +170,7 @@
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            @include flex-position(row, nowrap, flex-start, center);
+            @include flex-position(row, nowrap, space-between, center);
         }
         &__bloodResults {
             grid-area: blood;
@@ -163,7 +193,7 @@
         &__vaccines {
             grid-area: vaccines;
             place-self: flex-start;
-            width: auto;
+            width: 100%;
             height: 100%;
         }
         &__bmiCalc {
@@ -178,6 +208,7 @@
         }
     }
 </style>
+
 <style lang="scss">
     .modal {
         position: absolute;

@@ -67,19 +67,19 @@
     import ErrorInfo from '../ErrorInfo.vue';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
+    import { useRouter } from 'vue-router';
     import useLogin from '../../composables/useLogin.js';
     import { computed, ref } from 'vue';
-    import router from '../../router/index.js';
     import facebookLogInSite from '../../composables/logInFacebook.js';
     import googleLogInSite from '../../composables/logInGoogle.js';
     import useUserStore from '../../stores/userStore.js';
     import getUser from '../../composables/getUser.js';
 
-
     const userStore = useUserStore();
     const { signIn, error, isLoading } = useLogin();
     const email = ref('');
     const password = ref('');
+    const router = useRouter();
 
     const disableLogin = computed(() => {
         return !email.value || password.value.length < 8;
