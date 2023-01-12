@@ -27,6 +27,7 @@ import {
     faUserDoctor,
     faVirusCovid,
     faXmark,
+    faPills,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 import { projectAuth } from './firebase/config.js';
@@ -54,7 +55,8 @@ library.add(
     faDroplet,
     faSyringe,
     faVirusCovid,
-    faNotesMedical
+    faNotesMedical,
+    faPills
 );
 
 let app;
