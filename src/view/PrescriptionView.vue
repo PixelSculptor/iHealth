@@ -58,6 +58,7 @@
 <style scoped lang="scss">
     .prescription {
         position: relative;
+        width: 100%;
         display: grid;
         place-items: start;
         grid-template-areas:
@@ -87,10 +88,10 @@
         }
         &__listOf {
             grid-area: listOf;
-            //changed from 100% width
-            width: 55vw;
+            width: 100%;
             height: 50vh;
             display: grid;
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 </style>
