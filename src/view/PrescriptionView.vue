@@ -20,7 +20,7 @@
                 <button-component
                     class="prescription__make_visit"
                     @click="openModal = true">
-                    Dodaj recznie wizytę
+                    Dodaj recznie recepte
                     <font-awesome-icon icon="fa-solid fa-plus" />
                 </button-component>
             </div>
