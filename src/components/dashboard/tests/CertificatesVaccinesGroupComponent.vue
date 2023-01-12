@@ -33,7 +33,7 @@
     const userStore = useUserStore();
 
     const { getPatientCerts } = storeToRefs(userStore);
-    const testInfo = ref('Nie masz jeszcze żadnych testów');
+    const testInfo = ref('Brak testów i certyfikatów');
 
     const certsList = computed(() => {
         return getPatientCerts?.value;
@@ -55,7 +55,6 @@
                 display: inline-block;
                 height: 2.5rem;
                 width: 2.5rem;
-                @include flex-position(column, nowrap, center, center);
                 @include text-header4();
                 text-align: center;
                 background-color: $white;
