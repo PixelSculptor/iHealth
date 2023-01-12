@@ -113,7 +113,7 @@
     const handleSignUp = async () => {
         await signup(email.value, password.value);
         const { user } = getUser();
-        userStore.setUid(user.value.uid);
+        userStore.setUserId(user.value.uid);
         isLoading.value = true;
         if (!error.value) {
             email.value = '';

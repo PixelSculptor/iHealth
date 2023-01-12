@@ -295,8 +295,8 @@
             'submit submit submit submit'
             'loader loader loader loader';
         place-items: center;
-        min-height: 80%;
-        min-width: 50vw;
+        height: 60%;
+        width: 90%;
         padding: 5%;
         gap: 3rem;
         background: $blue-100;

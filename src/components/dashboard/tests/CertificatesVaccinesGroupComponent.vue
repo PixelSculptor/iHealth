@@ -4,7 +4,9 @@
             Certyfikaty i testy
             <span class="numOfCerts">{{ certsList?.length }}</span>
         </h3>
-        <ul class="certificatesContainer__list">
+        <ul
+            v-if="certsList.length"
+            class="certificatesContainer__list">
             <certs-component
                 v-for="cert in certsList"
                 :key="cert.id"
@@ -13,6 +15,11 @@
                 :name="cert.documentTitle"
                 :type-of-doc="cert.testType" />
         </ul>
+        <div
+            v-else
+            class="fallback">
+            <fallback-info-component :information="testInfo" />
+        </div>
     </div>
 </template>
 
@@ -20,11 +27,13 @@
     import CertsComponent from './CertsComponent.vue';
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../../stores/userStore.js';
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
+    import FallbackInfoComponent from '../../FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
 
     const { getPatientCerts } = storeToRefs(userStore);
+    const testInfo = ref('Nie masz jeszcze żadnych testów');
 
     const certsList = computed(() => {
         return getPatientCerts?.value;
