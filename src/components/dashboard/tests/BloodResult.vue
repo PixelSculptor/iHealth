@@ -22,7 +22,7 @@
 
 <script setup>
     import ButtonComponent from '../../ButtonComponent.vue';
-    import { openNewWindow } from '../../../utils/openNewWindow.js';
+    import { openNewCard } from '../../../utils/openNewCard.js';
 
     const props = defineProps({
         bloodType: {
@@ -43,7 +43,7 @@
         },
     });
     const seeDetails = () => {
-        openNewWindow(props.linkDocument);
+        openNewCard(props.linkDocument);
     };
 </script>
 
