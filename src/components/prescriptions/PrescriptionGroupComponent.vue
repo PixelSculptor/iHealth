@@ -41,7 +41,7 @@
 <style lang="scss" scoped>
     .prescriptionContainer {
         width: 100%;
-        height: 20vh;
+        height: 25vh;
         @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 1rem;
         &__header {

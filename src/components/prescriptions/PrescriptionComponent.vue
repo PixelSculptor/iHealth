@@ -59,7 +59,7 @@
         padding: 1rem;
         background-color: $white;
         @include flex-position(row, nowrap, space-around, center);
-        gap: 1rem;
+        gap: 3rem;
         &:deep(svg) {
             color: $blue-700;
             height: 3rem;

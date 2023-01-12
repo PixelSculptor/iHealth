@@ -88,9 +88,8 @@
         &__listOf {
             grid-area: listOf;
             width: 100%;
-            height: 50vh;
+            height: 10vh;
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
         }
     }
 </style>
