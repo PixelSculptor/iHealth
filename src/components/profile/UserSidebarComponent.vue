@@ -2,7 +2,7 @@
     <div class="userInfoWrapper">
         <div class="userAvatar">
             <user-avatar-component />
-            <h5>{{ name }} {{ surname }}</h5>
+            <h4>{{ name }} {{ surname }}</h4>
         </div>
         <div class="userData">
             <user-info-list-component />
@@ -35,8 +35,8 @@
             height: 30%;
             width: 100%;
 
-            h5 {
-                @include text-header5();
+            h4 {
+                @include text-header4();
                 color: $white;
             }
         }

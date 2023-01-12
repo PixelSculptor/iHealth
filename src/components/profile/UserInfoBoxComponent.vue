@@ -30,6 +30,7 @@
         &__header {
             @include text-header5($font-weight-bold);
             color: $blue-700;
+            text-align: center;
         }
         &__dataList {
             height: 90%;

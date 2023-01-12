@@ -161,7 +161,7 @@
         }
         &:hover,
         &.router-link-exact-active {
-            background-color: $gray-100;
+            background-color: $white;
             color: $blue-700;
         }
     }

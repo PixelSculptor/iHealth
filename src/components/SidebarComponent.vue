@@ -159,7 +159,7 @@
                     transition: 0.3s ease-out;
                 }
                 &:hover {
-                    background-color: $gray-100;
+                    background-color: $white;
                     color: $blue-700;
                 }
             }
