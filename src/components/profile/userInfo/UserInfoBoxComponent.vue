@@ -1,7 +1,7 @@
 <template>
     <article class="userBox">
         <h5 class="userBox__header">{{ header }}</h5>
-        <ul class="userBox__dataList"></ul>
+        <slot />
     </article>
 </template>
 
@@ -18,11 +18,11 @@
 
 <style lang="scss" scoped>
     .userBox {
-        height: 30vh;
+        height: 50vh;
         width: 100%;
         background-color: $gray-100;
         border: $border-size solid $gray-300;
-        border-radius: $border-radius--normal;
+        border-radius: $border-radius--rounded;
         padding: 2rem;
         margin: auto;
         @include flex-position(column, nowrap, space-evenly, center);
@@ -32,7 +32,7 @@
             color: $blue-700;
             text-align: center;
         }
-        &__dataList {
+        &:deep(ul) {
             height: 90%;
             width: 100%;
             overflow-y: scroll;

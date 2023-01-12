@@ -18,7 +18,7 @@
     import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
     import useUserStore from '../stores/userStore.js';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
-    import UserInfoContainerComponent from '../components/profile/UserInfoContainerComponent.vue';
+    import UserInfoContainerComponent from '../components/profile/userInfo/UserInfoContainerComponent.vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
 </script>
