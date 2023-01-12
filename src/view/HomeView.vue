@@ -160,7 +160,7 @@
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            @include flex-position(row, nowrap, flex-start, center);
+            @include flex-position(row, nowrap, space-between, center);
         }
         &__bloodResults {
             grid-area: blood;

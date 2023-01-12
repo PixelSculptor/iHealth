@@ -34,7 +34,7 @@
 <style lang="scss" scoped>
     .certificatesContainer {
         width: 100%;
-        height: 20vh;
+        height: 23vh;
         @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 1rem;
         &__header {
@@ -55,7 +55,7 @@
             }
         }
         &__list {
-            height: 100%;
+            height: 14vh;
             width: 100%;
             padding-top: 15%;
             margin-top: 2rem;
