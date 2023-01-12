@@ -17,23 +17,26 @@
 <script setup>
     import DateComponent from '../components/DateComponent.vue';
     import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
+    import useUserStore from '../stores/userStore.js';
+
+    const userStore = useUserStore(); // eslint-disable-line no-unused-vars
 </script>
 
 <style lang="scss" scoped>
     .profileView {
         display: grid;
         grid-template-areas:
-            'header header user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user'
-            'user-data user-data user';
+            'header header header header header header header header header header user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
+            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user';
         &__header {
             grid-area: header;
             height: 30%;
@@ -46,6 +49,9 @@
             grid-area: user;
             background-color: $blue-700;
             height: 100vh;
+            width: 35vh;
+            place-self: flex-end;
+            box-sizing: border-box;
             border-top-left-radius: $border-radius--rounded;
             border-bottom-left-radius: $border-radius--rounded;
         }
