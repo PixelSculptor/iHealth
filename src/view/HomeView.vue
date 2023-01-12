@@ -68,7 +68,11 @@
         </div>
 
         <article class="dashboard__bloodResults">
-            <h3 class="blood__header">Morfologia</h3>
+            <h3 class="blood__header">
+                Morfologia
+                <span class="numOfResearch">{{ bloodResults?.length }}</span>
+            </h3>
+
             <ul
                 v-if="bloodResults?.length"
                 class="listOfResults">
@@ -125,7 +129,7 @@
     const modalResearch = ref(null);
     const modalVacc = ref(null);
 
-    const bloodInfo = ref('Nie masz jeszcze żadnych dodanych badań');
+    const bloodInfo = ref('Brak badań');
 
     onClickOutside(modalResearch, () => (openModalResearch.value = false));
     onClickOutside(modalVacc, () => (openModalVaccination.value = false));
@@ -181,6 +185,16 @@
             .blood__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;
+                .numOfResearch {
+                    display: inline-block;
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    @include text-header4();
+                    text-align: center;
+                    background-color: $white;
+                    border: $border-size solid $gray-300;
+                    border-radius: 50%;
+                }
             }
             .listOfResults {
                 width: 100%;
