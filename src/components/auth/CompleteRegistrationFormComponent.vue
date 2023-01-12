@@ -61,6 +61,8 @@
                 id="phoneNumber"
                 v-model="phoneNumber"
                 class="formBlock__input"
+                maxlength="12"
+                minlength="9"
                 placeholder="+48 999 999 999"
                 required
                 type="tel" />
@@ -224,7 +226,7 @@
             name.value &&
             surname.value &&
             avatar.value &&
-            phoneNumber.value &&
+            phoneNumber.value >= 9 &&
             dateOfBirth.value &&
             personId.value &&
             gender.value &&

@@ -9,6 +9,7 @@
     import useUserStore from '../stores/userStore.js';
     import { storeToRefs } from 'pinia';
     import { ref } from 'vue';
+    import DateComponent from './DateComponent.vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
     const { getUserInfo } = storeToRefs(userStore);
