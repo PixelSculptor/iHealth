@@ -125,7 +125,7 @@
     const modalResearch = ref(null);
     const modalVacc = ref(null);
 
-    const bloodInfo = ref('Nie masz jeszcze żadnych badań');
+    const bloodInfo = ref('Nie masz jeszcze żadnych dodanych badań');
 
     onClickOutside(modalResearch, () => (openModalResearch.value = false));
     onClickOutside(modalVacc, () => (openModalVaccination.value = false));
