@@ -69,7 +69,9 @@
 
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
-            <ul class="listOfResults">
+            <ul
+                v-if="bloodResults?.length"
+                class="listOfResults">
                 <li
                     v-for="bloodResult in bloodResults"
                     :key="bloodResult.id">
@@ -79,6 +81,11 @@
                         :link-document="bloodResult.testUrl" />
                 </li>
             </ul>
+            <div
+                v-else
+                class="fallback">
+                <fallback-info-component :information="bloodInfo" />
+            </div>
         </article>
 
         <article class="dashboard__bmiCalc">
@@ -109,6 +116,7 @@
     import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
     import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
     import ClockComponent from '../components/dashboard/ClockComponent.vue';
+    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
@@ -116,6 +124,8 @@
     const openModalVaccination = ref(false);
     const modalResearch = ref(null);
     const modalVacc = ref(null);
+
+    const bloodInfo = ref('Nie masz jeszcze żadnych dodanych badań');
 
     onClickOutside(modalResearch, () => (openModalResearch.value = false));
     onClickOutside(modalVacc, () => (openModalVaccination.value = false));

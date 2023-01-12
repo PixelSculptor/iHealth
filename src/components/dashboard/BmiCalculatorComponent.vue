@@ -125,7 +125,7 @@
             border-radius: $border-radius--rounded;
             background-color: $blue-100;
             width: 100%;
-            height: 50%;
+            height: 25%;
             display: grid;
             .statusCheck {
                 display: block;

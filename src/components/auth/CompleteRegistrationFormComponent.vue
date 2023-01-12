@@ -61,6 +61,8 @@
                 id="phoneNumber"
                 v-model="phoneNumber"
                 class="formBlock__input"
+                maxlength="12"
+                minlength="9"
                 placeholder="+48 999 999 999"
                 required
                 type="tel" />
@@ -295,8 +297,8 @@
             'submit submit submit submit'
             'loader loader loader loader';
         place-items: center;
-        min-height: 80%;
-        min-width: 50vw;
+        height: 60%;
+        width: 90%;
         padding: 5%;
         gap: 3rem;
         background: $blue-100;
