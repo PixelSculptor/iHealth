@@ -25,10 +25,13 @@
     .profileView {
         display: grid;
         grid-template: repeat(11, 1fr) / repeat(11, 1fr);
+        margin-left: 1rem;
         &__header {
-            grid-column: 1 / span 11;
-            grid-row: 1/2;
-            height: 30%;
+            height: 100%;
+            grid-column: 1 / span 10;
+            grid-row: 1 / span 2;
+            place-self: flex-start;
+            @include flex-position(column, nowrap, space-evenly, flex-start);
         }
         &__userDescription {
             grid-column: 1 / span 11;

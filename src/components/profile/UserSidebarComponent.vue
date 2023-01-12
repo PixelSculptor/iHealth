@@ -31,7 +31,7 @@
         padding: 1rem;
 
         .userAvatar {
-            @include flex-position(column, nowrap, space-evenly, center);
+            @include flex-position(column, nowrap, space-between, center);
             height: 30%;
             width: 100%;
 

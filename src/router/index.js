@@ -24,7 +24,7 @@ const router = createRouter({
             path: '/dashboard',
             name: 'Home',
             component: HomeView,
-            beforeEnter: [authGuard],
+            beforeEnter: authGuard,
         },
         {
             path: '/register',
@@ -35,12 +35,13 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             component: LoginView,
-            beforeEnter: [logoutGuard],
+            beforeEnter: logoutGuard,
         },
         {
             path: '/profile',
             name: 'Profile',
             component: ProfileView,
+            beforeEnter: authGuard,
         },
         {
             path: '/prescriptions',
