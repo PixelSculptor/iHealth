@@ -226,7 +226,7 @@
             name.value &&
             surname.value &&
             avatar.value &&
-            phoneNumber.value >= 9 &&
+            phoneNumber.value &&
             dateOfBirth.value &&
             personId.value &&
             gender.value &&
