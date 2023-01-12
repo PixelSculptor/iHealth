@@ -1,12 +1,8 @@
 <template>
-    <div></div>
+    <div>twoje informacje</div>
 </template>
 
-<script>
-    export default {
-        name: 'UserInfoBoxComponent',
-    };
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
     * {

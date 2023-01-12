@@ -45,7 +45,7 @@
                 ageValue.value--;
             }
         }
-        return ageValue.value;
+        return ageValue.value.toString();
     });
 
     const userDataCollection = ref([
