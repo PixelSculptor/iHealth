@@ -10,10 +10,10 @@ const useUserStore = defineStore('user', {
         patientCerts: {
             data: null,
         },
-        listOfRecipies: {
+        patientTests: {
             data: null,
         },
-        patientTests: {
+        listOfRecipies: {
             data: null,
         },
     }),
@@ -21,9 +21,8 @@ const useUserStore = defineStore('user', {
         getUserId: (state) => state.userId,
         getUserInfo: (state) => state.userData,
         getPatientCerts: (state) => state.patientCerts.data,
-        getListOfRecipies: (state) => state.listOfRecipies.data,
         getPatientTests: (state) => state.patientTests.data,
-
+        getListOfRecipies: (state) => state.listOfRecipies.data,
     },
     actions: {
         async fetchUserData() {

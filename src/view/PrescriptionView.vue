@@ -35,7 +35,7 @@
     import ButtonComponent from '../components/ButtonComponent.vue';
     import PrescriptionGroupComponent from '../components/PrescriptionGroupComponent.vue';
     import useUserStore from '../stores/userStore.js';
-    import ModalComponent from '../components/ModalComponent.vue';
+    import ModalComponent from '../components/dashboard/ModalComponent.vue';
 
     import { onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
