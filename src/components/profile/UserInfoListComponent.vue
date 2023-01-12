@@ -49,10 +49,7 @@
     });
 
     const userDataCollection = ref([
-        {
-            name: email.value,
-            key: 'Email',
-        },
+        { name: email.value, key: 'Email' },
         { name: phone.value, key: 'Telefon' },
         { name: age.value, key: 'Wiek' },
         { name: gender.value, key: 'Płeć' },
