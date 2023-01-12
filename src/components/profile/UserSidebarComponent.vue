@@ -21,12 +21,11 @@
     const { getUserInfo } = storeToRefs(userStore);
     const name = ref(getUserInfo.value.data[0].name);
     const surname = ref(getUserInfo.value.data[0].surname);
-    // TODO: change further flex-start -> space-evenly
 </script>
 
 <style lang="scss" scoped>
     .userInfoWrapper {
-        @include flex-position(column, nowrap, flex-start, center);
+        @include flex-position(column, nowrap, space-evenly, center);
         height: 100vh;
         width: 100%;
         padding: 1rem;
