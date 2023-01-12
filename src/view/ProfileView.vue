@@ -1,8 +1,7 @@
 <template>
     <section class="profileView">
         <div class="profileView__header">
-            <h3>Cześć {{ name }}!</h3>
-            <date-component />
+            <greetings-component />
         </div>
 
         <article class="profileView__userDescription">
@@ -15,42 +14,30 @@
 </template>
 
 <script setup>
-    import DateComponent from '../components/DateComponent.vue';
     import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
     import useUserStore from '../stores/userStore.js';
-    import { storeToRefs } from 'pinia';
-    import { ref } from 'vue';
+    import GreetingsComponent from '../components/GreetingsComponent.vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
-    const { getUserInfo } = storeToRefs(userStore);
-    const name = ref(getUserInfo.value.data[0].name);
 </script>
 
 <style lang="scss" scoped>
     .profileView {
         display: grid;
-        grid-template-areas:
-            'header header header header header header header header header header user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user'
-            'user-data user-data user-data user-data user-data user-data user-data user-data user-data user-data user';
+        grid-template: repeat(11, 1fr) / repeat(11, 1fr);
         &__header {
-            grid-area: header;
+            grid-column: 1 / span 11;
+            grid-row: 1/2;
             height: 30%;
         }
         &__userDescription {
-            grid-area: user-data;
+            grid-column: 1 / span 11;
+            grid-row: 2 / span -1;
             height: 70%;
         }
         &__userInfo {
-            grid-area: user;
+            grid-column: 10 / span 2;
+            grid-row: 1 / span 11;
             background-color: $blue-700;
             height: 100vh;
             width: 35vh;
