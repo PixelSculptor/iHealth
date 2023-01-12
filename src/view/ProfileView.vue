@@ -44,6 +44,10 @@
         }
         &__userInfo {
             grid-area: user;
+            background-color: $blue-700;
+            height: 100vh;
+            border-top-left-radius: $border-radius--rounded;
+            border-bottom-left-radius: $border-radius--rounded;
         }
     }
 </style>
