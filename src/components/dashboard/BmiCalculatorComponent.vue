@@ -39,7 +39,7 @@
 <script setup>
     import MetricComponent from './MetricComponent.vue';
     import { computed, ref, watch } from 'vue';
-    import useUserStore from '../stores/userStore.js';
+    import useUserStore from '../../stores/userStore.js';
 
     const userStore = useUserStore();
 
@@ -93,7 +93,7 @@
         }
         &__panel {
             width: 80%;
-            height: 60%;
+            height: 70%;
             background-color: $white;
             border: $border-size solid $gray-300;
             border-radius: $border-radius--rounded;
@@ -125,7 +125,7 @@
             border-radius: $border-radius--rounded;
             background-color: $blue-100;
             width: 100%;
-            height: 50%;
+            height: 25%;
             display: grid;
             .statusCheck {
                 display: block;

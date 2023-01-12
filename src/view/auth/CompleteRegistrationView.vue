@@ -8,6 +8,7 @@
 <script setup>
     import CompleteRegistrationForm from '../../components/auth/CompleteRegistrationFormComponent.vue';
     import { useRouter } from 'vue-router';
+
     const router = useRouter();
 
     const handleComplete = () => {
@@ -16,10 +17,9 @@
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .completeRegistration {
         height: 100vh;
-        background-color: $white;
         h2 {
             @include text-header2($font-weight-semiBold);
             color: $blue-700;

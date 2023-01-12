@@ -14,7 +14,7 @@ const getUserData = (collection, userId) => {
             documents.value = snap.docs.map((doc) => {
                 return doc.data().createdAt && { ...doc.data(), id: doc.id };
             });
-            console.log(documents);
+            console.log(documents.value);
             error.value = null;
         },
         (err) => {

@@ -15,7 +15,6 @@ export const logoutGuard = (to, from, next) => {
     next();
 };
 
-// TODO: fix this routeguard
 export const flushData = (to, from, next) => {
     if (sessionStorage.getItem('state')) sessionStorage.removeItem('state');
     const userStore = useUserStore();
@@ -23,8 +22,8 @@ export const flushData = (to, from, next) => {
     next();
 };
 
-export const fetchUserData = (to, from, next) => {
+export const fetchUserData = async (to, from, next) => {
     const userStore = useUserStore();
-    userStore.fetchUserData();
+    if (!userStore.getUserInfo.data) await userStore.fetchUserData();
     if (!userStore.getUserInfo.isLoading) next();
 };

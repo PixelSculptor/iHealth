@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import { projectFirestore, projectAuth } from '../firebase/config';
+import { projectFirestore } from '../firebase/config';
 
 const useCollection = (collection) => {
-    const user = projectAuth.currentUser;
+    // const user = projectAuth.currentUser;
     const error = ref(null);
     const isLoading = ref(false);
 
@@ -12,10 +12,7 @@ const useCollection = (collection) => {
 
         try {
             isLoading.value = true;
-            await projectFirestore
-                .collection(collection)
-                .where('userId', '==', user.uid)
-                .add(doc);
+            await projectFirestore.collection(collection).add(doc);
         } catch (err) {
             console.log(err.message);
             isLoading.value = false;

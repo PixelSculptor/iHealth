@@ -5,78 +5,78 @@
         @submit.prevent="handleSignUp">
         <div class="signupForm__formBlock formBlock">
             <label
-                for="email"
                 class="formBlock__label"
+                for="email"
                 >Email</label
             >
             <input
                 id="email"
-                type="email"
-                class="formBlock__input"
+                v-model="email"
                 aria-label="email input"
-                required
+                class="formBlock__input"
                 placeholder="Adres E-mail"
-                v-model="email" />
+                required
+                type="email" />
         </div>
 
         <div class="signupForm__formBlock formBlock">
             <label
-                for="password"
                 class="formBlock__label"
+                for="password"
                 >Hasło</label
             >
             <input
                 id="password"
-                type="password"
-                required
+                v-model="password"
                 aria-label="password input"
-                minlength="8"
                 class="formBlock__input"
+                minlength="8"
                 placeholder="Hasło"
-                v-model="password" />
+                required
+                type="password" />
             <div
                 v-show="password"
                 class="errorInfo">
                 <span
                     v-if="!passwordMatching && password && passwordCheck"
-                    role="presentation"
                     aria-label="passwords not match"
                     class="passwordNotMatching"
+                    role="presentation"
                     >Hasła nie zgadzają się</span
                 >
                 <span
                     v-else-if="passwordMatching"
-                    role="presentation"
                     aria-label="passwords match"
                     class="passwordMatching"
+                    role="presentation"
                     >Hasła zgadzają się</span
                 >
             </div>
         </div>
         <div class="signupForm__formBlock formBlock">
             <label
-                for="passwordCheck"
                 class="formBlock__label"
+                for="passwordCheck"
                 >Powtórz hasło</label
             >
             <input
                 id="passwordCheck"
-                type="password"
-                required
+                v-model="passwordCheck"
                 aria-label="password input matching"
-                minlength="8"
                 class="formBlock__input"
+                minlength="8"
                 placeholder="Hasło"
-                v-model="passwordCheck" />
+                required
+                type="password" />
         </div>
         <error-info
-            class="error"
-            :message="error" />
+            :message="error"
+            class="error" />
         <button-component
-            soft
-            wide
             :disabled="disableCreateAccount"
             class="signupForm__submit"
+            soft
+            wide
             >Dołącz przez Email</button-component
         >
         <bouncing-balls-component :visible="isLoading" />
@@ -86,11 +86,14 @@
 <script setup>
     import ButtonComponent from '../ButtonComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
-
-    import useSignup from '../../composables/useSignup.js';
-    import { computed, ref } from 'vue';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
 
+    import useSignup from '../../composables/useSignup.js';
+    import useUserStore from '../../stores/userStore.js';
+    import { computed, ref } from 'vue';
+    import getUser from '../../composables/getUser.js';
+
+    const userStore = useUserStore();
     const emit = defineEmits(['submitSignUp']);
     const email = ref('');
     const password = ref('');
@@ -109,6 +112,8 @@
 
     const handleSignUp = async () => {
         await signup(email.value, password.value);
+        const { user } = getUser();
+        userStore.setUserId(user.value.uid);
         isLoading.value = true;
         if (!error.value) {
             email.value = '';
@@ -117,10 +122,11 @@
             passwordCheck.value = '';
             emit('submitSignUp');
         }
+        isLoading.value = false;
     };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .signUpForm {
         @include flex-position(column, wrap, flex-start, center);
         gap: 5%;
