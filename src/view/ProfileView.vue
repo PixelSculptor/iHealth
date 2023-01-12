@@ -25,23 +25,27 @@
 
 <style lang="scss" scoped>
     .profileView {
+        background-color: $white;
         display: grid;
         grid-template-areas:
-            'header header header header header sidebar'
-            'info info info info  info sidebar'
-            'info info info info info sidebar'
-            'info info info info info sidebar'
-            'info info info info info sidebar';
+            'header header header header header header header sidebar'
+            'info info info info  info info info sidebar'
+            'info info info info info info info sidebar'
+            'info info info info info info info sidebar'
+            'info info info info info info info sidebar';
         margin-left: 1rem;
         &__header {
-            height: 100%;
+            height: 50%;
             grid-area: header;
-            place-self: flex-start;
+            place-self: center flex-start;
             @include flex-position(column, nowrap, space-evenly, flex-start);
         }
         &__userDescription {
             grid-area: info;
-            height: 70%;
+            height: 100%;
+            //display: grid;
+            //grid-template-columns: repeat(2, 1fr);
+            //gap: 1rem;
         }
         &__userInfo {
             grid-area: sidebar;
