@@ -5,7 +5,7 @@
             <span class="numOfCerts">{{ certsList?.length }}</span>
         </h3>
         <ul
-            v-if="certsList.length"
+            v-if="certsList?.length"
             class="certificatesContainer__list">
             <certs-component
                 v-for="cert in certsList"

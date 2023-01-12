@@ -70,7 +70,7 @@
         <article class="dashboard__bloodResults">
             <h3 class="blood__header">Morfologia</h3>
             <ul
-                v-if="bloodResults.length"
+                v-if="bloodResults?.length"
                 class="listOfResults">
                 <li
                     v-for="bloodResult in bloodResults"
