@@ -1,8 +1,9 @@
 <template>
-    <h1>Prescription View</h1>
+    <h1>Prescription view</h1>
 </template>
 
 <script setup></script>
+
 <style scoped lang="scss">
     * {
     }
