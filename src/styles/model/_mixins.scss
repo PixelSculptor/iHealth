@@ -105,8 +105,15 @@
     @include button-soft--active;
 }
 
+@mixin button--minor {
+    min-width: $button-width-minor;
+    min-height: $button-width-minor;
+    border-radius: 50%;
+    padding: 0.65rem;
+}
+
 @mixin button--small {
-    min-width: $button-width-regular;
+    min-width: $button-width-small;
     padding: 0.75rem;
 }
 

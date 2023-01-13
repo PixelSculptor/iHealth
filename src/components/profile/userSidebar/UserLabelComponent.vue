@@ -30,7 +30,7 @@
         }
 
         &__value {
-            @include text-paragraph($font-weight-medium);
+            @include text-header6($font-weight-medium);
             color: $white;
         }
     }

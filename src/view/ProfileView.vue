@@ -6,6 +6,7 @@
 
         <article class="profileView__userDescription">
             <!--        TODO: add components your info, close people specific information -->
+            <user-info-container-component />
         </article>
         <aside class="profileView__userInfo">
             <user-sidebar-component />
@@ -14,30 +15,37 @@
 </template>
 
 <script setup>
-    import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
+    import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import useUserStore from '../stores/userStore.js';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
+    import UserInfoContainerComponent from '../components/profile/userInfo/UserInfoContainerComponent.vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
 </script>
 
 <style lang="scss" scoped>
     .profileView {
+        background-color: $white;
         display: grid;
-        grid-template: repeat(11, 1fr) / repeat(11, 1fr);
+        grid-template-areas:
+            'header header header header header header header sidebar'
+            'info info info info  info info info sidebar'
+            'info info info info info info info sidebar'
+            'info info info info info info info sidebar'
+            'info info info info info info info sidebar';
+        margin-left: 1rem;
         &__header {
-            grid-column: 1 / span 11;
-            grid-row: 1/2;
-            height: 30%;
+            height: 50%;
+            grid-area: header;
+            place-self: center flex-start;
+            @include flex-position(column, nowrap, space-evenly, flex-start);
         }
         &__userDescription {
-            grid-column: 1 / span 11;
-            grid-row: 2 / span -1;
-            height: 70%;
+            grid-area: info;
+            height: 100%;
         }
         &__userInfo {
-            grid-column: 10 / span 2;
-            grid-row: 1 / span 11;
+            grid-area: sidebar;
             background-color: $blue-700;
             height: 100vh;
             width: 35vh;
