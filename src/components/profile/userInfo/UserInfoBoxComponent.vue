@@ -12,12 +12,13 @@
             default: 'Twoje informacje',
         },
     });
-
+    // TODO: think about add button to boxes to open modal and edit or add new contact
     // TODO: to investigate height of userBox container
 </script>
 
 <style lang="scss" scoped>
     .userBox {
+        @include flex-position(column, nowrap, space-evenly, center);
         height: 50vh;
         width: 100%;
         background-color: $gray-100;
@@ -25,7 +26,6 @@
         border-radius: $border-radius--rounded;
         padding: 2rem;
         margin: auto;
-        @include flex-position(column, nowrap, space-evenly, center);
         gap: 1rem;
         &__header {
             @include text-header5($font-weight-bold);
@@ -33,10 +33,10 @@
             text-align: center;
         }
         &:deep(ul) {
+            @include flex-position(column, nowrap, space-evenly, center);
             height: 90%;
             width: 100%;
             overflow-y: scroll;
-            @include flex-position(column, nowrap, space-evenly, center);
         }
     }
 </style>

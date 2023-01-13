@@ -4,7 +4,7 @@ import SignUpView from '../view/auth/SignUpView.vue';
 import LoginView from '../view/auth/LoginView.vue';
 import CompleteRegistrationView from '../view/auth/CompleteRegistrationView.vue';
 
-import { authGuard, logoutGuard } from './guards.js';
+import { authGuard, logoutGuard, redirectToLogin } from './guards.js';
 import ProfileView from '../view/ProfileView.vue';
 import PrescriptionView from '../view/PrescriptionView.vue';
 import ReferralsView from '../view/ReferralsView.vue';
@@ -18,7 +18,7 @@ const router = createRouter({
             path: '/',
             name: 'App',
             component: App,
-            beforeEnter: [logoutGuard],
+            beforeEnter: redirectToLogin,
         },
         {
             path: '/dashboard',
