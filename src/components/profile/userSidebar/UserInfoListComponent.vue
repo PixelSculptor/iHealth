@@ -9,10 +9,10 @@
 </template>
 
 <script setup>
-    import useUserStore from '../../stores/userStore.js';
+    import useUserStore from '../../../stores/userStore.js';
     import { storeToRefs } from 'pinia';
     import { computed, ref } from 'vue';
-    import { projectAuth } from '../../firebase/config.js';
+    import { projectAuth } from '../../../firebase/config.js';
     import UserLabelComponent from './UserLabelComponent.vue';
 
     const userStore = useUserStore();

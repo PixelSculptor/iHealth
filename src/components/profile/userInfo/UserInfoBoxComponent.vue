@@ -29,8 +29,9 @@
         gap: 1rem;
         &__header {
             @include text-header5($font-weight-bold);
+            width: 100%;
             color: $blue-700;
-            text-align: center;
+            text-align: left;
         }
         &:deep(ul) {
             @include flex-position(column, nowrap, space-evenly, center);

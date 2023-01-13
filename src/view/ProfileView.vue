@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-    import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
+    import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import useUserStore from '../stores/userStore.js';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserInfoContainerComponent from '../components/profile/userInfo/UserInfoContainerComponent.vue';

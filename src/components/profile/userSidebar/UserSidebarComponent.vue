@@ -12,7 +12,7 @@
 
 <script setup>
     import UserAvatarComponent from './UserAvatarComponent.vue';
-    import useUserStore from '../../stores/userStore.js';
+    import useUserStore from '../../../stores/userStore.js';
     import { storeToRefs } from 'pinia';
     import { ref } from 'vue';
     import UserInfoListComponent from './UserInfoListComponent.vue';

@@ -25,6 +25,7 @@ import {
     faLungs,
     faNotesMedical,
     faPlus,
+    faStethoscope,
     faSyringe,
     faUser,
     faUserDoctor,
@@ -60,7 +61,8 @@ library.add(
     faNotesMedical,
     faHandDots,
     faLungs,
-    faCrutch
+    faCrutch,
+    faStethoscope
 );
 
 let app;

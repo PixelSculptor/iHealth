@@ -33,7 +33,6 @@ export const redirectToLogin = (to, from, next) => {
     const { user } = getUser();
 
     if (user.value) {
-        console.log(user);
         next();
     }
 
