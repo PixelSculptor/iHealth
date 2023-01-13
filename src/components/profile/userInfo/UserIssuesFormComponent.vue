@@ -8,6 +8,7 @@
             @submit.prevent="handleSaveData">
             <div class="inputBox">
                 <label for="typeOfBlood">Wybierz grupę krwi: </label>
+
                 <select
                     id="typeOfBlood"
                     v-model="bloodType"
@@ -25,15 +26,17 @@
                         {{ bloodType }}
                     </option>
                 </select>
+
+                <div class="inputBox">
+                    <label for="antigen">Antygen R: </label>
+                    <input
+                        id="antigen"
+                        v-model="antigenFlag"
+                        class="bloodSection__antigenRflag"
+                        type="checkbox" />
+                </div>
             </div>
-            <div class="inputBox">
-                <label for="antigen">Antygen R: </label>
-                <input
-                    id="antigen"
-                    v-model="antigenFlag"
-                    class="bloodSection__antigenRflag"
-                    type="checkbox" />
-            </div>
+
             <div class="inputBox">
                 <label for="allergies">Czy masz uczulenia? </label>
                 <input
@@ -93,7 +96,7 @@
                     aria-label="passwords match"
                     class="dataSend"
                     role="presentation"
-                    >Twoje dane zostały zapisane pomyślnie</span
+                    >Twoje dane zostały zapisane pomyślnie!</span
                 >
             </div>
         </form>
@@ -156,6 +159,7 @@
             diabetes.value = false;
             isOrganDonor.value = false;
             isBloodDonor.value = false;
+            isLoading.value = false;
         }
     };
 </script>
@@ -189,11 +193,15 @@
 
             .actionsAndInfo {
                 @include flex-position(column, nowrap, space-evenly, center);
+                gap: 1rem;
                 align-self: center;
                 position: relative;
                 .loader {
                     position: absolute;
                 }
+            }
+            .dataSend {
+                color: $color-success;
             }
         }
     }
