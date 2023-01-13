@@ -101,17 +101,19 @@
 </template>
 
 <script setup>
-    import { typeOfBlood } from '../../../utils/typeOfResources.js';
-    import { computed, ref, watch } from 'vue';
     import ButtonComponent from '../../ButtonComponent.vue';
     import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
     import ErrorInfo from '../../ErrorInfo.vue';
+
+    import { typeOfBlood } from '../../../utils/typeOfResources.js';
+    import { computed, ref } from 'vue';
     import useCollection from '../../../composables/useCollections.js';
     import useUserStore from '../../../stores/userStore.js';
-    import { timestamp } from '@vueuse/core';
+    import { timestamp } from '../../../firebase/config.js';
 
     const userStore = useUserStore();
     const { addDoc, error } = useCollection('userIssues');
+
     const antigenFlag = ref(false);
     const bloodType = ref(null);
     const allergies = ref(null);
@@ -156,9 +158,6 @@
             isBloodDonor.value = false;
         }
     };
-    watch(diabetes, () => {
-        console.log(diabetes.value, bloodGroup.value);
-    });
 </script>
 
 <style lang="scss" scoped>
