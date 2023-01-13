@@ -111,7 +111,7 @@
     import BloodResult from '../components/dashboard/tests/BloodResult.vue';
     import BmiCalculatorComponent from '../components/dashboard/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/dashboard/tests/CertificatesVaccinesGroupComponent.vue';
-    import ModalComponent from '../components/dashboard/ModalComponent.vue';
+    import ModalComponent from '../components/ModalComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
     import { computed, onMounted, ref } from 'vue';

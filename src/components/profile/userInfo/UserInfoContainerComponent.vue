@@ -4,9 +4,23 @@
             <template v-slot:importIssues>
                 <button-component
                     class="importBtn"
-                    minor>
+                    minor
+                    @click="importInfo = true">
                     <font-awesome-icon icon="fa-solid fa-plus" />
                 </button-component>
+                <teleport to="body">
+                    <transition name="modal">
+                        <div
+                            v-if="importInfo"
+                            class="modal">
+                            <modal-component
+                                ref="modalResearch"
+                                @close="importInfo = false">
+                                <resource-component />
+                            </modal-component>
+                        </div>
+                    </transition>
+                </teleport>
             </template>
 
             <template v-slot:userIssueList>
@@ -35,6 +49,11 @@
     import InfoHandlerComponent from './InfoHandlerComponent.vue';
     import InfoContactComponent from './InfoContactComponent.vue';
     import ButtonComponent from '../../ButtonComponent.vue';
+    import ResourceComponent from '../../dashboard/ResourceComponent.vue';
+    import ModalComponent from '../../ModalComponent.vue';
+    import { ref } from 'vue';
+
+    const importInfo = ref(false);
 </script>
 
 <style lang="scss" scoped>
