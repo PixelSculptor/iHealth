@@ -38,6 +38,7 @@
             h4 {
                 @include text-header4();
                 color: $white;
+                text-align: center;
             }
         }
 

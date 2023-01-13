@@ -19,7 +19,7 @@
 <style lang="scss" scoped>
     .userBox {
         @include flex-position(column, nowrap, space-evenly, center);
-        height: 50vh;
+        height: 100%;
         width: 100%;
         background-color: $gray-100;
         border: $border-size solid $gray-300;
@@ -35,9 +35,10 @@
         }
         &:deep(ul) {
             @include flex-position(column, nowrap, space-evenly, center);
-            height: 90%;
+            min-height: 50vh;
             width: 100%;
             overflow-y: scroll;
+            gap: 1rem;
         }
     }
 </style>
