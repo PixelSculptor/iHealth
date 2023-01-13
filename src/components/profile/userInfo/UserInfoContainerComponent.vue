@@ -15,8 +15,8 @@
                             class="modal">
                             <modal-component
                                 ref="modalResearch"
-                                @close="importInfo = false">
-                                <resource-component />
+                                @close="importInfo = true">
+                                <user-issues-form-component />
                             </modal-component>
                         </div>
                     </transition>
@@ -49,9 +49,9 @@
     import InfoHandlerComponent from './InfoHandlerComponent.vue';
     import InfoContactComponent from './InfoContactComponent.vue';
     import ButtonComponent from '../../ButtonComponent.vue';
-    import ResourceComponent from '../../dashboard/ResourceComponent.vue';
     import ModalComponent from '../../ModalComponent.vue';
     import { ref } from 'vue';
+    import UserIssuesFormComponent from './UserIssuesFormComponent.vue';
 
     const importInfo = ref(false);
 </script>
