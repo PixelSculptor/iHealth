@@ -78,6 +78,24 @@
                     <option>Nie</option>
                 </select>
             </div>
+            <div class="actionsAndInfo">
+                <button-component
+                    :disabled="disableAddInfo"
+                    wide
+                    >Zapisz badanie</button-component
+                >
+                <bouncing-balls-component
+                    :visible="isLoading"
+                    class="loader" />
+                <error-info :message="error" />
+                <span
+                    v-show="successFlag"
+                    aria-label="passwords match"
+                    class="dataSend"
+                    role="presentation"
+                    >Badanie zostało przesłane pomyślnie</span
+                >
+            </div>
         </form>
     </div>
 </template>
@@ -85,16 +103,28 @@
 <script setup>
     import { typeOfBlood } from '../../../utils/typeOfResources.js';
     import { computed, ref, watch } from 'vue';
+    import ButtonComponent from '../../ButtonComponent.vue';
+    import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
+    import ErrorInfo from '../../ErrorInfo.vue';
 
     const antigenFlag = ref(false);
     const bloodType = ref(null);
     const allergies = ref(null);
     const diabetes = ref(null);
+    const isOrganDonor = ref(false);
+    const isBloodDonor = ref(false);
+
+    const successFlag = ref(false);
+    const isLoading = ref(false);
+    const error = ref(null);
 
     const bloodGroup = computed(() =>
         antigenFlag.value ? bloodType.value + '+' : bloodType.value + '-'
     );
 
+    const disableAddInfo = computed(
+        () => !(bloodType.value && antigenFlag.value && bloodGroup.value)
+    );
     watch(diabetes, () => {
         console.log(diabetes.value, bloodGroup.value);
     });
@@ -102,9 +132,39 @@
 
 <style lang="scss" scoped>
     .userIssuesContainer {
+        height: 100%;
         &__header {
             @include text-header3($font-weight-semiBold);
             color: $blue-900;
+            height: 15%;
+        }
+        &__form {
+            @include flex-position(column, nowrap, space-evenly, flex-start);
+            height: 85%;
+
+            .inputBox {
+                @include flex-position(row, nowrap, flex-start, center);
+                gap: 0.5rem;
+
+                select,
+                input {
+                    @include text-header6($font-weight-regular);
+                }
+
+                label {
+                    @include label;
+                    color: $blue-900;
+                }
+            }
+
+            .actionsAndInfo {
+                @include flex-position(column, nowrap, space-evenly, center);
+                align-self: center;
+                position: relative;
+                .loader {
+                    position: absolute;
+                }
+            }
         }
     }
 </style>

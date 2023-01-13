@@ -15,7 +15,7 @@
                             class="modal">
                             <modal-component
                                 ref="modalResearch"
-                                @close="importInfo = true">
+                                @close="importInfo = false">
                                 <user-issues-form-component />
                             </modal-component>
                         </div>
