@@ -41,6 +41,10 @@
             type: Boolean,
             default: false,
         },
+        minor: {
+            type: Boolean,
+            default: false,
+        },
         menu: {
             type: Boolean,
             default: false,
@@ -75,6 +79,7 @@
         let classes = props.soft ? 'soft' : props.menu ? 'menuLink' : 'main';
         classes += props.wide ? ' wide ' : '';
         classes += props.small ? ' small ' : '';
+        classes += props.minor ? ' minor ' : '';
         return classes;
     });
 </script>
@@ -95,6 +100,14 @@
         }
         @include button--regular;
     }
+
+    .minor {
+        @include button--minor;
+        &:deep(svg) {
+            height: 1.2rem;
+        }
+    }
+
     .small {
         @include button--small;
     }

@@ -1,5 +1,5 @@
 <template>
-    <ul class="userBox__dataList">
+    <ul class="dataList">
         <user-info-label-component
             v-for="userIssue in userIssues"
             :key="userIssue.label">
@@ -20,6 +20,7 @@
 </script>
 
 <style lang="scss" scoped>
-    * {
+    .dataList {
+        height: 100%;
     }
 </style>

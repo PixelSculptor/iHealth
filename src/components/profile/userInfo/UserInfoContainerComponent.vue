@@ -1,11 +1,31 @@
 <template>
     <section class="userInfoContainer">
         <user-info-box-component>
-            <info-handler-component />
+            <template v-slot:importIssues>
+                <button-component
+                    class="importBtn"
+                    minor>
+                    <font-awesome-icon icon="fa-solid fa-plus" />
+                </button-component>
+            </template>
+
+            <template v-slot:userIssueList>
+                <info-handler-component />
+            </template>
         </user-info-box-component>
 
         <user-info-box-component header="Lista osób bliskich">
-            <info-contact-component />
+            <template v-slot:importIssues>
+                <button-component
+                    class="importBtn"
+                    minor>
+                    <font-awesome-icon icon="fa-solid fa-plus" />
+                </button-component>
+            </template>
+
+            <template v-slot:userIssueList>
+                <info-contact-component />
+            </template>
         </user-info-box-component>
     </section>
 </template>
@@ -14,6 +34,7 @@
     import UserInfoBoxComponent from './UserInfoBoxComponent.vue';
     import InfoHandlerComponent from './InfoHandlerComponent.vue';
     import InfoContactComponent from './InfoContactComponent.vue';
+    import ButtonComponent from '../../ButtonComponent.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +44,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         place-content: flex-start;
-        gap: 5%;
+        gap: 2%;
         padding: 1rem 0 1rem 0;
     }
 </style>

@@ -1,7 +1,10 @@
 <template>
     <article class="userBox">
-        <h5 class="userBox__header">{{ header }}</h5>
-        <slot />
+        <div class="userBox__header">
+            <h5>{{ header }}</h5>
+            <slot name="importIssues" />
+        </div>
+        <slot name="userIssueList" />
     </article>
 </template>
 
@@ -18,7 +21,7 @@
 
 <style lang="scss" scoped>
     .userBox {
-        @include flex-position(column, nowrap, space-evenly, center);
+        @include flex-position(column, nowrap, space-between, center);
         height: 100%;
         width: 100%;
         background-color: $gray-100;
@@ -28,10 +31,13 @@
         margin: auto;
         gap: 1rem;
         &__header {
-            @include text-header5($font-weight-bold);
+            @include flex-position(row, nowrap, space-between, center);
             width: 100%;
             color: $blue-700;
             text-align: left;
+            h5 {
+                @include text-header5($font-weight-bold);
+            }
         }
         &:deep(ul) {
             @include flex-position(column, nowrap, space-evenly, center);
