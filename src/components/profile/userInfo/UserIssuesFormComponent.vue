@@ -4,8 +4,8 @@
             Uzupełnij informacje o sobie
         </h3>
         <form
-            action=""
-            class="userIssuesContainer__form">
+            class="userIssuesContainer__form"
+            @submit.prevent="handleSaveData">
             <div class="inputBox">
                 <label for="typeOfBlood">Wybierz grupę krwi: </label>
                 <select
@@ -93,7 +93,7 @@
                     aria-label="passwords match"
                     class="dataSend"
                     role="presentation"
-                    >Badanie zostało przesłane pomyślnie</span
+                    >Twoje dane zostały zapisane pomyślnie</span
                 >
             </div>
         </form>
@@ -106,17 +106,21 @@
     import ButtonComponent from '../../ButtonComponent.vue';
     import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
     import ErrorInfo from '../../ErrorInfo.vue';
+    import useCollection from '../../../composables/useCollections.js';
+    import useUserStore from '../../../stores/userStore.js';
+    import { timestamp } from '@vueuse/core';
 
+    const userStore = useUserStore();
+    const { addDoc, error } = useCollection('userIssues');
     const antigenFlag = ref(false);
     const bloodType = ref(null);
     const allergies = ref(null);
-    const diabetes = ref(null);
+    const diabetes = ref(false);
     const isOrganDonor = ref(false);
     const isBloodDonor = ref(false);
 
     const successFlag = ref(false);
     const isLoading = ref(false);
-    const error = ref(null);
 
     const bloodGroup = computed(() =>
         antigenFlag.value ? bloodType.value + '+' : bloodType.value + '-'
@@ -125,6 +129,33 @@
     const disableAddInfo = computed(
         () => !(bloodType.value && antigenFlag.value && bloodGroup.value)
     );
+
+    const handleSaveData = async () => {
+        try {
+            isLoading.value = true;
+            await addDoc({
+                userId: userStore.getUserId,
+                bloodType: bloodGroup.value,
+                allergies: allergies.value,
+                diabetes: diabetes.value,
+                isOrganDonor: isOrganDonor.value,
+                isBloodDonor: isBloodDonor.value,
+                createdAt: timestamp(),
+            });
+            if (error.value) throw new Error();
+            isLoading.value = false;
+            successFlag.value = true;
+        } catch (err) {
+            console.log(error.value);
+        } finally {
+            antigenFlag.value = false;
+            bloodType.value = null;
+            allergies.value = null;
+            diabetes.value = false;
+            isOrganDonor.value = false;
+            isBloodDonor.value = false;
+        }
+    };
     watch(diabetes, () => {
         console.log(diabetes.value, bloodGroup.value);
     });
