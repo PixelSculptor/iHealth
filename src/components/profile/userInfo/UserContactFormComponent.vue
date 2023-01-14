@@ -139,8 +139,9 @@
         try {
             if (contactAvatarFile.value) {
                 await uploadImage(contactAvatarFile.value);
+                console.log(`image uploaded`, url.value);
             }
-            console.log(`image uploaded`, url.value);
+
             await addDoc({
                 userId: userStore.getUserId,
                 nameAndSurname: personName.value,
@@ -177,11 +178,78 @@
 </script>
 
 <style lang="scss" scoped>
-    h3:after {
-        position: absolute;
-        content: '*';
-        width: 1rem;
-        height: 1rem;
-        color: $color-error;
+    .userContactFormContainer {
+        height: 100%;
+        &__header {
+            @include text-header3($font-weight-semiBold);
+            color: $blue-900;
+            height: 15%;
+        }
+        &__form {
+            @include flex-position(column, nowrap, space-evenly, flex-start);
+            height: 85%;
+
+            .inputBox {
+                @include flex-position(row, nowrap, flex-start, center);
+                gap: 1rem;
+                input[type='file'] {
+                    background-color: $white;
+
+                    &::-webkit-file-upload-button {
+                        cursor: pointer;
+                        border: none;
+                        padding: 0.5rem;
+                        width: 45%;
+                        text-align: left;
+                        border-radius: $border-radius--normal;
+                        @include button-soft;
+                        @include text-button($font-weight-semiBold);
+                    }
+                }
+
+                .icon {
+                    cursor: pointer;
+                    position: relative;
+                    &:deep(svg) {
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        top: -0.65rem;
+                        left: 8.2rem;
+                        position: absolute;
+                        color: $blue-700;
+                    }
+                }
+
+                select,
+                input {
+                    @include text-header6($font-weight-regular);
+                }
+
+                label {
+                    @include label;
+                    color: $blue-900;
+                    &:after {
+                        position: absolute;
+                        content: '*';
+                        width: 1rem;
+                        height: 1rem;
+                        color: $color-error;
+                    }
+                }
+            }
+
+            .actionsAndInfo {
+                @include flex-position(column, nowrap, space-evenly, center);
+                gap: 1rem;
+                align-self: center;
+                position: relative;
+                .loader {
+                    position: absolute;
+                }
+            }
+            .dataSend {
+                color: $color-success;
+            }
+        }
     }
 </style>
