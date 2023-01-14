@@ -14,7 +14,7 @@
     </section>
 </template>
 
-<script setup>
+<script async setup>
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserInfoContainerComponent from '../components/profile/userInfo/UserInfoContainerComponent.vue';

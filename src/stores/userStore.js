@@ -25,12 +25,12 @@ const useUserStore = defineStore('user', {
         getUserIssues: (state) => state.userIssues.data,
     },
     actions: {
+        setUserId(uid) {
+            this.userId = uid;
+        },
         async fetchUserData() {
             const { documents } = getCollection('userProfile');
             this.userData.data = documents;
-        },
-        setUserId(uid) {
-            this.userId = uid;
         },
         async fetchPatientCerts() {
             const { documents } = getCollection('certificates');
