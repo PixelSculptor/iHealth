@@ -16,7 +16,6 @@
         },
     });
     // TODO: think about add button to boxes to open modal and edit or add new contact
-    // TODO: to investigate height of userBox container
 </script>
 
 <style lang="scss" scoped>
