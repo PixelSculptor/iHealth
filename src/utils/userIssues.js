@@ -1,12 +1,12 @@
 import { ref } from 'vue';
 
-export const userIssues = ref([
+const userIssues = ref([
     {
         class: 'fa-solid fa-droplet',
         type: 'blood',
         issueKey: 'bloodType',
         label: 'Grupa krwi',
-        userData: '',
+        userData: 'Brak',
     },
     {
         class: 'fa-solid fa-hand-dots',
@@ -37,3 +37,5 @@ export const userIssues = ref([
         userData: 'Nie',
     },
 ]);
+
+export default userIssues;

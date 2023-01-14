@@ -15,7 +15,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^3.0.1",
-    "@syncfusion/ej2-vue-schedule": "^20.4.43",
     "@vueuse/core": "^9.9.0",
     "date-fns": "^2.29.3",
     "firebase": "^8.0.0",

@@ -110,12 +110,13 @@
 
     import { typeOfBlood } from '../../../utils/typeOfResources.js';
     import { computed, ref } from 'vue';
-    import useCollection from '../../../composables/useCollections.js';
     import useUserStore from '../../../stores/userStore.js';
     import { timestamp } from '../../../firebase/config.js';
+    import { useUpdateDocument } from '../../../composables/updateDocument.js';
 
     const userStore = useUserStore();
-    const { addDoc, error } = useCollection('userIssues');
+    // const { addDoc, error } = useCollection('userIssues');
+    const { updateDoc, error } = useUpdateDocument('userIssues');
 
     const antigenFlag = ref(false);
     const bloodType = ref(null);
@@ -132,13 +133,43 @@
     );
 
     const disableAddInfo = computed(
-        () => !(bloodType.value && antigenFlag.value && bloodGroup.value)
+        () => !(bloodType.value && antigenFlag && bloodGroup.value)
     );
+
+    // const handleSaveData = async () => {
+    //     try {
+    //         isLoading.value = true;
+    //         await addDoc({
+    //             userId: userStore.getUserId,
+    //             bloodType: bloodGroup.value,
+    //             allergies: allergies.value,
+    //             diabetes: diabetes.value,
+    //             isOrganDonor: isOrganDonor.value,
+    //             isBloodDonor: isBloodDonor.value,
+    //             createdAt: timestamp(),
+    //         });
+    //         if (error.value) throw new Error();
+    //         isLoading.value = false;
+    //         successFlag.value = true;
+    //     } catch (err) {
+    //         console.log(error.value);
+    //     } finally {
+    //         antigenFlag.value = false;
+    //         bloodType.value = null;
+    //         allergies.value = null;
+    //         diabetes.value = false;
+    //         isOrganDonor.value = false;
+    //         isBloodDonor.value = false;
+    //         isLoading.value = false;
+    //     }
+    // };
+
+    console.log(userStore.getUserIssues[0].id);
 
     const handleSaveData = async () => {
         try {
             isLoading.value = true;
-            await addDoc({
+            await updateDoc(userStore.getUserIssues[0].id, {
                 userId: userStore.getUserId,
                 bloodType: bloodGroup.value,
                 allergies: allergies.value,
