@@ -14,16 +14,16 @@
     </section>
 </template>
 
-<script async setup>
+<script setup>
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserInfoContainerComponent from '../components/profile/userInfo/UserInfoContainerComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
-    import { onMounted } from 'vue';
+    import { onBeforeMount } from 'vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
-    onMounted(async () => await userStore.fetchUserIssues());
+    onBeforeMount(async () => await userStore.fetchUserIssues());
 </script>
 
 <style lang="scss" scoped>

@@ -40,7 +40,7 @@ const router = createRouter({
             path: '/login',
             name: 'Login',
             component: LoginView,
-            beforeEnter: logoutGuard,
+            beforeEnter: [logoutGuard, flushData],
         },
         {
             path: '/profile',
