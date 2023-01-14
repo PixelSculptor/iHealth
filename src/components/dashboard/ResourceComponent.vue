@@ -92,7 +92,7 @@
                     aria-label="passwords match"
                     class="dataSend"
                     role="presentation"
-                    >Badanie zostało przesłane pomyślnie</span
+                    >Badanie zostało przesłane pomyślnie!</span
                 >
             </div>
         </form>

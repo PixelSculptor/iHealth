@@ -5,18 +5,18 @@
                 <button-component
                     class="importBtn"
                     minor
-                    @click="importInfo = true">
+                    @click="importUserIssueInfo = true">
                     <font-awesome-icon icon="fa-solid fa-plus" />
                 </button-component>
                 <teleport to="body">
                     <transition name="modal">
                         <div
-                            v-if="importInfo"
+                            v-if="importUserIssueInfo"
                             class="modal">
                             <modal-component
-                                ref="modalResearch"
-                                @close="importInfo = false">
-                                <resource-component />
+                                ref="modalUserIssue"
+                                @close="importUserIssueInfo = false">
+                                <user-issues-form-component />
                             </modal-component>
                         </div>
                     </transition>
@@ -49,11 +49,15 @@
     import InfoHandlerComponent from './InfoHandlerComponent.vue';
     import InfoContactComponent from './InfoContactComponent.vue';
     import ButtonComponent from '../../ButtonComponent.vue';
-    import ResourceComponent from '../../dashboard/ResourceComponent.vue';
     import ModalComponent from '../../ModalComponent.vue';
-    import { ref } from 'vue';
+    import UserIssuesFormComponent from './UserIssuesFormComponent.vue';
 
-    const importInfo = ref(false);
+    import { ref } from 'vue';
+    import { onClickOutside } from '@vueuse/core';
+
+    const importUserIssueInfo = ref(false);
+    const modalUserIssue = ref(null);
+    onClickOutside(modalUserIssue, () => (importUserIssueInfo.value = false));
 </script>
 
 <style lang="scss" scoped>

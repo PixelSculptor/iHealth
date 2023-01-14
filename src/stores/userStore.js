@@ -13,20 +13,24 @@ const useUserStore = defineStore('user', {
         patientTests: {
             data: null,
         },
+        userIssues: {
+            data: null,
+        },
     }),
     getters: {
         getUserId: (state) => state.userId,
         getUserInfo: (state) => state.userData,
         getPatientCerts: (state) => state.patientCerts.data,
         getPatientTests: (state) => state.patientTests.data,
+        getUserIssues: (state) => state.userIssues.data,
     },
     actions: {
+        setUserId(uid) {
+            this.userId = uid;
+        },
         async fetchUserData() {
             const { documents } = getCollection('userProfile');
             this.userData.data = documents;
-        },
-        setUserId(uid) {
-            this.userId = uid;
         },
         async fetchPatientCerts() {
             const { documents } = getCollection('certificates');
@@ -35,6 +39,10 @@ const useUserStore = defineStore('user', {
         async fetchPatientTests() {
             const { documents } = getCollection('research');
             this.patientTests.data = documents;
+        },
+        async fetchUserIssues() {
+            const { documents } = getCollection('userIssues');
+            this.userIssues.data = documents;
         },
     },
 });

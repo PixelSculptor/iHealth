@@ -112,15 +112,15 @@
     import BmiCalculatorComponent from '../components/dashboard/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/dashboard/tests/CertificatesVaccinesGroupComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
+    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
+    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
+    import ClockComponent from '../components/dashboard/ClockComponent.vue';
+    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
     import { computed, onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
-    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
-    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
-    import ClockComponent from '../components/dashboard/ClockComponent.vue';
-    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
