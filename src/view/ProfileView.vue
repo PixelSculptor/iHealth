@@ -23,7 +23,6 @@
     import { onMounted } from 'vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
-
     onMounted(async () => await userStore.fetchUserIssues());
 </script>
 

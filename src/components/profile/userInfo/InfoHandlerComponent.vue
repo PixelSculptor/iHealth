@@ -7,7 +7,7 @@
                 :icon-background="userIssue.type"
                 :icon-name="userIssue.class" />
             <h6>{{ userIssue.label }}</h6>
-            <span>{{ userIssue.userData }}</span>
+            <p>{{ userIssue.userData }}</p>
         </user-info-label-component>
     </ul>
 </template>
@@ -41,5 +41,9 @@
 <style lang="scss" scoped>
     .dataList {
         height: 100%;
+        &:deep(p) {
+            @include text-paragraph($font-weight-medium);
+            color: $blue-700;
+        }
     }
 </style>

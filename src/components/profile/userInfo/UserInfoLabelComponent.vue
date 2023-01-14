@@ -12,7 +12,7 @@
         width: 100%;
         min-height: 8vh;
         background-color: $white;
-        padding: 1rem;
+        padding-inline: 2rem;
         border: $border-size solid $gray-300;
         border-radius: $border-radius--normal;
 
