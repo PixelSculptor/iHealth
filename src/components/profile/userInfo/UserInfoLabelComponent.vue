@@ -29,7 +29,7 @@
         &:deep(p) {
             @include text-paragraph($font-weight-medium);
             color: $blue-700;
-            text-align: right;
+            text-align: center;
         }
     }
 </style>
