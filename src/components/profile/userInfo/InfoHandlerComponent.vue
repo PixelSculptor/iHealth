@@ -63,9 +63,5 @@
 <style lang="scss" scoped>
     .dataList {
         height: 100%;
-        &:deep(p) {
-            @include text-paragraph($font-weight-medium);
-            color: $blue-700;
-        }
     }
 </style>

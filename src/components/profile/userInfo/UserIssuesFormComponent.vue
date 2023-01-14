@@ -133,55 +133,38 @@
     );
 
     const disableAddInfo = computed(
-        () => !(bloodType.value && antigenFlag && bloodGroup.value)
+        () =>
+            !(bloodType.value && antigenFlag && bloodGroup.value) &&
+            !(
+                allergies.value ||
+                diabetes.value ||
+                isOrganDonor.value ||
+                isBloodDonor.value
+            )
     );
-
-    // const handleSaveData = async () => {
-    //     try {
-    //         isLoading.value = true;
-    //         await addDoc({
-    //             userId: userStore.getUserId,
-    //             bloodType: bloodGroup.value,
-    //             allergies: allergies.value,
-    //             diabetes: diabetes.value,
-    //             isOrganDonor: isOrganDonor.value,
-    //             isBloodDonor: isBloodDonor.value,
-    //             createdAt: timestamp(),
-    //         });
-    //         if (error.value) throw new Error();
-    //         isLoading.value = false;
-    //         successFlag.value = true;
-    //     } catch (err) {
-    //         console.log(error.value);
-    //     } finally {
-    //         antigenFlag.value = false;
-    //         bloodType.value = null;
-    //         allergies.value = null;
-    //         diabetes.value = false;
-    //         isOrganDonor.value = false;
-    //         isBloodDonor.value = false;
-    //         isLoading.value = false;
-    //     }
-    // };
-
-    console.log(userStore.getUserIssues[0].id);
 
     const handleSaveData = async () => {
         try {
             isLoading.value = true;
             await updateDoc(userStore.getUserIssues[0].id, {
                 userId: userStore.getUserId,
-                bloodType: bloodGroup.value,
-                allergies: allergies.value,
-                diabetes: diabetes.value,
-                isOrganDonor: isOrganDonor.value,
-                isBloodDonor: isBloodDonor.value,
+                bloodType:
+                    bloodGroup.value || userStore.getUserIssues[0].bloodType,
+                allergies:
+                    allergies.value || userStore.getUserIssues[0].allergies,
+                diabetes: diabetes.value || userStore.getUserIssues[0].diabetes,
+                isOrganDonor:
+                    isOrganDonor.value ||
+                    userStore.getUserIssues[0].isOrganDonor,
+                isBloodDonor:
+                    isBloodDonor.value ||
+                    userStore.getUserIssues[0].isBloodDonor,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
-            isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
+            error.value = err.message;
             console.log(error.value);
         } finally {
             antigenFlag.value = false;

@@ -10,7 +10,7 @@
     </article>
 </template>
 
-<script setup>
+<script async setup>
     import { onBeforeMount, onBeforeUnmount, ref } from 'vue';
     import DateComponent from '../DateComponent.vue';
 
@@ -35,7 +35,7 @@
                 : date.getSeconds();
     };
 
-    onBeforeMount(() => {
+    onBeforeMount(async () => {
         timer.value = setInterval(setTime, 1000);
     });
 
