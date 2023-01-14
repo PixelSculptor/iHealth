@@ -1,8 +1,11 @@
 <template>
     <div class="icon">
-        <font-awesome-icon
+        <div
             v-if="!avatarUrl"
-            :icon="iconName" />
+            class="fallbackAvatar">
+            <font-awesome-icon :icon="iconName" />
+        </div>
+
         <div
             ref="contact"
             class="contact__img"></div>
@@ -10,7 +13,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from 'vue/dist/vue.js';
+    import { onMounted, ref } from 'vue';
 
     const props = defineProps({
         iconName: {
@@ -42,11 +45,17 @@
         border: none;
         border-radius: 50%;
         padding: 1.8rem;
-        background-color: rgba(240, 236, 161, 0.94);
+        background-color: rgba(244, 236, 88, 0.62);
         &:deep(svg) {
             width: 2rem;
             height: 2rem;
-            color: rgba(244, 236, 4, 0.94);
+            color: rgba(204, 198, 4, 0.95);
+        }
+
+        .contact__img {
+            width: 1.5vmin;
+            height: 1.5vmin;
+            border-radius: 50%;
         }
     }
 </style>
