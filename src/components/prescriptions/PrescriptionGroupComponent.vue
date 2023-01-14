@@ -5,7 +5,9 @@
                 Recepty
                 <span class="numOfPres">{{ prescriptionsList?.length }}</span>
             </h3>
-            <ul class="prescriptionContainer__list">
+            <ul
+                v-if="prescriptionsList?.length"
+                class="prescriptionContainer__list">
                 <prescription-component
                     v-for="presc in prescriptionsList"
                     :key="presc.id"
@@ -15,6 +17,11 @@
                     :type-of-doc="presc.typeOfDoc"
                     :specialization="presc.specialization" />
             </ul>
+            <div
+                v-else
+                class="fallback">
+                <fallback-info-component :information="testInfo" />
+            </div>
         </div>
     </section>
 </template>
@@ -22,8 +29,9 @@
 <script setup>
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
-    import { onMounted, computed } from 'vue';
+    import { onMounted, computed, ref } from 'vue';
     import PrescriptionComponent from './PrescriptionComponent.vue';
+    import FallbackInfoComponent from '../FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
 
@@ -32,6 +40,8 @@
     });
 
     const { getPatientPrescriptions } = storeToRefs(userStore);
+
+    const testInfo = ref('Nie masz jeszcze żadnych recept');
 
     const prescriptionsList = computed(() => {
         return getPatientPrescriptions?.value;

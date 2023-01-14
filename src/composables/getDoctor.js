@@ -1,7 +1,7 @@
 import doctors from '../apiData/doctors.json';
 
 const getDoctorsArray = () => {
-    doctors.map((element) => ({
+    return doctors.map((element) => ({
         doctorName: element.nameAndSurnameDoctor,
         bookNumber: element.bookNumberDoctor,
         medicalCode: element.medicalCodeDoctor,

@@ -3,26 +3,30 @@
         v-if="getUserInfo.data"
         class="prescription">
         <div prescriptionDashboards>
-            <h1 class="prescription__header">Cześć, {{ name }}!</h1>
-            <h6 class="prescription__lower">{{ currentData }}</h6>
+            <div class="prescription__header">
+                <greetings-component />
+            </div>
             <div class="prescription__actions">
+                <button-component
+                    class="prescription__make_visit"
+                    @click="openModalPrescription = true">
+                    Dodaj receptę
+                    <font-awesome-icon icon="fa-solid fa-plus" />
+                </button-component>
+
                 <teleport to="body">
                     <transition name="modal">
                         <div
-                            v-if="openModal"
+                            v-if="openModalPrescription"
                             class="modal">
                             <modal-component
-                                ref="modal"
-                                @close="openModal = false" />
+                                ref="modalPrescription"
+                                @close="openModalPrescription = false">
+                                <prescription-button-component />
+                            </modal-component>
                         </div>
                     </transition>
                 </teleport>
-                <button-component
-                    class="prescription__make_visit"
-                    @click="openModal = true">
-                    Dodaj recznie recepte
-                    <font-awesome-icon icon="fa-solid fa-plus" />
-                </button-component>
             </div>
             <article class="prescription__listOf">
                 <prescription-group-component />
@@ -36,22 +40,26 @@
     import useUserStore from '../stores/userStore.js';
     import ModalComponent from '../components/dashboard/ModalComponent.vue';
     import PrescriptionGroupComponent from '../components/prescriptions/PrescriptionGroupComponent.vue';
+    import GreetingsComponent from '../components/GreetingsComponent.vue';
+    import PrescriptionButtonComponent from '../components/prescriptions/PrescriptionButtonComponent.vue';
 
     import { onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
-    import { currentDate } from '../utils/currentData.js';
     import { onClickOutside } from '@vueuse/core';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
-    const name = ref(userStore.getUserInfo.data[0].name);
-    const openModal = ref(false);
-    const modal = ref(null);
-    const currentData = currentDate();
+    const openModalPrescription = ref(false);
+    const modalPrescription = ref(null);
 
-    onClickOutside(modal, () => (openModal.value = false));
+    onClickOutside(
+        modalPrescription,
+        () => (openModalPrescription.value = false)
+    );
+
     onMounted(async () => {
         await userStore.fetchUserData();
+        await userStore.fetchPatientPrescriptions();
     });
 </script>
 <style scoped lang="scss">

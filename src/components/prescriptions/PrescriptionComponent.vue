@@ -2,7 +2,7 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBoxtitle">{{ name }}</h5>
-        <h5 class="documentBoxtitle">{{ specialization }}</h5>
+        <h5 class="documentBoxtitle">{{ date }}</h5>
         <button-component
             small
             id="documentPath"
@@ -22,6 +22,10 @@
             type: String,
             default: 'Lekarz',
         },
+        date: {
+            type: String,
+            default: '10-01-2022',
+        },
         documentLink: {
             type: String,
             default: '',
@@ -37,10 +41,6 @@
         typeOfDoc: {
             type: String,
             default: 'prescriptionView',
-        },
-        specialization: {
-            type: String,
-            default: 'alergolog',
         },
     });
     const classOfIcon = computed(() => {

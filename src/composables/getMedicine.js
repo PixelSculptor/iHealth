@@ -1,7 +1,7 @@
 import medicines from '../apiData/medicines.json';
 
 const getMedicineArray = () => {
-    medicines.map((element) => ({
+    return medicines.map((element) => ({
         medicineName: element.medicinesName,
         medicinePower: element.power,
         form: element.medicineForm,
