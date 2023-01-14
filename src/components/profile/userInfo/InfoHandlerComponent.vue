@@ -25,7 +25,7 @@
     const { getUserIssues } = storeToRefs(userStore);
 
     onMounted(() => {
-        if (getUserIssues.value[0]) {
+        if (getUserIssues.value) {
             for (const [key, value] of Object.entries(getUserIssues.value[0])) {
                 const userIssue = ref(
                     userIssues.value.find(({ issueKey }) => issueKey === key)
