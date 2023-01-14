@@ -81,7 +81,7 @@
     import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
     import ErrorInfo from '../../ErrorInfo.vue';
 
-    import { relationshipData } from '../../../utils/relationShip.js';
+    import { relationshipData } from '../../../utils/relationship.js';
     import { computed, ref, watch } from 'vue';
     import useCollection from '../../../composables/useCollections.js';
     import ALLOWED_TYPES from '../../../utils/allowedTypes.js';

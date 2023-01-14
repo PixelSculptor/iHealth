@@ -23,7 +23,10 @@
     import { onBeforeMount } from 'vue';
 
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
-    onBeforeMount(async () => await userStore.fetchUserIssues());
+    onBeforeMount(async () => {
+        await userStore.fetchUserIssues();
+        await userStore.fetchUserContacts();
+    });
 </script>
 
 <style lang="scss" scoped>
