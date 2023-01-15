@@ -22,7 +22,7 @@
                             <modal-component
                                 ref="modalPrescription"
                                 @close="openModalPrescription = false">
-                                <prescription-button-component />
+                                <prescription-add-component />
                             </modal-component>
                         </div>
                     </transition>
@@ -66,7 +66,7 @@
     import ModalComponent from '../components/dashboard/ModalComponent.vue';
     import PrescriptionGroupComponent from '../components/prescriptions/PrescriptionGroupComponent.vue';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
-    import PrescriptionButtonComponent from '../components/prescriptions/PrescriptionButtonComponent.vue';
+    import PrescriptionAddComponent from '../components/prescriptions/PrescriptionAddComponent.vue';
     import PrescritionImport from '../components/prescriptions/PrescritionImport.vue';
     import ImportGroupComponent from '../components/prescriptions/ImportGroupComponent.vue';
 

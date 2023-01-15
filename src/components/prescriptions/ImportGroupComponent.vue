@@ -55,9 +55,10 @@
 <style lang="scss" scoped>
     .prescriptionContainer {
         width: 100%;
-        height: 50vh;
+        height: 25vh;
+        padding-top: 10vh;
         @include flex-position(column, nowrap, flex-start, flex-start);
-        gap: 1rem;
+        gap: 0.1rem;
         &__header {
             @include text-header3($font-weight-semiBold);
             color: $blue-900;
