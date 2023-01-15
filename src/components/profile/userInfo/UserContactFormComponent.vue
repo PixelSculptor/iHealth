@@ -103,6 +103,10 @@
         relationshipData.find(({ relType }) => relType === 'others').relType
     );
 
+    const mappedPhoneNumber = computed(() =>
+        phoneNumber.value?.replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, ' ')
+    );
+
     const relationshipName = computed(
         () =>
             relationshipData.find(
@@ -146,7 +150,7 @@
                 userId: userStore.getUserId,
                 nameAndSurname: personName.value,
                 relationshipType: relationshipType.value,
-                phoneNumber: phoneNumber.value,
+                phoneNumber: mappedPhoneNumber.value,
                 contactUrl: url.value,
                 createdAt: timestamp(),
             });
@@ -154,7 +158,6 @@
             isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
-            error.value = err.message;
             console.log(error.value);
         } finally {
             personName.value = null;
@@ -165,14 +168,14 @@
         }
     };
 
-    console.log(relationshipType.value);
     watch(relationshipType, () => {
         console.log(
             relationshipType.value,
             relationshipName.value,
             personName.value,
             phoneNumber.value,
-            contactAvatarFile.value
+            contactAvatarFile.value,
+            mappedPhoneNumber.value
         );
     });
 </script>
