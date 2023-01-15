@@ -5,8 +5,9 @@
         <h5 class="documentBoxtitle">{{ date }}</h5>
         <button-component
             small
+            id="testUrl"
             @click="seeMore">
-            Szczegóły
+            Pobierz receptę
         </button-component>
     </li>
 </template>
@@ -22,6 +23,10 @@
             default: 'Lekarz',
         },
         date: {
+            type: String,
+            default: '',
+        },
+        testUrl: {
             type: String,
             default: '',
         },
@@ -46,7 +51,7 @@
         return 'fa-solid ' + 'fa-pills';
     });
     const seeMore = () => {
-        openNewCard(props.documentLink);
+        openNewCard(props.testUrl);
     };
 </script>
 

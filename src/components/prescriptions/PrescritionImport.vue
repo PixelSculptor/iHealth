@@ -15,11 +15,7 @@
                             value="">
                             Wybierz lekarza
                         </option>
-                        <option
-                            v-for="research in getDoctorsArray()"
-                            :key="research.registryId">
-                            {{ research.doctorName }}
-                        </option>
+                        <option>Zaimportowane z dnia:</option>
                     </select>
                 </div>
                 <div class="inputBox">
@@ -30,20 +26,20 @@
                             value="">
                             Wybierz lek
                         </option>
-                        <option
-                            v-for="research in getMedicineArray()"
-                            :key="research.medicinalProductId">
-                            {{ research.medicineName }}
-                        </option>
+                        <option>Widoczne na zdjeciu</option>
                     </select>
                 </div>
 
                 <div class="inputBox">
                     <label for="frequency">Częstotliwość:</label>
-                    <input
-                        id="title"
-                        v-model="frequency"
-                        type="text" />
+                    <select v-model="frequency">
+                        <option
+                            disabled
+                            value="">
+                            Wybierz lek
+                        </option>
+                        <option>Widoczne na zdjeciu</option>
+                    </select>
                 </div>
 
                 <div class="inputBox">
@@ -51,12 +47,27 @@
                         >Wybierz dzień wystawienia recepty:</label
                     >
                     <input
-                        id="addManually"
                         v-model="researchDate"
                         type="date" />
                 </div>
             </div>
 
+            <div>
+                <div class="inputBox">
+                    <label for="uploadTest">Dodaj wyniki:</label>
+                    <div
+                        class="icon"
+                        tabindex="0">
+                        <font-awesome-icon icon="fa-solid fa-file-import" />
+                    </div>
+                    <input
+                        id="uploadTest"
+                        class=""
+                        type="file"
+                        @change="handleChange" />
+                    <error-info :message="testFileError" />
+                </div>
+            </div>
             <div class="actionsAndInfo">
                 <button-component
                     :disabled="disableAddTest"
@@ -81,38 +92,57 @@
     import ButtonComponent from '../ButtonComponent.vue';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
-    import getDoctorsArray from '../../composables/getDoctor.js';
-    import getMedicineArray from '../../composables/getMedicine.js';
 
     import { computed, ref } from 'vue';
+    import ALLOWED_TYPES from '../../utils/allowedTypes.js';
+    import useStorage from '../../composables/getImage.js';
     import useUserStore from '../../stores/userStore.js';
     import { timestamp } from '../../firebase/config.js';
     import useCollection from '../../composables/useCollections.js';
 
-    const { isLoading, addDoc, error } = useCollection('listOfRecipies');
+    const { isLoading, addDoc, error } = useCollection('listOfImportRecipies');
+    const { url, uploadImage } = useStorage();
 
     const nameAndSurnameDoctor = ref(null);
     const medicine = ref(null);
     const frequency = ref(null);
     const researchDate = ref(null);
     const successFlag = ref(false);
+    const testFile = ref(null);
+    const testFileError = ref(null);
+
     const userStore = useUserStore();
 
-    const disableAddTest = computed(() => !dateFormat.value);
+    const disableAddTest = computed(() => !testFile.value);
     const dateFormat = computed(
         () =>
             researchDate.value &&
             researchDate.value.split('-').reverse().join('-')
     );
 
+    const handleChange = (event) => {
+        const selectedFile = event.target.files[0];
+        if (selectedFile && ALLOWED_TYPES.includes(selectedFile.type)) {
+            testFile.value = selectedFile;
+            testFileError.value = null;
+        } else {
+            testFile.value = null;
+            testFileError.value =
+                'Please select an image file (jpeg, jpg, png, webp or pdf).';
+        }
+    };
+
     const addTest = async () => {
         try {
+            await uploadImage(testFile.value);
+            console.log(`image uploaded`, url.value);
             await addDoc({
                 userId: userStore.getUserId,
-                date: dateFormat.value,
-                doctorData: nameAndSurnameDoctor.value,
-                medicineName: medicine.value,
-                frequencyMedicine: frequency.value,
+                dateImport: dateFormat.value,
+                doctorDataImport: nameAndSurnameDoctor.value,
+                medicineNameImport: medicine.value,
+                frequencyMedicineImport: frequency.value,
+                testUrl: url.value,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
@@ -126,6 +156,8 @@
             nameAndSurnameDoctor.value = null;
             medicine.value = null;
             frequency.value = null;
+            testFile.value = null;
+            testFileError.value = null;
             researchDate.value = null;
         }
     };

@@ -27,9 +27,33 @@
                         </div>
                     </transition>
                 </teleport>
+
+                <button-component
+                    class="prescription__make_visit"
+                    @click="openModalImport = true">
+                    Importuj receptę
+                    <font-awesome-icon icon="fa-solid fa-plus" />
+                </button-component>
+
+                <teleport to="body">
+                    <transition name="modal">
+                        <div
+                            v-if="openModalImport"
+                            class="modal">
+                            <modal-component
+                                ref="modalImport"
+                                @close="openModalImport = false">
+                                <prescrition-import />
+                            </modal-component>
+                        </div>
+                    </transition>
+                </teleport>
             </div>
             <article class="prescription__listOf">
                 <prescription-group-component />
+            </article>
+            <article class="prescription__import">
+                <import-group-component />
             </article>
         </div>
     </section>
@@ -42,6 +66,8 @@
     import PrescriptionGroupComponent from '../components/prescriptions/PrescriptionGroupComponent.vue';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import PrescriptionButtonComponent from '../components/prescriptions/PrescriptionButtonComponent.vue';
+    import PrescritionImport from '../components/prescriptions/PrescritionImport.vue';
+    import ImportGroupComponent from '../components/prescriptions/ImportGroupComponent.vue';
 
     import { onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
@@ -50,16 +76,20 @@
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
     const openModalPrescription = ref(false);
+    const openModalImport = ref(false);
     const modalPrescription = ref(null);
+    const modalImport = ref(null);
 
     onClickOutside(
         modalPrescription,
         () => (openModalPrescription.value = false)
     );
+    onClickOutside(modalImport, () => (openModalImport.value = false));
 
     onMounted(async () => {
         await userStore.fetchUserData();
         await userStore.fetchPatientPrescriptions();
+        await userStore.fetchPatientImportPrescriptions();
     });
 </script>
 <style scoped lang="scss">
@@ -97,6 +127,12 @@
             grid-area: listOf;
             width: 100%;
             height: 10vh;
+            display: grid;
+        }
+        &__import {
+            grid-area: listOf;
+            width: 100%;
+            height: 50vh;
             display: grid;
         }
     }

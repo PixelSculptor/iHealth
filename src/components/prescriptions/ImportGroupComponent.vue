@@ -2,25 +2,28 @@
     <section class="prescription-container">
         <div class="prescriptionContainer">
             <h3 class="prescriptionContainer__header">
-                Dodane recepty
-                <span class="numOfPres">{{ prescriptionsList?.length }}</span>
+                Zaimportowane recepty
+                <span class="numOfPres">{{
+                    prescriptionImportList?.length
+                }}</span>
             </h3>
             <ul
-                v-if="prescriptionsList?.length"
+                v-if="prescriptionImportList?.length"
                 class="prescriptionContainer__list">
-                <prescription-component
-                    v-for="presc in prescriptionsList"
+                <prescription-import-component
+                    v-for="presc in prescriptionImportList"
                     :key="presc.uid"
-                    :name="presc.doctorData"
-                    :date="presc.date"
+                    :testUrl="presc.testUrl"
+                    :name="presc.doctorDataImport"
+                    :date="presc.dateImport"
                     :typeofdoc="presc.typeOfDoc"
-                    :medicine="presc.medicineName"
-                    :frequency="presc.frequencyMedicine" />
+                    :medicine="presc.medicineNameImport"
+                    :frequency="presc.frequencyMedicineImport" />
             </ul>
             <div
                 v-else
                 class="fallback">
-                <fallback-info-component :information="testInfo" />
+                <fallback-info-component :information="importInfo" />
             </div>
         </div>
     </section>
@@ -30,7 +33,7 @@
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
     import { onMounted, computed, ref } from 'vue';
-    import PrescriptionComponent from './PrescriptionComponent.vue';
+    import PrescriptionImportComponent from './PrescriptionImportComponent..vue';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
@@ -40,19 +43,19 @@
         await userStore.fetchPatientImportPrescriptions();
     });
 
-    const { getPatientPrescriptions } = storeToRefs(userStore);
+    const { getPatientImportPrescriptions } = storeToRefs(userStore);
 
-    const testInfo = ref('Nie dodano żadnej recepty');
+    const importInfo = ref('Nie zaimportowano żadnych recept');
 
-    const prescriptionsList = computed(() => {
-        return getPatientPrescriptions?.value;
+    const prescriptionImportList = computed(() => {
+        return getPatientImportPrescriptions?.value;
     });
 </script>
 
 <style lang="scss" scoped>
     .prescriptionContainer {
         width: 100%;
-        height: 25vh;
+        height: 50vh;
         @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 1rem;
         &__header {
