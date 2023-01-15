@@ -100,8 +100,8 @@
             'dashboard dashboard dashboard dashboard dashboard dashboard dashboard sidebar'
             'actions actions actions actions actions actions actions sidebar'
             'listof listof listof listof listof listof listof sidebar'
+            'import import import import import import import sidebar'
             'import import import import import import import sidebar';
-
         &__header {
             height: 50%;
             grid-area: dashboard;
