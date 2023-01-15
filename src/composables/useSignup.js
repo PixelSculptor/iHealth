@@ -24,6 +24,7 @@ const signup = async (email, password) => {
     } catch (err) {
         console.log(err.message);
         error.value = err.message;
+        isLoading.value = false;
     }
 };
 
