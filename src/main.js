@@ -11,6 +11,7 @@ import {
     faBars,
     faCalendarCheck,
     faCapsules,
+    faCrutch,
     faDatabase,
     faDroplet,
     faFileImport,
@@ -18,12 +19,16 @@ import {
     faFilePrescription,
     faFileWaveform,
     faGauge,
+    faHandDots,
     faHeartPulse,
     faIdCard,
+    faLungs,
     faNotesMedical,
     faPlus,
+    faStethoscope,
     faSyringe,
     faUser,
+    faUserAstronaut,
     faUserDoctor,
     faVirusCovid,
     faXmark,
@@ -57,6 +62,11 @@ library.add(
     faVirusCovid,
     faNotesMedical,
     faPills
+    faHandDots,
+    faLungs,
+    faCrutch,
+    faStethoscope,
+    faUserAstronaut
 );
 
 let app;

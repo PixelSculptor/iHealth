@@ -34,6 +34,7 @@
 <style lang="scss" scoped>
     .app {
         @include wrapper(1fr, 10fr);
+        background-color: $white;
     }
 
     .fade-enter-from,

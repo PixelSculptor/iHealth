@@ -19,6 +19,12 @@ const useUserStore = defineStore('user', {
         patientImportPrescriptions: {
             date: null,
         },
+        userIssues: {
+            data: null,
+        },
+        userContacts: {
+            data: null,
+        },
     }),
     getters: {
         getUserId: (state) => state.userId,
@@ -26,16 +32,18 @@ const useUserStore = defineStore('user', {
         getPatientCerts: (state) => state.patientCerts.data,
         getPatientTests: (state) => state.patientTests.data,
         getPatientPrescriptions: (state) => state.patientPrescriptions.data,
-        getPatientImportPrescriptions: (state) =>
-            state.patientImportPrescriptions.data,
+        getPatientImportPrescriptions: (state) => state.patientImportPrescriptions.data,
+        getUserIssues: (state) => state.userIssues.data,
+        getUserContacts: (state) => state.userContacts.data,
+
     },
     actions: {
+        setUserId(uid) {
+            this.userId = uid;
+        },
         async fetchUserData() {
             const { documents } = getCollection('userProfile');
             this.userData.data = documents;
-        },
-        setUserId(uid) {
-            this.userId = uid;
         },
         async fetchPatientCerts() {
             const { documents } = getCollection('certificates');
@@ -52,6 +60,15 @@ const useUserStore = defineStore('user', {
         async fetchPatientImportPrescriptions() {
             const { documents } = getCollection('listOfImportRecipies');
             this.patientImportPrescriptions.data = documents;
+        },
+        async fetchUserIssues() {
+            const { documents } = getCollection('userIssues');
+            this.userIssues.data = documents;
+        },
+        async fetchUserContacts() {
+            const { documents } = getCollection('userContacts');
+            this.userContacts.data = documents;
+
         },
     },
 });

@@ -89,10 +89,10 @@
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-label="passwords match"
+                    aria-label="data success sent"
                     class="dataSend"
                     role="presentation"
-                    >Badanie zostało przesłane pomyślnie</span
+                    >Badanie zostało przesłane pomyślnie!</span
                 >
             </div>
         </form>

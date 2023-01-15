@@ -20,7 +20,7 @@
 
 <style lang="scss" scoped>
     .box {
-        min-height: 50%;
+        min-height: 60vh;
         min-width: 50vw;
         background-color: $white;
         padding: 2rem;

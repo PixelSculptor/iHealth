@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-    import useUserStore from '../../stores/userStore.js';
+    import useUserStore from '../../../stores/userStore.js';
     import { onMounted, ref } from 'vue';
 
     const userStore = useUserStore();
