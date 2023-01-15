@@ -68,7 +68,11 @@
         </div>
 
         <article class="dashboard__bloodResults">
-            <h3 class="blood__header">Morfologia</h3>
+            <h3 class="blood__header">
+                Morfologia
+                <span class="numOfResearch">{{ bloodResults?.length }}</span>
+            </h3>
+
             <ul
                 v-if="bloodResults?.length"
                 class="listOfResults">
@@ -107,16 +111,16 @@
     import BloodResult from '../components/dashboard/tests/BloodResult.vue';
     import BmiCalculatorComponent from '../components/dashboard/BmiCalculatorComponent.vue';
     import CertificatesVaccinesComponent from '../components/dashboard/tests/CertificatesVaccinesGroupComponent.vue';
-    import ModalComponent from '../components/dashboard/ModalComponent.vue';
+    import ModalComponent from '../components/ModalComponent.vue';
+    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
+    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
+    import ClockComponent from '../components/dashboard/ClockComponent.vue';
+    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     import useUserStore from '../stores/userStore.js';
     import { computed, onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
     import { onClickOutside } from '@vueuse/core';
-    import ResourceComponent from '../components/dashboard/ResourceComponent.vue';
-    import VaccinationComponent from '../components/dashboard/tests/VaccinationComponent.vue';
-    import ClockComponent from '../components/dashboard/ClockComponent.vue';
-    import FallbackInfoComponent from '../components/FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
     const { getUserInfo } = storeToRefs(userStore);
@@ -125,7 +129,7 @@
     const modalResearch = ref(null);
     const modalVacc = ref(null);
 
-    const bloodInfo = ref('Nie masz jeszcze żadnych dodanych badań');
+    const bloodInfo = ref('Brak badań');
 
     onClickOutside(modalResearch, () => (openModalResearch.value = false));
     onClickOutside(modalVacc, () => (openModalVaccination.value = false));
@@ -181,6 +185,16 @@
             .blood__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;
+                .numOfResearch {
+                    display: inline-block;
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    @include text-header4();
+                    text-align: center;
+                    background-color: $white;
+                    border: $border-size solid $gray-300;
+                    border-radius: 50%;
+                }
             }
             .listOfResults {
                 width: 100%;

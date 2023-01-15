@@ -2,7 +2,7 @@
     <div class="userInfoWrapper">
         <div class="userAvatar">
             <user-avatar-component />
-            <h5>{{ name }} {{ surname }}</h5>
+            <h4>{{ name }} {{ surname }}</h4>
         </div>
         <div class="userData">
             <user-info-list-component />
@@ -12,7 +12,7 @@
 
 <script setup>
     import UserAvatarComponent from './UserAvatarComponent.vue';
-    import useUserStore from '../../stores/userStore.js';
+    import useUserStore from '../../../stores/userStore.js';
     import { storeToRefs } from 'pinia';
     import { ref } from 'vue';
     import UserInfoListComponent from './UserInfoListComponent.vue';
@@ -31,13 +31,14 @@
         padding: 1rem;
 
         .userAvatar {
-            @include flex-position(column, nowrap, space-evenly, center);
+            @include flex-position(column, nowrap, space-between, center);
             height: 30%;
             width: 100%;
 
-            h5 {
-                @include text-header5();
+            h4 {
+                @include text-header4();
                 color: $white;
+                text-align: center;
             }
         }
 

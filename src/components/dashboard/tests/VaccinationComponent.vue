@@ -66,7 +66,7 @@
                     aria-label="passwords match"
                     class="dataSend"
                     role="presentation"
-                    >Dokument został przesłany pomyślnie</span
+                    >Dokument został przesłany pomyślnie!</span
                 >
             </div>
         </form>
