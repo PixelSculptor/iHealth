@@ -56,6 +56,9 @@
             <article class="prescription__import">
                 <import-group-component />
             </article>
+            <aside class="prescription__userInfo">
+                <user-sidebar-component />
+            </aside>
         </div>
     </section>
 </template>
@@ -69,6 +72,7 @@
     import PrescriptionAddComponent from '../components/prescriptions/PrescriptionAddComponent.vue';
     import PrescritionImport from '../components/prescriptions/PrescritionImport.vue';
     import ImportGroupComponent from '../components/prescriptions/ImportGroupComponent.vue';
+    import UserSidebarComponent from '../components/profile/UserSidebarComponent.vue';
 
     import { onMounted, ref } from 'vue';
     import { storeToRefs } from 'pinia';
@@ -95,16 +99,16 @@
 </script>
 <style scoped lang="scss">
     .prescription {
-        position: relative;
-        width: 100%;
         display: grid;
-        place-items: start;
+        place-items: flex-start;
         grid-template-areas:
-            'dashboard' 'dashboard' 'dashboard'
-            'listOf' 'listOf' 'listOf'
-            'import' 'import' 'import';
-        margin-inline: 2em;
+            'dashboard dashboard dashboard dashboard dashboard dashboard dashboard sidebar'
+            'listof listof listof listof listof listof listof sidebar'
+            'import import import import import import import sidebar';
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
         &__header {
+            height: 50%;
             grid-area: dashboard;
             @include text-header1($font-weight-semiBold);
             color: $blue-900;
@@ -118,23 +122,31 @@
         }
         &__actions {
             grid-area: actions;
-            place-self: centerflex-start;
-            width: 100%;
-            gap: 50rem;
+            place-self: flex-start;
+            gap: 2rem;
             @include flex-position(row, nowrap, flex-start, center);
-            margin: 20px;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
         }
         &__listOf {
-            grid-area: listOf;
+            grid-area: listof;
             place-self: flex-start;
-            width: 100%;
             height: 100%;
         }
         &__import {
             grid-area: import;
             place-self: flex-start;
-            width: 100%;
             height: 100%;
+        }
+        &__userInfo {
+            grid-area: sidebar;
+            background-color: $blue-700;
+            height: 100vh;
+            width: 30vh;
+            place-self: flex-end;
+            box-sizing: border-box;
+            border-top-left-radius: $border-radius--rounded;
+            border-bottom-left-radius: $border-radius--rounded;
         }
     }
 </style>
