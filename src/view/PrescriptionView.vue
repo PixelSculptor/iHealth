@@ -52,6 +52,7 @@
             <article class="prescription__listOf">
                 <prescription-group-component />
             </article>
+
             <article class="prescription__import">
                 <import-group-component />
             </article>
@@ -101,7 +102,7 @@
         grid-template-areas:
             'dashboard' 'dashboard' 'dashboard'
             'listOf' 'listOf' 'listOf'
-            'listOf' 'listOf' 'listOf';
+            'import' 'import' 'import';
         margin-inline: 2em;
         &__header {
             grid-area: dashboard;
@@ -125,15 +126,15 @@
         }
         &__listOf {
             grid-area: listOf;
+            place-self: flex-start;
             width: 100%;
-            height: 10vh;
-            display: grid;
+            height: 100%;
         }
         &__import {
-            grid-area: listOf;
+            grid-area: import;
+            place-self: flex-start;
             width: 100%;
-            height: 50vh;
-            display: grid;
+            height: 100%;
         }
     }
 </style>
