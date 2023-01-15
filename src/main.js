@@ -61,7 +61,7 @@ library.add(
     faSyringe,
     faVirusCovid,
     faNotesMedical,
-    faPills
+    faPills,
     faHandDots,
     faLungs,
     faCrutch,
