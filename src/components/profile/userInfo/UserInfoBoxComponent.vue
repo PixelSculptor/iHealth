@@ -39,7 +39,7 @@
             }
         }
         &:deep(ul) {
-            @include flex-position(column, nowrap, space-evenly, center);
+            @include flex-position(column, nowrap, flex-start, center);
             min-height: 50vh;
             width: 100%;
             overflow-y: scroll;

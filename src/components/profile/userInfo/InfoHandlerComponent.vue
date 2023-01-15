@@ -17,13 +17,12 @@
     import UserIssueIconComponent from './UserIssueIconComponent.vue';
 
     import useUserStore from '../../../stores/userStore.js';
-    import { ref, watch } from 'vue';
+    import { ref, watchEffect } from 'vue';
     import { storeToRefs } from 'pinia';
     import userIssues from '../../../utils/userIssues.js';
 
     const userStore = useUserStore();
     const { getUserIssues } = storeToRefs(userStore);
-
     const bloodType = ref(null);
     const diabetes = ref(null);
     const allergies = ref(null);
@@ -45,13 +44,13 @@
     //   }
     // }
 
-    watch(getUserIssues, () => {
-        console.log(`change`);
+    watchEffect(getUserIssues, () => {
         bloodType.value = getUserIssues.value[0].bloodType;
         allergies.value = getUserIssues.value[0].allergies;
         diabetes.value = getUserIssues.value[0].diabetes;
         isOrganDonor.value = getUserIssues.value[0].isOrganDonor;
         isBloodDonor.value = getUserIssues.value[0].isBloodDonor;
+
         userIssues.value[0].userData = bloodType.value;
         userIssues.value[1].userData = allergies.value || 'Brak';
         userIssues.value[2].userData = diabetes.value || 'Brak';

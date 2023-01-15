@@ -28,6 +28,7 @@ import {
     faStethoscope,
     faSyringe,
     faUser,
+    faUserAstronaut,
     faUserDoctor,
     faVirusCovid,
     faXmark,
@@ -62,7 +63,8 @@ library.add(
     faHandDots,
     faLungs,
     faCrutch,
-    faStethoscope
+    faStethoscope,
+    faUserAstronaut
 );
 
 let app;

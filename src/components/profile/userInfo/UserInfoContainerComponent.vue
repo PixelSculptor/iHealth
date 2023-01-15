@@ -32,9 +32,24 @@
             <template v-slot:importIssues>
                 <button-component
                     class="importBtn"
-                    minor>
+                    minor
+                    @click="importContact = true">
                     <font-awesome-icon icon="fa-solid fa-plus" />
                 </button-component>
+
+                <teleport to="body">
+                    <transition name="modal">
+                        <div
+                            v-if="importContact"
+                            class="modal">
+                            <modal-component
+                                ref="modalUserContacts"
+                                @close="importContact = false">
+                                <user-contact-form-component />
+                            </modal-component>
+                        </div>
+                    </transition>
+                </teleport>
             </template>
 
             <template v-slot:userIssueList>
@@ -54,10 +69,15 @@
 
     import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
+    import UserContactFormComponent from './UserContactFormComponent.vue';
 
     const importUserIssueInfo = ref(false);
     const modalUserIssue = ref(null);
+    const importContact = ref(false);
+    const modalUserContacts = ref(null);
+
     onClickOutside(modalUserIssue, () => (importUserIssueInfo.value = false));
+    onClickOutside(modalUserContacts, () => (importContact.value = false));
 </script>
 
 <style lang="scss" scoped>

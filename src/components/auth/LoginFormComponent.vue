@@ -100,6 +100,8 @@
             console.log('Logged in', email.value);
             userStore.setUserId(user.value.uid);
             await router.push({ name: 'Home' });
+        } else {
+            isLoading.value = false;
         }
         email.value = '';
         password.value = '';

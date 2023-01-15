@@ -194,6 +194,7 @@
     import useUserStore from '../../stores/userStore.js';
     import { timestamp } from '../../firebase/config.js';
     import ALLOWED_TYPES from '../../utils/allowedTypes.js';
+    import { sendDefaultUserIssues } from '../../composables/sendDefaultUserIssues.js';
 
     const userStore = useUserStore();
     const { error, addDoc, isLoading } = useCollection('userProfile');
@@ -265,6 +266,7 @@
                 avatarPath: filePath.value,
                 createdAt: timestamp(),
             });
+            await sendDefaultUserIssues(userStore.getUserId);
 
             if (error.value) {
                 throw new Error();
