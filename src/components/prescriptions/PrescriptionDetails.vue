@@ -1,60 +1,41 @@
 <template>
-    <section v-bind:key="props.id">
-        <ul class="documentBox">
-            <article>
-                <h3
-                    class="documentBox__header"
-                    style="display: inline;">
-                    <font-awesome-icon :icon="classOfIcon" />
-                    Szczegóły recepty:
-                </h3>
-            </article>
-            <article>
-                <h5
-                    class="documentBox__title"
-                    style="display: inline;">
-                    <font-awesome-icon icon="fa-solid fa-user-doctor" />
-                    Imię i nazwisko lekarza:
+    <div
+        v-bind:key="props.id"
+        class="detailsPres">
+        <h3 class="detailsPres__header">Szczegóły recepty</h3>
+        <form class="detailsPres__form">
+            <div class="inputBox">
+                <h5 class="detailsPres__title">
+                    <label> Imię i nazwisko lekarza: </label>
                 </h5>
-                <h6 class="documentBox__data">{{ names }}</h6>
-            </article>
+                <p class="detailsPres__data">{{ names }}</p>
+            </div>
 
-            <article>
-                <h5
-                    class="documentBox__title"
-                    style="display: inline;">
-                    <font-awesome-icon icon="fa-solid fa-tablets" />
-                    Nazwa leku:
+            <div class="inputBox">
+                <h5 class="detailsPres__title">
+                    <label> Nazwa leku: </label>
                 </h5>
-                <h6 class="documentBox__data">{{ medicines }}</h6>
-            </article>
+                <p class="detailsPres__data">{{ medicines }}</p>
+            </div>
 
-            <article>
-                <h5
-                    class="documentBox__title"
-                    style="display: inline;">
-                    <font-awesome-icon icon="fa-solid fa-repeat" />
-                    Częstotliwość leku:
+            <div class="inputBox">
+                <h5 class="detailsPres__title">
+                    <label> Częstotliwość leku: </label>
                 </h5>
-                <h6 class="documentBox__data">{{ frequencys }}</h6>
-            </article>
+                <p class="detailsPres__data">{{ frequencys }}</p>
+            </div>
 
-            <article>
-                <h5
-                    class="documentBox__title"
-                    style="display: inline;">
-                    <font-awesome-icon icon="fa-solid fa-calendar-plus" />
-                    Data wystawienia leku:
+            <div class="inputBox">
+                <h5 class="detailsPres__title">
+                    <label>Data wystawienia leku:</label>
                 </h5>
-                <h6 class="documentBox__data">{{ dates }}</h6>
-            </article>
-        </ul>
-    </section>
+                <h6 class="detailsPres__data">{{ dates }}</h6>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script setup>
-    import { computed } from 'vue';
-
     const props = defineProps({
         names: {
             type: String,
@@ -81,37 +62,35 @@
             default: 0,
         },
     });
-    const classOfIcon = computed(() => {
-        return 'fa-solid ' + 'fa-circle-info';
-    });
 </script>
 <style lang="scss" scoped>
-    .documentBox {
-        width: 100%;
-        padding: 1rem;
-        color: $blue-900;
-        background-color: $white;
-        @include flex-position(column, nowrap, space-around, left);
-        gap: 2rem;
-        .header {
-            display: inline-block;
-            height: 1rem;
-            width: 2.5rem;
-            @include flex-position(column, center, center, left);
-            @include text-header4();
-            text-align: center;
+    .detailsPres {
+        height: 100%;
+        &__header {
+            @include text-header3($font-weight-semiBold);
             color: $blue-900;
-            background-color: $white;
+            height: 15%;
         }
+        &__form {
+            @include flex-position(column, nowrap, space-evenly, flex-start);
+            height: 85%;
 
-        &__data {
-            padding-top: 1rem;
-            @include flex-position(column, nowrap, center, left);
-            gap: 0.5rem;
-        }
-        &__title {
-            @include text-header5($font-weight-light);
-            color: $blue-900;
+            .inputBox {
+                @include flex-position(row, nowrap, flex-start, center);
+                gap: 1rem;
+
+                label {
+                    @include label;
+                    color: $blue-900;
+                }
+
+                h5 {
+                    @include text-header6($font-weight-regular);
+                }
+            }
+            data {
+                @include text-header6($font-weight-regular);
+            }
         }
     }
 </style>
