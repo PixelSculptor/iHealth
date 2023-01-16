@@ -12,7 +12,7 @@
                 class="prescriptionContainer__list">
                 <prescription-import-component
                     v-for="presc in prescriptionImportList"
-                    :key="presc.uid"
+                    :key="presc.id"
                     :testUrl="presc.testUrl"
                     :name="presc.doctorDataImport"
                     :date="presc.dateImport"

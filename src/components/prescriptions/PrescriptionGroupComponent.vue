@@ -9,13 +9,14 @@
                 v-if="prescriptionsList?.length"
                 class="prescriptionContainer__list">
                 <prescription-component
-                    v-for="presc in prescriptionsList"
-                    :key="presc.uid"
+                    v-for="(presc, i) in prescriptionsList"
+                    :key="presc.id"
                     :name="presc.doctorData"
                     :date="presc.date"
                     :typeofdoc="presc.typeOfDoc"
                     :medicine="presc.medicineName"
-                    :frequency="presc.frequencyMedicine" />
+                    :frequency="presc.frequencyMedicine"
+                    :index="i" />
             </ul>
             <div
                 v-else
@@ -32,7 +33,6 @@
     import { onMounted, computed, ref } from 'vue';
     import PrescriptionComponent from './PrescriptionComponent.vue';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
-
     const userStore = useUserStore();
 
     onMounted(async () => {
@@ -47,6 +47,8 @@
     const prescriptionsList = computed(() => {
         return getPatientPrescriptions?.value;
     });
+
+    console.log('id z :', getPatientPrescriptions);
 </script>
 
 <style lang="scss" scoped>
