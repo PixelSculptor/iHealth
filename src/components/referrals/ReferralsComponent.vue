@@ -51,11 +51,9 @@
                         Wybierz typ badania:
                     </option>
                     <option
-                        v-for="research in typeOfSpecialization"
+                        v-for="research in typeOfMedicalExamination"
                         :key="research.keyName">
                         {{ research.typeName }}
-
-                        <!-- TODO: dodac liste badan, do zrobienia.-->
                     </option>
                 </select>
             </div>
@@ -94,6 +92,7 @@
     import ErrorInfo from '../ErrorInfo.vue';
     import getDoctorsArray from '../../composables/getDoctor.js';
     import typeOfSpecialization from '../../utils/listOfSpecialization.js';
+    import typeOfMedicalExamination from '../../utils/listOfTests.js';
     import { computed, ref } from 'vue';
     import { timestamp } from '../../firebase/config.js';
     import useUserStore from '../../stores/userStore.js';
