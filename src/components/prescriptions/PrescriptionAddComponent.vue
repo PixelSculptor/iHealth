@@ -8,7 +8,7 @@
                 <label for="doctorData"> Lekarz:</label>
                 <select
                     id="doctorData"
-                    v-model="nameAndSurnameDoctor">
+                    v-model="doctorData">
                     <option
                         disabled
                         value="">
