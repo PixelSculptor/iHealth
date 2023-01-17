@@ -42,7 +42,7 @@ const useUserStore = defineStore('user', {
             state.patientImportPrescriptions.data,
         getUserIssues: (state) => state.userIssues.data,
         getUserContacts: (state) => state.userContacts.data,
-        getPatientReferrals: (state) => state.patientReferrals.data,
+        getPatientRefferals: (state) => state.patientReferrals.data,
         getPatientImportReferrals: (state) => state.patientImportReferrals.data,
     },
     actions: {
@@ -69,14 +69,6 @@ const useUserStore = defineStore('user', {
             const { documents } = getCollection('listOfImportRecipies');
             this.patientImportPrescriptions.data = documents;
         },
-        async fetchUserIssues() {
-            const { documents } = getCollection('userIssues');
-            this.userIssues.data = documents;
-        },
-        async fetchUserContacts() {
-            const { documents } = getCollection('userContacts');
-            this.userContacts.data = documents;
-        },
         async fetchPatientReferrals() {
             const { documents } = getCollection('listOfReferrals');
             this.patientReferrals.data = documents;
@@ -84,6 +76,14 @@ const useUserStore = defineStore('user', {
         async fetchPatientImportReferrals() {
             const { documents } = getCollection('listOfImportReferrals');
             this.patientImportReferrals.data = documents;
+        },
+        async fetchUserIssues() {
+            const { documents } = getCollection('userIssues');
+            this.userIssues.data = documents;
+        },
+        async fetchUserContacts() {
+            const { documents } = getCollection('userContacts');
+            this.userContacts.data = documents;
         },
     },
 });
