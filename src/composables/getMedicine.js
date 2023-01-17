@@ -1,6 +1,6 @@
 import medicines from '../apiData/medicines.json';
 
-const getMedicineArray = () => {
+export const getMedicineArray = () =>
     medicines.map((element) => ({
         medicineName: element.medicinesName,
         medicinePower: element.power,
@@ -9,5 +9,5 @@ const getMedicineArray = () => {
         manfacturerName: element.medicineManufacturName,
         leaflet: element.medicineManufacturName,
     }));
-};
+
 export default getMedicineArray;

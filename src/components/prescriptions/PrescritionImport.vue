@@ -1,44 +1,60 @@
 <template>
     <div
-        class="researchBox"
+        class="prescriptionBox"
         @submit.prevent="addTest">
-        <h3 class="researchBox__header">Dodaj dokument:</h3>
-        <form class="researchBox__form researchForm">
+        <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
+        <form class="prescriptionBox__form prescriptionForm">
             <div class="inputBox">
-                <label for="researches">Wybierz typ badania:</label>
+                <label for="doctorData"> Lekarz:</label>
                 <select
-                    id="researches"
-                    v-model="documentType"
-                    class="researchForm__typeOfResearch">
+                    id="doctorData"
+                    v-model="nameAndSurnameDoctor">
                     <option
                         disabled
                         value="">
-                        Wybierz jeden typ
+                        Wybierz lekarza
                     </option>
-                    <option
-                        v-for="document in typeOfDocuments"
-                        :key="document.id"
-                        :value="document.type">
-                        {{ document.name }}
-                    </option>
+                    <option>Zaimportowane z dnia:</option>
                 </select>
             </div>
+
             <div class="inputBox">
-                <label for="title">Podaj tytuł:</label>
-                <input
-                    id="title"
-                    v-model="documentTitle"
-                    type="text" />
+                <label for="medicine">Lek:</label>
+                <select
+                    id="medicine"
+                    v-model="medicine">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lek
+                    </option>
+                    <option>Widoczne na zdjeciu</option>
+                </select>
             </div>
+
             <div class="inputBox">
-                <label for="dateOfResource"
-                    >Podaj dzień wystawienia dokumentu:</label
+                <label for="frequencys">Częstotliwość:</label>
+                <select
+                    id="frequencys"
+                    v-model="frequency">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lek
+                    </option>
+                    <option>Widoczne na zdjeciu</option>
+                </select>
+            </div>
+
+            <div class="inputBox">
+                <label for="researchDate"
+                    >Wybierz dzień wystawienia recepty:</label
                 >
                 <input
-                    id="dateOfResource"
-                    v-model="documentDate"
+                    v-model="researchDate"
                     type="date" />
             </div>
+
             <div class="inputBox">
                 <label for="uploadTest">Dodaj wyniki:</label>
                 <div
@@ -48,25 +64,23 @@
                 </div>
                 <input
                     id="uploadTest"
-                    class=""
                     type="file"
                     @change="handleChange" />
-                <error-info :message="documentFileError" />
+                <error-info :message="testFileError" />
             </div>
+
             <div class="actionsAndInfo">
                 <button-component
                     :disabled="disableAddTest"
                     wide
-                    >Zapisz badanie</button-component
+                    >Zapisz receptę</button-component
                 >
                 <bouncing-balls-component :visible="isLoading" />
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-label="passwords match"
                     class="dataSend"
-                    role="presentation"
-                    >Dokument został przesłany pomyślnie!</span
+                    >Recepta została przesłana pomyślnie</span
                 >
             </div>
         </form>
@@ -74,87 +88,82 @@
 </template>
 
 <script setup>
-    import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
-    import ErrorInfo from '../../ErrorInfo.vue';
-    import ButtonComponent from '../../ButtonComponent.vue';
+    import ButtonComponent from '../ButtonComponent.vue';
+    import BouncingBallsComponent from '../BouncingBallsComponent.vue';
+    import ErrorInfo from '../ErrorInfo.vue';
 
     import { computed, ref } from 'vue';
-    import { typeOfDocuments } from '../../../utils/typeOfDocuments.js';
-    import useCollection from '../../../composables/useCollections.js';
-    import useStorage from '../../../composables/getImage.js';
-    import ALLOWED_TYPES from '../../../utils/allowedTypes.js';
-    import { timestamp } from '../../../firebase/config.js';
-    import useUserStore from '../../../stores/userStore.js';
+    import ALLOWED_TYPES from '../../utils/allowedTypes.js';
+    import useStorage from '../../composables/getImage.js';
+    import useUserStore from '../../stores/userStore.js';
+    import { timestamp } from '../../firebase/config.js';
+    import useCollection from '../../composables/useCollections.js';
 
-    const successFlag = ref(false);
-    const { isLoading, addDoc, error } = useCollection('certificates');
+    const { isLoading, addDoc, error } = useCollection('listOfImportRecipies');
     const { url, uploadImage } = useStorage();
 
-    const documentType = ref(null);
-    const documentFile = ref(null);
-    const documentFileError = ref(null);
-    const documentDate = ref(null);
-    const documentTitle = ref('');
+    const nameAndSurnameDoctor = ref(null);
+    const medicine = ref(null);
+    const frequency = ref(null);
+    const researchDate = ref(null);
+    const successFlag = ref(false);
+    const testFile = ref(null);
+    const testFileError = ref(null);
 
     const userStore = useUserStore();
 
-    const disableAddTest = computed(
-        () =>
-            !(
-                documentType.value &&
-                dateFormat.value &&
-                documentFile.value &&
-                documentTitle.value
-            )
-    );
-
+    const disableAddTest = computed(() => !testFile.value);
     const dateFormat = computed(
         () =>
-            documentDate.value &&
-            documentDate.value.split('-').reverse().join('-')
+            researchDate.value &&
+            researchDate.value.split('-').reverse().join('-')
     );
 
     const handleChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile && ALLOWED_TYPES.includes(selectedFile.type)) {
-            documentFile.value = selectedFile;
-            documentFileError.value = null;
+            testFile.value = selectedFile;
+            testFileError.value = null;
         } else {
-            documentFile.value = null;
-            documentFileError.value =
+            testFile.value = null;
+            testFileError.value =
                 'Please select an image file (jpeg, jpg, png, webp or pdf).';
         }
     };
 
     const addTest = async () => {
         try {
-            await uploadImage(documentFile.value);
+            await uploadImage(testFile.value);
             console.log(`image uploaded`, url.value);
             await addDoc({
                 userId: userStore.getUserId,
-                date: dateFormat.value,
-                documentUrl: url.value,
-                testType: documentType.value,
-                documentTitle: documentTitle.value,
+                dateImport: dateFormat.value,
+                doctorDataImport: nameAndSurnameDoctor.value,
+                medicineNameImport: medicine.value,
+                frequencyMedicineImport: frequency.value,
+                testUrl: url.value,
                 createdAt: timestamp(),
             });
             if (error.value) throw new Error();
             isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
+            console.log(err);
             console.log(error.value);
+            console.log(error.message);
         } finally {
-            documentType.value = null;
-            documentFile.value = null;
-            documentFileError.value = null;
-            documentDate.value = null;
-            documentTitle.value = '';
+            nameAndSurnameDoctor.value = null;
+            medicine.value = null;
+            frequency.value = null;
+            testFile.value = null;
+            testFileError.value = null;
+            researchDate.value = null;
         }
     };
 </script>
 
 <style lang="scss" scoped>
-    .researchBox {
+    .prescriptionBox {
         @include flex-position(column, nowrap, space-between, flex-start);
         height: 100%;
         &__header {
@@ -177,20 +186,14 @@
                 align-self: center;
             }
         }
-        .researchForm {
+        .prescriptionForm {
             width: 100%;
             @include flex-position(column, nowrap, space-evenly, flex-start);
             gap: 1rem;
-            &__bloodSection {
-                @include flex-position(column, nowrap, flex-start, flex-start);
-                width: 100%;
-                gap: 1rem;
-            }
 
             .inputBox {
                 @include flex-position(row, nowrap, flex-start, center);
                 gap: 0.5rem;
-
                 input[type='file'] {
                     background-color: $white;
 
@@ -205,7 +208,6 @@
                         @include text-button($font-weight-semiBold);
                     }
                 }
-
                 .icon {
                     cursor: pointer;
                     position: relative;
