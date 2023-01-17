@@ -6,7 +6,7 @@
         <form class="detailsPres__form">
             <div class="inputBox">
                 <h5 class="detailsPres__title">
-                    <label> Imię i nazwisko lekarza: </label>
+                    <label> Lekarz: </label>
                 </h5>
                 <p class="detailsPres__data">{{ names }}</p>
             </div>
@@ -20,14 +20,14 @@
 
             <div class="inputBox">
                 <h5 class="detailsPres__title">
-                    <label> Częstotliwość leku: </label>
+                    <label> Częstotliwość przyjmowania: </label>
                 </h5>
                 <p class="detailsPres__data">{{ frequencys }}</p>
             </div>
 
             <div class="inputBox">
                 <h5 class="detailsPres__title">
-                    <label>Data wystawienia leku:</label>
+                    <label>Data wystawienia recepty:</label>
                 </h5>
                 <h6 class="detailsPres__data">{{ dates }}</h6>
             </div>
@@ -76,8 +76,9 @@
             height: 85%;
 
             .inputBox {
-                @include flex-position(row, nowrap, flex-start, center);
+                @include flex-position(row, nowrap, space-between, center);
                 gap: 1rem;
+                width: 100%;
 
                 label {
                     @include label;

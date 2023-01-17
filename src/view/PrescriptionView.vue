@@ -96,6 +96,8 @@
         place-items: flex-start;
         height: 100vh;
         width: 100%;
+        gap: 5%;
+        margin-inline: 2rem;
         grid-template-areas:
             'dashboard dashboard dashboard dashboard dashboard dashboard dashboard sidebar'
             'actions actions actions actions actions actions actions sidebar'
@@ -111,7 +113,8 @@
         }
         &__actions {
             grid-area: actions;
-            place-self: flex-start;
+            place-self: space-between;
+            width: 50%;
             gap: 2rem;
             @include flex-position(row, nowrap, flex-start, center);
         }

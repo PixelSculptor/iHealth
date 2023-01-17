@@ -94,7 +94,7 @@
         border-radius: $border-radius--normal;
         padding: 1rem;
         background-color: $white;
-        @include flex-position(row, nowrap, space-around, center);
+        @include flex-position(row, nowrap, space-between, center);
         gap: 3rem;
         &:deep(svg) {
             color: $blue-700;
