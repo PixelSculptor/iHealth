@@ -19,6 +19,7 @@
     "date-fns": "^2.29.3",
     "firebase": "^8.0.0",
     "pinia": "^2.0.23",
+    "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.2.37",
     "vue-router": "^4.1.6"
   },
