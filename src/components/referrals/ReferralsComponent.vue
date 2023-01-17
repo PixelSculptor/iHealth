@@ -8,7 +8,7 @@
                 <label for="doctorData"> Lekarz:</label>
                 <select
                     id="doctorData"
-                    v-model="doctorData">
+                    v-model="dataDoctor">
                     <option
                         disabled
                         value="">
@@ -102,7 +102,7 @@
 
     const { isLoading, addDoc, error } = useCollection('listOfReferrals');
 
-    const nameAndSurnameDoctor = ref(null);
+    const dataDoctor = ref(null);
     const specializations = ref(null);
     const typeOfTestPeople = ref(null);
     const researchDate = ref(null);
@@ -121,7 +121,7 @@
             await addDoc({
                 userId: userStore.getUserId,
                 date: dateFormat.value,
-                doctorData: nameAndSurnameDoctor.value,
+                doctorData: dataDoctor.value,
                 specializationType: specializations.value,
                 testType: typeOfTestPeople.value,
                 createdAt: timestamp(),
@@ -134,7 +134,7 @@
             console.log(error.value);
             console.log(error.message);
         } finally {
-            nameAndSurnameDoctor.value = null;
+            dataDoctor.value = null;
             specializations.value = null;
             researchDate.value = null;
             typeOfTestPeople.value = null;

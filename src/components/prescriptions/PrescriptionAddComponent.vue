@@ -90,7 +90,7 @@
 
     const { isLoading, addDoc, error } = useCollection('listOfRecipies');
 
-    const nameAndSurnameDoctor = ref(null);
+    const doctorData = ref(null);
     const medicine = ref(null);
     const frequency = ref(null);
     const researchDate = ref(null);
@@ -109,7 +109,7 @@
             await addDoc({
                 userId: userStore.getUserId,
                 date: dateFormat.value,
-                doctorData: nameAndSurnameDoctor.value,
+                doctorData: doctorData.value,
                 medicineName: medicine.value,
                 frequencyMedicine: frequency.value,
                 createdAt: timestamp(),
@@ -122,7 +122,7 @@
             console.log(error.value);
             console.log(error.message);
         } finally {
-            nameAndSurnameDoctor.value = null;
+            doctorData.value = null;
             medicine.value = null;
             frequency.value = null;
             researchDate.value = null;

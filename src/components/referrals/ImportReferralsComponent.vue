@@ -5,6 +5,15 @@
         <h3 class="referralsBox__header">Dodaj skierowanie:</h3>
         <form class="referralsBox__form referralsForm">
             <div class="inputBox">
+                <label for="doctorData"> Lekarz:</label>
+                <select
+                    id="doctorData"
+                    v-model="nameAndSurnameDoctor">
+                    <option>Zaimportowane z dnia:</option>
+                </select>
+            </div>
+
+            <div class="inputBox">
                 <label for="researchDate"
                     >Wybierz dzień wystawienia skierowania:</label
                 >
@@ -60,6 +69,7 @@
     const { isLoading, addDoc, error } = useCollection('listOfImportReferrals');
     const { url, uploadImage } = useStorage();
 
+    const nameAndSurnameDoctor = ref(null);
     const researchDate = ref(null);
     const successFlag = ref(false);
     const testFile = ref(null);
@@ -91,6 +101,7 @@
             await uploadImage(testFile.value);
             console.log(`image uploaded`, url.value);
             await addDoc({
+                doctorReferralsDataImport: nameAndSurnameDoctor.value,
                 userId: userStore.getUserId,
                 dateImport: dateFormat.value,
                 testUrl: url.value,
