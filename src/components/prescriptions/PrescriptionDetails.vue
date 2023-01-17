@@ -1,42 +1,32 @@
 <template>
-    <div
-        v-bind:key="props.id"
-        class="detailsPres">
+    <div class="detailsPres">
         <h3 class="detailsPres__header">Szczegóły recepty</h3>
-        <form class="detailsPres__form">
+        <form class="detailsPres__form detailsForm">
             <div class="inputBox">
-                <h5 class="detailsPres__title">
-                    <label> Lekarz: </label>
-                </h5>
+                <h5 class="detailsPres__title">Lekarz:</h5>
                 <p class="detailsPres__data">{{ names }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">
-                    <label> Nazwa leku: </label>
-                </h5>
+                <h5 class="detailsPres__title">Nazwa leku:</h5>
                 <p class="detailsPres__data">{{ medicines }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">
-                    <label> Częstotliwość przyjmowania: </label>
-                </h5>
+                <h5 class="detailsPres__title">Częstotliwość przyjmowania:</h5>
                 <p class="detailsPres__data">{{ frequencys }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">
-                    <label>Data wystawienia recepty:</label>
-                </h5>
-                <h6 class="detailsPres__data">{{ dates }}</h6>
+                <h5 class="detailsPres__title">Data wystawienia recepty:</h5>
+                <p class="detailsPres__data">{{ dates }}</p>
             </div>
         </form>
     </div>
 </template>
 
 <script setup>
-    const props = defineProps({
+    defineProps({
         names: {
             type: String,
             default: 'Lekarz',
@@ -77,16 +67,11 @@
 
             .inputBox {
                 @include flex-position(row, nowrap, space-between, center);
-                gap: 1rem;
                 width: 100%;
 
-                label {
+                h5 {
                     @include label;
                     color: $blue-900;
-                }
-
-                h5 {
-                    @include text-header6($font-weight-regular);
                 }
             }
             data {

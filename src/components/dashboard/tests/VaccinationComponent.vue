@@ -24,7 +24,7 @@
                 </select>
             </div>
             <div class="inputBox">
-                <label for="title">Podaj tytuł</label>
+                <label for="title">Podaj tytuł:</label>
                 <input
                     id="title"
                     v-model="documentTitle"

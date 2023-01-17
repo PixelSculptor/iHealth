@@ -1,8 +1,7 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBoxtitle">{{ name }}</h5>
-        <h5 class="documentBoxtitle">{{ date }}</h5>
+        <h5 class="documentBox__title">{{ name }} {{ date }}</h5>
         <button-component
             small
             id="testUrl"
@@ -62,8 +61,8 @@
         border-radius: $border-radius--normal;
         padding: 1rem;
         background-color: $white;
-        @include flex-position(row, nowrap, space-between, center);
-        gap: 3rem;
+        @include flex-position(row, nowrap, space-around, center);
+        gap: 5rem;
         &:deep(svg) {
             color: $blue-700;
             height: 3rem;

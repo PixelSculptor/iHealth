@@ -1,10 +1,7 @@
 <template>
-    <li
-        v-bind:key="props.id"
-        class="documentBox">
+    <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBoxtitle">{{ name }}</h5>
-        <h5 class="documentBoxtitle">{{ date }}</h5>
+        <h5 class="documentBox__title">{{ name }} {{ date }}</h5>
         <button-component
             small
             @click="openModalDetails = true">
@@ -19,12 +16,14 @@
                         ref="modalDetils"
                         @close="openModalDetails = false">
                         <prescription-details
-                            v-bind:key="detailsList[index].id"
-                            :names="detailsList[index].doctorData"
-                            :dates="detailsList[index].date"
-                            :medicines="detailsList[index].medicineName"
+                            v-bind:key="getPatientPrescriptions[index].id"
+                            :names="getPatientPrescriptions[index].doctorData"
+                            :dates="getPatientPrescriptions[index].date"
+                            :medicines="
+                                getPatientPrescriptions[index].medicineName
+                            "
                             :frequencys="
-                                detailsList[index].frequencyMedicine
+                                getPatientPrescriptions[index].frequencyMedicine
                             " />
                     </modal-component>
                 </div>
@@ -48,11 +47,7 @@
     const userStore = useUserStore();
     const { getPatientPrescriptions } = storeToRefs(userStore);
 
-    const detailsList = computed(() => {
-        return getPatientPrescriptions?.value;
-    });
-
-    const props = defineProps({
+    defineProps({
         name: {
             type: String,
             default: 'Lekarz',
@@ -95,7 +90,7 @@
         padding: 1rem;
         background-color: $white;
         @include flex-position(row, nowrap, space-between, center);
-        gap: 3rem;
+        gap: 5rem;
         &:deep(svg) {
             color: $blue-700;
             height: 3rem;

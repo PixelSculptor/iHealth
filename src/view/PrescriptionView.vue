@@ -96,11 +96,12 @@
         place-items: flex-start;
         height: 100vh;
         width: 100%;
-        gap: 5%;
+        gap: 2%;
         margin-inline: 2rem;
         grid-template-areas:
             'dashboard dashboard dashboard dashboard dashboard dashboard dashboard sidebar'
             'actions actions actions actions actions actions actions sidebar'
+            'listof listof listof listof listof listof listof sidebar'
             'listof listof listof listof listof listof listof sidebar'
             'import import import import import import import sidebar'
             'import import import import import import import sidebar';

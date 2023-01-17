@@ -4,57 +4,58 @@
         @submit.prevent="addTest">
         <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
         <form class="prescriptionBox__form prescriptionForm">
-            <div>
-                <div class="inputBox">
-                    <label for="nameAndSurnameDoctor">
-                        Imię i nazwisko lekarza:</label
-                    >
-                    <select v-model="nameAndSurnameDoctor">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz lekarza
-                        </option>
-                        <option
-                            v-for="research in getDoctorsArray()"
-                            :key="research.registryId">
-                            {{ research.doctorName }}
-                        </option>
-                    </select>
-                </div>
-                <div class="inputBox">
-                    <label for="medicine">Lek:</label>
-                    <select v-model="medicine">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz lek
-                        </option>
-                        <option
-                            v-for="research in getMedicineArray()"
-                            :key="research.medicinalProductId">
-                            {{ research.medicineName }}
-                        </option>
-                    </select>
-                </div>
+            <div class="inputBox">
+                <label for="doctorData"> Lekarz:</label>
+                <select
+                    id="doctorData"
+                    v-model="nameAndSurnameDoctor">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lekarza
+                    </option>
+                    <option
+                        v-for="research in getDoctorsArray()"
+                        :key="research.registryId">
+                        {{ research.doctorName }}
+                    </option>
+                </select>
+            </div>
 
-                <div class="inputBox">
-                    <label for="frequency">Częstotliwość:</label>
-                    <input
-                        id="title"
-                        v-model="frequency"
-                        type="text" />
-                </div>
+            <div class="inputBox">
+                <label for="medicine">Lek:</label>
+                <select
+                    id="medicine"
+                    v-model="medicine">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lek
+                    </option>
+                    <option
+                        v-for="research in getMedicineArray()"
+                        :key="research.medicinalProductId">
+                        {{ research.medicineName }}
+                    </option>
+                </select>
+            </div>
 
-                <div class="inputBox">
-                    <label for="researchDate"
-                        >Wybierz dzień wystawienia recepty:</label
-                    >
-                    <input
-                        id="addManually"
-                        v-model="researchDate"
-                        type="date" />
-                </div>
+            <div class="inputBox">
+                <label for="frequency">Częstotliwość:</label>
+                <input
+                    id="frequency"
+                    v-model="frequency"
+                    type="text" />
+            </div>
+
+            <div class="inputBox">
+                <label for="dateOfResource"
+                    >Wybierz dzień wystawienia recepty:</label
+                >
+                <input
+                    id="dateOfResource"
+                    v-model="researchDate"
+                    type="date" />
             </div>
 
             <div class="actionsAndInfo">
@@ -67,9 +68,7 @@
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-label="passwords match"
                     class="dataSend"
-                    role="presentation"
                     >Recepta została przesłana pomyślnie</span
                 >
             </div>
@@ -159,16 +158,10 @@
             width: 100%;
             @include flex-position(column, nowrap, space-evenly, flex-start);
             gap: 1rem;
-            &__bloodSection {
-                @include flex-position(column, nowrap, flex-start, flex-start);
-                width: 100%;
-                gap: 1rem;
-            }
 
             .inputBox {
                 @include flex-position(row, nowrap, flex-start, center);
                 gap: 0.5rem;
-                line-height: 2;
                 input[type='file'] {
                     background-color: $white;
 
@@ -201,25 +194,6 @@
 
         .dataSend {
             color: $color-success;
-        }
-    }
-    .selectBox {
-        @include flex-position(row, flex, flex, flex);
-        gap: 0.5rem;
-
-        input[type='file'] {
-            background-color: $white;
-
-            &::-webkit-file-upload-button {
-                cursor: pointer;
-                border: none;
-                padding: 0.5rem;
-                width: 45%;
-                text-align: left;
-                border-radius: $border-radius--normal;
-                @include button-soft;
-                @include text-button($font-weight-semiBold);
-            }
         }
     }
 </style>

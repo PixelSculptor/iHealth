@@ -4,70 +4,71 @@
         @submit.prevent="addTest">
         <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
         <form class="prescriptionBox__form prescriptionForm">
-            <div>
-                <div class="inputBox">
-                    <label for="nameAndSurnameDoctor">
-                        Imię i nazwisko lekarza:</label
-                    >
-                    <select v-model="nameAndSurnameDoctor">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz lekarza
-                        </option>
-                        <option>Zaimportowane z dnia:</option>
-                    </select>
-                </div>
-                <div class="inputBox">
-                    <label for="medicine">Lek:</label>
-                    <select v-model="medicine">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz lek
-                        </option>
-                        <option>Widoczne na zdjeciu</option>
-                    </select>
-                </div>
-
-                <div class="inputBox">
-                    <label for="frequency">Częstotliwość:</label>
-                    <select v-model="frequency">
-                        <option
-                            disabled
-                            value="">
-                            Wybierz lek
-                        </option>
-                        <option>Widoczne na zdjeciu</option>
-                    </select>
-                </div>
-
-                <div class="inputBox">
-                    <label for="researchDate"
-                        >Wybierz dzień wystawienia recepty:</label
-                    >
-                    <input
-                        v-model="researchDate"
-                        type="date" />
-                </div>
+            <div class="inputBox">
+                <label for="doctorData"> Lekarz:</label>
+                <select
+                    id="doctorData"
+                    v-model="nameAndSurnameDoctor">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lekarza
+                    </option>
+                    <option>Zaimportowane z dnia:</option>
+                </select>
             </div>
 
-            <div>
-                <div class="inputBox">
-                    <label for="uploadTest">Dodaj wyniki:</label>
-                    <div
-                        class="icon"
-                        tabindex="0">
-                        <font-awesome-icon icon="fa-solid fa-file-import" />
-                    </div>
-                    <input
-                        id="uploadTest"
-                        class=""
-                        type="file"
-                        @change="handleChange" />
-                    <error-info :message="testFileError" />
-                </div>
+            <div class="inputBox">
+                <label for="medicine">Lek:</label>
+                <select
+                    id="medicine"
+                    v-model="medicine">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lek
+                    </option>
+                    <option>Widoczne na zdjeciu</option>
+                </select>
             </div>
+
+            <div class="inputBox">
+                <label for="frequencys">Częstotliwość:</label>
+                <select
+                    id="frequencys"
+                    v-model="frequency">
+                    <option
+                        disabled
+                        value="">
+                        Wybierz lek
+                    </option>
+                    <option>Widoczne na zdjeciu</option>
+                </select>
+            </div>
+
+            <div class="inputBox">
+                <label for="researchDate"
+                    >Wybierz dzień wystawienia recepty:</label
+                >
+                <input
+                    v-model="researchDate"
+                    type="date" />
+            </div>
+
+            <div class="inputBox">
+                <label for="uploadTest">Dodaj wyniki:</label>
+                <div
+                    class="icon"
+                    tabindex="0">
+                    <font-awesome-icon icon="fa-solid fa-file-import" />
+                </div>
+                <input
+                    id="uploadTest"
+                    type="file"
+                    @change="handleChange" />
+                <error-info :message="testFileError" />
+            </div>
+
             <div class="actionsAndInfo">
                 <button-component
                     :disabled="disableAddTest"
@@ -78,9 +79,7 @@
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-label="passwords match"
                     class="dataSend"
-                    role="presentation"
                     >Recepta została przesłana pomyślnie</span
                 >
             </div>
@@ -191,23 +190,17 @@
             width: 100%;
             @include flex-position(column, nowrap, space-evenly, flex-start);
             gap: 1rem;
-            &__bloodSection {
-                @include flex-position(column, nowrap, flex-start, flex-start);
-                width: 100%;
-                gap: 1rem;
-            }
 
             .inputBox {
                 @include flex-position(row, nowrap, flex-start, center);
                 gap: 0.5rem;
-                line-height: 2;
                 input[type='file'] {
                     background-color: $white;
 
                     &::-webkit-file-upload-button {
                         cursor: pointer;
                         border: none;
-                        padding: 1rem;
+                        padding: 0.5rem;
                         width: 45%;
                         text-align: left;
                         border-radius: $border-radius--normal;
@@ -215,7 +208,6 @@
                         @include text-button($font-weight-semiBold);
                     }
                 }
-
                 .icon {
                     cursor: pointer;
                     position: relative;
@@ -233,25 +225,6 @@
 
         .dataSend {
             color: $color-success;
-        }
-    }
-    .selectBox {
-        @include flex-position(row, flex, flex, flex);
-        gap: 0.5rem;
-
-        input[type='file'] {
-            background-color: $white;
-
-            &::-webkit-file-upload-button {
-                cursor: pointer;
-                border: none;
-                padding: 0.5rem;
-                width: 45%;
-                text-align: left;
-                border-radius: $border-radius--normal;
-                @include button-soft;
-                @include text-button($font-weight-semiBold);
-            }
         }
     }
 </style>

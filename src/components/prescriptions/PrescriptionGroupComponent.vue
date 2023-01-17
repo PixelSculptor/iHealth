@@ -1,28 +1,26 @@
 <template>
-    <section class="prescription-container">
-        <div class="prescriptionContainer">
-            <h3 class="prescriptionContainer__header">
-                Dodane recepty
-                <span class="numOfPres">{{ prescriptionsList?.length }}</span>
-            </h3>
-            <ul
-                v-if="prescriptionsList?.length"
-                class="prescriptionContainer__list">
-                <prescription-component
-                    v-for="(presc, i) in prescriptionsList"
-                    :key="presc.id"
-                    :name="presc.doctorData"
-                    :date="presc.date"
-                    :typeofdoc="presc.typeOfDoc"
-                    :medicine="presc.medicineName"
-                    :frequency="presc.frequencyMedicine"
-                    :index="i" />
-            </ul>
-            <div
-                v-else
-                class="fallback">
-                <fallback-info-component :information="testInfo" />
-            </div>
+    <section class="prescriptionContainer">
+        <h3 class="prescriptionContainer__header">
+            Dodane recepty
+            <span class="numOfPres">{{ getPatientPrescriptions?.length }}</span>
+        </h3>
+        <ul
+            v-if="getPatientPrescriptions?.length"
+            class="prescriptionContainer__list">
+            <prescription-component
+                v-for="(presc, idElement) in getPatientPrescriptions"
+                :key="presc.id"
+                :name="presc.doctorData"
+                :date="presc.date"
+                :typeofdoc="presc.typeOfDoc"
+                :medicine="presc.medicineName"
+                :frequency="presc.frequencyMedicine"
+                :index="idElement" />
+        </ul>
+        <div
+            v-else
+            class="fallback">
+            <fallback-info-component :information="testInfo" />
         </div>
     </section>
 </template>
@@ -30,7 +28,7 @@
 <script setup>
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
-    import { onMounted, computed, ref } from 'vue';
+    import { onMounted, ref } from 'vue';
     import PrescriptionComponent from './PrescriptionComponent.vue';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
     const userStore = useUserStore();
@@ -43,24 +41,19 @@
     const { getPatientPrescriptions } = storeToRefs(userStore);
 
     const testInfo = ref('Nie dodano żadnej recepty');
-
-    const prescriptionsList = computed(() => {
-        return getPatientPrescriptions?.value;
-    });
-
-    console.log('id z :', getPatientPrescriptions);
 </script>
 
 <style lang="scss" scoped>
     .prescriptionContainer {
         width: 100%;
         height: 25vh;
+
         @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 1rem;
         &__header {
             @include text-header3($font-weight-semiBold);
             color: $blue-900;
-            @include flex-position(row, nowrap, center, center);
+            @include flex-position(row, nowrap, flex-start, center);
             gap: 1rem;
             .numOfPres {
                 display: inline-block;
