@@ -17,13 +17,34 @@
                 is-expanded
                 is-range>
                 <template v-slot:day-content="{ day, attributes }">
-                    <div class="box">
-                        <span class="day-label">{{ day.day }}</span>
-                        <div class="calendarNote">
+                    <div class="dayContainer">
+                        <span class="dayContainer__day-label">{{
+                            day.day
+                        }}</span>
+                        <div class="dayContainer__calendarNote">
                             <calendar-note-component
                                 v-for="attr in attributes"
                                 :key="attr.key"
-                                :title="attr.customData.title" />
+                                :title="attr.customData.title"
+                                @click="seeDetailsFlag = true">
+                                <template>
+                                    <teleport to="body">
+                                        <transition name="modal">
+                                            <div
+                                                v-if="seeDetailsFlag"
+                                                class="modal">
+                                                <modal-component
+                                                    ref="modalUserContacts"
+                                                    @close="
+                                                        seeDetailsFlag = false
+                                                    ">
+                                                    <!--                                        add calendarDetails-->
+                                                </modal-component>
+                                            </div>
+                                        </transition>
+                                    </teleport>
+                                </template>
+                            </calendar-note-component>
                         </div>
                     </div>
                 </template>
@@ -48,14 +69,16 @@
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import ButtonComponent from '../components/ButtonComponent.vue';
     import CalendarNoteComponent from '../components/calendarWidget/CalendarNoteComponent.vue';
+    import ModalComponent from '../components/ModalComponent.vue';
 
+    const seeDetailsFlag = ref(false);
     const date = ref(new Date());
     const x = ref(new Date());
     const attributes = ref([
         {
             key: 1,
             customData: {
-                title: 'Hello.',
+                title: 'Lekarz',
             },
             dates: new Date(
                 date.value.getFullYear(),
@@ -95,18 +118,28 @@
             grid-area: calendar;
             @include flex-position(column, nowrap, center, center);
             place-self: center center;
+            margin-right: 2rem;
 
             &:deep(.calendar) {
                 width: 50vw;
-                .box {
-                    @include flex-position(column, nowrap, flex-start, center);
+                z-index: 0;
+                .dayContainer {
+                    @include flex-position(column, wrap, flex-start, center);
                     height: 100%;
+                    gap: 0.1rem;
 
-                    .day-label {
+                    &__day-label {
+                        @include text-button($font-weight-semiBold);
                         display: inline-block;
+                        padding: 0.8rem;
+                        align-self: flex-start;
+                        //text-align: left;
+                        &--today {
+                        }
+                    }
+                    &__calendarNote {
                         width: 100%;
-                        padding: 0.5rem;
-                        text-align: left;
+                        padding-inline: 0.5rem;
                     }
                 }
             }
@@ -121,8 +154,8 @@
 <style lang="scss" scoped>
     $day-border: 1px solid #b8c2cc;
     $day-border-highlight: 1px solid #b8c2cc;
-    $day-width: 90px;
-    $day-height: 90px;
+    $day-width: 7rem;
+    $day-height: 7rem;
     $weekday-bg: #f8fafc;
     $weekday-border: 1px solid #eaeaea;
 
@@ -131,7 +164,7 @@
             &:deep(.calendar) {
                 .vc-header {
                     background-color: #f1f5f8;
-                    padding: 10px 0;
+                    padding: 0.7rem 0;
                 }
                 .vc-weeks {
                     padding: 0;
@@ -140,10 +173,10 @@
                     background-color: $weekday-bg;
                     border-bottom: $weekday-border;
                     border-top: $weekday-border;
-                    padding: 5px 0;
+                    padding: 0.2rem 0;
                 }
                 .vc-day {
-                    padding: 0 5px 3px 5px;
+                    padding: 0 0.2rem 0.125rem 0.2rem;
                     text-align: left;
                     height: $day-height;
                     min-width: $day-width;
@@ -163,7 +196,7 @@
                     }
                 }
                 .vc-day-dots {
-                    margin-bottom: 5px;
+                    margin-bottom: 0.2rem;
                 }
             }
         }

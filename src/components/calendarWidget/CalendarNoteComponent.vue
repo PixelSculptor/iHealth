@@ -1,14 +1,17 @@
 <template>
     <article class="dateNoteContainer">
+        <slot />
         <div class="dateNoteContainer__info info">
             <h6 class="info__title">{{ title }}</h6>
-            <p>{{ date }}</p>
+            <p class="info__date">{{ formatData }}</p>
         </div>
     </article>
 </template>
 
 <script setup>
-    defineProps({
+    import { computed } from 'vue';
+
+    const props = defineProps({
         title: {
             type: String,
             default: '',
@@ -30,6 +33,35 @@
             default: '',
         },
     });
+    const formatData = computed(
+        () => `${props.date.getHours()}:${props.date.getMinutes()}`
+    );
+    console.log(props.date.getHours(), formatData.value);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .dateNoteContainer {
+        &__info {
+            @include flex-position(row, wrap, flex-start, flex-start);
+            height: 5vh;
+            padding: 0.5rem;
+            border-radius: $border-radius--normal;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background-color: $blue-500;
+            .info {
+                &__title {
+                    @include text-paragraph($font-weight-semiBold);
+                    color: $white;
+                    height: auto;
+                    width: 100%;
+                }
+                &__date {
+                    color: $white;
+                }
+            }
+        }
+    }
+</style>
