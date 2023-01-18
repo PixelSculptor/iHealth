@@ -50,7 +50,7 @@
             </div>
             <div class="actionsAndInfo">
                 <button-component
-                    :disabled="disableAddInfo"
+                    :disabled="disableAddVisit"
                     wide
                     >Zatwierdź</button-component
                 >
@@ -77,8 +77,13 @@
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
 
+    // const {error, isLoading, addDoc} = useCollection('visits');
     const doctorData = ref(null);
     const date = ref(null);
+    const successFlag = ref(false);
+    const place = ref(null);
+    const title = ref(null);
+
     const doctorList = computed(() => getDoctorsArray());
 
     watch(date, () => {
