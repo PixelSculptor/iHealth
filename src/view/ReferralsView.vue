@@ -132,5 +132,6 @@
             border-top-left-radius: $border-radius--rounded;
             border-bottom-left-radius: $border-radius--rounded;
         }
+        //TODO: Kacper will make changes in component UserInfo so he need to in the future change styles here.
     }
 </style>

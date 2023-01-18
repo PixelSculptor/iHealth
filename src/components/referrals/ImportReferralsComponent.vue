@@ -68,6 +68,7 @@
 
     const { isLoading, addDoc, error } = useCollection('listOfImportReferrals');
     const { url, uploadImage } = useStorage();
+
     const nameAndSurnameDoctor = ref(null);
     const researchDate = ref(null);
     const successFlag = ref(false);
@@ -75,6 +76,7 @@
     const testFileError = ref(null);
     const userStore = useUserStore();
     const disableAddTest = computed(() => !testFile.value);
+
     const dateFormat = computed(
         () =>
             researchDate.value &&
@@ -106,11 +108,11 @@
             isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
-            console.log(err);
+            console.log(error.value);
         } finally {
             testFile.value = null;
             testFileError.value = null;
-            researchDate.value = null;
+            nameAndSurnameDoctor.value.researchDate.value = null;
         }
     };
 </script>

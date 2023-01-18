@@ -90,6 +90,7 @@
     import ButtonComponent from '../ButtonComponent.vue';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
+
     import getDoctorsArray from '../../composables/getDoctor.js';
     import specializationArray from '../../utils/specializationArray.js';
     import medicExamArray from '../../utils/medicExamArray.js';
@@ -99,12 +100,14 @@
     import useCollection from '../../composables/useCollections.js';
 
     const { isLoading, addDoc, error } = useCollection('listOfReferrals');
+
+    const userStore = useUserStore();
+
     const dataDoctor = ref(null);
     const specializations = ref(null);
     const typeOfTestPeople = ref(null);
     const researchDate = ref(null);
     const successFlag = ref(false);
-    const userStore = useUserStore();
 
     const disableAddTest = computed(() => !dateFormat.value);
     const dateFormat = computed(
@@ -112,6 +115,7 @@
             researchDate.value &&
             researchDate.value.split('-').reverse().join('-')
     );
+
     const addTest = async () => {
         try {
             await addDoc({
@@ -126,13 +130,12 @@
             isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
-            console.log(err);
+            console.log(error.value);
         } finally {
             dataDoctor.value = null;
             specializations.value = null;
             researchDate.value = null;
             typeOfTestPeople.value = null;
-            isLoading.value = false;
         }
     };
 </script>
