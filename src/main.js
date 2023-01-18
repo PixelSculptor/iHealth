@@ -76,7 +76,8 @@ library.add(
     faTablets,
     faRepeat,
     faCalendarPlus,
-    faCircleInfo
+    faCircleInfo,
+    faCalendarPlus
 );
 
 let app;
