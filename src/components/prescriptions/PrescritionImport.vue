@@ -5,7 +5,7 @@
         <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
         <form class="prescriptionBox__form prescriptionForm">
             <div class="inputBox">
-                <label for="doctorDataImport"> Lekarz:</label>
+                <label for="doctorDataImport">Lekarz: </label>
                 <select
                     id="doctorDataImport"
                     v-model="nameAndSurnameDoctor">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="inputBox">
-                <label for="medicine">Lek:</label>
+                <label for="medicine">Lek: </label>
                 <select
                     id="medicine"
                     v-model="medicine">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="inputBox">
-                <label for="frequencys">Częstotliwość:</label>
+                <label for="frequencys">Częstotliwość: </label>
                 <select
                     id="frequencys"
                     v-model="frequency">

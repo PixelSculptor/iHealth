@@ -2,7 +2,7 @@
     <section class="referralsContainer">
         <h3 class="referralsContainer__header">
             Dodane skierowania
-            <span class="numOfPres">{{ getPatientRefferals?.length }}</span>
+            <span class="numOfRefs">{{ getPatientRefferals?.length }}</span>
         </h3>
         <ul
             v-if="getPatientRefferals?.length"
@@ -20,27 +20,23 @@
         <div
             v-else
             class="fallback">
-            <fallback-info-component :information="testInfo" />
+            <fallback-info-component :information="referralInfo" />
         </div>
     </section>
 </template>
 
 <script setup>
     import { storeToRefs } from 'pinia';
-    import { onMounted, ref } from 'vue';
+    import { ref } from 'vue';
 
     import useUserStore from '../../stores/userStore';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
     import ReferralsComponentLabel from './ReferralsComponentLabel.vue';
 
-    const testInfo = ref('Nie dodano żadnego skierowania');
+    const referralInfo = ref('Nie dodano żadnego skierowania');
 
     const userStore = useUserStore();
     const { getPatientRefferals } = storeToRefs(userStore);
-
-    onMounted(async () => {
-        await userStore.fetchPatientReferrals();
-    });
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +51,7 @@
             color: $blue-900;
             @include flex-position(row, nowrap, flex-start, center);
             gap: 1rem;
-            .numOfPres {
+            .numOfRefs {
                 display: inline-block;
                 height: 2.5rem;
                 width: 2.5rem;

@@ -64,6 +64,9 @@
             color: $blue-900;
             height: 15%;
         }
+        &__data {
+            @include text-header6($font-weight-regular);
+        }
         &__form {
             @include flex-position(column, nowrap, space-evenly, flex-start);
             height: 85%;
@@ -74,9 +77,6 @@
                     @include label;
                     color: $blue-900;
                 }
-            }
-            data {
-                @include text-header6($font-weight-regular);
             }
         }
     }

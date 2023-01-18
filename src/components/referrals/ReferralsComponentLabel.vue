@@ -1,7 +1,8 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }} {{ date }}</h5>
+        <h5 class="documentBox__title">{{ name }}</h5>
+        <p class="documentBox__title">{{ date }}</p>
         <button-component
             small
             @click="openModalDetails = true">
@@ -61,10 +62,6 @@
             type: String,
             default: null,
         },
-        typeOfDoc: {
-            type: String,
-            default: 'referralView',
-        },
         specialization: {
             type: String,
             default: '',
@@ -92,13 +89,15 @@
         background-color: $white;
         @include flex-position(row, nowrap, space-between, center);
         gap: 5rem;
-        &:deep(svg) {
-            color: $blue-700;
-            height: 3rem;
-        }
+
         &__title {
             @include text-header5($font-weight-light);
             color: $gray-700;
+        }
+
+        &:deep(svg) {
+            color: $blue-700;
+            height: 3rem;
         }
     }
 </style>
