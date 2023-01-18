@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-    import { ref, watch } from 'vue';
+    import { ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
 
     import GreetingsComponent from '../components/GreetingsComponent.vue';
@@ -88,7 +88,7 @@
     import VisitsDetailsComponent from '../components/visits/VisitsDetailsComponent.vue';
 
     const seeDetailsFlag = ref(false);
-    const addVisitModal = ref(true);
+    const addVisitModal = ref(false);
     const modalVisitDetails = ref(null);
     const modalAddVisit = ref(null);
 
@@ -96,7 +96,6 @@
     onClickOutside(modalAddVisit, () => (addVisitModal.value = false));
 
     const date = ref(new Date());
-    const x = ref(new Date());
 
     const attributes = ref([
         {
@@ -111,12 +110,6 @@
             ),
         },
     ]);
-
-    console.log(date.value.getHours());
-
-    watch(date, () => {
-        console.log(date.value, x.value.getHours(), x.value.getMinutes());
-    });
 </script>
 
 <style lang="scss" scoped>
