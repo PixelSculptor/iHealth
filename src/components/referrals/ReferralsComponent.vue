@@ -15,9 +15,9 @@
                         Wybierz lekarza
                     </option>
                     <option
-                        v-for="research in getDoctorsArray()"
-                        :key="research.registryId">
-                        {{ research.doctorName }}
+                        v-for="datas in getDoctorsArray()"
+                        :key="datas.registryId">
+                        {{ datas.doctorName }}
                     </option>
                 </select>
             </div>
@@ -33,9 +33,9 @@
                         Wybierz specjalizację:
                     </option>
                     <option
-                        v-for="research in typeOfSpecialization"
-                        :key="research.keyName">
-                        {{ research.typeName }}
+                        v-for="research in specializationArray"
+                        :key="research.specKeyName">
+                        {{ research.specName }}
                     </option>
                 </select>
             </div>
@@ -51,9 +51,9 @@
                         Wybierz typ badania:
                     </option>
                     <option
-                        v-for="research in typeOfMedicalExamination"
-                        :key="research.keyName">
-                        {{ research.typeName }}
+                        v-for="exam in medicExamArray"
+                        :key="exam.medicExamKeyName">
+                        {{ exam.medicExamName }}
                     </option>
                 </select>
             </div>
@@ -91,12 +91,13 @@
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
     import getDoctorsArray from '../../composables/getDoctor.js';
-    import typeOfSpecialization from '../../utils/listOfSpecialization.js';
-    import typeOfMedicalExamination from '../../utils/listOfTests.js';
+    import specializationArray from '../../utils/specializationArray.js';
+    import medicExamArray from '../../utils/medicExamArray.js';
     import { computed, ref } from 'vue';
     import { timestamp } from '../../firebase/config.js';
     import useUserStore from '../../stores/userStore.js';
     import useCollection from '../../composables/useCollections.js';
+
     const { isLoading, addDoc, error } = useCollection('listOfReferrals');
     const dataDoctor = ref(null);
     const specializations = ref(null);
@@ -104,6 +105,7 @@
     const researchDate = ref(null);
     const successFlag = ref(false);
     const userStore = useUserStore();
+
     const disableAddTest = computed(() => !dateFormat.value);
     const dateFormat = computed(
         () =>
@@ -125,13 +127,12 @@
             successFlag.value = true;
         } catch (err) {
             console.log(err);
-            console.log(error.value);
-            console.log(error.message);
         } finally {
             dataDoctor.value = null;
             specializations.value = null;
             researchDate.value = null;
             typeOfTestPeople.value = null;
+            isLoading.value = false;
         }
     };
 </script>

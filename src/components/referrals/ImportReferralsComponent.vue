@@ -5,9 +5,9 @@
         <h3 class="referralsBox__header">Dodaj skierowanie:</h3>
         <form class="referralsBox__form referralsForm">
             <div class="inputBox">
-                <label for="doctorData"> Lekarz:</label>
+                <label for="doctorsData">Lekarz:</label>
                 <select
-                    id="doctorData"
+                    id="doctorsData"
                     v-model="nameAndSurnameDoctor">
                     <option>Zaimportowane z dnia:</option>
                 </select>
@@ -18,6 +18,7 @@
                     >Wybierz dzień wystawienia skierowania:</label
                 >
                 <input
+                    id="researchDate"
                     v-model="researchDate"
                     type="date" />
             </div>
@@ -64,6 +65,7 @@
     import useUserStore from '../../stores/userStore.js';
     import { timestamp } from '../../firebase/config.js';
     import useCollection from '../../composables/useCollections.js';
+
     const { isLoading, addDoc, error } = useCollection('listOfImportReferrals');
     const { url, uploadImage } = useStorage();
     const nameAndSurnameDoctor = ref(null);
@@ -105,8 +107,6 @@
             successFlag.value = true;
         } catch (err) {
             console.log(err);
-            console.log(error.value);
-            console.log(error.message);
         } finally {
             testFile.value = null;
             testFileError.value = null;
