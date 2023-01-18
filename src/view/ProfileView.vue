@@ -52,13 +52,8 @@
         }
         &__userInfo {
             grid-area: sidebar;
-            background-color: $blue-700;
             height: 100vh;
-            width: 35vh;
             place-self: flex-end;
-            box-sizing: border-box;
-            border-top-left-radius: $border-radius--rounded;
-            border-bottom-left-radius: $border-radius--rounded;
         }
     }
 </style>
