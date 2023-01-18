@@ -34,7 +34,16 @@
         },
     });
     const formatData = computed(
-        () => `${props.date.getHours()}:${props.date.getMinutes()}`
+        () =>
+            `${
+                props.date.getHours() < 10
+                    ? '0' + props.date.getHours()
+                    : props.date.getHours()
+            }:${
+                props.date.getMinutes() < 10
+                    ? '0' + props.date.getMinutes()
+                    : props.date.getMinutes()
+            }`
     );
     console.log(props.date.getHours(), formatData.value);
 </script>
