@@ -18,25 +18,22 @@
                 is-range>
                 <template v-slot:day-content="{ day, attributes }">
                     <div class="box">
-                        <span class="">{{ day.day }}</span>
-                        <div class="">
-                            <p
+                        <span class="day-label">{{ day.day }}</span>
+                        <div class="calendarNote">
+                            <calendar-note-component
                                 v-for="attr in attributes"
                                 :key="attr.key"
-                                class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1">
-                                <calendar-note-component
-                                    :title="attr.customData.title" />
-                            </p>
+                                :title="attr.customData.title" />
                         </div>
                     </div>
                 </template>
             </v-calendar>
-            <v-date-picker
-                v-model="date"
-                :timezone="timezone"
-                color="indigo"
-                is-expanded
-                mode="dateTime" />
+            <!--            <v-date-picker-->
+            <!--                v-model="date"-->
+            <!--                :timezone="timezone"-->
+            <!--                color="indigo"-->
+            <!--                is-expanded-->
+            <!--                mode="dateTime" />-->
         </article>
 
         <aside class="visitsView__userInfo">
@@ -54,15 +51,11 @@
 
     const date = ref(new Date());
     const x = ref(new Date());
-    const timezone = ref('');
     const attributes = ref([
         {
             key: 1,
             customData: {
                 title: 'Hello.',
-                place: '',
-                doctor: '',
-                specInfo: '',
             },
             dates: new Date(
                 date.value.getFullYear(),
@@ -89,6 +82,7 @@
             'calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar sidebar'
             'calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar sidebar'
             'calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar sidebar';
+        margin-left: 2rem;
 
         &__header {
             grid-area: header;
@@ -106,7 +100,14 @@
                 width: 50vw;
                 .box {
                     @include flex-position(column, nowrap, flex-start, center);
-                    margin-inline: 20px;
+                    height: 100%;
+
+                    .day-label {
+                        display: inline-block;
+                        width: 100%;
+                        padding: 0.5rem;
+                        text-align: left;
+                    }
                 }
             }
         }
@@ -114,6 +115,57 @@
         &__userInfo {
             grid-area: sidebar;
             place-self: center flex-end;
+        }
+    }
+</style>
+<style lang="scss" scoped>
+    $day-border: 1px solid #b8c2cc;
+    $day-border-highlight: 1px solid #b8c2cc;
+    $day-width: 90px;
+    $day-height: 90px;
+    $weekday-bg: #f8fafc;
+    $weekday-border: 1px solid #eaeaea;
+
+    .visitsView {
+        &__calendar {
+            &:deep(.calendar) {
+                .vc-header {
+                    background-color: #f1f5f8;
+                    padding: 10px 0;
+                }
+                .vc-weeks {
+                    padding: 0;
+                }
+                .vc-weekday {
+                    background-color: $weekday-bg;
+                    border-bottom: $weekday-border;
+                    border-top: $weekday-border;
+                    padding: 5px 0;
+                }
+                .vc-day {
+                    padding: 0 5px 3px 5px;
+                    text-align: left;
+                    height: $day-height;
+                    min-width: $day-width;
+                    background-color: white;
+                    &.weekday-1,
+                    &.weekday-7 {
+                        background-color: #eff8ff;
+                    }
+                    &:not(.on-bottom) {
+                        border-bottom: $day-border;
+                        &.weekday-1 {
+                            border-bottom: $day-border-highlight;
+                        }
+                    }
+                    &:not(.on-right) {
+                        border-right: $day-border;
+                    }
+                }
+                .vc-day-dots {
+                    margin-bottom: 5px;
+                }
+            }
         }
     }
 </style>
