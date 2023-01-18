@@ -1,52 +1,55 @@
 <template>
-    <section class="prescriptionContainer">
-        <h3 class="prescriptionContainer__header">
-            Zaimportowane recepty
-            <span class="numOfPres">{{
-                getPatientImportPrescriptions?.length
-            }}</span>
+    <section class="referralsContainer">
+        <h3 class="referralsContainer__header">
+            Dodane skierowania
+            <span class="numOfPres">{{ getPatientRefferals?.length }}</span>
         </h3>
         <ul
-            v-if="getPatientImportPrescriptions?.length"
-            class="prescriptionContainer__list">
-            <prescription-import-component
-                v-for="prescription in getPatientImportPrescriptions"
-                :key="prescription.id"
-                :name="prescription.doctorDataImport"
-                :testUrl="prescription.testUrl"
-                :date="prescription.dateImport"
-                :typeofdoc="prescription.typeOfDoc"
-                :medicine="prescription.medicineNameImport"
-                :frequency="prescription.frequencyMedicineImport" />
+            v-if="getPatientRefferals?.length"
+            class="referralsContainer__list">
+            <referrals-component-label
+                v-for="(referral, idElement) in getPatientRefferals"
+                :key="referral.id"
+                :name="referral.doctorData"
+                :date="referral.date"
+                :typeofdoc="referral.typeOfDoc"
+                :specialization="referral.specializationType"
+                :typeOfTest="referral.testType"
+                :index="idElement" />
         </ul>
         <div
             v-else
             class="fallback">
-            <fallback-info-component :information="importInfo" />
+            <fallback-info-component :information="testInfo" />
         </div>
     </section>
 </template>
 
 <script setup>
     import { storeToRefs } from 'pinia';
+    import { onMounted, ref } from 'vue';
+
     import useUserStore from '../../stores/userStore';
-    import { ref } from 'vue';
-    import PrescriptionImportComponent from './PrescriptionImportComponent..vue';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
+    import ReferralsComponentLabel from './ReferralsComponentLabel.vue';
+
+    const testInfo = ref('Nie dodano żadnego skierowania');
 
     const userStore = useUserStore();
+    const { getPatientRefferals } = storeToRefs(userStore);
 
-    const { getPatientImportPrescriptions } = storeToRefs(userStore);
-
-    const importInfo = ref('Nie zaimportowano żadnych recept');
+    onMounted(async () => {
+        await userStore.fetchPatientReferrals();
+    });
 </script>
 
 <style lang="scss" scoped>
-    .prescriptionContainer {
+    .referralsContainer {
         width: 100%;
         height: 25vh;
+
         @include flex-position(column, nowrap, flex-start, flex-start);
-        gap: 0.1rem;
+        gap: 1rem;
         &__header {
             @include text-header3($font-weight-semiBold);
             color: $blue-900;

@@ -37,6 +37,7 @@ import {
     faRepeat,
     faCalendarPlus,
     faCircleInfo,
+    faClipboard,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 import { projectAuth } from './firebase/config.js';
@@ -74,7 +75,8 @@ library.add(
     faTablets,
     faRepeat,
     faCalendarPlus,
-    faCircleInfo
+    faCircleInfo,
+    faClipboard
 );
 
 let app;

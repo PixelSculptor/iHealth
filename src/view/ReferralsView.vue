@@ -46,7 +46,9 @@
                 </transition>
             </teleport>
         </div>
-        <article class="referrals__listOf"></article>
+        <article class="referrals__listOf">
+            <referrals-group-component />
+        </article>
         <article class="referrals__import"></article>
         <aside class="referrals__userInfo">
             <user-sidebar-component />
@@ -62,6 +64,7 @@
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import ImportReferralsComponent from '../components/referrals/ImportReferralsComponent.vue';
     import ReferralsComponent from '../components/referrals/ReferralsComponent.vue';
+    import ReferralsGroupComponent from '../components/referrals/ReferralsGroupComponent.vue';
 
     import { onMounted, ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
