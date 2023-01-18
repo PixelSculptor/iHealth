@@ -5,10 +5,28 @@
         </article>
 
         <article class="visitsView__calendar">
-            <button-component regular>
+            <button-component
+                regular
+                @click="addVisitModal = true">
                 Dodaj wpis
                 <font-awesome-icon icon="fa-solid fa-calendar-plus" />
             </button-component>
+            <template>
+                <teleport to="body">
+                    <transition name="modal">
+                        <div
+                            v-if="addVisitModal"
+                            class="modal">
+                            <modal-component
+                                ref="modalAddVisit"
+                                @close="addVisitModal = false">
+                                <add-visit-form-component />
+                            </modal-component>
+                        </div>
+                    </transition>
+                </teleport>
+            </template>
+
             <v-calendar
                 v-model="date"
                 :attributes="attributes"
@@ -34,11 +52,11 @@
                                                 v-if="seeDetailsFlag"
                                                 class="modal">
                                                 <modal-component
-                                                    ref="modalUserContacts"
+                                                    ref="modalVisitDetails"
                                                     @close="
                                                         seeDetailsFlag = false
                                                     ">
-                                                    <!--                                        add calendarDetails-->
+                                                    <visits-details-component />
                                                 </modal-component>
                                             </div>
                                         </transition>
@@ -59,15 +77,27 @@
 
 <script setup>
     import { ref, watch } from 'vue';
+    import { onClickOutside } from '@vueuse/core';
+
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import ButtonComponent from '../components/ButtonComponent.vue';
     import CalendarNoteComponent from '../components/calendarWidget/CalendarNoteComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
+    import AddVisitFormComponent from '../components/visits/AddVisitFormComponent.vue';
+    import VisitsDetailsComponent from '../components/visits/VisitsDetailsComponent.vue';
 
     const seeDetailsFlag = ref(false);
+    const addVisitModal = ref(false);
+    const modalVisitDetails = ref(null);
+    const modalAddVisit = ref(null);
+
+    onClickOutside(modalVisitDetails, () => (seeDetailsFlag.value = false));
+    onClickOutside(modalAddVisit, () => (addVisitModal.value = false));
+
     const date = ref(new Date());
     const x = ref(new Date());
+
     const attributes = ref([
         {
             key: 1,

@@ -60,6 +60,13 @@
             overflow-y: scroll;
             overflow-x: hidden;
             background-color: $blue-500;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+
+            &:hover {
+                background-color: $blue-700;
+            }
+
             .info {
                 &__title {
                     @include text-paragraph($font-weight-semiBold);
