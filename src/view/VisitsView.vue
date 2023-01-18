@@ -82,13 +82,13 @@
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
     import ButtonComponent from '../components/ButtonComponent.vue';
-    import CalendarNoteComponent from '../components/calendarWidget/CalendarNoteComponent.vue';
+    import CalendarNoteComponent from '../components/visits/CalendarNoteComponent.vue';
     import ModalComponent from '../components/ModalComponent.vue';
     import AddVisitFormComponent from '../components/visits/AddVisitFormComponent.vue';
     import VisitsDetailsComponent from '../components/visits/VisitsDetailsComponent.vue';
 
     const seeDetailsFlag = ref(false);
-    const addVisitModal = ref(false);
+    const addVisitModal = ref(true);
     const modalVisitDetails = ref(null);
     const modalAddVisit = ref(null);
 
