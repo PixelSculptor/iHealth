@@ -53,7 +53,7 @@
         &__userInfo {
             grid-area: sidebar;
             height: 100vh;
-            place-self: flex-end;
+            place-self: center flex-end;
         }
     }
 </style>
