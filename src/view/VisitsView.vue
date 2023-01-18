@@ -49,12 +49,6 @@
                     </div>
                 </template>
             </v-calendar>
-            <!--            <v-date-picker-->
-            <!--                v-model="date"-->
-            <!--                :timezone="timezone"-->
-            <!--                color="indigo"-->
-            <!--                is-expanded-->
-            <!--                mode="dateTime" />-->
         </article>
 
         <aside class="visitsView__userInfo">
@@ -109,7 +103,7 @@
 
         &__header {
             grid-area: header;
-            place-self: center flex-start;
+            place-self: flex-end flex-start;
         }
 
         &__calendar {
@@ -161,10 +155,14 @@
 
     .visitsView {
         &__calendar {
+            @include flex-position(column, nowrap, space-evenly, center);
+            &:deep(button) {
+                align-self: flex-start;
+            }
             &:deep(.calendar) {
                 .vc-header {
                     background-color: #f1f5f8;
-                    padding: 0.7rem 0;
+                    padding: 0.5rem 0;
                 }
                 .vc-weeks {
                     padding: 0;
