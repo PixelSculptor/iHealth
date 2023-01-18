@@ -4,7 +4,7 @@
         <form
             action=""
             class="addVisit__form">
-            <div class="userPoles">
+            <article class="userPoles">
                 <div class="inputBox">
                     <label for="title">Tytuł wizyty: </label>
                     <input
@@ -37,8 +37,25 @@
                         </option>
                     </select>
                 </div>
-            </div>
-            <div
+                <div class="inputBox">
+                    <label for="specialization">Specjalizacja:</label>
+                    <select
+                        id="specialization"
+                        v-model="specialization">
+                        <option
+                            disabled
+                            value="">
+                            Wybierz specjalizację:
+                        </option>
+                        <option
+                            v-for="research in specializationArray"
+                            :key="research.specKeyName">
+                            {{ research.specName }}
+                        </option>
+                    </select>
+                </div>
+            </article>
+            <article
                 id="datePicker"
                 class="inputBox">
                 <label for="visitDate">Podaj datę: </label>
@@ -47,10 +64,10 @@
                     v-model="date"
                     color="indigo"
                     mode="dateTime" />
-            </div>
-            <div class="actionsAndInfo">
+            </article>
+            <article class="actionsAndInfo">
                 <button-component
-                    :disabled="disableAddVisit"
+                    :disabled="!disableAddVisit"
                     wide
                     >Zatwierdź</button-component
                 >
@@ -65,7 +82,7 @@
                     role="presentation"
                     >Twoje dane zostały zapisane pomyślnie!</span
                 >
-            </div>
+            </article>
         </form>
     </section>
 </template>
@@ -73,6 +90,8 @@
 <script setup>
     import { computed, ref, watch } from 'vue';
     import getDoctorsArray from '../../composables/getDoctor.js';
+    import specializationArray from '../../utils/specializationArray.js';
+
     import ButtonComponent from '../ButtonComponent.vue';
     import BouncingBallsComponent from '../BouncingBallsComponent.vue';
     import ErrorInfo from '../ErrorInfo.vue';
@@ -83,11 +102,40 @@
     const successFlag = ref(false);
     const place = ref(null);
     const title = ref(null);
+    const specialization = ref(null);
 
     const doctorList = computed(() => getDoctorsArray());
 
+    const formatHour = computed(
+        () =>
+            `${
+                date.value.getHours() < 10
+                    ? '0' + date.value.getHours()
+                    : date.value.getHours()
+            }:${
+                date.value.getMinutes() < 10
+                    ? '0' + date.value.getMinutes()
+                    : date.value.getMinutes()
+            }`
+    );
+
+    const disableAddVisit = computed(() => false);
+
+    const formatDate = computed(
+        () =>
+            `${date.value.getFullYear()}-${
+                date.value.getMonth() + 1 < 10
+                    ? '0' + (date.value.getMonth() + 1)
+                    : date.value.getMonth() + 1
+            }-${
+                date.value.getDate() < 10
+                    ? '0' + date.value.getDate()
+                    : date.value.getDate()
+            }`
+    );
+
     watch(date, () => {
-        console.log(date.value.getFullYear());
+        console.log(formatDate.value, formatHour.value);
     });
 </script>
 
