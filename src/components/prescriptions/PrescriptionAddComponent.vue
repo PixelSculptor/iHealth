@@ -5,10 +5,10 @@
         <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
         <form class="prescriptionBox__form prescriptionForm">
             <div class="inputBox">
-                <label for="doctorData"> Lekarz:</label>
+                <label for="nameAndSurnameDoctor"> Lekarz:</label>
                 <select
-                    id="doctorData"
-                    v-model="doctorData">
+                    id="nameAndSurnameDoctor"
+                    v-model="nameAndSurnameDoctor">
                     <option
                         disabled
                         value="">
