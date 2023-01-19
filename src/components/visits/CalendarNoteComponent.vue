@@ -3,55 +3,29 @@
         <slot />
         <div class="dateNoteContainer__info info">
             <h6 class="info__title">{{ title }}</h6>
-            <p class="info__date">{{ formatData }}</p>
+            <p class="info__date">{{ hour }}</p>
         </div>
     </article>
 </template>
 
 <script setup>
-    import { computed } from 'vue';
-
-    const props = defineProps({
+    defineProps({
         title: {
             type: String,
             default: '',
         },
-        doctor: {
-            type: String,
-            default: '',
-        },
-        date: {
-            type: Date,
-            default: new Date(),
-        },
-        place: {
-            type: String,
-            default: '',
-        },
-        specInfo: {
+        hour: {
             type: String,
             default: '',
         },
     });
-    const formatData = computed(
-        () =>
-            `${
-                props.date.getHours() < 10
-                    ? '0' + props.date.getHours()
-                    : props.date.getHours()
-            }:${
-                props.date.getMinutes() < 10
-                    ? '0' + props.date.getMinutes()
-                    : props.date.getMinutes()
-            }`
-    );
 </script>
 
 <style lang="scss" scoped>
     .dateNoteContainer {
         &__info {
             @include flex-position(row, wrap, flex-start, flex-start);
-            height: 5vh;
+            height: 6vh;
             padding: 0.5rem;
             border-radius: $border-radius--normal;
             flex-wrap: wrap;
@@ -75,6 +49,22 @@
                 }
                 &__date {
                     color: $white;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 900px) {
+        .dateNoteContainer {
+            @include flex-position(row, nowrap, center, center);
+            width: 100%;
+            &__info {
+                height: 1.5rem;
+                width: 1.5rem;
+                border-radius: 50%;
+                .info__title,
+                .info__date {
+                    color: $blue-500;
                 }
             }
         }

@@ -42,6 +42,7 @@
                             v-if="filterDates(day)"
                             class="dayContainer__calendarNote">
                             <calendar-note-component
+                                :hour="filterDates(day)?.customData.hour"
                                 :title="filterDates(day)?.customData.title"
                                 @click="seeDetailsFlag = true">
                                 <template>
@@ -55,7 +56,32 @@
                                                     @close="
                                                         seeDetailsFlag = false
                                                     ">
-                                                    <visits-details-component />
+                                                    <visits-details-component
+                                                        :date="
+                                                            filterDates(day)
+                                                                ?.customData
+                                                                .date
+                                                        "
+                                                        :doctor="
+                                                            filterDates(day)
+                                                                ?.customData
+                                                                .doctor
+                                                        "
+                                                        :hour="
+                                                            filterDates(day)
+                                                                ?.customData
+                                                                .hour
+                                                        "
+                                                        :place="
+                                                            filterDates(day)
+                                                                ?.customData
+                                                                .place
+                                                        "
+                                                        :title="
+                                                            filterDates(day)
+                                                                ?.customData
+                                                                .title
+                                                        " />
                                                 </modal-component>
                                             </div>
                                         </transition>
@@ -89,7 +115,7 @@
 
     const userStore = useUserStore();
 
-    const seeDetailsFlag = ref(false);
+    const seeDetailsFlag = ref(true);
     const addVisitModal = ref(false);
     const modalVisitDetails = ref(null);
     const modalAddVisit = ref(null);
@@ -147,10 +173,10 @@
         }
 
         &__calendar {
+            @include flex-position(column, nowrap, center, center);
             width: 100%;
             height: 100%;
             grid-area: calendar;
-            @include flex-position(column, nowrap, center, center);
             place-self: center center;
             margin-right: 2rem;
 
@@ -165,7 +191,7 @@
                     &__day-label {
                         @include text-button($font-weight-semiBold);
                         display: inline-block;
-                        padding: 0.8rem;
+                        padding: 0.5rem;
                         align-self: flex-start;
                         //text-align: left;
                         &--today {
@@ -188,14 +214,16 @@
 <style lang="scss" scoped>
     $day-border: 1px solid #b8c2cc;
     $day-border-highlight: 1px solid #b8c2cc;
-    $day-width: 7rem;
-    $day-height: 7rem;
+    $day-width: 3rem;
+    $day-height: 4rem;
     $weekday-bg: #f8fafc;
     $weekday-border: 1px solid #eaeaea;
 
     .visitsView {
         &__calendar {
-            @include flex-position(column, nowrap, space-evenly, center);
+            @include flex-position(column, nowrap, flex-start, center);
+            margin-top: 10%;
+            gap: 1rem;
             &:deep(button) {
                 align-self: flex-start;
             }
@@ -216,7 +244,7 @@
                 .vc-day {
                     padding: 0 0.2rem 0.125rem 0.2rem;
                     text-align: left;
-                    height: $day-height;
+                    min-height: $day-height;
                     min-width: $day-width;
                     background-color: white;
                     &.weekday-1,
