@@ -28,22 +28,21 @@
             </template>
 
             <v-calendar
-                v-model="date"
-                :attributes="attributes"
+                :attributes="data"
                 class="calendar"
                 color="indigo"
                 is-expanded
                 is-range>
-                <template v-slot:day-content="{ day, attributes }">
+                <template v-slot:day-content="{ day }">
                     <div class="dayContainer">
                         <span class="dayContainer__day-label">{{
                             day.day
                         }}</span>
-                        <div class="dayContainer__calendarNote">
+                        <div
+                            v-if="filterDates(day)"
+                            class="dayContainer__calendarNote">
                             <calendar-note-component
-                                v-for="attr in attributes"
-                                :key="attr.key"
-                                :title="attr.customData.title"
+                                :title="filterDates(day)?.customData.title"
                                 @click="seeDetailsFlag = true">
                                 <template>
                                     <teleport to="body">
@@ -98,25 +97,9 @@
     onClickOutside(modalVisitDetails, () => (seeDetailsFlag.value = false));
     onClickOutside(modalAddVisit, () => (addVisitModal.value = false));
 
-    const date = ref(new Date());
-
     onMounted(async () => await userStore.fetchPatientVisits());
 
-    // const attributes = ref([
-    //     {
-    //         key: 1,
-    //         customData: {
-    //             title: 'Lekarz',
-    //         },
-    //         dates: new Date(
-    //             date.value.getFullYear(),
-    //             date.value.getMonth(),
-    //             23
-    //         ),
-    //     },
-    // ]);
-    const attributes = ref([]);
-
+    // vue/no-unused-vars
     const data = computed(() => {
         if (userStore.getPatientVisits) {
             return userStore.getPatientVisits.map((element, index) => {
@@ -140,8 +123,10 @@
         }
         return [];
     });
-    attributes.value = data.value;
-    console.log(attributes.value, data.value);
+    const filterDates = ({ month, day }) =>
+        data.value.find(
+            ({ dates }) => dates.getMonth() === month && dates.getDate() === day
+        );
 </script>
 
 <style lang="scss" scoped>

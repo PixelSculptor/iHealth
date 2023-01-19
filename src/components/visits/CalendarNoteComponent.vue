@@ -45,7 +45,6 @@
                     : props.date.getMinutes()
             }`
     );
-    console.log(props.date.getHours(), formatData.value);
 </script>
 
 <style lang="scss" scoped>
