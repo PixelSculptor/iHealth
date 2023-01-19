@@ -131,7 +131,8 @@
                 place.value &&
                 doctor.value &&
                 formatHour.value &&
-                formatDate.value
+                formatDate.value &&
+                userStore.getUserId
             )
     );
 
@@ -231,7 +232,7 @@
                 grid-area: action;
                 place-self: center;
                 @include flex-position(column, nowrap, space-evenly, center);
-                gap: 1rem;
+                gap: 0.5rem;
                 align-self: center;
                 position: relative;
                 .loader {

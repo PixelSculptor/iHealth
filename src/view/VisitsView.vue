@@ -75,9 +75,10 @@
     </section>
 </template>
 
-<script setup>
-    import { ref } from 'vue';
+<script async setup>
+    import { computed, onMounted, ref } from 'vue';
     import { onClickOutside } from '@vueuse/core';
+    import useUserStore from '../stores/userStore.js';
 
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
@@ -86,6 +87,8 @@
     import ModalComponent from '../components/ModalComponent.vue';
     import AddVisitFormComponent from '../components/visits/AddVisitFormComponent.vue';
     import VisitsDetailsComponent from '../components/visits/VisitsDetailsComponent.vue';
+
+    const userStore = useUserStore();
 
     const seeDetailsFlag = ref(false);
     const addVisitModal = ref(false);
@@ -97,19 +100,48 @@
 
     const date = ref(new Date());
 
-    const attributes = ref([
-        {
-            key: 1,
-            customData: {
-                title: 'Lekarz',
-            },
-            dates: new Date(
-                date.value.getFullYear(),
-                date.value.getMonth(),
-                23
-            ),
-        },
-    ]);
+    onMounted(async () => await userStore.fetchPatientVisits());
+
+    // const attributes = ref([
+    //     {
+    //         key: 1,
+    //         customData: {
+    //             title: 'Lekarz',
+    //         },
+    //         dates: new Date(
+    //             date.value.getFullYear(),
+    //             date.value.getMonth(),
+    //             23
+    //         ),
+    //     },
+    // ]);
+    const attributes = ref([]);
+
+    const data = computed(() => {
+        if (userStore.getPatientVisits) {
+            return userStore.getPatientVisits.map((element, index) => {
+                return {
+                    key: ++index,
+                    customData: {
+                        title: element.visitTitle,
+                        doctor: element.doctor,
+                        specialization: element.specialization,
+                        hour: element.hour,
+                        place: element.place,
+                        date: element.date,
+                    },
+                    dates: new Date(
+                        element.date.split('-')[0],
+                        element.date.split('-')[1],
+                        element.date.split('-')[2]
+                    ),
+                };
+            });
+        }
+        return [];
+    });
+    attributes.value = data.value;
+    console.log(attributes.value, data.value);
 </script>
 
 <style lang="scss" scoped>
