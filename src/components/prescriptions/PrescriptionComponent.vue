@@ -2,7 +2,7 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__title">{{ date }}</p>
+        <p class="documentBox__data">{{ name }}</p>
         <button-component
             small
             @click="openModalDetails = true">
@@ -75,9 +75,10 @@
 
     const openModalDetails = ref(null);
     const modalDetils = ref(null);
-    onClickOutside(modalDetils, () => (openModalDetails.value = false));
     const userStore = useUserStore();
     const { getPatientPrescriptions } = storeToRefs(userStore);
+
+    onClickOutside(modalDetils, () => (openModalDetails.value = false));
 
     const classOfIcon = computed(() => {
         return 'fa-solid ' + 'fa-pills';
@@ -100,6 +101,9 @@
         &__title {
             @include text-header5($font-weight-light);
             color: $gray-700;
+        }
+        &__data {
+            @include text-header6($font-weight-regular);
         }
     }
 </style>
