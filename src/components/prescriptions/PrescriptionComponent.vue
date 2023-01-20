@@ -41,12 +41,6 @@
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
 
-    const openModalDetails = ref(null);
-    const modalDetils = ref(null);
-    onClickOutside(modalDetils, () => (openModalDetails.value = false));
-    const userStore = useUserStore();
-    const { getPatientPrescriptions } = storeToRefs(userStore);
-
     defineProps({
         name: {
             type: String,
@@ -77,6 +71,13 @@
             default: 0,
         },
     });
+
+    const openModalDetails = ref(null);
+    const modalDetils = ref(null);
+    onClickOutside(modalDetils, () => (openModalDetails.value = false));
+    const userStore = useUserStore();
+    const { getPatientPrescriptions } = storeToRefs(userStore);
+
     const classOfIcon = computed(() => {
         return 'fa-solid ' + 'fa-pills';
     });

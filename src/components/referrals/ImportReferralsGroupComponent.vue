@@ -40,14 +40,14 @@
 
 <style lang="scss" scoped>
     .referralsContainer {
+        @include flex-position(column, nowrap, flex-start, flex-start);
         width: 100%;
         height: 25vh;
-        @include flex-position(column, nowrap, flex-start, flex-start);
         gap: 0.1rem;
         &__header {
             @include text-header3($font-weight-semiBold);
-            color: $blue-900;
             @include flex-position(row, nowrap, flex-start, center);
+            color: $blue-900;
             gap: 1rem;
             .numOfImport {
                 display: inline-block;
@@ -62,10 +62,10 @@
             }
         }
         &__list {
+            @include flex-position(column, nowrap, space-around, flex-start);
             height: 70%;
             padding-top: 10%;
             overflow-y: scroll;
-            @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
     }

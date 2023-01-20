@@ -2,7 +2,7 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__title">{{ date }}</p>
+        <p class="documentBox__data">{{ date }}</p>
         <button-component
             small
             id="testUrl"
@@ -45,18 +45,24 @@
 
 <style lang="scss" scoped>
     .documentBox {
+        @include flex-position(row, nowrap, space-around, center);
         width: 100%;
         border: $border-size solid $gray-300;
         border-radius: $border-radius--normal;
         padding: 1rem;
         background-color: $white;
-        @include flex-position(row, nowrap, space-around, center);
         gap: 5rem;
 
         &__title {
             @include text-header5($font-weight-light);
             color: $gray-700;
         }
+
+        &__data {
+            @include text-paragraph($font-weight-light);
+            color: $gray-700;
+        }
+
         &:deep(svg) {
             color: $blue-700;
             height: 3rem;
