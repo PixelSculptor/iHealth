@@ -2,7 +2,7 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__title">{{ date }}</p>
+        <p class="documentBox__data">{{ date }}</p>
         <button-component
             small
             @click="openModalDetails = true">
@@ -99,6 +99,10 @@
         }
         &__title {
             @include text-header5($font-weight-light);
+            color: $gray-700;
+        }
+        &__data {
+            @include text-paragraph($font-weight-light);
             color: $gray-700;
         }
     }
