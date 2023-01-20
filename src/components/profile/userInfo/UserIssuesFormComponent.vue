@@ -165,7 +165,6 @@
             if (error.value) throw new Error();
             successFlag.value = true;
         } catch (err) {
-            // error.value = err.message;
             console.log(error.value);
         } finally {
             antigenFlag.value = false;

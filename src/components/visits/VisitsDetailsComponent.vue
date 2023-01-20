@@ -1,6 +1,6 @@
 <template>
     <section class="visitDetails">
-        <h3 class="visitDetails__header">Podsumowanie wydarzenia:</h3>
+        <h3 class="visitDetails__header">Podsumowanie wydarzenia</h3>
         <article class="visitDetails__infoBox infoBox">
             <h5 class="infoBox__label">Tytuł:</h5>
             <p class="infoBox__description">{{ title }}</p>

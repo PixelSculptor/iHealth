@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <div class="inputBox">
-                    <label for="specialization">Specjalizacja:</label>
+                    <label for="specialization">Specjalizacja: </label>
                     <select
                         id="specialization"
                         v-model="specialization">
@@ -77,7 +77,7 @@
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-label="passwords match"
+                    aria-label="data was sent"
                     class="dataSend"
                     role="presentation"
                     >Twoje dane zostały zapisane pomyślnie!</span
@@ -229,9 +229,9 @@
             }
 
             .actionsAndInfo {
+                @include flex-position(column, nowrap, space-evenly, center);
                 grid-area: action;
                 place-self: center;
-                @include flex-position(column, nowrap, space-evenly, center);
                 gap: 0.5rem;
                 align-self: center;
                 position: relative;
