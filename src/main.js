@@ -2,6 +2,8 @@ import { createApp, watch } from 'vue';
 import '../src/styles/model/reset.scss';
 import './style.scss';
 import App from './App.vue';
+import VCalendar from 'v-calendar';
+import 'v-calendar/dist/style.css';
 import { createPinia } from 'pinia';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -10,7 +12,9 @@ import {
     faArrowRightFromBracket,
     faBars,
     faCalendarCheck,
+    faCalendarPlus,
     faCapsules,
+    faCircleInfo,
     faCrutch,
     faDatabase,
     faDroplet,
@@ -24,19 +28,17 @@ import {
     faIdCard,
     faLungs,
     faNotesMedical,
+    faPills,
     faPlus,
+    faRepeat,
     faStethoscope,
     faSyringe,
+    faTablets,
     faUser,
     faUserAstronaut,
     faUserDoctor,
     faVirusCovid,
     faXmark,
-    faPills,
-    faTablets,
-    faRepeat,
-    faCalendarPlus,
-    faCircleInfo,
     faClipboard,
     faFile,
 } from '@fortawesome/free-solid-svg-icons';
@@ -87,6 +89,7 @@ projectAuth.onAuthStateChanged(() => {
     if (!app) {
         app = createApp(App)
             .component('font-awesome-icon', FontAwesomeIcon)
+            .use(VCalendar, {})
             .use(pinia)
             .use(router)
             .mount('#app');

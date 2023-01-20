@@ -111,7 +111,7 @@
     import { typeOfBlood } from '../../../utils/typeOfResources.js';
     import { computed, ref } from 'vue';
     import useUserStore from '../../../stores/userStore.js';
-    import { timestamp } from '../../../firebase/config.js';
+    import { projectAuth, timestamp } from '../../../firebase/config.js';
     import { useUpdateDocument } from '../../../composables/updateDocument.js';
 
     const userStore = useUserStore();
@@ -144,9 +144,10 @@
     );
 
     const handleSaveData = async () => {
+        const user = projectAuth.currentUser;
         try {
             isLoading.value = true;
-            await updateDoc(userStore.getUserIssues[0].id, {
+            await updateDoc(user.uid, {
                 userId: userStore.getUserId,
                 bloodType:
                     bloodGroup.value || userStore.getUserIssues[0].bloodType,
@@ -164,7 +165,6 @@
             if (error.value) throw new Error();
             successFlag.value = true;
         } catch (err) {
-            error.value = err.message;
             console.log(error.value);
         } finally {
             antigenFlag.value = false;
