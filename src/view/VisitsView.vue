@@ -125,7 +125,6 @@
     onClickOutside(modalVisitDetails, () => (seeDetailsFlag.value = false));
     onClickOutside(modalAddVisit, () => (addVisitModal.value = false));
 
-    // vue/no-unused-vars
     const data = computed(() => {
         if (userStore.getPatientVisits) {
             return userStore.getPatientVisits.map((element, index) => {
