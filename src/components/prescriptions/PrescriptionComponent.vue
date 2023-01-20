@@ -1,7 +1,8 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }} {{ date }}</h5>
+        <h5 class="documentBox__title">{{ name }}</h5>
+        <p class="documentBox__title">{{ date }}</p>
         <button-component
             small
             @click="openModalDetails = true">
