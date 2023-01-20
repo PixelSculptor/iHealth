@@ -1,8 +1,7 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__data">{{ date }}</p>
+        <h5 class="documentBox__title">{{ name }} {{ date }}</h5>
         <button-component
             small
             id="testUrl"
@@ -70,10 +69,6 @@
         }
         &__title {
             @include text-header5($font-weight-light);
-            color: $gray-700;
-        }
-        &__data {
-            @include text-paragraph($font-weight-light);
             color: $gray-700;
         }
     }

@@ -75,7 +75,7 @@
                 }
             }
             data {
-                @include text-paragraph($font-weight-light);
+                @include text-header6($font-weight-regular);
             }
         }
     }
