@@ -115,15 +115,15 @@
 
     const userStore = useUserStore();
 
-    const seeDetailsFlag = ref(true);
+    onMounted(async () => await userStore.fetchPatientVisits());
+
+    const seeDetailsFlag = ref(false);
     const addVisitModal = ref(false);
     const modalVisitDetails = ref(null);
     const modalAddVisit = ref(null);
 
     onClickOutside(modalVisitDetails, () => (seeDetailsFlag.value = false));
     onClickOutside(modalAddVisit, () => (addVisitModal.value = false));
-
-    onMounted(async () => await userStore.fetchPatientVisits());
 
     // vue/no-unused-vars
     const data = computed(() => {

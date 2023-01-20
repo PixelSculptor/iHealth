@@ -33,7 +33,6 @@ const useUserStore = defineStore('user', {
         },
         patientVisits: {
             data: null,
-            format: null,
         },
     }),
     getters: {
