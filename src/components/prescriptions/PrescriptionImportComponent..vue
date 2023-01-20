@@ -2,7 +2,7 @@
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__data">{{ name }}</p>
+        <p class="documentBox__data">{{ data }}</p>
         <button-component
             small
             id="testUrl"
