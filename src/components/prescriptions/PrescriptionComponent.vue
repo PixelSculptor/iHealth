@@ -35,11 +35,12 @@
 
 <script setup>
     import { computed, ref } from 'vue';
-    import ButtonComponent from '../ButtonComponent.vue';
     import { onClickOutside } from '@vueuse/core';
+    import { storeToRefs } from 'pinia';
+
+    import ButtonComponent from '../ButtonComponent.vue';
     import PrescriptionDetails from '../prescriptions/PrescriptionDetails.vue';
     import ModalComponent from '../ModalComponent.vue';
-    import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
 
     defineProps({
@@ -75,9 +76,11 @@
 
     const openModalDetails = ref(null);
     const modalDetils = ref(null);
-    onClickOutside(modalDetils, () => (openModalDetails.value = false));
+
     const userStore = useUserStore();
     const { getPatientPrescriptions } = storeToRefs(userStore);
+
+    onClickOutside(modalDetils, () => (openModalDetails.value = false));
 
     const classOfIcon = computed(() => {
         return 'fa-solid ' + 'fa-pills';
