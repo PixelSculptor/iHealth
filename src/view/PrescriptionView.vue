@@ -65,7 +65,7 @@
     import PrescriptionGroupComponent from '../components/prescriptions/PrescriptionGroupComponent.vue';
     import GreetingsComponent from '../components/GreetingsComponent.vue';
     import PrescriptionAddComponent from '../components/prescriptions/PrescriptionAddComponent.vue';
-    import PrescritionImport from '../components/prescriptions/PrescritionImport.vue';
+    import PrescritionImport from '../components/prescriptions/PrescriptionImport.vue';
     import ImportGroupComponent from '../components/prescriptions/ImportGroupComponent.vue';
     import UserSidebarComponent from '../components/profile/userSidebar/UserSidebarComponent.vue';
 
@@ -90,7 +90,7 @@
         await userStore.fetchPatientImportPrescriptions();
     });
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .prescription {
         display: grid;
         place-items: flex-start;

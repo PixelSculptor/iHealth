@@ -27,8 +27,12 @@
     .userInfoWrapper {
         @include flex-position(column, nowrap, space-evenly, center);
         height: 100vh;
-        width: 100%;
+        background-color: $blue-700;
         padding: 1rem;
+        width: 35vh;
+        box-sizing: border-box;
+        border-top-left-radius: $border-radius--rounded;
+        border-bottom-left-radius: $border-radius--rounded;
 
         .userAvatar {
             @include flex-position(column, nowrap, space-between, center);
