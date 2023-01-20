@@ -6,7 +6,7 @@ const userIssues = ref([
         type: 'blood',
         issueKey: 'bloodType',
         label: 'Grupa krwi',
-        userData: 'Brak',
+        userData: 'A+',
     },
     {
         class: 'fa-solid fa-hand-dots',
