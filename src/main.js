@@ -39,6 +39,8 @@ import {
     faUserDoctor,
     faVirusCovid,
     faXmark,
+    faClipboard,
+    faFile,
 } from '@fortawesome/free-solid-svg-icons';
 import router from './router/index.js';
 import { projectAuth } from './firebase/config.js';
@@ -77,7 +79,8 @@ library.add(
     faRepeat,
     faCalendarPlus,
     faCircleInfo,
-    faCalendarPlus
+    faClipboard,
+    faFile
 );
 
 let app;

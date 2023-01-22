@@ -2,7 +2,6 @@ import { ref } from 'vue';
 import { projectFirestore } from '../firebase/config';
 
 const useCollection = (collection) => {
-    // const user = projectAuth.currentUser;
     const error = ref(null);
     const isLoading = ref(false);
 

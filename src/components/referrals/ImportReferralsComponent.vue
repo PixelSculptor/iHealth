@@ -112,7 +112,8 @@
         } finally {
             testFile.value = null;
             testFileError.value = null;
-            nameAndSurnameDoctor.value.researchDate.value = null;
+            nameAndSurnameDoctor.value = null;
+            researchDate.value = null;
         }
     };
 </script>

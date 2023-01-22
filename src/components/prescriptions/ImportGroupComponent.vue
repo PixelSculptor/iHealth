@@ -12,8 +12,8 @@
             <prescription-import-component
                 v-for="prescription in getPatientImportPrescriptions"
                 :key="prescription.id"
-                :testUrl="prescription.testUrl"
                 :name="prescription.doctorDataImport"
+                :testUrl="prescription.testUrl"
                 :date="prescription.dateImport"
                 :typeofdoc="prescription.typeOfDoc"
                 :medicine="prescription.medicineNameImport"

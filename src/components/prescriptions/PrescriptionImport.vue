@@ -5,9 +5,9 @@
         <h3 class="prescriptionBox__header">Dodaj receptę:</h3>
         <form class="prescriptionBox__form prescriptionForm">
             <div class="inputBox">
-                <label for="doctorData"> Lekarz:</label>
+                <label for="doctorDataImport">Lekarz: </label>
                 <select
-                    id="doctorData"
+                    id="doctorDataImport"
                     v-model="nameAndSurnameDoctor">
                     <option
                         disabled
@@ -19,7 +19,7 @@
             </div>
 
             <div class="inputBox">
-                <label for="medicine">Lek:</label>
+                <label for="medicine">Lek: </label>
                 <select
                     id="medicine"
                     v-model="medicine">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="inputBox">
-                <label for="frequencys">Częstotliwość:</label>
+                <label for="frequencys">Częstotliwość: </label>
                 <select
                     id="frequencys"
                     v-model="frequency">
@@ -148,9 +148,7 @@
             isLoading.value = false;
             successFlag.value = true;
         } catch (err) {
-            console.log(err);
             console.log(error.value);
-            console.log(error.message);
         } finally {
             nameAndSurnameDoctor.value = null;
             medicine.value = null;
