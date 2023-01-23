@@ -1,6 +1,11 @@
 <template>
     <section class="bmi-calculator">
-        <h3 class="bmi-calculator__header">Body mass index</h3>
+        <h3
+            aria-label="Podaj wartość Twojej wagi i wzrostu aby obliczyć wskaźnik BMI"
+            class="bmi-calculator__header"
+            tabindex="0">
+            Body mass index
+        </h3>
         <div class="bmi-calculator__panel">
             <metric-component id="weightInput">
                 <input
@@ -28,6 +33,7 @@
                 </div>
                 <div
                     :class="classBmi"
+                    aria-live="polite"
                     class="bmi-calculator__indicator-status">
                     {{ bmiStatus }} ({{ computeBmiValue }})
                 </div>
