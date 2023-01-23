@@ -1,11 +1,16 @@
 <template>
     <div class="welcome-banner__brand brand">
         <font-awesome-icon
+            alt="iHealth logo"
+            aria-label="iHealth logo"
             class="brand__icon"
-            icon="fa-solid fa-heart-pulse" />
+            icon="fa-solid fa-heart-pulse"
+            role="graphic"
+            tabindex="0" />
         <h1
             v-show="hideBrand"
-            class="brand__name">
+            class="brand__name"
+            tabindex="0">
             iHealth
         </h1>
     </div>
@@ -20,7 +25,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .brand {
         @include flex-position(row, wrap, flex-start, center);
         svg,

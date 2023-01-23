@@ -3,7 +3,11 @@
         <welcome-info-component />
         <section class="account-creation">
             <div class="loginLink">
-                <h5 class="loginLink__header">Masz już konto?</h5>
+                <h5
+                    class="loginLink__header"
+                    tabindex="0">
+                    Masz już konto?
+                </h5>
                 <button-component
                     small
                     soft
@@ -11,7 +15,11 @@
                     Zaloguj się
                 </button-component>
             </div>
-            <h2 class="account-creation__header">Stwórz darmowe konto</h2>
+            <h2
+                class="account-creation__header"
+                tabindex="0">
+                Stwórz darmowe konto
+            </h2>
             <div class="logWithSocials">
                 <button-component
                     class="logWithSocials__google"
@@ -19,7 +27,10 @@
                     wide
                     @click="googleSignIn">
                     Dołącz się przez Google
-                    <font-awesome-icon icon="fa-brands fa-google" />
+                    <font-awesome-icon
+                        alt="google icon"
+                        aria-label="google icon"
+                        icon="fa-brands fa-google" />
                 </button-component>
                 <button-component
                     class="logWithSocials__facebook"
@@ -27,7 +38,10 @@
                     wide
                     @click="facebookSignIn">
                     Dołącz przez Facebook
-                    <font-awesome-icon icon="fa-brands fa-facebook" />
+                    <font-awesome-icon
+                        alt="facebook icon"
+                        aria-label="facebook icon"
+                        icon="fa-brands fa-facebook" />
                 </button-component>
             </div>
             <span class="divider">lub</span>

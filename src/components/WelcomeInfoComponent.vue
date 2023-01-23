@@ -2,21 +2,26 @@
     <section class="welcome">
         <section class="welcome-banner">
             <brand-header-component />
-            <h3 class="welcome-banner__subtitle">
+            <h3
+                class="welcome-banner__subtitle"
+                tabindex="0">
                 Elektroniczna kartoteka zawsze przy Tobie
             </h3>
         </section>
         <section class="welcome-description">
             <feature-description>
                 <template v-slot:icon>
-                    <font-awesome-icon icon="fa-solid fa-database" />
+                    <font-awesome-icon
+                        alt="database icon"
+                        aria-label="database icon"
+                        icon="fa-solid fa-database" />
                 </template>
                 <template v-slot:description>
-                    <h6>
+                    <h6 tabindex="0">
                         Dostęp do najpotrzebniejszych informacji kiedy tylko
                         potrzebujesz
                     </h6>
-                    <p>
+                    <p tabindex="0">
                         Architektura kartoteki oparta o przechowywanie danych w
                         spersonalizowanej chmurze.
                     </p>
@@ -26,15 +31,18 @@
         <section class="welcome-description">
             <feature-description>
                 <template v-slot:icon>
-                    <font-awesome-icon icon="fa-solid fa-file-medical" />
+                    <font-awesome-icon
+                        alt="medical icon"
+                        aria-label="mediacl icon"
+                        icon="fa-solid fa-file-medical" />
                 </template>
                 <template v-slot:description>
-                    <h6>
+                    <h6 tabindex="0">
                         Karta medyczna daje Ci dostęp do Twoich kuracji, grupy
                         krwi, uczuleń, a także certyfikatów i informacji o
                         krwiodawstwie
                     </h6>
-                    <p>
+                    <p tabindex="0">
                         iHealth to innowacyjny sposób śledzenia Twoich procesów
                         leczenia oraz informacji niezbędnych do udzielenia Tobie
                         pomocy przez ratowników podczas wypadków.
@@ -45,11 +53,16 @@
         <section class="welcome-description">
             <feature-description>
                 <template v-slot:icon>
-                    <font-awesome-icon icon="fa-solid fa-file-waveform" />
+                    <font-awesome-icon
+                        alt="waveform icon"
+                        aria-label="waveform icon"
+                        icon="fa-solid fa-file-waveform" />
                 </template>
                 <template v-slot:description>
-                    <h6>Możliwość wgrywania badań, recept i skierowań</h6>
-                    <p>
+                    <h6 tabindex="0">
+                        Możliwość wgrywania badań, recept i skierowań
+                    </h6>
+                    <p tabindex="0">
                         Z iHealth Twój lekarz zawsze będzie miał pełny obraz
                         Twojego stanu zdrowia.
                     </p>
@@ -64,7 +77,7 @@
     import FeatureDescription from './FeatureDescription.vue';
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .welcome {
         color: $white;
         background-color: $blue-500;

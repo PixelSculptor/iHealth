@@ -1,15 +1,15 @@
 <template>
-    <section class="feature-description">
+    <article class="feature-description">
         <slot name="icon"></slot>
-        <div class="feature-description__text">
+        <section class="feature-description__text">
             <slot name="description"></slot>
-        </div>
-    </section>
+        </section>
+    </article>
 </template>
 
 <script></script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .feature-description {
         margin: 0.5rem 0;
         @include flex-position(column, wrap, space-around, flex-start);
