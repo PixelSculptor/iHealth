@@ -29,6 +29,7 @@
             <input
                 id="email"
                 v-model="email"
+                aria-labelledby="email"
                 class="formBlock__input"
                 placeholder="abc@gmail.com"
                 required
@@ -43,6 +44,7 @@
             <input
                 id="password"
                 v-model="password"
+                aria-labelledby="password"
                 class="formBlock__input"
                 minlength="8"
                 placeholder="Hasło"
@@ -50,7 +52,9 @@
                 type="password" />
         </div>
         <error-info
+            :aria-label="error"
             :message="error"
+            aria-live="polite"
             class="infoLabel" />
         <button-component
             :disabled="disableLogin"
@@ -58,7 +62,10 @@
             wide
             >Zaloguj się</button-component
         >
-        <bouncing-balls-component :visible="isLoading" />
+        <bouncing-balls-component
+            :visible="isLoading"
+            aria-label="loader"
+            aria-live="polite" />
     </form>
 </template>
 

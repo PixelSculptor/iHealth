@@ -3,6 +3,7 @@
         v-if="to && !disabled && !href"
         :class="itemClasses"
         :to="{ name: to, params: params, hash }"
+        aria-label="navigation link"
         role="link">
         <slot />
     </router-link>
@@ -10,6 +11,7 @@
         v-else-if="href && !disabled"
         :class="itemClasses"
         :href="href"
+        aria-label="link"
         role="link">
         <slot />
     </a>
@@ -18,6 +20,7 @@
         v-else
         :aria-disabled="disabled"
         :class="itemClasses"
+        aria-live="polite"
         role="button">
         <span class="child">
             <slot />
