@@ -2,7 +2,11 @@
     <div
         class="referralsBox"
         @submit.prevent="addTest">
-        <h3 class="referralsBox__header">Dodaj skierowanie:</h3>
+        <h3
+            class="referralsBox__header"
+            tabindex="0">
+            Dodaj skierowanie:
+        </h3>
         <form class="referralsBox__form referralsForm">
             <div class="inputBox">
                 <label for="doctorData"> Lekarz:</label>
@@ -72,6 +76,7 @@
                 <button-component
                     :disabled="disableAddTest"
                     wide
+                    tabindex="0"
                     >Zapisz skierowanie</button-component
                 >
                 <bouncing-balls-component :visible="isLoading" />
@@ -79,6 +84,7 @@
                 <span
                     v-show="successFlag"
                     class="dataSend"
+                    tabindex="0"
                     >Skierowanie zostało przesłane pomyślnie</span
                 >
             </div>

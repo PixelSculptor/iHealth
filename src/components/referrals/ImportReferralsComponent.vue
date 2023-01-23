@@ -2,7 +2,11 @@
     <div
         class="referralsBox"
         @submit.prevent="addTest">
-        <h3 class="referralsBox__header">Dodaj skierowanie:</h3>
+        <h3
+            class="referralsBox__header"
+            tabindex="0">
+            Dodaj skierowanie:
+        </h3>
         <form class="referralsBox__form referralsForm">
             <div class="inputBox">
                 <label for="doctorsData">Lekarz:</label>
@@ -25,9 +29,7 @@
 
             <div class="inputBox">
                 <label for="uploadTest">Dodaj wyniki:</label>
-                <div
-                    class="icon"
-                    tabindex="0">
+                <div class="icon">
                     <font-awesome-icon icon="fa-solid fa-file-import" />
                 </div>
                 <input

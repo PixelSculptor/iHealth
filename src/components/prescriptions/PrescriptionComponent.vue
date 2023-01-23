@@ -1,8 +1,18 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__data">{{ date }}</p>
+        <h5
+            :aria-label="'Imię i nazwisko lekarza' + name"
+            class="documentBox__title"
+            tabindex="0">
+            {{ name }}
+        </h5>
+        <p
+            :aria-label="'Data wystawienia recepty' + date"
+            class="documentBox__data"
+            tabindex="0">
+            {{ date }}
+        </p>
         <button-component
             small
             @click="openModalDetails = true">

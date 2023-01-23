@@ -1,24 +1,46 @@
 <template>
     <section class="detailsReferrence">
-        <h3 class="detailsReferrence__header">Szczegóły skierowania</h3>
+        <h3
+            class="detailsReferrence__header"
+            tabindex="0">
+            Szczegóły skierowania
+        </h3>
         <form class="detailsReferrence__form detailsReferrence">
             <div class="inputBox">
-                <h5 class="detailsReferrence__title">Lekarz:</h5>
+                <h5
+                    :aria-label="'Imię i nazwisko lekarza' + names"
+                    class="detailsReferrence__title"
+                    tabindex="0">
+                    Lekarz:
+                </h5>
                 <p class="detailsReferrence__data">{{ names }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsReferrence__title">Specjalizacja:</h5>
+                <h5
+                    :aria-label="'Specjalizacja lekarza' + specializations"
+                    class="detailsReferrence__title"
+                    tabindex="0">
+                    Specjalizacja:
+                </h5>
                 <p class="detailsReferrence__data">{{ specializations }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsReferrence__title">Typ badania:</h5>
+                <h5
+                    :aria-label="'Typ badania' + typeOfTests"
+                    class="detailsReferrence__title"
+                    tabindex="0">
+                    Typ badania:
+                </h5>
                 <p class="detailsReferrence__data">{{ typeOfTests }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsReferrence__title">
+                <h5
+                    :aria-label="'Data wystawienia skierowania' + dates"
+                    class="detailsReferrence__title"
+                    tabindex="0">
                     Data wystawienia skierowania:
                 </h5>
                 <p class="detailsReferrence__data">{{ dates }}</p>
