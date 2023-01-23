@@ -40,6 +40,7 @@
                 <span
                     v-if="!passwordMatching && password && passwordCheck"
                     aria-label="passwords not match"
+                    aria-live="polite"
                     class="passwordNotMatching"
                     role="presentation"
                     >Hasła nie zgadzają się</span
@@ -47,6 +48,7 @@
                 <span
                     v-else-if="passwordMatching"
                     aria-label="passwords match"
+                    aria-live="polite"
                     class="passwordMatching"
                     role="presentation"
                     >Hasła zgadzają się</span
@@ -70,7 +72,9 @@
                 type="password" />
         </div>
         <error-info
+            :aria-label="error"
             :message="error"
+            aria-live="polite"
             class="error" />
         <button-component
             :disabled="disableCreateAccount"
@@ -79,7 +83,10 @@
             wide
             >Dołącz przez Email</button-component
         >
-        <bouncing-balls-component :visible="isLoading" />
+        <bouncing-balls-component
+            :visible="isLoading"
+            aria-label="loader"
+            aria-live="polite" />
     </form>
 </template>
 
