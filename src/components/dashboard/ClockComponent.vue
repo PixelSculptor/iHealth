@@ -5,7 +5,8 @@
             tabindex="0">
             <h2
                 :aria-label="dateTime.hours + ':' + dateTime.minutes"
-                aria-live="polite">
+                aria-live="polite"
+                class="digitalClock">
                 {{ dateTime.hours }} : {{ dateTime.minutes }} :
                 {{ dateTime.seconds }}
             </h2>
