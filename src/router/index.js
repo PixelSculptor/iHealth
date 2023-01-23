@@ -67,7 +67,6 @@ const router = createRouter({
             path: '/create',
             name: 'CompleteProfile',
             component: CompleteRegistrationView,
-            beforeEnter: authGuard,
         },
     ],
 });

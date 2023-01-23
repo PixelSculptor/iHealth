@@ -59,7 +59,7 @@
     import googleSign from '../../composables/useGoogle.js';
 
     const handleSignUp = () => {
-        router.push({ name: 'CompleteProfile' });
+        router.push('/create');
     };
 
     const facebookSignIn = () => {

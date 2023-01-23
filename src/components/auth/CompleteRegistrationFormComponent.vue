@@ -41,14 +41,20 @@
             <div
                 class="icon"
                 tabindex="0">
-                <font-awesome-icon icon="fa-solid fa-file-import" />
+                <font-awesome-icon
+                    alt="file import icon"
+                    aria-label="file import icon"
+                    icon="fa-solid fa-file-import" />
             </div>
             <input
                 id="avatar"
                 class="formBlock__input"
                 type="file"
                 @change="handleChange" />
-            <error-info :message="avatarError" />
+            <error-info
+                :aria-label="avatarError"
+                :message="avatarError"
+                aria-live="polite" />
         </div>
 
         <div class="formBlock">
@@ -78,7 +84,6 @@
                 id="dateOfBirth"
                 v-model="dateOfBirth"
                 :max="today"
-                :placeholder="dateOfBirth"
                 class="formBlock__input"
                 pattern="\d{4}-\d{2}-\d{2}"
                 required
@@ -115,7 +120,7 @@
                 required>
                 <option value="">Wybierz płeć</option>
                 <option value="kobieta">Kobieta</option>
-                <option value="mężczyzna">Mężczyna</option>
+                <option value="mężczyzna">Mężczyzna</option>
                 <option value="inna">Inna</option>
                 <span v-if="gender">{{ gender }}</span>
             </select>
@@ -173,11 +178,19 @@
                 wide
                 >Zapisz profil</button-component
             >
-            <error-info :message="notValidPersonIdError" />
-            <error-info :message="error" />
+            <error-info
+                :aria-label="notValidPersonIdError"
+                :message="notValidPersonIdError"
+                aria-live="polite" />
+            <error-info
+                :aria-label="error"
+                :message="error"
+                aria-live="polite" />
         </div>
         <bouncing-balls-component
             :visible="isLoading"
+            aria-label="loader"
+            aria-live="polite"
             class="loader" />
     </form>
 </template>
@@ -299,7 +312,7 @@
             'submit submit submit submit'
             'loader loader loader loader';
         place-items: center;
-        height: 60%;
+        max-height: 65%;
         width: 90%;
         padding: 5%;
         gap: 3rem;
