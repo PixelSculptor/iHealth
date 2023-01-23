@@ -12,13 +12,15 @@
                 <font-awesome-icon
                     v-if="!appStore.getExpandMenu"
                     alt="bars icon"
-                    aria-label="rozwiń nawigację"
-                    icon="fa-solid fa-bars" />
+                    aria-label="Rozwiń nawigację"
+                    icon="fa-solid fa-bars"
+                    title="Rozwiń nawigację" />
                 <font-awesome-icon
                     v-else
                     alt="close mark icon"
-                    aria-label="zwiń nawigację"
-                    icon="fa-solid fa-xmark" />
+                    aria-label="Zwiń nawigację"
+                    icon="fa-solid fa-xmark"
+                    title="Zwiń nawigację" />
             </button>
         </section>
 
@@ -31,7 +33,11 @@
                 main
                 menu
                 wide>
-                <font-awesome-icon :icon="view.classIcon" />
+                <font-awesome-icon
+                    :icon="view.classIcon"
+                    :title="view.classIcon"
+                    alt="nav icon"
+                    aria-label="nav icon" />
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
@@ -40,7 +46,10 @@
                 wide
                 @click="handleLogout">
                 <font-awesome-icon
-                    icon="fa-solid fa-arrow-right-from-bracket" />
+                    alt="logout icon"
+                    aria-label="logout icon"
+                    icon="fa-solid fa-arrow-right-from-bracket"
+                    title="Wyloguj się" />
                 <span class="text">Wyloguj się</span>
             </button-component>
         </section>
