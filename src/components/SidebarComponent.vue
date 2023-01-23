@@ -5,13 +5,19 @@
         <brand-header-component :hide-brand="appStore.getExpandMenu" />
         <section class="menu__toggle--wrap">
             <button
+                aria-label="menu"
                 class="toggleMenu"
+                tabindex="0"
                 @click="toggleMenu">
                 <font-awesome-icon
                     v-if="!appStore.getExpandMenu"
+                    alt="bars icon"
+                    aria-label="rozwiń nawigację"
                     icon="fa-solid fa-bars" />
                 <font-awesome-icon
                     v-else
+                    alt="close mark icon"
+                    aria-label="zwiń nawigację"
                     icon="fa-solid fa-xmark" />
             </button>
         </section>
@@ -20,6 +26,7 @@
             <button-component
                 v-for="view in menuViews"
                 :key="view"
+                :aria-label="view.title"
                 :to="view.name"
                 main
                 menu

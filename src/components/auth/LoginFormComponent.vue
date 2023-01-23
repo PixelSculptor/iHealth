@@ -65,7 +65,8 @@
         <bouncing-balls-component
             :visible="isLoading"
             aria-label="loader"
-            aria-live="polite" />
+            aria-live="polite"
+            role="presentation" />
     </form>
 </template>
 
