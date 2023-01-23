@@ -1,9 +1,12 @@
 <template>
     <li class="documentBox">
-        <font-awesome-icon :icon="classOfIcon" />
+        <font-awesome-icon
+            alt="add icon"
+            aria-label="add icon"
+            :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
         <p
-            :aria-label="'Zaimportowano dnia' + date"
+            :aria-label="'Zaimportowano dnia: ' + date"
             class="documentBox__data"
             tabindex="0">
             {{ date }}
@@ -60,12 +63,12 @@
 
         &__title {
             @include text-header5($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
 
         &__data {
             @include text-paragraph($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
 
         &:deep(svg) {

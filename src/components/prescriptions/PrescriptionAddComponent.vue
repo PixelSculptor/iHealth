@@ -64,10 +64,18 @@
                     wide
                     >Zapisz receptę</button-component
                 >
-                <bouncing-balls-component :visible="isLoading" />
-                <error-info :message="error" />
+                <bouncing-balls-component
+                    role="presentation"
+                    alt="loader"
+                    aria-label="loader"
+                    :visible="isLoading" />
+                <error-info
+                    alt="error value"
+                    aria-label="error value"
+                    :message="error" />
                 <span
                     v-show="successFlag"
+                    aria-live="prescription send"
                     class="dataSend"
                     >Recepta została przesłana pomyślnie</span
                 >
@@ -174,19 +182,6 @@
                         border-radius: $border-radius--normal;
                         @include button-soft;
                         @include text-button($font-weight-semiBold);
-                    }
-                }
-
-                .icon {
-                    cursor: pointer;
-                    position: relative;
-                    &:deep(svg) {
-                        width: 1.2rem;
-                        height: 1.2rem;
-                        top: -0.6rem;
-                        left: 8rem;
-                        position: absolute;
-                        color: $blue-700;
                     }
                 }
             }

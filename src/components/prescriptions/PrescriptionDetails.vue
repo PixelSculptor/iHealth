@@ -4,7 +4,7 @@
         <form class="detailsPres__form detailsForm">
             <div class="inputBox">
                 <h5
-                    :aria-label="'Imię i nazwisko lekarza' + names"
+                    :aria-label="'Imię i nazwisko lekarza: ' + names"
                     class="detailsPres__title"
                     tabindex="0">
                     Lekarz:
@@ -14,7 +14,7 @@
 
             <div class="inputBox">
                 <h5
-                    :aria-label="'Nazwa leku' + medicines"
+                    :aria-label="'Nazwa leku: ' + medicines"
                     class="detailsPres__title"
                     tabindex="0">
                     Nazwa leku:
@@ -24,7 +24,7 @@
 
             <div class="inputBox">
                 <h5
-                    :aria-label="'Częstotliwość przyjmowania' + frequencys"
+                    :aria-label="'Częstotliwość przyjmowania: ' + frequencys"
                     class="detailsPres__title"
                     tabindex="0">
                     Częstotliwość przyjmowania:
@@ -34,7 +34,7 @@
 
             <div class="inputBox">
                 <h5
-                    :aria-label="'Data wystawienia recepty' + dates"
+                    :aria-label="'Data wystawienia recepty: ' + dates"
                     class="detailsPres__title"
                     tabindex="0">
                     Data wystawienia recepty:
