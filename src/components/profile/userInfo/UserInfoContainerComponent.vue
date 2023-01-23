@@ -3,6 +3,7 @@
         <user-info-box-component>
             <template v-slot:importIssues>
                 <button-component
+                    aria-label="Dodaj informację"
                     class="importBtn"
                     minor
                     @click="importUserIssueInfo = true">
@@ -34,6 +35,7 @@
         <user-info-box-component header="Lista osób bliskich">
             <template v-slot:importIssues>
                 <button-component
+                    aria-label="Dodaj kontakt"
                     class="importBtn"
                     minor
                     @click="importContact = true">

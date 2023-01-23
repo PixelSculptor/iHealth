@@ -1,5 +1,8 @@
 <template>
-    <div class="icon">
+    <div
+        aria-label="Awatar kontaktu alarmowego"
+        class="icon"
+        tabindex="0">
         <div
             v-if="!avatarUrl"
             class="fallbackAvatar">
