@@ -1,7 +1,9 @@
 <template>
     <span
+        :aria-label="'relacja: ' + relationName"
         :class="relType"
         class="relationPill"
+        tabindex="0"
         >{{ relationName }}</span
     >
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="userContactFormContainer">
-        <h3 class="userContactFormContainer__header">Kontakty alarmowe</h3>
+        <h3 class="userContactFormContainer__header">Kontakt alarmowy</h3>
         <form
             class="userContactFormContainer__form"
             @submit.prevent="addContact">

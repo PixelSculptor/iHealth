@@ -4,7 +4,7 @@ import getUser from '../composables/getUser.js';
 
 export const authGuard = (to, from, next) => {
     const currentUser = projectAuth.currentUser;
-    if (!currentUser) next({ name: 'Login' });
+    if (!currentUser.uid) next({ name: 'Login' });
     next();
 };
 

@@ -7,8 +7,16 @@
             :key="contact.phoneNumber"
             class="contact">
             <contact-avatar-component />
-            <h6>{{ contact.nameAndSurname }}</h6>
-            <p>{{ contact.phoneNumber }}</p>
+            <h6
+                :aria-label="'Imię i nazwisko: ' + contact.nameAndSurname"
+                tabindex="0">
+                {{ contact.nameAndSurname }}
+            </h6>
+            <p
+                :aria-label="'Telefon kontaktowy: ' + contact.phoneNumber"
+                tabindex="0">
+                {{ contact.phoneNumber }}
+            </p>
             <relation-tag-pill-component :rel-type="contact.relationshipType" />
         </user-info-label-component>
     </ul>

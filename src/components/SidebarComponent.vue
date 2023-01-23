@@ -5,14 +5,22 @@
         <brand-header-component :hide-brand="appStore.getExpandMenu" />
         <section class="menu__toggle--wrap">
             <button
+                aria-label="menu"
                 class="toggleMenu"
+                tabindex="0"
                 @click="toggleMenu">
                 <font-awesome-icon
                     v-if="!appStore.getExpandMenu"
-                    icon="fa-solid fa-bars" />
+                    alt="bars icon"
+                    aria-label="Rozwiń nawigację"
+                    icon="fa-solid fa-bars"
+                    title="Rozwiń nawigację" />
                 <font-awesome-icon
                     v-else
-                    icon="fa-solid fa-xmark" />
+                    alt="close mark icon"
+                    aria-label="Zwiń nawigację"
+                    icon="fa-solid fa-xmark"
+                    title="Zwiń nawigację" />
             </button>
         </section>
 
@@ -20,11 +28,16 @@
             <button-component
                 v-for="view in menuViews"
                 :key="view"
+                :aria-label="view.title"
                 :to="view.name"
                 main
                 menu
                 wide>
-                <font-awesome-icon :icon="view.classIcon" />
+                <font-awesome-icon
+                    :icon="view.classIcon"
+                    :title="view.classIcon"
+                    alt="nav icon"
+                    aria-label="nav icon" />
                 <span>{{ view.title }}</span>
             </button-component>
             <button-component
@@ -33,7 +46,10 @@
                 wide
                 @click="handleLogout">
                 <font-awesome-icon
-                    icon="fa-solid fa-arrow-right-from-bracket" />
+                    alt="logout icon"
+                    aria-label="logout icon"
+                    icon="fa-solid fa-arrow-right-from-bracket"
+                    title="Wyloguj się" />
                 <span class="text">Wyloguj się</span>
             </button-component>
         </section>

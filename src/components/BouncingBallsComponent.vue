@@ -1,7 +1,9 @@
 <template>
     <div
         v-show="visible"
-        class="bouncer">
+        aria-label="bouncing balls"
+        class="bouncer"
+        tabindex="0">
         <div class=""></div>
         <div class=""></div>
         <div class=""></div>
@@ -18,7 +20,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .bouncer {
         width: 6.25rem;
         height: 6.25rem;

@@ -1,7 +1,10 @@
 <template>
     <article class="date">
         <section class="date__clock">
-            <h2 class="digitalClock">
+            <h2
+                :aria-label="dateTime.hours + ':' + dateTime.minutes"
+                class="digitalClock"
+                tabindex="0">
                 {{ dateTime.hours }} : {{ dateTime.minutes }} :
                 {{ dateTime.seconds }}
             </h2>
@@ -47,6 +50,7 @@
 <style lang="scss" scoped>
     .date {
         @include flex-position(column, nowrap, space-evenly, center);
+
         &__clock {
             .digitalClock {
                 @include text-header2($font-weight-semiBold);

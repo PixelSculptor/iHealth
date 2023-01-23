@@ -1,9 +1,12 @@
 <template>
-    <div
+    <p
         v-show="message"
-        class="error">
+        :aria-label="message"
+        aria-live="polite"
+        class="error"
+        tabindex="0">
         {{ message }}
-    </div>
+    </p>
 </template>
 
 <script setup>
@@ -15,7 +18,7 @@
     });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .error {
         text-align: center;
         font-weight: $font-weight-semiBold;

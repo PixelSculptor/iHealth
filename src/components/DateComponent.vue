@@ -1,6 +1,10 @@
 <template>
     <section class="today">
-        <h4 class="today__date">{{ currentDate }}</h4>
+        <h4
+            class="today__date"
+            tabindex="0">
+            {{ currentDate }}
+        </h4>
     </section>
 </template>
 

@@ -1,9 +1,14 @@
 <template>
     <li class="documentBox">
         <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }}</h5>
+        <h5
+            class="documentBox__title"
+            tabindex="0">
+            {{ name }}
+        </h5>
         <button-component
             id="documentPath"
+            aria-label="Pobierz certyfikat / test"
             small
             @click="seeMore">
             Pobierz

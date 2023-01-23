@@ -3,10 +3,14 @@
         <user-info-box-component>
             <template v-slot:importIssues>
                 <button-component
+                    aria-label="Dodaj informację"
                     class="importBtn"
                     minor
                     @click="importUserIssueInfo = true">
-                    <font-awesome-icon icon="fa-solid fa-plus" />
+                    <font-awesome-icon
+                        alt="add item icon"
+                        aria-label="add item icon"
+                        icon="fa-solid fa-plus" />
                 </button-component>
                 <teleport to="body">
                     <transition name="modal">
@@ -31,10 +35,14 @@
         <user-info-box-component header="Lista osób bliskich">
             <template v-slot:importIssues>
                 <button-component
+                    aria-label="Dodaj kontakt"
                     class="importBtn"
                     minor
                     @click="importContact = true">
-                    <font-awesome-icon icon="fa-solid fa-plus" />
+                    <font-awesome-icon
+                        alt="add item icon"
+                        aria-label="add item icon"
+                        icon="fa-solid fa-plus" />
                 </button-component>
 
                 <teleport to="body">

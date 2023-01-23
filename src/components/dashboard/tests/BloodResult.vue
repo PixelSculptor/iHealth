@@ -3,15 +3,20 @@
         <div class="bloodResult__bloodLogo">
             <font-awesome-icon icon="fa-solid fa-droplet" />
         </div>
-        <div class="bloodResult__typeOfBlood">
+        <div
+            class="bloodResult__typeOfBlood"
+            tabindex="0">
             <h6>Grupa krwi</h6>
             <p>{{ bloodType }}</p>
         </div>
-        <div class="bloodResult__dateOfResult">
+        <div
+            class="bloodResult__dateOfResult"
+            tabindex="0">
             <h6>Data badania</h6>
             <p>{{ date }}</p>
         </div>
         <button-component
+            aria-label="Szczegóły badania"
             class="bloodResult__moreInfo"
             small
             @click="seeDetails">
