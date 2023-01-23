@@ -1,7 +1,7 @@
 <template>
     <article class="userBox">
         <div class="userBox__header">
-            <h5>{{ header }}</h5>
+            <h5 tabindex="0">{{ header }}</h5>
             <slot name="importIssues" />
         </div>
         <slot name="userIssueList" />

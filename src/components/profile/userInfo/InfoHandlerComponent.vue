@@ -2,12 +2,18 @@
     <ul class="dataList">
         <user-info-label-component
             v-for="userIssue in userIssues"
-            :key="userIssue.label">
+            :key="userIssue.label"
+            :aria-label="userIssue.label">
             <user-issue-icon-component
+                :aria-labelledby="userIssue.label"
                 :icon-background="userIssue.type"
                 :icon-name="userIssue.class" />
             <h6>{{ userIssue.label }}</h6>
-            <p>{{ userIssue.userData }}</p>
+            <p
+                :aria-label="userIssue.userData"
+                tabindex="0">
+                {{ userIssue.userData }}
+            </p>
         </user-info-label-component>
     </ul>
 </template>

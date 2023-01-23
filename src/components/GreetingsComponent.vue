@@ -1,6 +1,6 @@
 <template>
     <div class="greeting">
-        <h2>Cześć {{ name }}!</h2>
+        <h2 tabindex="0">Cześć {{ name }}!</h2>
         <date-component />
     </div>
 </template>
@@ -10,6 +10,7 @@
     import { storeToRefs } from 'pinia';
     import { ref } from 'vue';
     import DateComponent from './DateComponent.vue';
+
     const userStore = useUserStore(); // eslint-disable-line no-unused-vars
     const { getUserInfo } = storeToRefs(userStore);
     const name = ref(getUserInfo.value.data[0].name);

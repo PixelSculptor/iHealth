@@ -6,7 +6,10 @@
                     class="importBtn"
                     minor
                     @click="importUserIssueInfo = true">
-                    <font-awesome-icon icon="fa-solid fa-plus" />
+                    <font-awesome-icon
+                        alt="add item icon"
+                        aria-label="add item icon"
+                        icon="fa-solid fa-plus" />
                 </button-component>
                 <teleport to="body">
                     <transition name="modal">
@@ -34,7 +37,10 @@
                     class="importBtn"
                     minor
                     @click="importContact = true">
-                    <font-awesome-icon icon="fa-solid fa-plus" />
+                    <font-awesome-icon
+                        alt="add item icon"
+                        aria-label="add item icon"
+                        icon="fa-solid fa-plus" />
                 </button-component>
 
                 <teleport to="body">
