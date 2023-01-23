@@ -1,12 +1,10 @@
 <template>
     <article class="date">
-        <section
-            class="date__clock"
-            tabindex="0">
+        <section class="date__clock">
             <h2
                 :aria-label="dateTime.hours + ':' + dateTime.minutes"
-                aria-live="polite"
-                class="digitalClock">
+                class="digitalClock"
+                tabindex="0">
                 {{ dateTime.hours }} : {{ dateTime.minutes }} :
                 {{ dateTime.seconds }}
             </h2>

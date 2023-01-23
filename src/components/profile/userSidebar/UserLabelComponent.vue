@@ -1,7 +1,17 @@
 <template>
-    <div class="userDataElement">
-        <h6 class="userDataElement__label">{{ label }}</h6>
-        <p class="userDataElement__value">{{ personValue }}</p>
+    <div
+        class="userDataElement"
+        tabindex="0">
+        <h6
+            :aria-label="label"
+            class="userDataElement__label">
+            {{ label }}
+        </h6>
+        <p
+            :aria-label="personValue"
+            class="userDataElement__value">
+            {{ personValue }}
+        </p>
     </div>
 </template>
 

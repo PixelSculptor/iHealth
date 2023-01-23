@@ -1,7 +1,10 @@
 <template>
-    <div class="avatar">
+    <div
+        class="avatar"
+        tabindex="0">
         <div
             ref="avatar"
+            aria-label="Awatar profilu"
             class="avatar__img"></div>
     </div>
 </template>

@@ -1,11 +1,10 @@
 <template>
     <section class="profileView">
-        <div class="profileView__header">
+        <article class="profileView__header">
             <greetings-component />
-        </div>
+        </article>
 
         <article class="profileView__userDescription">
-            <!--        TODO: add components your info, close people specific information -->
             <user-info-container-component />
         </article>
         <aside class="profileView__userInfo">

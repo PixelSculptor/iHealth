@@ -2,7 +2,7 @@
     <div class="userInfoWrapper">
         <div class="userAvatar">
             <user-avatar-component />
-            <h4>{{ name }} {{ surname }}</h4>
+            <h4 tabindex="0">{{ name }} {{ surname }}</h4>
         </div>
         <div class="userData">
             <user-info-list-component />
