@@ -5,6 +5,7 @@
             aria-label="iHealth logo"
             class="brand__icon"
             icon="fa-solid fa-heart-pulse"
+            role="graphic"
             tabindex="0" />
         <h1
             v-show="hideBrand"
