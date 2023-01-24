@@ -1,8 +1,22 @@
 <template>
     <li class="documentBox">
-        <font-awesome-icon :icon="classOfIcon" />
-        <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__data">{{ date }}</p>
+        <font-awesome-icon
+            alt="add result icon"
+            aria-label="add result icon"
+            :icon="classOfIcon" />
+        <h5
+            :aria-label="'Imię i nazwisko lekarza: ' + name"
+            class="documentBox__title"
+            tabindex="0">
+            {{ name }}
+        </h5>
+
+        <p
+            :aria-label="'Data wystawienia skierowania: ' + date"
+            class="documentBox__data"
+            tabindex="0">
+            {{ date }}
+        </p>
         <button-component
             small
             @click="openModalDetails = true">
@@ -92,12 +106,12 @@
 
         &__title {
             @include text-header5($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
 
         &__data {
             @include text-paragraph($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
 
         &:deep(svg) {

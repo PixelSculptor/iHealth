@@ -1,6 +1,8 @@
 <template>
     <section class="referralsContainer">
-        <h3 class="referralsContainer__header">
+        <h3
+            class="referralsContainer__header"
+            tabindex="0">
             Dodane skierowania
             <span class="numOfRefs">{{ getPatientRefferals?.length }}</span>
         </h3>
