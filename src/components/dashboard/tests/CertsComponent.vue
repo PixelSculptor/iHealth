@@ -65,7 +65,7 @@
         }
         &__title {
             @include text-header5($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
     }
 </style>
