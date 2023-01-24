@@ -71,11 +71,12 @@
                     :visible="isLoading" />
                 <error-info
                     alt="error value"
-                    aria-label="error value"
+                    :aria-label="error"
                     :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-live="prescription send"
+                    aria-live="polite"
+                    aria-label="recepta wyslana pomyslnie"
                     class="dataSend"
                     >Recepta została przesłana pomyślnie</span
                 >

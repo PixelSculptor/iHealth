@@ -43,7 +43,8 @@
                     @change="handleChange" />
                 <error-info
                     alt="error file value"
-                    aria-label="error file value"
+                    :aria-label="error"
+                    aria-live="polite"
                     :message="testFileError" />
             </div>
 
@@ -61,7 +62,8 @@
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-live="import referral send"
+                    aria-live="polite"
+                    aria-label="skierowanie zostalo przeslane pomyslnie"
                     class="dataSend"
                     >Skierowanie zostało przesłane pomyślnie</span
                 >

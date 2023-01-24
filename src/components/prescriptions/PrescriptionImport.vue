@@ -88,11 +88,13 @@
                     :visible="isLoading" />
                 <error-info
                     alt="error value"
-                    aria-label="error value"
+                    :aria-label="error"
+                    aria-live="polite"
                     :message="error" />
                 <span
                     v-show="successFlag"
-                    aria-live="prescription import send"
+                    aria-live="polite"
+                    aria-label="recepta przeslana pomyslnie"
                     class="dataSend"
                     >Recepta została przesłana pomyślnie</span
                 >

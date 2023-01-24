@@ -81,12 +81,14 @@
                     :visible="isLoading" />
                 <error-info
                     alt="error value"
-                    aria-label="error value"
+                    aria-live="polite"
+                    :aria-label="error"
                     :message="error" />
                 <span
                     v-show="successFlag"
                     class="dataSend"
-                    aria-live="referral send"
+                    aria-live="polite"
+                    aria-label="Skierowanie zostało przesłane pomyślnie"
                     tabindex="0"
                     >Skierowanie zostało przesłane pomyślnie</span
                 >
