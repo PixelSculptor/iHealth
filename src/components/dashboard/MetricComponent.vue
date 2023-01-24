@@ -13,7 +13,7 @@
         @include flex-position(column, nowrap, space-around, center);
         &:deep(input[type='number']) {
             border: none;
-            @include text-header6(500);
+            @include text-header6($font-weight-medium);
             text-align: right;
         }
         &:deep(input#height) {
@@ -21,7 +21,7 @@
         }
         &:deep(label) {
             text-align: center;
-            color: $gray-500;
+            color: $gray-900;
             @include text-paragraph($font-weight-light);
         }
     }

@@ -96,8 +96,8 @@
         }
         &__dateOfResult > h6,
         &__typeOfBlood > h6 {
-            @include text-header6(500);
-            color: $gray-500;
+            @include text-header6($font-weight-medium);
+            color: $gray-900;
         }
         &__dateOfResult > p,
         &__typeOfBlood > p {
