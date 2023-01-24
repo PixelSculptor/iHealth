@@ -48,6 +48,7 @@
         &__userDescription {
             grid-area: info;
             height: 100%;
+            margin-right: 2rem;
         }
         &__userInfo {
             grid-area: sidebar;
