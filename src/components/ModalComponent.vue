@@ -4,7 +4,8 @@
             icon="fa-solid fa-xmark"
             role="button"
             tabindex="0"
-            @click="closeModal" />
+            @click="closeModal"
+            @keyup.enter="clickEnter" />
         <div class="box__customContent">
             <slot />
         </div>
@@ -14,6 +15,9 @@
 <script setup>
     const emit = defineEmits(['close']);
     const closeModal = () => {
+        emit('close');
+    };
+    const clickEnter = () => {
         emit('close');
     };
 </script>
