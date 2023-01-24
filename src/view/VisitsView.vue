@@ -35,15 +35,19 @@
                 is-range>
                 <template v-slot:day-content="{ day }">
                     <div class="dayContainer">
-                        <span class="dayContainer__day-label">{{
-                            day.day
-                        }}</span>
+                        <span
+                            :aria-label="'Dzień:' + day.day"
+                            class="dayContainer__day-label"
+                            tabindex="0"
+                            >{{ day.day }}</span
+                        >
                         <div
                             v-if="filterDates(day)"
                             class="dayContainer__calendarNote">
                             <calendar-note-component
                                 :hour="filterDates(day)?.customData.hour"
                                 :title="filterDates(day)?.customData.title"
+                                tabindex="0"
                                 @click="seeDetailsFlag = true">
                                 <template>
                                     <teleport to="body">
@@ -192,8 +196,13 @@
                         display: inline-block;
                         padding: 0.5rem;
                         align-self: flex-start;
-                        //text-align: left;
-                        &--today {
+                        text-align: left;
+
+                        &:focus-visible {
+                            outline: dashed $blue-900;
+                            outline-offset: 0.05rem;
+                            outline-width: 0.15rem;
+                            border-radius: $border-radius--normal;
                         }
                     }
                     &__calendarNote {

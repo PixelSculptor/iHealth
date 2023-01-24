@@ -1,11 +1,15 @@
 <template>
-    <article class="dateNoteContainer">
+    <section class="dateNoteContainer">
         <slot />
-        <div class="dateNoteContainer__info info">
-            <h6 class="info__title">{{ title }}</h6>
+        <article class="dateNoteContainer__info info">
+            <h6
+                class="info__title"
+                tabindex="0">
+                {{ title }}
+            </h6>
             <p class="info__date">{{ hour }}</p>
-        </div>
-    </article>
+        </article>
+    </section>
 </template>
 
 <script setup>
@@ -51,6 +55,12 @@
                     color: $white;
                 }
             }
+        }
+        &:focus-visible {
+            outline: dashed $blue-900;
+            outline-offset: 0.1rem;
+            outline-width: 0.15rem;
+            border-radius: $border-radius--normal;
         }
     }
 
