@@ -45,7 +45,7 @@ export const typeOfResources = [
         id: 10,
     },
     {
-        typeName: 'Zdjęcia radiologiczne (USG)',
+        typeName: 'Zdjęcia radiologiczne (RTG)',
         keyName: 'radiographs',
         id: 11,
     },

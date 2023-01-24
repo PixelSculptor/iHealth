@@ -40,10 +40,11 @@
                 color: $blue-700;
                 transform: scale(1.1);
             }
-            &:focus-visible {
+            &:focus-visible,
+            &:focus {
                 border-radius: 50%;
-                outline: dashed $blue-300;
-                outline-offset: 0.3rem;
+                outline: dashed $blue-900;
+                outline-offset: 0.5rem;
                 outline-width: 0.15rem;
             }
         }

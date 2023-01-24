@@ -23,7 +23,7 @@
     .today {
         &__date {
             @include text-header4($font-weight-regular);
-            color: $gray-700;
+            color: $gray-900;
         }
     }
 </style>

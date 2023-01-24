@@ -63,9 +63,9 @@
             }
         }
         &__list {
-            height: 14vh;
+            height: 100%;
             width: 100%;
-            padding-top: 15%;
+            padding-top: 2rem;
             overflow-y: scroll;
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;

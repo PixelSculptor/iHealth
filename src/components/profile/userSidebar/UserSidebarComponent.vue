@@ -2,7 +2,11 @@
     <div class="userInfoWrapper">
         <div class="userAvatar">
             <user-avatar-component />
-            <h4 tabindex="0">{{ name }} {{ surname }}</h4>
+            <h4
+                :aria-label="'Imię i nazwisko: ' + name + ' ' + surname"
+                tabindex="0">
+                {{ name }} {{ surname }}
+            </h4>
         </div>
         <div class="userData">
             <user-info-list-component />
