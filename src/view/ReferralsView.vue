@@ -187,5 +187,28 @@
                 display: none;
             }
         }
+
+        @media (max-width: $pc-width) {
+            &__header {
+                height: 50%;
+                width: 70%;
+                grid-area: dashboard;
+                @include text-header1($font-weight-semiBold);
+                color: $blue-900;
+                display: flex;
+                align-content: center;
+                justify-content: flex-start;
+            }
+            &__actions {
+                grid-area: actions;
+                place-self: space-between;
+                width: 70%;
+                gap: 2rem;
+                @include flex-position(row, nowrap, flex-start, center);
+            }
+            &__userInfo {
+                display: none;
+            }
+        }
     }
 </style>
