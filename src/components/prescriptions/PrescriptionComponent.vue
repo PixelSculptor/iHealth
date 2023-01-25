@@ -118,5 +118,30 @@
         &__data {
             @include text-header6($font-weight-regular);
         }
+
+        @media (max-width: 768px) {
+            .documentBox {
+                width: 82%;
+                border: $border-size solid $gray-300;
+                border-radius: $border-radius--normal;
+                padding: 1rem;
+                background-color: $white;
+                gap: 3.5rem;
+                margin-left: 5rem;
+                justify-content: flex-start;
+            }
+            &:deep(svg) {
+                color: $blue-700;
+                height: 2rem;
+            }
+
+            &__title {
+                @include text-header6($font-weight-regular);
+                color: $gray-900;
+            }
+            &__data {
+                @include text-header6($font-weight-regular);
+            }
+        }
     }
 </style>

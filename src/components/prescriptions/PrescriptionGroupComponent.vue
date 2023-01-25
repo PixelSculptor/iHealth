@@ -76,5 +76,24 @@
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
+        @media (max-width: 768px) {
+            &__header {
+                @include text-header3($font-weight-semiBold);
+                @include flex-position(row, nowrap, flex-start, center);
+                color: $blue-900;
+                gap: 1rem;
+                width: 70%;
+                margin-left: 5rem;
+            }
+            &__list {
+                height: 70%;
+                width: 82%;
+                margin-left: 5rem;
+                padding-top: 10%;
+                overflow-y: scroll;
+                @include flex-position(column, nowrap, flex-start, flex-start);
+                gap: 1rem;
+            }
+        }
     }
 </style>
