@@ -24,7 +24,7 @@
     letter-spacing: $letter-spacing-h3;
 }
 @mixin text-header3--tablet($weight: $font-weight-regular, $italic: false) {
-    font-size: $font-heading4;
+    font-size: $font-heading3--tablets;
     font-weight: $weight;
     @if $italic {
         font-style: italic;
