@@ -33,7 +33,7 @@
     import { storeToRefs } from 'pinia';
     import useUserStore from '../../stores/userStore';
     import { ref } from 'vue';
-    import PrescriptionImportComponent from './PrescriptionImportComponent..vue';
+    import PrescriptionImportComponent from './PrescriptionImportComponent.vue';
     import FallbackInfoComponent from '../FallbackInfoComponent.vue';
 
     const userStore = useUserStore();
@@ -73,7 +73,7 @@
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
-        @media (max-width: 768px) {
+        @media (max-width: $tablet-width) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 @include flex-position(row, nowrap, flex-start, center);
@@ -83,17 +83,17 @@
                 margin-left: 5rem;
             }
             &__list {
-                height: 70%;
-                width: 82%;
-                margin-left: 5rem;
-                padding-top: 10%;
-                overflow-y: scroll;
                 @include flex-position(
                     column,
                     nowrap,
                     space-around,
                     flex-start
                 );
+                height: 70%;
+                width: 82%;
+                margin-left: 5rem;
+                padding-top: 10%;
+                overflow-y: scroll;
                 gap: 1rem;
             }
         }

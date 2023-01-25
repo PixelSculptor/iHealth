@@ -118,29 +118,29 @@
         &__data {
             @include text-header6($font-weight-regular);
         }
+    }
 
-        @media (max-width: 768px) {
-            .documentBox {
-                width: 82%;
-                border: $border-size solid $gray-300;
-                border-radius: $border-radius--normal;
-                padding: 1rem;
-                background-color: $white;
-                gap: 3.5rem;
-                margin-left: 5rem;
-                justify-content: flex-start;
-            }
+    @media (max-width: $tablet-width) {
+        .documentBox {
+            @include flex-position(row, nowrap, space-between, center);
+            width: 100%;
+            border: $border-size solid $gray-300;
+            border-radius: $border-radius--normal;
+            padding: 0.5rem;
+            background-color: $white;
+            gap: 2.5rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2rem;
             }
-
             &__title {
-                @include text-header6($font-weight-regular);
+                @include text-header6--tablets($font-weight-medium);
                 color: $gray-900;
+                text-align: center;
             }
             &__data {
-                @include text-header6($font-weight-regular);
+                @include text-header6--tablets($font-weight-medium);
+                text-align: center;
             }
         }
     }

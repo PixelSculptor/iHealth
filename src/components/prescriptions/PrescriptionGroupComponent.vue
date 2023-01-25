@@ -76,7 +76,7 @@
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
-        @media (max-width: 768px) {
+        @media (max-width: $tablet-width) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 @include flex-position(row, nowrap, flex-start, center);
@@ -86,13 +86,18 @@
                 margin-left: 5rem;
             }
             &__list {
+                @include flex-position(
+                    column,
+                    nowrap,
+                    space-around,
+                    flex-start
+                );
                 height: 70%;
                 width: 82%;
-                margin-left: 5rem;
                 padding-top: 10%;
                 overflow-y: scroll;
-                @include flex-position(column, nowrap, flex-start, flex-start);
                 gap: 1rem;
+                margin-left: 5rem;
             }
         }
     }

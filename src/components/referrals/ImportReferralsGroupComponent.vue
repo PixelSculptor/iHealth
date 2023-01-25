@@ -70,5 +70,30 @@
             overflow-y: scroll;
             gap: 1rem;
         }
+
+        @media (max-width: $tablet-width) {
+            &__header {
+                @include text-header3--tablet($font-weight-semiBold);
+                @include flex-position(row, nowrap, flex-start, center);
+                color: $blue-900;
+                gap: 1rem;
+                width: 70%;
+                margin-left: 5rem;
+            }
+            &__list {
+                @include flex-position(
+                    column,
+                    nowrap,
+                    space-around,
+                    flex-start
+                );
+                height: 70%;
+                width: 82%;
+                margin-left: 5rem;
+                padding-top: 10%;
+                overflow-y: scroll;
+                gap: 1rem;
+            }
+        }
     }
 </style>

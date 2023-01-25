@@ -137,7 +137,7 @@
             border-top-left-radius: $border-radius--rounded;
             border-bottom-left-radius: $border-radius--rounded;
         }
-        @media (max-width: 768px) {
+        @media (max-width: $tablet-width) {
             &__header {
                 height: 50%;
                 width: 70%;

@@ -139,5 +139,30 @@
             border-bottom-left-radius: $border-radius--rounded;
         }
         //TODO: Kacper will make changes in component UserInfo so he need to in the future change styles here.
+
+        @media (max-width: $tablet-width) {
+            &__header {
+                height: 50%;
+                width: 70%;
+                grid-area: dashboard;
+                @include text-header1($font-weight-semiBold);
+                color: $blue-900;
+                display: flex;
+                align-content: center;
+                justify-content: flex-start;
+                margin-left: 5rem;
+            }
+            &__actions {
+                grid-area: actions;
+                place-self: space-between;
+                width: 70%;
+                gap: 2rem;
+                margin-left: 5rem;
+                @include flex-position(row, nowrap, flex-start, center);
+            }
+            &__userInfo {
+                display: none;
+            }
+        }
     }
 </style>

@@ -23,6 +23,14 @@
     }
     letter-spacing: $letter-spacing-h3;
 }
+@mixin text-header3--tablet($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading4;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h3;
+}
 @mixin text-header4($weight: $font-weight-regular, $italic: false) {
     font-size: $font-heading4;
     font-weight: $weight;
@@ -47,6 +55,16 @@
     }
     letter-spacing: $letter-spacing-h6;
 }
+
+@mixin text-header6--tablets($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading6--tablets;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+
 @mixin text-paragraph($weight: $font-weight-regular, $italic: false) {
     font-size: $base-font-size;
     font-weight: $weight;
@@ -115,6 +133,11 @@
 @mixin button--small {
     min-width: $button-width-small;
     padding: 0.75rem;
+}
+
+@mixin button--small--tablet {
+    min-width: $button-width-small-tablets;
+    padding: 0.5rem;
 }
 
 @mixin button--regular {

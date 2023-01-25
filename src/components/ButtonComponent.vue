@@ -181,4 +181,25 @@
             color: $blue-700;
         }
     }
+    @media (max-width: $tablet-width) {
+        button,
+        a,
+        router-link {
+            @include button-basic;
+            :deep(.child) {
+                letter-spacing: $letter-spacing-button;
+                font-size: $font-heading6--tablets;
+                @include flex-position(row, nowrap, center, center);
+                gap: 0.5rem;
+            }
+            :deep(svg) {
+                height: 1.5rem;
+            }
+            @include button--regular;
+        }
+
+        .small {
+            @include button--small--tablet;
+        }
+    }
 </style>
