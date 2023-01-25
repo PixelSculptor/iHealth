@@ -72,11 +72,5 @@
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
-
-        @media (width <= 750px) {
-            &__list {
-                width: 70%;
-            }
-        }
     }
 </style>
