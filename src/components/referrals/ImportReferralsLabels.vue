@@ -77,33 +77,32 @@
         }
     }
 
-    @media (min-width: $zero-width) and (max-width: $tablet-width) {
+    @media (max-width: $pc-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
             border: $border-size solid $gray-300;
             border-radius: $border-radius--normal;
-            padding: 0.5rem;
+            padding: 1rem;
             background-color: $white;
             gap: 4rem;
             &:deep(svg) {
                 color: $blue-700;
-                height: 2rem;
+                height: 2.75rem;
             }
             &__title {
-                @include text-header6--tablets($font-weight-medium);
+                @include text-header5--pc($font-weight-medium);
                 color: $gray-900;
                 text-align: center;
             }
             &__data {
-                @include text-header6--tablets($font-weight-medium);
-                color: $gray-900;
+                @include text-header6--pc($font-weight-medium);
                 text-align: center;
             }
         }
     }
 
-    @media (min-width: $tablet-above-width) and (max-width: $laptop-width) {
+    @media (max-width: $laptop-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
@@ -128,26 +127,27 @@
         }
     }
 
-    @media (min-width: $laptop-above-width) and (max-width: $pc-width) {
+    @media (max-width: $tablet-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
             border: $border-size solid $gray-300;
             border-radius: $border-radius--normal;
-            padding: 1rem;
+            padding: 0.5rem;
             background-color: $white;
             gap: 4rem;
             &:deep(svg) {
                 color: $blue-700;
-                height: 2.75rem;
+                height: 2rem;
             }
             &__title {
-                @include text-header5--pc($font-weight-medium);
+                @include text-header6--tablets($font-weight-medium);
                 color: $gray-900;
                 text-align: center;
             }
             &__data {
-                @include text-header6--pc($font-weight-medium);
+                @include text-header6--tablets($font-weight-medium);
+                color: $gray-900;
                 text-align: center;
             }
         }
