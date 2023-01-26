@@ -73,7 +73,7 @@
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
         }
-        @media (max-width: $tablet-width) {
+        @media (min-width: $zero-width) and (max-width: $tablet-width) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 @include flex-position(row, nowrap, flex-start, center);
@@ -98,7 +98,7 @@
             }
         }
 
-        @media (max-width: $laptop-width) {
+        @media (min-width: $tablet-above-width) and (max-width: $laptop-width) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;
@@ -130,7 +130,7 @@
             }
         }
 
-        @media (max-width: $pc-width) {
+        @media (min-width: $laptop-above-width) and (max-width: $pc-width) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 color: $blue-900;

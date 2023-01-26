@@ -137,7 +137,7 @@
             border-top-left-radius: $border-radius--rounded;
             border-bottom-left-radius: $border-radius--rounded;
         }
-        @media (max-width: $tablet-width) {
+        @media (min-width: $zero-width) and (max-width: $tablet-width) {
             &__header {
                 height: 50%;
                 width: 70%;
@@ -162,7 +162,7 @@
             }
         }
 
-        @media (max-width: $laptop-width) {
+        @media (min-width: $tablet-above-width) and (max-width: $laptop-width) {
             &__header {
                 height: 50%;
                 width: 70%;
@@ -185,7 +185,7 @@
             }
         }
 
-        @media (max-width: $pc-width) {
+        @media (min-width: $laptop-above-width) and (max-width: $pc-width) {
             &__header {
                 height: 50%;
                 width: 70%;

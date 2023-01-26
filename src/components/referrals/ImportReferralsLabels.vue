@@ -77,7 +77,7 @@
         }
     }
 
-    @media (max-width: $tablet-width) {
+    @media (min-width: $zero-width) and (max-width: $tablet-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
@@ -103,7 +103,7 @@
         }
     }
 
-    @media (max-width: $laptop-width) {
+    @media (min-width: $tablet-above-width) and (max-width: $laptop-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
@@ -128,7 +128,7 @@
         }
     }
 
-    @media (max-width: $pc-width) {
+    @media (min-width: $laptop-above-width) and (max-width: $pc-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
