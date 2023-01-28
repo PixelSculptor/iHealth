@@ -154,6 +154,9 @@
 
     @media screen and (max-width: $tablet-width) {
         .loginForm {
+            &__header {
+                font-size: $font-heading2--tablets;
+            }
         }
     }
 </style>
