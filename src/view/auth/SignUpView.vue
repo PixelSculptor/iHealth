@@ -105,7 +105,7 @@
         margin: auto;
         position: relative;
         @include text-header6;
-        color: $gray-500;
+        color: $gray-700;
         padding-inline: 1rem;
 
         &::before,
