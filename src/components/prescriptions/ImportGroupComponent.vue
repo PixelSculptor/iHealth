@@ -1,6 +1,8 @@
 <template>
     <section class="prescriptionContainer">
-        <h3 class="prescriptionContainer__header">
+        <h3
+            class="prescriptionContainer__header"
+            tabindex="0">
             Zaimportowane recepty
             <span class="numOfPres">{{
                 getPatientImportPrescriptions?.length

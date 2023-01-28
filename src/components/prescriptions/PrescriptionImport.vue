@@ -60,13 +60,19 @@
                 <div
                     class="icon"
                     tabindex="0">
-                    <font-awesome-icon icon="fa-solid fa-file-import" />
+                    <font-awesome-icon
+                        alt="add result icon"
+                        aria-label="add result icon"
+                        icon="fa-solid fa-file-import" />
                 </div>
                 <input
                     id="uploadTest"
                     type="file"
                     @change="handleChange" />
-                <error-info :message="testFileError" />
+                <error-info
+                    alt="error file value"
+                    aria-label="error file value"
+                    :message="testFileError" />
             </div>
 
             <div class="actionsAndInfo">
@@ -75,10 +81,20 @@
                     wide
                     >Zapisz receptę</button-component
                 >
-                <bouncing-balls-component :visible="isLoading" />
-                <error-info :message="error" />
+                <bouncing-balls-component
+                    role="presentation"
+                    alt="loader"
+                    aria-label="loader"
+                    :visible="isLoading" />
+                <error-info
+                    alt="error value"
+                    :aria-label="error"
+                    aria-live="polite"
+                    :message="error" />
                 <span
                     v-show="successFlag"
+                    aria-live="polite"
+                    aria-label="recepta przeslana pomyslnie"
                     class="dataSend"
                     >Recepta została przesłana pomyślnie</span
                 >

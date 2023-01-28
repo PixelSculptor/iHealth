@@ -74,11 +74,22 @@
                     wide
                     >Zapisz skierowanie</button-component
                 >
-                <bouncing-balls-component :visible="isLoading" />
-                <error-info :message="error" />
+                <bouncing-balls-component
+                    role="presentation"
+                    alt="loader"
+                    aria-label="loader"
+                    :visible="isLoading" />
+                <error-info
+                    alt="error value"
+                    aria-live="polite"
+                    :aria-label="error"
+                    :message="error" />
                 <span
                     v-show="successFlag"
                     class="dataSend"
+                    aria-live="polite"
+                    aria-label="Skierowanie zostało przesłane pomyślnie"
+                    tabindex="0"
                     >Skierowanie zostało przesłane pomyślnie</span
                 >
             </div>
@@ -182,18 +193,6 @@
                         border-radius: $border-radius--normal;
                         @include button-soft;
                         @include text-button($font-weight-semiBold);
-                    }
-                }
-                .icon {
-                    cursor: pointer;
-                    position: relative;
-                    &:deep(svg) {
-                        width: 1.2rem;
-                        height: 1.2rem;
-                        top: -0.6rem;
-                        left: 8rem;
-                        position: absolute;
-                        color: $blue-700;
                     }
                 }
             }

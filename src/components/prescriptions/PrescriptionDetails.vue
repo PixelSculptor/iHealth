@@ -3,22 +3,42 @@
         <h3 class="detailsPres__header">Szczegóły recepty</h3>
         <form class="detailsPres__form detailsForm">
             <div class="inputBox">
-                <h5 class="detailsPres__title">Lekarz:</h5>
+                <h5
+                    :aria-label="'Imię i nazwisko lekarza: ' + names"
+                    class="detailsPres__title"
+                    tabindex="0">
+                    Lekarz:
+                </h5>
                 <p class="detailsPres__data">{{ names }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">Nazwa leku:</h5>
+                <h5
+                    :aria-label="'Nazwa leku: ' + medicines"
+                    class="detailsPres__title"
+                    tabindex="0">
+                    Nazwa leku:
+                </h5>
                 <p class="detailsPres__data">{{ medicines }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">Częstotliwość przyjmowania:</h5>
+                <h5
+                    :aria-label="'Częstotliwość przyjmowania: ' + frequencys"
+                    class="detailsPres__title"
+                    tabindex="0">
+                    Częstotliwość przyjmowania:
+                </h5>
                 <p class="detailsPres__data">{{ frequencys }}</p>
             </div>
 
             <div class="inputBox">
-                <h5 class="detailsPres__title">Data wystawienia recepty:</h5>
+                <h5
+                    :aria-label="'Data wystawienia recepty: ' + dates"
+                    class="detailsPres__title"
+                    tabindex="0">
+                    Data wystawienia recepty:
+                </h5>
                 <p class="detailsPres__data">{{ dates }}</p>
             </div>
         </form>

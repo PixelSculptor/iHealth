@@ -1,8 +1,16 @@
 <template>
     <li class="documentBox">
-        <font-awesome-icon :icon="classOfIcon" />
+        <font-awesome-icon
+            alt="add result icon"
+            aria-label="add result icon"
+            :icon="classOfIcon" />
         <h5 class="documentBox__title">{{ name }}</h5>
-        <p class="documentBox__data">{{ date }}</p>
+        <p
+            :aria-label="'Zaimportowano dnia: ' + date"
+            class="documentBox__data"
+            tabindex="0">
+            {{ date }}
+        </p>
         <button-component
             small
             id="testUrl"
@@ -70,7 +78,7 @@
         }
         &__title {
             @include text-header5($font-weight-light);
-            color: $gray-700;
+            color: $gray-900;
         }
         &__data {
             @include text-header6($font-weight-regular);

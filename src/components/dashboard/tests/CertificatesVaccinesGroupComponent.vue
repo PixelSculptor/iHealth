@@ -63,7 +63,7 @@
             }
         }
         &__list {
-            height: 100%;
+            height: 14vh;
             width: 100%;
             padding-top: 20vh;
             overflow-y: scroll;

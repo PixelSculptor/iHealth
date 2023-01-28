@@ -1,27 +1,51 @@
 <template>
     <section class="detailsReferrence">
-        <h3 class="detailsReferrence__header">Szczegóły skierowania</h3>
+        <h3
+            class="detailsReferrence__header"
+            tabindex="0">
+            Szczegóły skierowania
+        </h3>
         <form class="detailsReferrence__form detailsReferrence">
             <div class="inputBox">
                 <h5 class="detailsReferrence__title">Lekarz:</h5>
-                <p class="detailsReferrence__data">{{ names }}</p>
+                <p
+                    :aria-label="'Imię i nazwisko lekarza: ' + names"
+                    class="detailsReferrence__data"
+                    tabindex="0">
+                    {{ names }}
+                </p>
             </div>
 
             <div class="inputBox">
                 <h5 class="detailsReferrence__title">Specjalizacja:</h5>
-                <p class="detailsReferrence__data">{{ specializations }}</p>
+                <p
+                    :aria-label="'Specjalizacja lekarza: ' + specializations"
+                    class="detailsReferrence__data"
+                    tabindex="0">
+                    {{ specializations }}
+                </p>
             </div>
 
             <div class="inputBox">
                 <h5 class="detailsReferrence__title">Typ badania:</h5>
-                <p class="detailsReferrence__data">{{ typeOfTests }}</p>
+                <p
+                    :aria-label="'Typ badania: ' + typeOfTests"
+                    class="detailsReferrence__data"
+                    tabindex="0">
+                    {{ typeOfTests }}
+                </p>
             </div>
 
             <div class="inputBox">
                 <h5 class="detailsReferrence__title">
                     Data wystawienia skierowania:
                 </h5>
-                <p class="detailsReferrence__data">{{ dates }}</p>
+                <p
+                    :aria-label="'Data wystawienia skierowania: ' + dates"
+                    class="detailsReferrence__data"
+                    tabindex="0">
+                    {{ dates }}
+                </p>
             </div>
         </form>
     </section>

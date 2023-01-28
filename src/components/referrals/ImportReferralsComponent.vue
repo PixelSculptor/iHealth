@@ -2,7 +2,11 @@
     <div
         class="referralsBox"
         @submit.prevent="addTest">
-        <h3 class="referralsBox__header">Dodaj skierowanie:</h3>
+        <h3
+            class="referralsBox__header"
+            tabindex="0">
+            Dodaj skierowanie:
+        </h3>
         <form class="referralsBox__form referralsForm">
             <div class="inputBox">
                 <label for="doctorsData">Lekarz:</label>
@@ -28,13 +32,20 @@
                 <div
                     class="icon"
                     tabindex="0">
-                    <font-awesome-icon icon="fa-solid fa-file-import" />
+                    <font-awesome-icon
+                        alt="add result icon"
+                        aria-label="add result icon"
+                        icon="fa-solid fa-file-import" />
                 </div>
                 <input
                     id="uploadTest"
                     type="file"
                     @change="handleChange" />
-                <error-info :message="testFileError" />
+                <error-info
+                    alt="error file value"
+                    :aria-label="error"
+                    aria-live="polite"
+                    :message="testFileError" />
             </div>
 
             <div class="actionsAndInfo">
@@ -43,10 +54,16 @@
                     wide
                     >Zapisz skierowanie</button-component
                 >
-                <bouncing-balls-component :visible="isLoading" />
+                <bouncing-balls-component
+                    role="presentation"
+                    alt="loader"
+                    aria-label="loader"
+                    :visible="isLoading" />
                 <error-info :message="error" />
                 <span
                     v-show="successFlag"
+                    aria-live="polite"
+                    aria-label="skierowanie zostalo przeslane pomyslnie"
                     class="dataSend"
                     >Skierowanie zostało przesłane pomyślnie</span
                 >

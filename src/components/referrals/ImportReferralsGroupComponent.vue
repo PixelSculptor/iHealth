@@ -1,6 +1,8 @@
 <template>
     <section class="referralsContainer">
-        <h3 class="referralsContainer__header">
+        <h3
+            class="referralsContainer__header"
+            tabindex="0">
             Zaimportowane skierowania
             <span class="numOfImport">{{
                 getPatientImportReferrals?.length
