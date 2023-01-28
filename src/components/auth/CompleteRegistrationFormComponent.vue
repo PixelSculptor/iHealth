@@ -504,4 +504,54 @@
             }
         }
     }
+    @media screen and (min-width: $laptop-width) and (max-width: $pc-width) {
+        .completeProfileForm {
+            .formBlock {
+                &__input {
+                    padding: 0.9rem 0.2rem 0.9rem 0.2rem;
+                    &[type='file'] {
+                        background-color: $white;
+
+                        &::-webkit-file-upload-button {
+                            cursor: pointer;
+                            border: none;
+                            padding: 0.25rem;
+                            width: 30%;
+                            text-align: left;
+                            border-radius: $border-radius--normal;
+                            @include button-soft;
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+
+                &__label,
+                &__input {
+                    font-size: 1rem;
+                }
+
+                .icon {
+                    cursor: pointer;
+                    @include flex-position(row, nowrap, flex-start, center);
+                    position: relative;
+                    &:deep(svg) {
+                        width: 1rem;
+                        height: 1rem;
+                        position: absolute;
+                        top: 1.75rem;
+                        left: 6rem;
+                    }
+                }
+
+                &:nth-of-type(8),
+                &:nth-of-type(9) {
+                    position: relative;
+                    label {
+                        position: absolute;
+                        top: 110%;
+                    }
+                }
+            }
+        }
+    }
 </style>
