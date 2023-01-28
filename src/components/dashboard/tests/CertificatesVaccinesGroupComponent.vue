@@ -65,7 +65,7 @@
         &__list {
             height: 100%;
             width: 100%;
-            padding-top: 2rem;
+            padding-top: 20vh;
             overflow-y: scroll;
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
