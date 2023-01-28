@@ -303,7 +303,6 @@
 <style lang="scss" scoped>
     .completeProfileForm {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
         grid-auto-flow: row;
         grid-template-areas:
             'name surname avatar avatar'
@@ -479,6 +478,30 @@
         .loader {
             place-self: center;
             grid-area: loader;
+        }
+    }
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .completeProfileForm {
+            grid-template-areas:
+                'name surname'
+                'avatar avatar'
+                'phone birth'
+                'person-id gender'
+                'weight height'
+                'submit submit'
+                'loader loader';
+            max-height: 100%;
+            .formBlock {
+                &:nth-of-type(8),
+                &:nth-of-type(9) {
+                    position: relative;
+                    label {
+                        position: absolute;
+                        top: 110%;
+                    }
+                }
+            }
         }
     }
 </style>
