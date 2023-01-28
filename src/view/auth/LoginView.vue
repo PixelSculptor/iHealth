@@ -46,7 +46,7 @@
 
     //    media queries
 
-    @media screen and (max-width: $tablet-width) {
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .wrapper {
             .loginPanel {
                 place-self: center;

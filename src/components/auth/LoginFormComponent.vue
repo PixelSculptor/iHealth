@@ -152,7 +152,7 @@
 
     //    media queries
 
-    @media screen and (max-width: $tablet-width) {
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .loginForm {
             &__header {
                 font-size: $font-heading2--tablets;
