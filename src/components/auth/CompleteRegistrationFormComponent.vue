@@ -302,6 +302,7 @@
 
 <style lang="scss" scoped>
     .completeProfileForm {
+        @include shadow;
         display: grid;
         grid-auto-flow: row;
         grid-template-areas:
@@ -318,12 +319,11 @@
         background: $blue-100;
         border: solid $border-size--input $blue-900;
         border-radius: $border-radius--rounded;
-        @include shadow;
 
         .formBlock {
+            @include flex-position(column, wrap, space-around, flex-start);
             width: 100%;
             height: auto;
-            @include flex-position(column, wrap, space-around, flex-start);
             gap: 0.5rem;
             &__input {
                 @include input;
@@ -339,14 +339,14 @@
                     background-color: $white;
 
                     &::-webkit-file-upload-button {
+                        @include button-soft;
+                        @include text-button($font-weight-semiBold);
                         cursor: pointer;
                         border: none;
                         padding: 0.5rem;
                         width: 35%;
                         text-align: left;
                         border-radius: $border-radius--normal;
-                        @include button-soft;
-                        @include text-button($font-weight-semiBold);
                     }
                 }
             }
@@ -364,8 +364,8 @@
                 }
             }
             .icon {
-                cursor: pointer;
                 @include flex-position(row, nowrap, flex-start, center);
+                cursor: pointer;
                 position: relative;
                 &:deep(svg) {
                     width: 1.2rem;
@@ -379,10 +379,10 @@
 
             //  range field
             .field {
-                width: 100%;
-                color: $blue-700;
                 @include text-header6($font-weight-semiBold);
                 @include flex-position(row, wrap, center, center);
+                width: 100%;
+                color: $blue-700;
                 & > input[type='range'] {
                     margin-inline: 0.5rem;
                     border-radius: $border-radius--rounded;
@@ -436,8 +436,8 @@
             &:nth-child(8),
             &:nth-child(9) {
                 .slider {
-                    position: relative;
                     @include flex-position(row, nowrap, center, center);
+                    position: relative;
                     left: 50%;
                     top: -1.5rem;
                     & > span {
@@ -513,13 +513,13 @@
                         background-color: $white;
 
                         &::-webkit-file-upload-button {
+                            @include button-soft;
                             cursor: pointer;
                             border: none;
                             padding: 0.25rem;
                             width: 30%;
                             text-align: left;
                             border-radius: $border-radius--normal;
-                            @include button-soft;
                             font-size: 0.8rem;
                         }
                     }
@@ -531,8 +531,8 @@
                 }
 
                 .icon {
-                    cursor: pointer;
                     @include flex-position(row, nowrap, flex-start, center);
+                    cursor: pointer;
                     position: relative;
                     &:deep(svg) {
                         width: 1rem;
