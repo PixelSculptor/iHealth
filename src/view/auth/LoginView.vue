@@ -48,9 +48,6 @@
 
     @media screen and (max-width: $tablet-width) {
         .wrapper {
-            .welcome {
-                padding: 0.5rem;
-            }
             .loginPanel {
                 place-self: center;
                 padding: 1rem;

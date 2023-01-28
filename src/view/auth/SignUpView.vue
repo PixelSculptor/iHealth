@@ -125,4 +125,22 @@
             transform: translateX(10%);
         }
     }
+
+    //    media queries
+
+    @media screen and (max-width: $tablet-width) {
+        .wrapper {
+            .loginLink {
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .account-creation {
+                &__header {
+                    font-size: $font-heading2--tablets;
+                    text-align: center;
+                }
+            }
+        }
+    }
 </style>

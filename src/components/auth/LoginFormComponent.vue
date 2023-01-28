@@ -154,7 +154,6 @@
 
     @media screen and (max-width: $tablet-width) {
         .loginForm {
-            //padding: 1rem;
         }
     }
 </style>

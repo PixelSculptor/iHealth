@@ -189,10 +189,4 @@
             font-size: $font-button--tablet;
         }
     }
-    @media screen and (max-width: $tablet-width) {
-        .wide {
-            width: 15rem;
-            padding: 0.5rem !important;
-        }
-    }
 </style>
