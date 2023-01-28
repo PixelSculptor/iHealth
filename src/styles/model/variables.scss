@@ -75,3 +75,32 @@ $button-width-wide: 22rem;
 
 // transition
 $transition-basic: all 0.2s ease-in-out;
+
+//max-width for media
+$tablet-width: 768px;
+$laptop-width: 1024px;
+$pc-width: 1370px;
+
+//tablets
+$font-heading3--tablets: 1.7rem;
+$font-heading5--tablets: 1.1rem;
+$font-heading6--tablets: 1rem;
+$font-button--tablet: 1rem;
+
+$button-width-minor--tablets: 2.125rem;
+$button-width-small-tablets: 7.25rem;
+$button-width-regular-tablets: 10.125rem;
+$button-width-wide--tablets: 22rem;
+$border-radius--rounded--tablets: 1.1rem;
+
+//laptops
+$font-heading3--laptops: 1.5rem;
+$font-heading4--laptops: 1.3rem;
+$font-heading5--laptops: 1.2rem;
+$font-heading6--laptops: 1.1rem;
+$font-button--laptops: 1rem;
+$base-font-size--laptops: 1rem;
+
+//pc
+$font-heading5--pc: 1.55rem;
+$font-heading6--pc: 1.3rem;

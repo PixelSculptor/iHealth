@@ -125,6 +125,7 @@
         &__header {
             @include text-header2($font-weight-semiBold);
             color: $blue-700;
+            text-align: center;
         }
         .formBlock {
             width: $button-width-wide;
@@ -147,5 +148,13 @@
     }
     .infoLabel {
         width: $button-width-wide;
+    }
+
+    //    media queries
+
+    @media screen and (max-width: $tablet-width) {
+        .loginForm {
+            //padding: 1rem;
+        }
     }
 </style>

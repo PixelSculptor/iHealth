@@ -5,8 +5,8 @@
             <div class="loginLink">
                 <h5 class="loginLink__header">Nie masz jeszcze konta?</h5>
                 <button-component
-                    soft
                     small
+                    soft
                     to="Signup">
                     Zarejestruj się
                 </button-component>
@@ -22,7 +22,7 @@
     import ButtonComponent from '../../components/ButtonComponent.vue';
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
     .wrapper {
         @include wrapper;
         width: 100vw;
@@ -39,6 +39,29 @@
                 &__header {
                     @include text-header5($font-weight-semiBold);
                     color: $blue-700;
+                }
+            }
+        }
+    }
+
+    //    media queries
+
+    @media screen and (max-width: $tablet-width) {
+        .wrapper {
+            .loginPanel {
+                place-self: center;
+                padding: 1rem;
+
+                .loginLink {
+                    gap: 0.5rem;
+                    margin: 0;
+                    padding: 0.5rem;
+                    place-self: center;
+
+                    &__header {
+                        font-size: $font-heading5--tablets;
+                        text-align: center;
+                    }
                 }
             }
         }
