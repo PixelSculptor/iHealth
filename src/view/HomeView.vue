@@ -228,15 +228,29 @@
         .dashboard {
             grid-template-areas:
                 'dashboard calendar calendar'
-                'actions calendar calendar'
+                'actions actions actions'
                 'bmi bmi bmi'
                 'vaccines vaccines vaccines'
                 'blood blood blood'
                 'blood blood blood';
+            margin-top: 2rem;
+            gap: 2%;
 
             &__header {
                 @include text-header2($font-weight-semiBold);
-                place-self: flex-end flex-start;
+                place-self: center flex-start;
+            }
+
+            &__calendar {
+                place-self: center flex-end;
+            }
+
+            &__actions {
+                justify-content: space-between;
+                button {
+                    width: 50%;
+                    height: 5rem;
+                }
             }
 
             &__bmiCalc {
