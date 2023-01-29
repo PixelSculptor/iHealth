@@ -23,8 +23,26 @@
     }
     letter-spacing: $letter-spacing-h3;
 }
+
+@mixin text-header3--tablet($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading3--tablets;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h3;
+}
+
 @mixin text-header4($weight: $font-weight-regular, $italic: false) {
     font-size: $font-heading4;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h4;
+}
+@mixin text-header4--laptops($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading4--laptops;
     font-weight: $weight;
     @if $italic {
         font-style: italic;
@@ -39,6 +57,32 @@
     }
     letter-spacing: $letter-spacing-h5;
 }
+@mixin text-header5--tablets($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading5--tablets;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+
+@mixin text-header5--laptops($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading5--laptops;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+@mixin text-header5--pc($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading5--pc;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+
 @mixin text-header6($weight: $font-weight-regular, $italic: false) {
     font-size: $font-heading6;
     font-weight: $weight;
@@ -47,6 +91,34 @@
     }
     letter-spacing: $letter-spacing-h6;
 }
+
+@mixin text-header6--tablets($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading6--tablets;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h6;
+}
+
+@mixin text-header6--laptop($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading3--laptops;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h3;
+}
+
+@mixin text-header6--pc($weight: $font-weight-regular, $italic: false) {
+    font-size: $font-heading6--pc;
+    font-weight: $weight;
+    @if $italic {
+        font-style: italic;
+    }
+    letter-spacing: $letter-spacing-h3;
+}
+
 @mixin text-paragraph($weight: $font-weight-regular, $italic: false) {
     font-size: $base-font-size;
     font-weight: $weight;
@@ -114,6 +186,11 @@
 @mixin button--small {
     min-width: $button-width-small;
     padding: 0.75rem;
+}
+
+@mixin button--small--tablet {
+    min-width: $button-width-small-tablets;
+    padding: 0.5rem;
 }
 
 @mixin button--regular {

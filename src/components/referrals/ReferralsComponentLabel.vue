@@ -119,4 +119,78 @@
             height: 3rem;
         }
     }
+    @media (max-width: $pc-width) {
+        .documentBox {
+            @include flex-position(row, nowrap, space-between, center);
+            width: 100%;
+            border: $border-size solid $gray-300;
+            border-radius: $border-radius--normal;
+            padding: 1rem;
+            background-color: $white;
+            gap: 5rem;
+            &:deep(svg) {
+                color: $blue-700;
+                height: 2.75rem;
+            }
+            &__title {
+                @include text-header5--pc($font-weight-medium);
+                color: $gray-900;
+                text-align: center;
+            }
+            &__data {
+                @include text-header6--pc($font-weight-medium);
+                text-align: center;
+            }
+        }
+    }
+
+    @media (max-width: $laptop-width) {
+        .documentBox {
+            @include flex-position(row, nowrap, space-between, center);
+            width: 100%;
+            border: $border-size solid $gray-300;
+            border-radius: $border-radius--normal;
+            padding: 1rem;
+            background-color: $white;
+            gap: 5rem;
+            &:deep(svg) {
+                color: $blue-700;
+                height: 2.5rem;
+            }
+            &__title {
+                @include text-header6--laptop($font-weight-medium);
+                color: $gray-900;
+                text-align: center;
+            }
+            &__data {
+                @include text-header5--laptops($font-weight-medium);
+                text-align: center;
+            }
+        }
+    }
+
+    @media (max-width: $tablet-width) {
+        .documentBox {
+            @include flex-position(row, nowrap, space-between, center);
+            width: 100%;
+            border: $border-size solid $gray-300;
+            border-radius: $border-radius--normal;
+            padding: 0.5rem;
+            background-color: $white;
+            gap: 2.5rem;
+            &:deep(svg) {
+                color: $blue-700;
+                height: 2rem;
+            }
+            &__title {
+                @include text-header6--tablets($font-weight-medium);
+                color: $gray-900;
+                text-align: center;
+            }
+            &__data {
+                @include text-header6--tablets($font-weight-medium);
+                text-align: center;
+            }
+        }
+    }
 </style>
