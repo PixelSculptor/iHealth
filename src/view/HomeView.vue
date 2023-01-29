@@ -221,6 +221,29 @@
             place-self: center;
         }
     }
+
+    //    media queries
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .dashboard {
+            grid-template-areas:
+                'dashboard calendar calendar'
+                'actions calendar calendar'
+                'bmi bmi bmi'
+                'vaccines vaccines vaccines'
+                'blood blood blood'
+                'blood blood blood';
+
+            &__header {
+                @include text-header2($font-weight-semiBold);
+                place-self: flex-end flex-start;
+            }
+
+            &__bmiCalc {
+                place-self: flex-start;
+            }
+        }
+    }
 </style>
 
 <style lang="scss">

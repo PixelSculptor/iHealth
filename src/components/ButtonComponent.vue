@@ -187,4 +187,13 @@
             color: $blue-700;
         }
     }
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        button,
+        a,
+        router-link {
+            padding: 1rem;
+            width: 10rem;
+            font-size: 0.9rem;
+        }
+    }
 </style>

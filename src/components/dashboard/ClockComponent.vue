@@ -58,4 +58,16 @@
             }
         }
     }
+
+    //    media queries
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .date {
+            &__clock {
+                .digitalClock {
+                    @include text-header3($font-weight-semiBold);
+                }
+            }
+        }
+    }
 </style>

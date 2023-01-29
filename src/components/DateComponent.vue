@@ -24,6 +24,7 @@
         &__date {
             @include text-header4($font-weight-regular);
             color: $gray-900;
+            text-align: center;
         }
     }
 </style>
