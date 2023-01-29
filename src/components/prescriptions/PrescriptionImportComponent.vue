@@ -4,63 +4,37 @@
             alt="add result icon"
             aria-label="add result icon"
             :icon="classOfIcon" />
-        <h5
-            :aria-label="'Imię i nazwisko lekarza: ' + name"
-            class="documentBox__title"
-            tabindex="0">
-            {{ name }}
-        </h5>
+        <h5 class="documentBox__title">{{ name }}</h5>
         <p
-            :aria-label="'Data wystawienia recepty: ' + date"
+            :aria-label="'Zaimportowano dnia: ' + date"
             class="documentBox__data"
             tabindex="0">
             {{ date }}
         </p>
         <button-component
             small
-            @click="openModalDetails = true">
-            Szczegóły
+            id="testUrl"
+            @click="seeMore">
+            Pobierz receptę
         </button-component>
-        <teleport to="body">
-            <transition name="modal">
-                <div
-                    v-if="openModalDetails"
-                    class="modal">
-                    <modal-component
-                        ref="modalDetils"
-                        @close="openModalDetails = false">
-                        <prescription-details
-                            v-bind:key="getPatientPrescriptions[index].id"
-                            :names="getPatientPrescriptions[index].doctorData"
-                            :dates="getPatientPrescriptions[index].date"
-                            :medicines="
-                                getPatientPrescriptions[index].medicineName
-                            "
-                            :frequencys="
-                                getPatientPrescriptions[index].frequencyMedicine
-                            " />
-                    </modal-component>
-                </div>
-            </transition>
-        </teleport>
     </li>
 </template>
 
 <script setup>
-    import { computed, ref } from 'vue';
+    import { computed } from 'vue';
     import ButtonComponent from '../ButtonComponent.vue';
-    import { onClickOutside } from '@vueuse/core';
-    import PrescriptionDetails from '../prescriptions/PrescriptionDetails.vue';
-    import ModalComponent from '../ModalComponent.vue';
-    import { storeToRefs } from 'pinia';
-    import useUserStore from '../../stores/userStore';
+    import { openNewCard } from '../../utils/openNewCard';
 
-    defineProps({
+    const props = defineProps({
         name: {
             type: String,
             default: 'Lekarz',
         },
         date: {
+            type: String,
+            default: '',
+        },
+        testUrl: {
             type: String,
             default: '',
         },
@@ -80,22 +54,13 @@
             type: String,
             default: '',
         },
-        index: {
-            type: Number,
-            default: 0,
-        },
     });
-
-    const openModalDetails = ref(null);
-    const modalDetils = ref(null);
-    const userStore = useUserStore();
-    const { getPatientPrescriptions } = storeToRefs(userStore);
-
-    onClickOutside(modalDetils, () => (openModalDetails.value = false));
-
     const classOfIcon = computed(() => {
         return 'fa-solid ' + 'fa-pills';
     });
+    const seeMore = () => {
+        openNewCard(props.testUrl);
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -105,7 +70,7 @@
         border-radius: $border-radius--normal;
         padding: 1rem;
         background-color: $white;
-        @include flex-position(row, nowrap, space-between, center);
+        @include flex-position(row, nowrap, space-around, center);
         gap: 5rem;
         &:deep(svg) {
             color: $blue-700;
@@ -120,31 +85,6 @@
         }
     }
 
-    @media (max-width: $pc-width) {
-        .documentBox {
-            @include flex-position(row, nowrap, space-between, center);
-            width: 100%;
-            border: $border-size solid $gray-300;
-            border-radius: $border-radius--normal;
-            padding: 1rem;
-            background-color: $white;
-            gap: 3.75rem;
-            &:deep(svg) {
-                color: $blue-700;
-                height: 2.75rem;
-            }
-            &__title {
-                @include text-header5--pc($font-weight-medium);
-                color: $gray-900;
-                text-align: center;
-            }
-            &__data {
-                @include text-header6--pc($font-weight-medium);
-                text-align: center;
-            }
-        }
-    }
-
     @media (max-width: $laptop-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
@@ -153,7 +93,7 @@
             border-radius: $border-radius--normal;
             padding: 1rem;
             background-color: $white;
-            gap: 3.75rem;
+            gap: 4.18rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2.5rem;
@@ -170,6 +110,31 @@
         }
     }
 
+    @media (max-width: $pc-width) {
+        .documentBox {
+            @include flex-position(row, nowrap, space-between, center);
+            width: 100%;
+            border: $border-size solid $gray-300;
+            border-radius: $border-radius--normal;
+            padding: 1rem;
+            background-color: $white;
+            gap: 4.18rem;
+            &:deep(svg) {
+                color: $blue-700;
+                height: 2.75rem;
+            }
+            &__title {
+                @include text-header5--pc($font-weight-medium);
+                color: $gray-900;
+                text-align: center;
+            }
+            &__data {
+                @include text-header6--pc($font-weight-medium);
+                text-align: center;
+            }
+        }
+    }
+
     @media (max-width: $tablet-width) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
@@ -178,7 +143,7 @@
             border-radius: $border-radius--normal;
             padding: 0.5rem;
             background-color: $white;
-            gap: 2.5rem;
+            gap: 4.75rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2rem;
@@ -190,6 +155,7 @@
             }
             &__data {
                 @include text-header6--tablets($font-weight-medium);
+                color: $gray-900;
                 text-align: center;
             }
         }
