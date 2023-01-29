@@ -105,7 +105,7 @@
         margin: auto;
         position: relative;
         @include text-header6;
-        color: $gray-500;
+        color: $gray-700;
         padding-inline: 1rem;
 
         &::before,
@@ -123,6 +123,24 @@
         }
         &::after {
             transform: translateX(10%);
+        }
+    }
+
+    //    media queries
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .wrapper {
+            .loginLink {
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .account-creation {
+                &__header {
+                    font-size: $font-heading2--tablets;
+                    text-align: center;
+                }
+            }
         }
     }
 </style>

@@ -162,7 +162,6 @@
     box-sizing: border-box;
     cursor: pointer;
     border-radius: $border-radius--rounded;
-    width: auto;
     padding: 0.5rem;
     display: inline-block;
     @include text-button($font-weight-semiBold);
@@ -195,7 +194,7 @@
 }
 
 @mixin button--regular {
-    min-width: $button-width-regular;
+    width: $button-width-regular;
     padding: 1rem;
     height: auto;
 }

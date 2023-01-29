@@ -302,8 +302,8 @@
 
 <style lang="scss" scoped>
     .completeProfileForm {
+        @include shadow;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
         grid-auto-flow: row;
         grid-template-areas:
             'name surname avatar avatar'
@@ -319,12 +319,11 @@
         background: $blue-100;
         border: solid $border-size--input $blue-900;
         border-radius: $border-radius--rounded;
-        @include shadow;
 
         .formBlock {
+            @include flex-position(column, wrap, space-around, flex-start);
             width: 100%;
             height: auto;
-            @include flex-position(column, wrap, space-around, flex-start);
             gap: 0.5rem;
             &__input {
                 @include input;
@@ -340,14 +339,14 @@
                     background-color: $white;
 
                     &::-webkit-file-upload-button {
+                        @include button-soft;
+                        @include text-button($font-weight-semiBold);
                         cursor: pointer;
                         border: none;
                         padding: 0.5rem;
                         width: 35%;
                         text-align: left;
                         border-radius: $border-radius--normal;
-                        @include button-soft;
-                        @include text-button($font-weight-semiBold);
                     }
                 }
             }
@@ -365,8 +364,8 @@
                 }
             }
             .icon {
-                cursor: pointer;
                 @include flex-position(row, nowrap, flex-start, center);
+                cursor: pointer;
                 position: relative;
                 &:deep(svg) {
                     width: 1.2rem;
@@ -380,10 +379,10 @@
 
             //  range field
             .field {
-                width: 100%;
-                color: $blue-700;
                 @include text-header6($font-weight-semiBold);
                 @include flex-position(row, wrap, center, center);
+                width: 100%;
+                color: $blue-700;
                 & > input[type='range'] {
                     margin-inline: 0.5rem;
                     border-radius: $border-radius--rounded;
@@ -437,8 +436,8 @@
             &:nth-child(8),
             &:nth-child(9) {
                 .slider {
-                    position: relative;
                     @include flex-position(row, nowrap, center, center);
+                    position: relative;
                     left: 50%;
                     top: -1.5rem;
                     & > span {
@@ -479,6 +478,80 @@
         .loader {
             place-self: center;
             grid-area: loader;
+        }
+    }
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .completeProfileForm {
+            grid-template-areas:
+                'name surname'
+                'avatar avatar'
+                'phone birth'
+                'person-id gender'
+                'weight height'
+                'submit submit'
+                'loader loader';
+            max-height: 100%;
+            .formBlock {
+                &:nth-of-type(8),
+                &:nth-of-type(9) {
+                    position: relative;
+                    label {
+                        position: absolute;
+                        top: 110%;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width: $laptop-width) and (max-width: $pc-width) {
+        .completeProfileForm {
+            .formBlock {
+                &__input {
+                    padding: 0.9rem 0.2rem 0.9rem 0.2rem;
+                    &[type='file'] {
+                        background-color: $white;
+
+                        &::-webkit-file-upload-button {
+                            @include button-soft;
+                            cursor: pointer;
+                            border: none;
+                            padding: 0.25rem;
+                            width: 30%;
+                            text-align: left;
+                            border-radius: $border-radius--normal;
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+
+                &__label,
+                &__input {
+                    font-size: 1rem;
+                }
+
+                .icon {
+                    @include flex-position(row, nowrap, flex-start, center);
+                    cursor: pointer;
+                    position: relative;
+                    &:deep(svg) {
+                        width: 1rem;
+                        height: 1rem;
+                        position: absolute;
+                        top: 1.75rem;
+                        left: 6rem;
+                    }
+                }
+
+                &:nth-of-type(8),
+                &:nth-of-type(9) {
+                    position: relative;
+                    label {
+                        position: absolute;
+                        top: 110%;
+                    }
+                }
+            }
         }
     }
 </style>

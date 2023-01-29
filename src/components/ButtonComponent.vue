@@ -113,6 +113,12 @@
 
     .small {
         @include button--small;
+        @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+            & {
+                padding: 0.35rem;
+                font-size: $font-button--tablet;
+            }
+        }
     }
     .wide {
         @include button--wide;
