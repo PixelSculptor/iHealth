@@ -98,4 +98,12 @@
             @include flex-position(column, wrap, space-around, flex-start);
         }
     }
+
+    //media queries
+
+    @media screen and (max-width: $tablet-width) {
+        .welcome {
+            padding: 0.5rem;
+        }
+    }
 </style>
