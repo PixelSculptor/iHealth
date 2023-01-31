@@ -172,7 +172,7 @@
 
         &__header {
             grid-area: header;
-            place-self: flex-end flex-start;
+            place-self: center flex-start;
         }
 
         &__calendar {
