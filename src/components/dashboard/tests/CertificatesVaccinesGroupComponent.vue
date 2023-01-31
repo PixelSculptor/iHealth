@@ -71,4 +71,14 @@
             gap: 1rem;
         }
     }
+
+    //    media queries
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .certificatesContainer {
+            &__list {
+                padding-top: 17vh;
+            }
+        }
+    }
 </style>
