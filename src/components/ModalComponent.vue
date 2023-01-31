@@ -25,7 +25,7 @@
 <style lang="scss" scoped>
     .box {
         min-height: 60vh;
-        min-width: 50vw;
+        width: 60vw;
         background-color: $white;
         padding: 2rem;
         border-radius: $border-radius--rounded;
@@ -54,6 +54,13 @@
         }
         &__customContent {
             grid-area: custom;
+        }
+    }
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .box {
+            height: 70vh;
+            width: 95vw;
         }
     }
 </style>

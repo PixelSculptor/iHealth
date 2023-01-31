@@ -64,4 +64,11 @@
         height: 100%;
         @include flex-position(column, nowrap, space-evenly, flex-start);
     }
+
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .userInfoList {
+            padding: 0;
+        }
+    }
 </style>

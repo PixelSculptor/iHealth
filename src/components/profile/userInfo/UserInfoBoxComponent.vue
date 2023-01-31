@@ -46,4 +46,15 @@
             gap: 1rem;
         }
     }
+
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .userBox {
+            height: 100%;
+            overflow-y: scroll;
+            place-self: flex-start flex-start;
+            width: 55vw;
+            padding: 1.5rem;
+        }
+    }
 </style>

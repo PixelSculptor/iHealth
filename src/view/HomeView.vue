@@ -4,26 +4,6 @@
         class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
-            <!--            <button-component-->
-            <!--                class="dashboard__make_visit"-->
-            <!--                @click="openModalResearch = true">-->
-            <!--                Umów wizytę-->
-            <!--                <font-awesome-icon icon="fa-solid fa-plus" />-->
-            <!--            </button-component>-->
-            <!--            <teleport to="body">-->
-            <!--                <transition name="modal">-->
-            <!--                    <div-->
-            <!--                        v-if="openModalResearch"-->
-            <!--                        class="modal">-->
-            <!--                        <modal-component-->
-            <!--                            ref="modal"-->
-            <!--                            @close="openModalResearch = false">-->
-            <!--                            <choose-visit-component />-->
-            <!--                        </modal-component>-->
-            <!--                    </div>-->
-            <!--                </transition>-->
-            <!--            </teleport>-->
-
             <button-component
                 class="dashboard__make_visit"
                 @click="openModalResearch = true">
@@ -164,23 +144,26 @@
         margin-inline: 2rem;
         gap: 5%;
         &__header {
-            grid-area: dashboard;
             @include text-header1($font-weight-semiBold);
+            grid-area: dashboard;
             color: $blue-900;
             place-self: center flex-start;
         }
         &__actions {
+            @include flex-position(row, nowrap, space-between, center);
             grid-area: actions;
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            @include flex-position(row, nowrap, flex-start, center);
+            button {
+                width: 100%;
+                height: 5rem;
+            }
         }
         &__bloodResults {
             grid-area: blood;
             height: 90%;
             width: 100%;
-            place-self: flex-start;
 
             .blood__header {
                 @include text-header3($font-weight-semiBold);
@@ -246,7 +229,8 @@
             }
 
             &__actions {
-                justify-content: space-between;
+                @include flex-position(row, nowrap, space-between, flex-start);
+                gap: 2rem;
                 button {
                     width: 50%;
                     height: 5rem;

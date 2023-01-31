@@ -157,6 +157,7 @@
 
 // button mixins
 @mixin button-basic {
+    @include text-button($font-weight-semiBold);
     text-decoration: none;
     border: none;
     box-sizing: border-box;
@@ -164,21 +165,21 @@
     border-radius: $border-radius--rounded;
     padding: 0.5rem;
     display: inline-block;
-    @include text-button($font-weight-semiBold);
     transition: $transition-basic;
     text-align: center;
 }
 
 @mixin focus {
+    @include button-soft--active;
     outline: dashed $blue-300;
     outline-offset: 0.3rem;
     outline-width: 0.15rem;
-    @include button-soft--active;
 }
 
 @mixin button--minor {
-    min-width: $button-width-minor;
-    min-height: $button-width-minor;
+    @include flex-position(row, nowrap, center, center);
+    width: $button-width-minor;
+    height: $button-width-minor;
     border-radius: 50%;
     padding: 0.65rem;
 }

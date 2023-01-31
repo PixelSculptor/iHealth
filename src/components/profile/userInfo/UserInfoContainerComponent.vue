@@ -98,4 +98,13 @@
         gap: 2%;
         padding: 1rem 0 1rem 0;
     }
+
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .userInfoContainer {
+            grid-template-columns: 1fr;
+            place-items: flex-start;
+            height: 90vh;
+        }
+    }
 </style>

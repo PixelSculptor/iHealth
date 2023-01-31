@@ -27,7 +27,7 @@
     defineProps({
         title: {
             type: String,
-            default: '',
+            default: 'Ala',
         },
         date: {
             type: String,
