@@ -144,26 +144,23 @@
         margin-inline: 2rem;
         gap: 5%;
         &__header {
-            @include text-header1($font-weight-semiBold);
             grid-area: dashboard;
+            @include text-header1($font-weight-semiBold);
             color: $blue-900;
             place-self: center flex-start;
         }
         &__actions {
-            @include flex-position(row, nowrap, space-between, center);
             grid-area: actions;
             place-self: flex-start;
             width: 100%;
             gap: 2rem;
-            button {
-                width: 100%;
-                height: 5rem;
-            }
+            @include flex-position(row, nowrap, flex-start, center);
         }
         &__bloodResults {
             grid-area: blood;
             height: 90%;
             width: 100%;
+            place-self: flex-start;
 
             .blood__header {
                 @include text-header3($font-weight-semiBold);
