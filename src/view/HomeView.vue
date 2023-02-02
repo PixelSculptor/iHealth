@@ -4,26 +4,6 @@
         class="dashboard">
         <h2 class="dashboard__header">Dashboard</h2>
         <div class="dashboard__actions">
-            <!--            <button-component-->
-            <!--                class="dashboard__make_visit"-->
-            <!--                @click="openModalResearch = true">-->
-            <!--                Umów wizytę-->
-            <!--                <font-awesome-icon icon="fa-solid fa-plus" />-->
-            <!--            </button-component>-->
-            <!--            <teleport to="body">-->
-            <!--                <transition name="modal">-->
-            <!--                    <div-->
-            <!--                        v-if="openModalResearch"-->
-            <!--                        class="modal">-->
-            <!--                        <modal-component-->
-            <!--                            ref="modal"-->
-            <!--                            @close="openModalResearch = false">-->
-            <!--                            <choose-visit-component />-->
-            <!--                        </modal-component>-->
-            <!--                    </div>-->
-            <!--                </transition>-->
-            <!--            </teleport>-->
-
             <button-component
                 class="dashboard__make_visit"
                 @click="openModalResearch = true">
@@ -246,7 +226,8 @@
             }
 
             &__actions {
-                justify-content: space-between;
+                @include flex-position(row, nowrap, space-between, flex-start);
+                gap: 2rem;
                 button {
                     width: 50%;
                     height: 5rem;

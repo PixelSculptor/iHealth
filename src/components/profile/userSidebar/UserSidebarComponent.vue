@@ -55,4 +55,18 @@
             height: 70%;
         }
     }
+
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .userInfoWrapper {
+            padding: 1rem;
+
+            .userAvatar {
+                width: 50%;
+                height: 25%;
+                align-self: flex-start;
+                margin-left: 1rem;
+            }
+        }
+    }
 </style>

@@ -56,4 +56,18 @@
             place-self: center flex-end;
         }
     }
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .profileView {
+            grid-template-areas:
+                'header header header sidebar'
+                'info info info sidebar'
+                'info info info sidebar'
+                'info info info sidebar'
+                'info info info sidebar';
+            &__userInfo {
+                place-self: flex-start;
+            }
+        }
+    }
 </style>

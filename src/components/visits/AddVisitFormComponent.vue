@@ -244,4 +244,27 @@
             }
         }
     }
+
+    //    Media queries
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .addVisit {
+            &__form {
+                grid-template-areas:
+                    'inputs datepicker'
+                    'inputs datepicker'
+                    'action action';
+                height: 100%;
+                place-items: flex-start flex-start;
+                gap: 1rem;
+
+                .userPoles {
+                    width: 50vw;
+                }
+
+                .actionsAndInfo {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
 </style>

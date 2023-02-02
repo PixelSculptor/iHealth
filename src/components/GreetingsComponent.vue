@@ -23,4 +23,13 @@
             color: $blue-900;
         }
     }
+
+    @media screen and (min-width: $tablet-width) and (max-width: $bigger-tablet) {
+        .greeting {
+            padding: 1rem 0 0 1rem;
+            h2 {
+                font-size: $font-heading2--tablets;
+            }
+        }
+    }
 </style>
