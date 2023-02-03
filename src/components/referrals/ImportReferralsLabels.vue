@@ -135,7 +135,6 @@
             border-radius: $border-radius--normal;
             padding: 0.5rem;
             background-color: $white;
-            gap: 4rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2rem;
