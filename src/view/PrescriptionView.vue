@@ -189,7 +189,7 @@
         }
     }
 
-    @media (max-width: $tablet-width) {
+    @media (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .prescription {
             &__header {
                 height: 50%;

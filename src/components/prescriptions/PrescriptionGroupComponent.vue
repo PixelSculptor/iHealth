@@ -146,14 +146,14 @@
         }
     }
 
-    @media (max-width: $tablet-width) {
+    @media (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .prescriptionContainer {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 @include flex-position(row, nowrap, flex-start, center);
                 color: $blue-900;
                 gap: 1rem;
-                width: 70%;
+                width: 100%;
             }
             &__list {
                 @include flex-position(
@@ -163,7 +163,7 @@
                     flex-start
                 );
                 height: 70%;
-                width: 82%;
+                width: 100%;
                 padding-top: 10%;
                 overflow-y: scroll;
                 gap: 1rem;
