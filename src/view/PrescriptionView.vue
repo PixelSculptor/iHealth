@@ -200,14 +200,12 @@
                 display: flex;
                 align-content: center;
                 justify-content: flex-start;
-                margin-left: 5rem;
             }
             &__actions {
                 grid-area: actions;
                 place-self: space-between;
                 width: 70%;
                 gap: 2rem;
-                margin-left: 5rem;
                 @include flex-position(row, nowrap, flex-start, center);
             }
             &__userInfo {

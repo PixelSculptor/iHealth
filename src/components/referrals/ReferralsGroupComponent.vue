@@ -144,7 +144,6 @@
                 color: $blue-900;
                 gap: 1rem;
                 width: 70%;
-                margin-left: 5rem;
             }
             &__list {
                 @include flex-position(
@@ -158,7 +157,6 @@
                 padding-top: 10%;
                 overflow-y: scroll;
                 gap: 1rem;
-                margin-left: 5rem;
             }
         }
     }
