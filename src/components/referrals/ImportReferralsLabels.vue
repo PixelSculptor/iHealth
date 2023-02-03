@@ -110,7 +110,7 @@
             border-radius: $border-radius--normal;
             padding: 1rem;
             background-color: $white;
-            gap: 4rem;
+            gap: 4.75rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2.5rem;
