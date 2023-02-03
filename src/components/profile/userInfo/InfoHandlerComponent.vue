@@ -23,7 +23,7 @@
     import UserIssueIconComponent from './UserIssueIconComponent.vue';
 
     import useUserStore from '../../../stores/userStore.js';
-    import { ref, watchEffect } from 'vue';
+    import { ref, watch } from 'vue';
     import { storeToRefs } from 'pinia';
     import userIssues from '../../../utils/userIssues.js';
 
@@ -36,7 +36,7 @@
     const isBloodDonor = ref(false);
 
     // TODO: to investigate this algorithm
-    // if (!!getUserIssues.value[0]){
+    // if (!!getUserIssues?.value[0]){
     //   // console.log(getUserIssues.value[0])
     //   console.log('perpare');
     //   for (const [key, value] of Object.entries(getUserIssues[0])) {
@@ -50,7 +50,7 @@
     //   }
     // }
 
-    watchEffect(getUserIssues, () => {
+    watch(getUserIssues, () => {
         bloodType.value = getUserIssues.value[0].bloodType;
         allergies.value = getUserIssues.value[0].allergies;
         diabetes.value = getUserIssues.value[0].diabetes;

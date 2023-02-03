@@ -103,7 +103,7 @@
     </div>
 </template>
 
-<script setup>
+<script async setup>
     import ButtonComponent from '../../ButtonComponent.vue';
     import BouncingBallsComponent from '../../BouncingBallsComponent.vue';
     import ErrorInfo from '../../ErrorInfo.vue';
@@ -111,11 +111,10 @@
     import { typeOfBlood } from '../../../utils/typeOfResources.js';
     import { computed, ref } from 'vue';
     import useUserStore from '../../../stores/userStore.js';
-    import { projectAuth, timestamp } from '../../../firebase/config.js';
+    import { timestamp } from '../../../firebase/config.js';
     import { useUpdateDocument } from '../../../composables/updateDocument.js';
 
     const userStore = useUserStore();
-    // const { addDoc, error } = useCollection('userIssues');
     const { updateDoc, error } = useUpdateDocument('userIssues');
 
     const antigenFlag = ref(false);
@@ -144,10 +143,9 @@
     );
 
     const handleSaveData = async () => {
-        const user = projectAuth.currentUser;
         try {
             isLoading.value = true;
-            await updateDoc(user.uid, {
+            await updateDoc(userStore.getUserIssues[0].id, {
                 userId: userStore.getUserId,
                 bloodType:
                     bloodGroup.value || userStore.getUserIssues[0].bloodType,
