@@ -99,8 +99,9 @@
             }
             &__list {
                 height: 70%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -119,6 +120,7 @@
                 color: $blue-900;
                 @include flex-position(row, nowrap, flex-start, center);
                 gap: 1rem;
+
                 .numOfRefs {
                     display: inline-block;
                     height: 2.5rem;
@@ -133,8 +135,9 @@
             }
             &__list {
                 height: 70%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -164,9 +167,10 @@
                 );
                 height: 70%;
                 width: 100%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
                 gap: 1rem;
+                padding-right: 2rem;
             }
         }
     }

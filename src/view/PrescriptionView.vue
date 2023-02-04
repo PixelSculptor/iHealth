@@ -122,10 +122,12 @@
         &__listOf {
             grid-area: listof;
             place-self: flex-start;
+            width: 100%;
         }
         &__import {
             grid-area: import;
             place-self: flex-start;
+            width: 100%;
         }
         &__userInfo {
             grid-area: sidebar;

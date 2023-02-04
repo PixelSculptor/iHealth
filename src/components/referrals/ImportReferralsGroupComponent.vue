@@ -91,8 +91,9 @@
             }
             &__list {
                 height: 70%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -125,6 +126,7 @@
                 height: 70%;
                 padding-top: 10%;
                 overflow-y: scroll;
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -155,6 +157,7 @@
                 padding-top: 10%;
                 overflow-y: scroll;
                 gap: 1rem;
+                padding-right: 2rem;
             }
         }
     }
