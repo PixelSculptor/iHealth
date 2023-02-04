@@ -122,10 +122,12 @@
         &__listOf {
             grid-area: listof;
             place-self: flex-start;
+            width: 100%;
         }
         &__import {
             grid-area: import;
             place-self: flex-start;
+            width: 100%;
         }
         &__userInfo {
             grid-area: sidebar;
@@ -189,7 +191,7 @@
         }
     }
 
-    @media (max-width: $tablet-width) {
+    @media (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .prescription {
             &__header {
                 height: 50%;
@@ -200,14 +202,12 @@
                 display: flex;
                 align-content: center;
                 justify-content: flex-start;
-                margin-left: 5rem;
             }
             &__actions {
                 grid-area: actions;
                 place-self: space-between;
                 width: 70%;
                 gap: 2rem;
-                margin-left: 5rem;
                 @include flex-position(row, nowrap, flex-start, center);
             }
             &__userInfo {

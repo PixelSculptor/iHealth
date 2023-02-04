@@ -110,7 +110,7 @@
             border-radius: $border-radius--normal;
             padding: 1rem;
             background-color: $white;
-            gap: 4rem;
+            gap: 4.75rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2.5rem;
@@ -127,15 +127,15 @@
         }
     }
 
-    @media (max-width: $tablet-width) {
+    @media (min-width: $tablet-width) and (max-width: $bigger-tablet) {
         .documentBox {
             @include flex-position(row, nowrap, space-between, center);
             width: 100%;
             border: $border-size solid $gray-300;
             border-radius: $border-radius--normal;
-            padding: 0.5rem;
+            padding: 1rem;
             background-color: $white;
-            gap: 4rem;
+            gap: 2.8rem;
             &:deep(svg) {
                 color: $blue-700;
                 height: 2rem;

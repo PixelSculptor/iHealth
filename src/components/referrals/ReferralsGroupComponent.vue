@@ -67,7 +67,7 @@
         }
         &__list {
             height: 70%;
-            padding-top: 10%;
+            padding-top: 15%;
             overflow-y: scroll;
             @include flex-position(column, nowrap, space-around, flex-start);
             gap: 1rem;
@@ -93,8 +93,9 @@
             }
             &__list {
                 height: 70%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -125,8 +126,10 @@
             }
             &__list {
                 height: 70%;
-                padding-top: 10%;
+                padding-top: 15%;
                 overflow-y: scroll;
+
+                padding-right: 5rem;
                 @include flex-position(
                     column,
                     nowrap,
@@ -137,14 +140,13 @@
             }
         }
 
-        @media (max-width: $tablet-width) {
+        @media (min-width: $tablet-width) and (max-width: $bigger-tablet) {
             &__header {
                 @include text-header3($font-weight-semiBold);
                 @include flex-position(row, nowrap, flex-start, center);
                 color: $blue-900;
                 gap: 1rem;
-                width: 70%;
-                margin-left: 5rem;
+                width: 100%;
             }
             &__list {
                 @include flex-position(
@@ -154,11 +156,11 @@
                     flex-start
                 );
                 height: 70%;
-                width: 82%;
-                padding-top: 10%;
+                width: 100%;
+                padding-top: 15%;
                 overflow-y: scroll;
                 gap: 1rem;
-                margin-left: 5rem;
+                padding-right: 2rem;
             }
         }
     }
