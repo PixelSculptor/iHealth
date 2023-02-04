@@ -51,13 +51,13 @@
     // }
 
     watch(getUserIssues, () => {
-        bloodType.value = getUserIssues.value[0].bloodType;
-        allergies.value = getUserIssues.value[0].allergies;
-        diabetes.value = getUserIssues.value[0].diabetes;
-        isOrganDonor.value = getUserIssues.value[0].isOrganDonor;
-        isBloodDonor.value = getUserIssues.value[0].isBloodDonor;
+        bloodType.value = getUserIssues.value[0]?.bloodType;
+        allergies.value = getUserIssues.value[0]?.allergies;
+        diabetes.value = getUserIssues.value[0]?.diabetes;
+        isOrganDonor.value = getUserIssues.value[0]?.isOrganDonor;
+        isBloodDonor.value = getUserIssues.value[0]?.isBloodDonor;
 
-        userIssues.value[0].userData = bloodType.value;
+        userIssues.value[0].userData = bloodType.value || 'Nieznana';
         userIssues.value[1].userData = allergies.value || 'Brak';
         userIssues.value[2].userData = diabetes.value || 'Brak';
         userIssues.value[3].userData = isOrganDonor.value || 'Nie';
